@@ -9,17 +9,22 @@ const CustomText = (props) => {
   const { numberOfLines, text, style } = props;
 
   const {
-    theme,
     isDarkTheme,
+    theme,
     appStateObject,
     appStateArray,
+    currentUser,
+
     changeTheme,
     storeDataInAppState,
-    removeDataFromAppState
+    removeDataFromAppState,
+    storeDataInAsyncStorage,
+    getDataFromAsyncStorage,
+    setCurrentUser,
   } = ContextHelper()
 
   return (
-    <Text numberOfLines={numberOfLines} style={[theme, style]}>
+    <Text numberOfLines={numberOfLines} style={[{color:theme?.color}, style,]}>
       {text}
     </Text>
   );

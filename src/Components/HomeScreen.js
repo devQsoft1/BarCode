@@ -17,6 +17,7 @@ import TextStyles from "../style/TextStyles";
 import Frame from "../Common/Frame";
 
 import ContextHelper from '../ContextHooks/ContextHelper'
+import CustomView from "../Common/CustomView";
 
 //---------- main component
 
@@ -50,80 +51,34 @@ const HomeScreen = ({ navigation }) => {
   return (
     <Frame>
 
-      <CustomText
-        text={"HomeScreen"}
-      />
 
-      <TouchableOpacity
 
+      <CustomView>
+        <CustomText
+          text={"HomeScreen"}
+          style={{
+            color: isDarkTheme ? '#fff' : 'gray'
+          }}
+        />
+      </CustomView>
+
+      <CustomView
         style={{
-          backgroundColor: 'green',
-          width: '100%',
-          height: 50
-        }}
-        onPress={() => {
-
-          changeTheme()
+          flexDirection: 'row', justifyContent: 'center', backgroundColor: isDarkTheme ? 'red' : 'green', alignSelf: 'center', padding: 10
         }}
       >
-        <Text>
 
-          change theme
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            changeTheme()
+          }}
+        >
+          <CustomText
+            text={"change theme"}
+          />
+        </TouchableOpacity>
 
-
-
-
-      <TouchableOpacity
-
-        style={{
-          backgroundColor: 'green',
-          width: '100%',
-          height: 50
-        }}
-        onPress={() => {
-
-          storeDataInAsyncStorage({
-            key: 'current_user',
-            value: {
-
-              user_type: 'user'
-            }
-          })
-        }}
-      >
-        <Text>
-
-          store user
-        </Text>
-      </TouchableOpacity>
-
-
-
-
-      <TouchableOpacity
-
-        style={{
-          backgroundColor: 'green',
-          width: '100%',
-          height: 50
-        }}
-        onPress={() => {
-
-          storeDataInAsyncStorage({
-            key: 'current_user',
-            value: {
-              user_type: 'admin'
-            }
-          })
-        }}
-      >
-        <Text>
-
-          store admin
-        </Text>
-      </TouchableOpacity>
+      </CustomView>
 
 
     </Frame>

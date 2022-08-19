@@ -76,10 +76,10 @@ function SplashScreen({ navigation }) {
     console.log('-------------------currentUser------, currentUser', currentUser)
 
 
-        currentUser?.user_type === 'admin' ?
+        currentUser?.user_type === 'business_owner' ?
             navigation.replace('AdminNavigator')
             :
-            currentUser?.user_type === 'user' ?
+            currentUser?.user_type === 'patron' ?
                 navigation.replace('UserNavigator')
                 :
                 navigation.replace('AuthNavigator')
