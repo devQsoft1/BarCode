@@ -16,48 +16,34 @@ import SpaceStyles from "../style/SpaceStyles";
 import TextStyles from "../style/TextStyles";
 import Frame from "../Common/Frame";
 
-import { AppContext } from '../ContextHooks/ThemeContext'
+import ContextHelper from '../ContextHooks/ContextHelper'
 
 //---------- main component
 
 const HomeScreen = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
+
   const {
     isDarkTheme,
+    theme,
     appStateObject,
     appStateArray,
+    currentUser,
+
     changeTheme,
     storeDataInAppState,
-    removeDataInAppState,
-  } = useContext(AppContext);
+    removeDataFromAppState,
+    storeDataInAsyncStorage,
+    getDataFromAsyncStorage,
+    setCurrentUser,
+  } = ContextHelper()
 
-  console.log('------------------------------------------')
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <HeaderRight
-  //         iconName1={""}
-  //         iconName2={""}
-  //         iconName3={drawerIcon}
-  //         onPress3={() => navigation.openDrawer()}
-  //       />
-  //     ),
-  //     headerTitle: () => <HeaderTitle title={"HomeScreen"} />,
-  //     headerLeft: () => (
-  //       <HeaderLeft
-  //         text={""}
-  //         iconName={backIcon}
-  //         onPress={() => navigation.goBack()}
-  //       />
-  //     ),
-  //   });
-  // }, [navigation]);
+  //---------- life cycles
 
   useEffect(() => {
 
-    console.log('isDarkTheme', isDarkTheme)
-  }, [isDarkTheme])
+  }, [])
 
   //---------- main return
 
@@ -66,23 +52,76 @@ const HomeScreen = ({ navigation }) => {
 
       <CustomText
         text={"HomeScreen"}
-        style={[TextStyles.textBold24Black, { alignSelf: "center" }, SpaceStyles.bottom20]}
       />
 
       <TouchableOpacity
 
         style={{
-          backgroundColor: 'red',
+          backgroundColor: 'green',
           width: '100%',
           height: 50
         }}
         onPress={() => {
+
           changeTheme()
         }}
       >
         <Text>
 
-          Click me
+          change theme
+        </Text>
+      </TouchableOpacity>
+
+
+
+
+      <TouchableOpacity
+
+        style={{
+          backgroundColor: 'green',
+          width: '100%',
+          height: 50
+        }}
+        onPress={() => {
+
+          storeDataInAsyncStorage({
+            key: 'current_user',
+            value: {
+
+              user_type: 'user'
+            }
+          })
+        }}
+      >
+        <Text>
+
+          store user
+        </Text>
+      </TouchableOpacity>
+
+
+
+
+      <TouchableOpacity
+
+        style={{
+          backgroundColor: 'green',
+          width: '100%',
+          height: 50
+        }}
+        onPress={() => {
+
+          storeDataInAsyncStorage({
+            key: 'current_user',
+            value: {
+              user_type: 'admin'
+            }
+          })
+        }}
+      >
+        <Text>
+
+          store admin
         </Text>
       </TouchableOpacity>
 
@@ -95,3 +134,25 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
+
+
+// useLayoutEffect(() => {
+//   navigation.setOptions({
+//     headerRight: () => (
+//       <HeaderRight
+//         iconName1={""}
+//         iconName2={""}
+//         iconName3={drawerIcon}
+//         onPress3={() => navigation.openDrawer()}
+//       />
+//     ),
+//     headerTitle: () => <HeaderTitle title={"HomeScreen"} />,
+//     headerLeft: () => (
+//       <HeaderLeft
+//         text={""}
+//         iconName={backIcon}
+//         onPress={() => navigation.goBack()}
+//       />
+//     ),
+//   });
+// }, [navigation]);
