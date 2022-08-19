@@ -37,7 +37,9 @@ const CustomView = (props) => {
 
     return (
         <View
-            style={[theme, props?.style]}
+            style={[
+                { backgroundColor: 'transparent' }, props?.style
+            ]}
         >
             {
                 props.children

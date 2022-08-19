@@ -5,6 +5,12 @@ const height = Dimensions.get("window").height;
 
 const AuthStyles = StyleSheet.create({
   
+  textInputView: {
+    borderWidth: 1,
+    borderColor: "#707070",
+    paddingHorizontal: 10,
+  },
+
   errorsLogin: {
     justifyContent: "center",
     alignItems: "center",
@@ -21,11 +27,7 @@ const AuthStyles = StyleSheet.create({
     paddingHorizontal: 30,
     
   },
-  textInputView: {
-    borderWidth: 1,
-    borderColor: "#000",
-    paddingHorizontal: 10
-  },
+  
   smallButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -75,17 +77,14 @@ const AuthStyles = StyleSheet.create({
     // width: '100%'
   },
   ModalContentContainer: {
-    width: '100%',
-    borderBottomColor:'#dee2e6',
-    borderTopColor:'#dee2e6',
-    borderBottomWidth:1,
+    // width: '100%',
+    borderTopColor:'#CECECE',
     borderTopWidth:1,
     minWidth:width-100,
-    padding:10
+    flexDirection:'row',
+    justifyContent:'center',
+    height:50
   },
-  
-  
-
 });
 
 export default AuthStyles;

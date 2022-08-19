@@ -11,6 +11,8 @@ import AdminTabNavigation from "./AdminTabNavigation/AdminTabNavigation";
 import UserTabNavigation from './UserTabNavigation/UserTabNavigation'
 
 import SplashScreen from '../Common/SplashScreen';
+import TestScreen from '../Components/TestScreen';
+
 
 // global stack veriable
 const Stack = createStackNavigator();
@@ -36,7 +38,7 @@ function StackNaviagtion(props) {
         options={{ headerShown: false }}
 
         name="SplashScreen"
-        component={SplashScreen} />
+        component={TestScreen} />
 
       <Stack.Screen
         options={{ headerShown: false }}

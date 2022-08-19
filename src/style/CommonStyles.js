@@ -36,6 +36,13 @@ const CommonStyles = StyleSheet.create({
         marginLeft: 10
     },
 
+    RowCenter: {
+
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    
     RowSpaceBetween: {
 
         flexDirection: 'row',

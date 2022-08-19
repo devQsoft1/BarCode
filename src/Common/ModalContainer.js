@@ -19,9 +19,13 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { Portal, Button, Provider } from "react-native-paper";
 
+// icon and images
 import {
     addIcon,
 } from ".././constants/Images";
+
+// common
+import CustomText from "./CustomText";
 
 // styles
 import AuthStyles from "../style/AuthStyles";
@@ -29,13 +33,32 @@ import CommonStyles from "../style/CommonStyles";
 import SpaceStyles from "../style/SpaceStyles";
 import TextStyles from "../style/TextStyles";
 
+// context
+import ContextHelper from "../ContextHooks/ContextHelper";
+import CustomView from "./CustomView";
+
 //---------- component
 
 function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal }) {
 
-    //---------- state, veriable and hooks
+    //---------- state, context and hooks
 
     const [visible, setVisible] = React.useState(isVisible);
+
+    const {
+        isDarkTheme,
+        theme,
+        appStateObject,
+        appStateArray,
+        currentUser,
+
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
+    } = ContextHelper()
 
     //---------- life cycle
 
@@ -49,120 +72,82 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
     const showModal = () => setVisible(true);
 
-    const renderContent = (params) => {
 
-        switch (params) {
-
-            case 'affirmations':
-
-                return (
-                    renderContentLayout({
-                        title: 'Affirmations',
-                        content: <Text style={{ color: '#000' }}>
-                            {
-                                content
-                            }
-                        </Text>
-                    })
-                )
-                break;
-
-            case 'save':
-
-                return (
-                    renderContentLayout({
-                        title: 'Playlists',
-                        content: <TouchableOpacity
-                            onPress={() => {
-                                alert('...in process')
-                            }}
-                            style={CommonStyles.RowStart}
-                        >
-                            <Image
-                                style={{ marginRight: 10 }}
-                                source={addIcon}
-                                resizeMode='cover'
-                            />
-                            <Text style={{ color: '#000' }}>
-                                {
-                                    'Create New Plalist'
-                                }
-                            </Text>
-                        </TouchableOpacity>
-                    })
-                )
-                break;
-
-            case 'render_view':
-
-                return renderItem()
-                break;
-
-            default:
-                break;
-        }
-    }
-
-
-    const renderContentLayout = ({ title, content }) => {
+    const renderContentLayout = () => {
 
         return (
             <React.Fragment>
-                <View
+                <CustomView
                     style={[
-                        CommonStyles.RowSpaceBetween,
-                        { padding: 10, width: '100%', alignSelf:'flex-start' }
+                        CommonStyles.RowCenter,
+                        {
+                            backgroundColor: isDarkTheme ? '#000' : '#fff',
+                            padding: 40
+                        }
                     ]}
                 >
-                    <Text
-                        style={[
-                            TextStyles.textBold24Black
-                        ]}
-                    >
-                        {
-                            title
-                        }
-                    </Text>
-                </View>
+                    <CustomText
+                        style={{
+                            fontSize: 20
+                        }}
+                        text={content?.title}
+                    />
+                </CustomView>
 
-                <View
+                <CustomView
                     style={
                         AuthStyles.ModalContentContainer
                     }
                 >
-                    {
-                        content
-                    }
-                </View>
 
-                <View
-                    style={[
-                        CommonStyles.RowEnd,
-                        { padding: 10, width: '100%' }
-                    ]}
-                >
-                    <TouchableOpacity
-                        style={CommonStyles.GrayBtn}
-                        onPress={() => {
-                            hideModal()
+                    <CustomView
+                        style={{
+                            width: '40%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRigthColor: '#CECECE',
+                            borderRightWidth: 1,
                         }}
                     >
-                        <Text
-                            style={
-                                TextStyles.textSegoe18White
-                            }
-                        >
-                            Close
-                        </Text>
-                    </TouchableOpacity>
 
-                </View>
+                        <CustomText
+                            style={{
+                                fontSize: 20,
+                                fontWeight: '700',
+                                textTransform: 'uppercase',
+                                color:'#0066FF'
+                            }}
+                            text={content?.left_content}
+                        />
+                    </CustomView>
+
+                    <CustomView
+                        style={{
+                            width: '40%',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                    >
+
+                        <CustomText
+                            style={{
+                                fontSize: 20,
+                                fontWeight: '700',
+                                textTransform: 'uppercase',
+                                color:'#FFA500'
+                            }}
+                            text={content?.right_content}
+                        />
+                    </CustomView>
+
+                </CustomView>
+
             </React.Fragment>
         )
     }
+
     //---------- return main view
 
-    console.log('visible', visible)
     return (
 
         <Modal
@@ -174,15 +159,20 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                 setVisible(false)
             }}
         >
-            <View style={styles.centeredView1}>
-                <View style={styles.modalView}>
-
+            <CustomView
+                style={styles.centeredView1}
+            >
+                <CustomView
+                    style={[
+                        styles.modalView,
+                        { backgroundColor: isDarkTheme ? '#000' : '#fff' }
+                    ]}
+                >
                     {
-                        renderContent(render_view_key)
+                        renderContentLayout()
                     }
-
-                </View>
-            </View>
+                </CustomView>
+            </CustomView>
         </Modal>
     );
 };
@@ -204,13 +194,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22
+        marginTop: 22,
+        backgroundColor: 'transparent'
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
+
         borderRadius: 20,
-        padding: 20,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
