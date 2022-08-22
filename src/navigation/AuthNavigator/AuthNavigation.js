@@ -5,7 +5,11 @@ import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 // components
-import HomeScreen from "../../Components/HomeScreen";
+import PatronLogin from "../../Components/Patron/Auth/PatronLogin";
+import PatronSignup from '../../Components/Patron/Auth/PatronSignup';
+import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron';
+import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
+
 
 // global stack veriable
 const Stack = createStackNavigator();
@@ -19,7 +23,7 @@ function AuthNavigation(props) {
 
     return (
         <Stack.Navigator
-            initialRouteName={'Login'}
+            initialRouteName={'PatronLogin'}
             options={{ headerShown: false }}
         >
 
@@ -27,8 +31,32 @@ function AuthNavigation(props) {
                 options={{
                     headerShown: false
                 }}
-                name="Login" component={HomeScreen} />
-          
+                name="PatronLogin" component={PatronLogin} />
+
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="PatronSignup" component={PatronSignup} />
+
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="ProfileImagePatron" component={ProfileImagePatron} />
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="PatronFreeTrial" component={PatronFreeTrial} />
+
+
+
+
+
 
         </Stack.Navigator>
     )

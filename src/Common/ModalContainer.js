@@ -100,13 +100,14 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                     }
                 >
 
-                    <CustomView
+                    <TouchableOpacity
+                        onPress={() => {
+                            hideModal()
+                        }}
                         style={{
                             width: '40%',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            borderRigthColor: '#CECECE',
-                            borderRightWidth: 1,
                         }}
                     >
 
@@ -115,13 +116,18 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                                 fontSize: 20,
                                 fontWeight: '700',
                                 textTransform: 'uppercase',
-                                color:'#0066FF'
+                                color: '#0066FF'
                             }}
                             text={content?.left_content}
                         />
-                    </CustomView>
+                    </TouchableOpacity>
 
-                    <CustomView
+                    <View style={{ backgroundColor: '#CECECE', width: 1 }} />
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            hideModal()
+                        }}
                         style={{
                             width: '40%',
                             justifyContent: 'center',
@@ -129,20 +135,21 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                         }}
                     >
 
+
                         <CustomText
                             style={{
                                 fontSize: 20,
                                 fontWeight: '700',
                                 textTransform: 'uppercase',
-                                color:'#FFA500'
+                                color: '#FFA500'
                             }}
                             text={content?.right_content}
                         />
-                    </CustomView>
+                    </TouchableOpacity>
 
                 </CustomView>
 
-            </React.Fragment>
+            </React.Fragment >
         )
     }
 

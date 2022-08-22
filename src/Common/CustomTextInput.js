@@ -30,8 +30,11 @@ const CustomTextInput = ({
   numberOfLines,
   textAlignVertical,
   borderRadius,
-  icon,
-  iconClick
+  rightIcon,
+  iconClick,
+  borderColor,
+  marginTop,
+  leftIcon
 }) => {
 
   //---------- state and context
@@ -57,9 +60,32 @@ const CustomTextInput = ({
     <View
       style={[
         AuthStyles.textInputView,
-        { borderRadius: borderRadius ? borderRadius : 10, }, { flexDirection: 'row', alignContent: 'flex-end', height: numberOfLines > 1 ? 28 * numberOfLines : 50 }
+        { borderRadius: borderRadius ? borderRadius : 10, },
+        { flexDirection: 'row', alignContent: 'flex-end', height: numberOfLines > 1 ? 28 * numberOfLines : 50 },
+        { borderColor: isDarkTheme ? borderColor ? borderColor : TEXTGRAY : borderColor, marginTop: marginTop ? marginTop : 0 }
       ]}
     >
+
+      {
+        !!leftIcon &&
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignSelf: textAlignVertical === 'top' ? 'flex-start' : numberOfLines > 1 ? 'flex-start' : 'center',
+            marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0,
+            marginRight: 10
+          }}
+          onPress={() => {
+            iconClick && iconClick()
+          }}
+        >
+          {
+            leftIcon
+          }
+        </TouchableOpacity>
+      }
+
       <TextInput
         style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontSize: 18 }, style]}
         placeholder={placeholder}
@@ -80,7 +106,7 @@ const CustomTextInput = ({
       />
 
       {
-        !!icon &&
+        !!rightIcon &&
         <TouchableOpacity
           style={{
             alignItems: 'center',
@@ -89,11 +115,11 @@ const CustomTextInput = ({
             marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0
           }}
           onPress={() => {
-            iconClick()
+            iconClick && iconClick()
           }}
         >
           {
-            icon
+            rightIcon
           }
         </TouchableOpacity>
       }

@@ -52,6 +52,11 @@ const GlobalContextProvide = (props) => {
         };
     }, []);
 
+
+    useEffect(() => {
+
+        console.log('---- is dark theme ----', isDarkTheme)
+    }, [isDarkTheme])
     //---------- user's action
 
     // change theme
@@ -70,7 +75,6 @@ const GlobalContextProvide = (props) => {
                     isDarkTheme: false,
                     backgroundColor: '#fff',
                     color: '000'
-
                 }
             })
         } else {

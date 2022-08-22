@@ -11,7 +11,7 @@ import ContextHelper from '../ContextHooks/ContextHelper'
 import CustomView from "../Common/CustomView";
 import CustomTextInput from "../Common/CustomTextInput";
 
-import { backIcon, drawerIcon } from "../constants/Images";
+// import { backIcon, drawerIcon } from "../constants/Images";
 
 // styles
 import AuthStyles from "../style/AuthStyles";
@@ -22,6 +22,8 @@ import Frame from "../Common/Frame";
 // icon
 import UserIconSmall from "../Assets/Icons/UserIconSmall";
 import ModalContainer from '../Common/ModalContainer';
+import ClainDrinkTile from "../Common/Tile/ClainDrinkTile";
+import DrinkDetailTile from "../Common/Tile/DrinkDetailTile";
 
 
 //---------- main component
@@ -140,6 +142,21 @@ const TestScreen = ({ navigation }) => {
         </TouchableOpacity>
       </CustomView>
 
+      <View style={{
+        flex: 5
+      }}>
+        <ClainDrinkTile />
+      </View>
+
+      <View
+        style={{
+          paddingHorizontal: 10,
+          paddingVertical: 10,
+          flex:1
+        }}
+      >
+        <DrinkDetailTile />
+      </View>
 
 
     </Frame >

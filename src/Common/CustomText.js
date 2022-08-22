@@ -24,7 +24,7 @@ const CustomText = (props) => {
   } = ContextHelper()
 
   return (
-    <Text numberOfLines={numberOfLines} style={[{color:theme?.color}, style,]}>
+    <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style,]}>
       {text}
     </Text>
   );

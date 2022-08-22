@@ -73,8 +73,7 @@ function SplashScreen({ navigation }) {
 
     const navigateHelper = () => {
 
-    console.log('-------------------currentUser------, currentUser', currentUser)
-
+        console.log('-------------------currentUser------, currentUser', currentUser)
 
         currentUser?.user_type === 'business_owner' ?
             navigation.replace('AdminNavigator')
@@ -82,7 +81,7 @@ function SplashScreen({ navigation }) {
             currentUser?.user_type === 'patron' ?
                 navigation.replace('UserNavigator')
                 :
-                navigation.replace('AuthNavigator')
+                navigation.replace('RoleSelectionScreen')
     }
 
     return (

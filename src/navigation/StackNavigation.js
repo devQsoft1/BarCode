@@ -12,6 +12,7 @@ import UserTabNavigation from './UserTabNavigation/UserTabNavigation'
 
 import SplashScreen from '../Common/SplashScreen';
 import TestScreen from '../Components/TestScreen';
+import RoleSelectionScreen from '../Components/RoleSelectionScreen';
 
 
 // global stack veriable
@@ -38,7 +39,13 @@ function StackNaviagtion(props) {
         options={{ headerShown: false }}
 
         name="SplashScreen"
-        component={TestScreen} />
+        component={SplashScreen} />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+
+        name="RoleSelectionScreen"
+        component={RoleSelectionScreen} />
 
       <Stack.Screen
         options={{ headerShown: false }}

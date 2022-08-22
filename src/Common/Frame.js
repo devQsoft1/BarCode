@@ -2,9 +2,15 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, useColorScheme } from "react-native";
+import { StyleSheet, ScrollView, View, Text, useColorScheme, Dimensions, SafeAreaView } from "react-native";
 
+// context
 import ContextHelper from "../ContextHooks/ContextHelper";
+
+// constants
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 
 //---------- main app / component
 
@@ -25,7 +31,7 @@ const Frame = (props) => {
     //---------- life cycle
 
     useEffect(() => {
-    
+
     }, []);
 
     //---------- return main view 
@@ -39,7 +45,13 @@ const Frame = (props) => {
                 theme
             ]}
         >
-            <ScrollView>
+            <ScrollView
+
+                style={{
+                    flex:1,
+                    paddingBottom:30,
+                }}
+            >
                 {
                     props.children
                 }
