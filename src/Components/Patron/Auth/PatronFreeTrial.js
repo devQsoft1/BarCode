@@ -19,6 +19,7 @@ import CameraIcon from "../../../Assets/Icons/CameraIcon";
 import UnlockYellowIcon from "../../../Assets/Icons/UnlockYellowIcon";
 import RightYellowIcon from "../../../Assets/Icons/RightYellowIcon";
 import BellYellowIcon from "../../../Assets/Icons/BellYellowIcon";
+import BottomModalContainer from "../../../Common/BottomModalContainer";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -28,6 +29,7 @@ const windowHeight = Dimensions.get('window').height;
 const PatronFreeTrial = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
+  const [isVisible, setIsVisible] = useState(false);
 
   const {
     isDarkTheme,
@@ -74,13 +76,25 @@ const PatronFreeTrial = ({ navigation }) => {
     )
   }
 
+  const renderModal = () => {
+
+    return (
+      <BottomModalContainer
+        navigation={navigation}
+        render_view_key={'lets_drink'}
+        isVisible={isVisible}
+        hideModal={() => setIsVisible(!isVisible)}
+      />
+    )
+  }
+
   return (
     <Frame>
 
       <CustomView
         style={{
           flex: 1,
-          paddingBottom: 50
+          paddingBottom: isVisible ? 500 : 50
         }}
       >
 
@@ -88,7 +102,6 @@ const PatronFreeTrial = ({ navigation }) => {
           text1={"START YOUR FREE TRIAL NOW!"}
           isDarkTheme={isDarkTheme}
         />
-
 
         <CustomView
           style={{
@@ -126,6 +139,8 @@ const PatronFreeTrial = ({ navigation }) => {
 
           <CustomView
             style={{
+              flex: 1,
+              // height:'100%',
               flexDirection: 'row',
               justifyContent: 'space-between',
               marginTop: 50
@@ -141,7 +156,7 @@ const PatronFreeTrial = ({ navigation }) => {
 
               <CustomView
                 style={{
-                  height: '75%',
+                  height: '100%',
                   width: 5,
                   backgroundColor: '#FFA500',
                   paddingBottom: 50
@@ -151,7 +166,7 @@ const PatronFreeTrial = ({ navigation }) => {
               <CustomView
                 style={{
                   position: 'absolute',
-                  top: 10
+                  top: 20
                 }}
               >
                 {
@@ -162,7 +177,7 @@ const PatronFreeTrial = ({ navigation }) => {
               <CustomView
                 style={{
                   position: 'absolute',
-                  top: 170
+                  top: 150
                 }}
               >
                 {
@@ -173,7 +188,7 @@ const PatronFreeTrial = ({ navigation }) => {
               <CustomView
                 style={{
                   position: 'absolute',
-                  top: 350
+                  top: 300
                 }}
               >
                 {
@@ -185,12 +200,13 @@ const PatronFreeTrial = ({ navigation }) => {
 
             <CustomView
               style={{
-                width: '80%'
+                width: '100%'
               }}
             >
               <CustomText
                 text={"TODAY"}
                 style={{
+                  marginTop: 20,
                   fontSize: 24,
                   fontWeight: '700',
                   color: isDarkTheme ? '#FFF' : '#000',
@@ -209,7 +225,7 @@ const PatronFreeTrial = ({ navigation }) => {
               <CustomText
                 text={"IN 7 DAYS"}
                 style={{
-                  marginTop: 90,
+                  marginTop: 60,
                   fontSize: 24,
                   fontWeight: '700',
                   color: isDarkTheme ? '#FFF' : '#000',
@@ -237,7 +253,7 @@ const PatronFreeTrial = ({ navigation }) => {
               <CustomText
                 text={"IN 7 DAYS"}
                 style={{
-                  marginTop: 90,
+                  marginTop: 60,
                   fontSize: 24,
                   fontWeight: '700',
                   color: isDarkTheme ? '#FFF' : '#000',
@@ -266,53 +282,61 @@ const PatronFreeTrial = ({ navigation }) => {
 
           </CustomView>
 
-        <CustomView
-          style={{
-            borderWidth: 1,
-            borderColor: isDarkTheme ? '#FFF' : '#000',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            borderRadius: 30,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor:'red'
-          }}
-        >
-
-          <CustomText
-            text={"ALREADY SUBSCRIBED?"}
-            style={{
-              textAlign: 'center',
-              fontSize: 16,
-              fontWeight: '500',
-              color: isDarkTheme ? '#FFF' : '#000',
-            }}
-          />
-
           <CustomView
             style={{
-              backgroundColor: '#FFA500',
+              marginTop: 30,
+              borderWidth: 1,
+              borderColor: isDarkTheme ? '#FFF' : '#000',
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              borderRadius: 30,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
+
             <CustomText
-              text={"RESTORE"}
+              text={"ALREADY SUBSCRIBED?"}
               style={{
                 textAlign: 'center',
-                fontSize: 14,
-                fontWeight: '600',
-                color: '#FFF',
+                fontSize: 16,
+                fontWeight: '500',
+                color: isDarkTheme ? '#FFF' : '#000',
               }}
             />
+
+            <TouchableOpacity
+              onPress={() => {
+                setIsVisible(true)
+              }}
+              style={{
+                backgroundColor: '#FFA500',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
+                borderRadius: 30
+              }}
+            >
+              <CustomText
+                text={"RESTORE"}
+                style={{
+                  textAlign: 'center',
+                  fontSize: 14,
+                  fontWeight: '600',
+                  color: '#FFF',
+                }}
+              />
+            </TouchableOpacity>
           </CustomView>
 
-
         </CustomView>
-        
-        </CustomView>
-
 
       </CustomView>
+
+      {
+        renderModal()
+      }
+
     </Frame>
   );
 };

@@ -2,8 +2,7 @@
 
 // react
 import React, { useContext } from "react";
-import { StyleSheet, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 // style
 import { BLACK } from "../constants/Colors";
@@ -40,17 +39,17 @@ const CustomButton = (props) => {
 
   return (
     <TouchableOpacity
-      onPres={() => {
+      onPress={() => {
         props?.onPress()
       }}
       style={{
         paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
         paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
         backgroundColor: props?.backgroundColor ? props?.backgroundColor : '#0066FF',
+        borderRadius: props?.borderRadius ? props?.borderRadius : 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
-        width:'100%'
+        width: '100%'
       }}
     >
       <CustomText

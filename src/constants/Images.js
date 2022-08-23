@@ -10,5 +10,7 @@ module.exports = {
   addIcon: require("../Assets/Image/addIcon.png"),
   patronLoginBG: require("../Assets/Image/patronLoginBG.png"),
   rightYellow:require("../Assets/Image/rightYellow.png"),
+  Cross:require("../Assets/Image/Cross.png"),
+  
   
 };

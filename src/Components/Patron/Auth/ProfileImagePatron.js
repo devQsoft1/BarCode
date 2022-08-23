@@ -68,8 +68,10 @@ const ProfileImagePatron = ({ navigation }) => {
 
         <CustomView
           style={{
+            flex: 1,
             paddingTop: 30,
-            paddingHorizontal: 20
+            paddingHorizontal: 20,
+            // alignItems:'space-between'
           }}
         >
 
@@ -102,75 +104,84 @@ const ProfileImagePatron = ({ navigation }) => {
 
           </CustomView>
 
-
           <CustomView
             style={{
-              marginTop: 50,
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              alignItems: 'center',
+              flex: 1,
+              justifyContent: 'space-between',
+
             }}
           >
-            <TouchableOpacity
-              style={{
-                alignItems: 'center'
-              }}
-              onPress={() => {
-                alert('in process....')
-              }}
-            >
-              <GallaryIcon />
-              <CustomText
-                style={{
-                  color: '#747474'
-                }}
-                text={'Gallery'}
-              />
-            </TouchableOpacity>
 
-            <TouchableOpacity
+            <CustomView
               style={{
-                alignItems: 'center'
-              }}
-              onPress={() => {
-                alert('in process....')
+                marginTop: 50,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
               }}
             >
-              <CameraIcon />
-              <CustomText
+              <TouchableOpacity
                 style={{
-                  color: '#747474'
+                  alignItems: 'center'
                 }}
-                text={'Camera'}
-              />
-            </TouchableOpacity>
+                onPress={() => {
+                  alert('in process....')
+                }}
+              >
+                <GallaryIcon />
+                <CustomText
+                  style={{
+                    color: '#747474'
+                  }}
+                  text={'Gallery'}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center'
+                }}
+                onPress={() => {
+                  alert('in process....')
+                }}
+              >
+                <CameraIcon />
+                <CustomText
+                  style={{
+                    color: '#747474'
+                  }}
+                  text={'Camera'}
+                />
+              </TouchableOpacity>
+            </CustomView>
+
+
+            <CustomView
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                paddingRigth: 10,
+                // marginTop: 100,
+                paddingVertical: 20,
+                backgroundColor: isDarkTheme ? '#111111' : ''
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('PatronFreeTrial')
+                }}
+              >
+
+                <Image
+                  style={{ marginRight: 10 }}
+                  source={rightYellow}
+                  resizeMode='cover'
+                />
+              </TouchableOpacity>
+            </CustomView>
           </CustomView>
 
-
-          <CustomView
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              paddingRigth: 10,
-              marginTop: 100,
-              paddingVertical: 20,
-              backgroundColor: isDarkTheme ? '#111111' : ''
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('PatronFreeTrial')
-              }}
-            >
-
-              <Image
-                style={{ marginRight: 10 }}
-                source={rightYellow}
-                resizeMode='cover'
-              />
-            </TouchableOpacity>
-          </CustomView>
 
         </CustomView>
       </CustomView>

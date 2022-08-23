@@ -9,6 +9,7 @@ import PatronLogin from "../../Components/Patron/Auth/PatronLogin";
 import PatronSignup from '../../Components/Patron/Auth/PatronSignup';
 import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron';
 import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
+import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 
 
 // global stack veriable
@@ -33,13 +34,11 @@ function AuthNavigation(props) {
                 }}
                 name="PatronLogin" component={PatronLogin} />
 
-
             <Stack.Screen
                 options={{
                     headerShown: false
                 }}
                 name="PatronSignup" component={PatronSignup} />
-
 
             <Stack.Screen
                 options={{
@@ -52,6 +51,14 @@ function AuthNavigation(props) {
                     headerShown: false
                 }}
                 name="PatronFreeTrial" component={PatronFreeTrial} />
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="FAQ" component={FAQ} />
+
+
 
 
 
