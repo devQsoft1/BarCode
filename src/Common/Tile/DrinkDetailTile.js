@@ -65,7 +65,7 @@ const DrinkDetailTile = (props) => {
             >
                 <CustomText
                     style={{
-                        color: '#fff',
+                        color: isDarkTheme ? "#fff" : '#000',
                         fontSize: 14,
                         fontWeight: '600',
                         alignSelf: 'center'
@@ -79,14 +79,15 @@ const DrinkDetailTile = (props) => {
 
             <CustomView
                 style={{
-                    backgroundColor: '#EAE8E8',
+                    backgroundColor: isDarkTheme ? '#000' : '#EAE8E8',
                     padding: 10,
                     width: '50%'
                 }}
             >
                 <CustomText
                     style={{
-                        color: '#000',
+                        color: isDarkTheme ? "#fff" : '#000',
+
                         fontSize: 14,
                         fontWeight: '500',
                     }}
@@ -96,7 +97,8 @@ const DrinkDetailTile = (props) => {
 
                 <CustomText
                     style={{
-                        color: '#000',
+                        color: isDarkTheme ? "#fff" : '#000',
+
                         fontSize: 14,
                         fontWeight: '500',
                     }}
@@ -127,7 +129,7 @@ const DrinkDetailTile = (props) => {
 
             <CustomView
                 style={{
-                    backgroundColor: '#EAE8E8',
+                    backgroundColor: isDarkTheme ? '#000' : '#EAE8E8',
                     width: '20%',
                     justifyContent: 'center',
                     alignItems: 'center'

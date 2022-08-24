@@ -71,6 +71,17 @@ const TestScreen = ({ navigation }) => {
         />
       </CustomView>
 
+      <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('PatronHome')
+          }}
+        >
+          <CustomText
+            text={"change theme"}
+          />
+        </TouchableOpacity>
+
+
       <CustomView
         style={{
           flexDirection: 'row', justifyContent: 'center', backgroundColor: isDarkTheme ? 'red' : 'green', alignSelf: 'center', padding: 10

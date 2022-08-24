@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import AuthNavigation from "./AuthNavigator/AuthNavigation";
-import AdminTabNavigation from "./AdminTabNavigation/AdminTabNavigation";
+import OwnerNavigator from "./OwnerNavigator/OwnerNavigator";
 import UserTabNavigation from './UserTabNavigation/UserTabNavigation'
 
 import SplashScreen from '../Common/SplashScreen';
@@ -61,8 +61,8 @@ function StackNaviagtion(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="AdminNavigator"
-        component={AdminTabNavigation}
+        name="OwnerNavigator"
+        component={OwnerNavigator}
       />
 
 

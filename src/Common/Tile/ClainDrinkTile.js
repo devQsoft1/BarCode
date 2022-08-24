@@ -6,8 +6,10 @@ import { StyleSheet, Text, ImageBackground } from "react-native";
 
 // style
 import { BLACK } from "../constants/Colors";
-import { darkSplash } from "../../constants/Images";
 
+// image and icon
+import { darkSplash, Temp } from "../../constants/Images";
+import FeaturedRedIcon from "../../Assets/Icons/FeaturedRedIcon";
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";
@@ -40,110 +42,138 @@ const ClainDrinkTile = (props) => {
     //---------- Main View
 
     return (
-
-        <CustomView
-            style={{
-                borderRadius: 20,
-                height: '100%',
-                width: '100%',
-                overflow: 'hidden',
-            }}
-        >
-            <ImageBackground
-                source={{ uri: 'https://i.picsum.photos/id/940/200/300.jpg?hmac=H13hOo0ZH4iX7fShH_p1dNg8gyZKXZIUNFfR74kIO7k' }}
-                resizeMode="cover"
-                style={{
-                    flex: 1,
-                    height: '100%',
-                    width: '100%',
-                }}
-            >
-
+        <>
+            {
+                props?.isFeatured &&
                 <CustomView
                     style={{
-                        paddingTop: 27,
-                        paddingLeft: 25,
-                        paddingBottom: 20,
-                        paddingRight: 15
+                        position: 'absolute',
+                        top: -10,
+                        right: 20,
+                        zIndex:100
                     }}
                 >
 
-                    <CustomText
-                        style={{
-                            color: '#fff',
-                            fontSize: 24,
-                            fontWeight: 'bold',
-                        }}
-
-                        text={"$10 DRINKS ALL DAY"}
-
-                    />
-
-                    <CustomText
-                        style={{
-                            color: '#fff',
-                            fontSize: 18
-
-                        }}
-
-                        text={"8 AM - 2 PM"}
-
-                    />
-
-                    <CustomText
-                        style={{
-                            color: '#fff',
-                            marginBottom: 20,
-                            fontSize: 18
-
-                        }}
-
-                        text={"MONDAY OCT 13"}
-
-                    />
+                    <FeaturedRedIcon />
+                </CustomView>
+            }
+            <CustomView
+                style={{
+                    borderRadius: 20,
+                    height: '100%',
+                    width: '100%',
+                    overflow: 'hidden',
+                }}
+            >
+                <ImageBackground
+                    source={Temp}
+                    resizeMode="cover"
+                    style={{
+                        flex: 1,
+                        height: '100%',
+                        width: '100%',
+                    }}
+                >
 
                     <CustomView
                         style={{
-                            flex: 1,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
+                            paddingTop: 27,
+                            paddingLeft: 20,
+                            paddingBottom: 20,
+                            paddingRight: 15
                         }}
                     >
 
-                        <CustomView>
-                            <CustomText
-                                style={{
-                                    color: '#fff',
-                                    marginVertical: 5,
-                                    fontSize: 24
+                        <CustomText
+                            style={{
+                                color: '#fff',
+                                fontSize: 24,
+                                fontWeight: 'bold',
+                            }}
 
-                                }}
+                            text={"$10 DRINKS ALL DAY"}
 
-                                text={"BROCODE BAR"}
-
-                            />
-                            <CustomText
-                                style={{
-                                    color: '#fff',
-                                    fontWeight: 'bold',
-                                    fontSize: 20
-                                }}
-
-                                text={"5 MILES BRIDGEPORT"}
-
-                            />
-                        </CustomView>
-
-                        <CustomButton
-                            title={'CLAIM DRINK'}
                         />
 
-                    </CustomView>
-                </CustomView>
+                        <CustomText
+                            style={{
+                                color: '#fff',
+                                fontSize: 18
 
-            </ImageBackground>
-        </CustomView>
+                            }}
+
+                            text={"8 AM - 2 PM"}
+
+                        />
+
+                        <CustomText
+                            style={{
+                                color: '#fff',
+                                marginBottom: 20,
+                                fontSize: 18
+
+                            }}
+
+                            text={"MONDAY OCT 13"}
+
+                        />
+
+                        <CustomView
+                            style={{
+                                // flex: 1,
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                            }}
+                        >
+
+                            <CustomView>
+                                <CustomText
+                                    numberOfLine={1}
+                                    style={{
+                                        color: '#fff',
+                                        marginVertical: 5,
+                                        fontSize: 24,
+                                        width: '80%'
+
+                                    }}
+
+                                    text={"BROCODE BAR"}
+
+                                />
+                                <CustomText
+                                    style={{
+                                        color: '#fff',
+                                        fontWeight: 'bold',
+                                        fontSize: 20
+                                    }}
+
+                                    text={"5 MILES BRIDGEPORT"}
+
+                                />
+                            </CustomView>
+
+                            <CustomView
+                                style={{
+                                    // width: '30%'
+                                    marginLeft: 10
+
+                                }}
+                            >
+
+                                <CustomButton
+                                    paddingHorizontal={10}
+                                    // borderRadius={20}
+                                    title={'CLAIM DRINK'}
+                                />
+                            </CustomView>
+
+                        </CustomView>
+                    </CustomView>
+
+                </ImageBackground>
+            </CustomView>
+        </>
 
     );
 };

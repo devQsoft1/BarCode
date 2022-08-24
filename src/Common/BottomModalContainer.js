@@ -40,7 +40,7 @@ import CustomButton from "./CustomButton";
 
 //---------- component
 
-function BottomModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal, backgroundColor }) {
+function BottomModalContainer({ navigation, faqData, render_view_key, content, isVisible, renderItem, hideModal, backgroundColor, paddingBottom }) {
 
     //---------- state, context and hooks
 
@@ -247,6 +247,41 @@ function BottomModalContainer({ navigation, render_view_key, content, isVisible,
         return (
             <React.Fragment>
 
+                <CustomText
+                    text={faqData?.title}
+                    style={{
+                        fontSize: 28,
+                        fontWeight: '700',
+                        color: '#42AEEC'
+                    }}
+                />
+
+                {
+                    !!faqData?.body &&
+                    <CustomText
+                        text={faqData?.body}
+                        style={{
+                            marginTop: 30,
+                            fontSize: 20,
+                            fontWeight: '500',
+                            color: '#9A9A9A'
+                        }}
+                    />
+                }
+
+                {
+                    !!faqData?.body1 &&
+                    <CustomText
+                        text={faqData?.body1}
+                        style={{
+                            marginTop: 30,
+                            fontSize: 20,
+                            fontWeight: '500',
+                            color: faqData?.isLink ? '#031CF6' : '#9A9A9A'
+                        }}
+                    />
+                }
+
             </React.Fragment>
         )
     }
@@ -267,15 +302,36 @@ function BottomModalContainer({ navigation, render_view_key, content, isVisible,
                 setVisible(false)
             }}
         >
-            <CustomView
+            <TouchableOpacity
+                onPress={() => {
+                    // alert(0)
+                    hideModal()
+                    setVisible(false)
+                }}
                 style={styles.centeredView1}
             >
-                <CustomView
+                <TouchableOpacity
+                    activeOpacity={1}
+
+                    onPress={(e) => {
+                        console.log(e)
+                        e.stopPropagation()
+                    }}
                     style={[
                         {
                             backgroundColor: backgroundColor ? backgroundColor : isDarkTheme ? '#111111' : '#EBEBEB',
                             padding: 20,
-                            borderRadius: 30
+                            borderRadius: 30,
+                            botderTopWidht: backgroundColor ? 1 : 0,
+                            broderTopColor: backgroundColor ? '#111111' : '#EBEBEB',
+                            paddingBottom : paddingBottom ? paddingBottom : 50,
+                            shadowOffset: {
+                                width: 0,
+                                height: -0
+                            },
+                            shadowOpacity: 0.1,
+                            shadowRadius: 0,
+                            elevation: 200
                         }
                     ]}
                 >
@@ -283,8 +339,8 @@ function BottomModalContainer({ navigation, render_view_key, content, isVisible,
                         renderContent(render_view_key)
                     }
 
-                </CustomView>
-            </CustomView>
+                </TouchableOpacity>
+            </TouchableOpacity>
         </Modal>
     );
 };
@@ -303,7 +359,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 22,
         justifyContent: "flex-end",
-        backgroundColor: 'transparent',
+        // backgroundColor: 'red',
     },
 
 });

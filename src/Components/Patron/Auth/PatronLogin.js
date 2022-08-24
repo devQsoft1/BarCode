@@ -63,7 +63,7 @@ const PatronLogin = ({ navigation }) => {
       <CustomView
         style={{
           flex: 1,
-          height: windowHeight+20,
+          height: windowHeight + 20,
         }}
       >
 
@@ -139,6 +139,9 @@ const PatronLogin = ({ navigation }) => {
             <View style={{ height: 20 }} />
 
             <CustomButton
+              onPress={() => {
+                navigation.navigate('UserNavigator')
+              }}
               title={'Login'}
               paddingVertical={20}
             />

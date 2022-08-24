@@ -40,7 +40,7 @@ const CustomButton = (props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props?.onPress()
+        props?.onPress && props?.onPress()
       }}
       style={{
         paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
@@ -49,14 +49,17 @@ const CustomButton = (props) => {
         borderRadius: props?.borderRadius ? props?.borderRadius : 10,
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        width: props?.width ? props?.width : '100%',
+        borderColor: props?.borderColor ? props?.borderColor : '#0066FF',
+        borderWidth: props?.borderColor ? 1 : 0,
       }}
     >
       <CustomText
         style={{
           color: props?.color ? props?.color : '#fff',
           fontSize: props?.fontSize ? props?.fontSize : 16,
-          fontWeight: '400'
+          fontWeight: props?.fontWeight ? props?.fontWeight : '400',
+          textAlign: 'center',
         }}
 
         text={props?.title}

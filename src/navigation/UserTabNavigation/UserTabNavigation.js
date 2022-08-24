@@ -19,9 +19,12 @@ import SaveIcon from "../../Assets/Icons/SaveIcon";
 // components
 import SearchScreen from "../../Components/SearchScreen";
 import FavoriteScreen from "../../Components/FavoriteScreen";
-import UserScreen from "../../Components/UserScreen";
 import MenuScreen from "../../Components/MenuScreen";
-import HomeScreen from "../../Components/HomeScreen";
+import PatronProfile from "../../Components/Patron/Home/PatronProfile";
+import PatronHome from "../../Components/Patron/Home/PatronHome";
+import PatronFavorites from "../../Components/Patron/Home/PatronFavorites";
+import PatronSearch from "../../Components/Patron/Home/PatronSearch";
+import PatronBarDetail from "../../Components/CommonPatronAndOwner/PatronBarDetail";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
@@ -32,30 +35,10 @@ const Stack = createStackNavigator();
 
 //---------- main app / component
 
-function HomeNavigation(props) {
-
-  //---------- return main view
-
-  return (
-    <Stack.Navigator
-      initialRouteName={"Home"}
-    >
-
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="HomeScreen"
-        component={Home}
-      />
-
-    </Stack.Navigator>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 
 function UserTabNavigation() {
-
-  console.log('-------------------------, admin')
 
   //---------- return main view of drawer
 
@@ -65,16 +48,16 @@ function UserTabNavigation() {
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
-          if (route.name === 'HomeScreen') {
+          if (route.name === 'PatronHome') {
 
             Icon = <HomeIcon fill={focused ? '#42AEEC' : '#000'} />
-          } else if (route.name === 'SearchScreen') {
+          } else if (route.name === 'PatronSearch') {
 
             Icon = <SearchIcon fill={focused ? '#42AEEC' : '#000'} />
-          } else if (route.name === 'favoriteScreen') {
+          } else if (route.name === 'PatronFavorites') {
 
             Icon = <SaveIcon fill={focused ? '#42AEEC' : '#000'} />
-          } else if (route.name === 'UserScreen') {
+          } else if (route.name === 'PatronProfile') {
 
             Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'MenuScreen') {
@@ -96,26 +79,26 @@ function UserTabNavigation() {
     >
       <Tab.Screen
         options={{ headerShown: false }}
-        name="HomeScreen"
-        component={HomeScreen}
+        name="PatronHome"
+        component={HomeNavigation}
       />
 
       <Tab.Screen
         options={{ headerShown: false }}
-        name="SearchScreen"
-        component={SearchScreen}
+        name="PatronSearch"
+        component={SearchNavigation}
       />
 
       <Tab.Screen
         options={{ headerShown: false }}
-        name="favoriteScreen"
-        component={FavoriteScreen}
+        name="PatronFavorites"
+        component={FavoritesNavigation}
       />
 
       <Tab.Screen
         options={{ headerShown: false }}
-        name="UserScreen"
-        component={UserScreen}
+        name="PatronProfile"
+        component={UserNavigation}
       />
 
       <Tab.Screen
@@ -128,29 +111,102 @@ function UserTabNavigation() {
   );
 }
 
+//---------- navigations
+
+function HomeNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"PatronHome"}
+    >
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronHome"
+        component={PatronHome}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronBarDetail"
+        component={PatronBarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
+function SearchNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"PatronSearch"}
+    >
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronSearch"
+        component={PatronSearch}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronBarDetail"
+        component={PatronBarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
+function FavoritesNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"PatronFavorites"}
+    >
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronFavorites"
+        component={PatronFavorites}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronBarDetail"
+        component={PatronBarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
 
 
+function UserNavigation(props) {
 
+  //---------- return main view
 
+  return (
+    <Stack.Navigator
+      initialRouteName={"PatronProfile"}
+    >
 
-// function drawerNAvigation() {
-//   //---------- return main view of drawer
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PatronProfile"
+        component={PatronProfile}
+      />
 
-//   return (
-//     <Drawer.Navigator
-//       drawerContent={(props) =>
-//         <DrawerContent {...props} />}
-//     >
-
-//       <Drawer.Screen
-//         options={{ headerShown: false }}
-//         name="HomeNavigation"
-//         component={HomeNavigation}
-//       />
-
-//     </Drawer.Navigator>
-//   );
-// }
+    </Stack.Navigator>
+  );
+}
 
 //---------- export component
 

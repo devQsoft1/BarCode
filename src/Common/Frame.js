@@ -14,7 +14,10 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main app / component
 
-const Frame = (props) => {
+const Frame = ({
+    scrollEnabled = true,
+    children
+}) => {
 
     //---------- state, veriables and hooks
 
@@ -46,17 +49,17 @@ const Frame = (props) => {
             ]}
         >
             <ScrollView
-
+                scrollEnabled={scrollEnabled}
                 style={{
-                    flex:1,
-                    paddingBottom:30,
+                    flex: 1,
+                    paddingBottom: 30,
                 }}
             >
                 {
-                    props.children
+                    children
                 }
             </ScrollView>
-        </View>
+        </View >
     );
 };
 

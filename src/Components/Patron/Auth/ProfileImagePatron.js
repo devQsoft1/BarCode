@@ -178,6 +178,8 @@ const ProfileImagePatron = ({ navigation }) => {
                   source={rightYellow}
                   resizeMode='cover'
                 />
+
+
               </TouchableOpacity>
             </CustomView>
           </CustomView>

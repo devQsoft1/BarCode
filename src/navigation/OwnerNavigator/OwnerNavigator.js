@@ -19,7 +19,7 @@ import SaveIcon from "../../Assets/Icons/SaveIcon";
 // components
 import SearchScreen from "../../Components/SearchScreen";
 import FavoriteScreen from "../../Components/FavoriteScreen";
-import UserScreen from "../../Components/UserScreen";
+import UserScreen from "../../Components/Patron/Home/PatronProfile";
 import MenuScreen from "../../Components/MenuScreen";
 import HomeScreen from "../../Components/HomeScreen";
 

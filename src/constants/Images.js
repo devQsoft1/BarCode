@@ -1,6 +1,6 @@
 module.exports = {
   //login
-  authBg:require("../Assets/Image/AuthBg.png"),
+  authBg: require("../Assets/Image/AuthBg.png"),
   darkSplash: require("../Assets/Image/barcodeSplashDark.png"),
   lightSplash: require("../Assets/Image/barcodeSplashLight.png"),
   drawerIcon: require("../Assets/Image/drawerIcon.png"),
@@ -9,8 +9,11 @@ module.exports = {
   backIcon: require("../Assets/Image/backIcon.png"),
   addIcon: require("../Assets/Image/addIcon.png"),
   patronLoginBG: require("../Assets/Image/patronLoginBG.png"),
-  rightYellow:require("../Assets/Image/rightYellow.png"),
-  Cross:require("../Assets/Image/Cross.png"),
-  
-  
+  rightYellow: require("../Assets/Image/rightYellow.png"),
+  Cross: require("../Assets/Image/Cross.png"),
+  Logo2: require("../Assets/Image/Logo2.png"),
+  GoogleMap: require("../Assets/Image/GoogleMap.png"),
+  UserImg: require("../Assets/Image/UserImg.png"),
+  Temp: require("../Assets/Image/temp.jpg"),
+
 };
