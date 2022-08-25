@@ -144,7 +144,7 @@ const PatronLogin = ({ navigation }) => {
                 currentUser?.user_type === 'business_owner' ?
                   navigation.navigate('BusinessDetailScreen')
                   :
-                  navigation.navigate('UserNavigator')
+                  navigation.navigate('PatronTabNavigation')
               }}
               title={'Login'}
               paddingVertical={20}

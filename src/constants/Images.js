@@ -14,6 +14,8 @@ module.exports = {
   Logo2: require("../Assets/Image/Logo2.png"),
   GoogleMap: require("../Assets/Image/GoogleMap.png"),
   UserImg: require("../Assets/Image/UserImg.png"),
+  AddYellow: require("../Assets/Image/AddYellow.png"),
+  YellowRight: require("../Assets/Image/YellowRight.png"),
   Temp: require("../Assets/Image/temp.jpg"),
 
 };

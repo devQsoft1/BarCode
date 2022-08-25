@@ -34,7 +34,10 @@ const CustomTextInput = ({
   iconClick,
   borderColor,
   marginTop,
-  leftIcon
+  leftIcon,
+  padding,
+  paddingHorizontal,
+  paddingVertical,
 }) => {
 
   //---------- state and context
@@ -62,7 +65,11 @@ const CustomTextInput = ({
         AuthStyles.textInputView,
         { borderRadius: borderRadius ? borderRadius : 10, },
         { flexDirection: 'row', alignContent: 'flex-end', height: numberOfLines > 1 ? 28 * numberOfLines : 50 },
-        { borderColor: isDarkTheme ? borderColor ? borderColor : TEXTGRAY : borderColor, marginTop: marginTop ? marginTop : 0 }
+        { borderColor: isDarkTheme ? borderColor ? borderColor : TEXTGRAY : borderColor, marginTop: marginTop ? marginTop : 0 },
+        { paddingHorizontal: paddingHorizontal ? paddingHorizontal : 10 },
+        { paddingVertical: paddingVertical ? paddingVertical : 0 },
+
+
       ]}
     >
 

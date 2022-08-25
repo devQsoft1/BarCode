@@ -22,7 +22,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const SwiperComponent = ({ navigation, handleTabsClick, current_tab }) => {
+const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
 
     //---------- state, veriable, context and hooks
 
@@ -48,6 +48,14 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab }) => {
     }, [])
 
     //---------- render content
+    const rendermapData = (data) => {
+
+        return data.map((item, index) => {
+
+            return renderContent({ item, index })
+        })
+
+    }
 
     const renderContent = ({ item, index }) => {
 
@@ -159,21 +167,12 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab }) => {
 
     return (
         <Swiper
-            style={styles.wrapper}
+            // style={styles.wrapper}
             showsButtons={false}
         >
-            {/* <FlatList
-                data={data}
-                renderItem={renderContent}
-                keyExtractor={item => item.id}
-            /> */}
             {
-                data.map((item, index) => {
-
-                    return renderContent({ item, index })
-                })
+                rendermapData(data)
             }
-
         </Swiper>
     );
 };
@@ -185,33 +184,6 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab }) => {
 export default SwiperComponent;
 
 //---------- styles
-
-const styles = StyleSheet.create({
-    wrapper: {},
-    slide1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9DD6EB'
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
-    }
-})
 
 //---------- constants
 

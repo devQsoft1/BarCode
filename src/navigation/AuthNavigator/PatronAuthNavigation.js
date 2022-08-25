@@ -12,9 +12,6 @@ import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron'
 import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
 import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 
-// business owner
-import BusinessDetailScreen from '../../Components/Owner/Auth/BusinessDetailScreen';
-
 // global stack veriable
 const Stack = createStackNavigator();
 

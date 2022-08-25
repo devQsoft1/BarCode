@@ -50,7 +50,7 @@ const PatronFavorites = ({ navigation }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('PatronBarDetail')
+          navigation.navigate('BarDetail')
         }}
         style={{
           height: 225

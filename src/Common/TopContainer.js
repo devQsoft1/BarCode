@@ -12,7 +12,7 @@ import CustomView from "./CustomView";
 
 //---------- main component
 
-const TopContainer = ({ text1, text2, isDarkTheme }) => {
+const TopContainer = ({ text1, text2, isDarkTheme, textAlign }) => {
 
     //---------- state, veriable, context and hooks
 
@@ -47,7 +47,8 @@ const TopContainer = ({ text1, text2, isDarkTheme }) => {
                         style={{
                             fontSize: 24,
                             fontWeight: '700',
-                            color: isDarkTheme ? '#fff' : '#000'
+                            color: isDarkTheme ? '#fff' : '#000',
+                            textAlign: textAlign
                         }}
                     />
                 }

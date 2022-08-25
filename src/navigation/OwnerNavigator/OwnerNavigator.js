@@ -22,6 +22,7 @@ import FavoriteScreen from "../../Components/FavoriteScreen";
 import UserScreen from "../../Components/Patron/Home/PatronProfile";
 import MenuScreen from "../../Components/MenuScreen";
 import HomeScreen from "../../Components/HomeScreen";
+import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
@@ -38,13 +39,13 @@ function AdminNavigator(props) {
 
   return (
     <Stack.Navigator
-      initialRouteName={"Home"}
+      initialRouteName={"BarDetail"}
     >
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="HomeScreen"
-        component={Home}
+        name="BarDetail"
+        component={BarDetail}
       />
 
     </Stack.Navigator>
@@ -65,7 +66,7 @@ function AdminTabNavigation() {
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
-          if (route.name === 'HomeScreen') {
+          if (route.name === 'BarDetail') {
 
             Icon = <HomeIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'UserScreen') {
@@ -90,8 +91,8 @@ function AdminTabNavigation() {
     >
       <Tab.Screen
         options={{ headerShown: false }}
-        name="HomeScreen"
-        component={HomeScreen}
+        name="BarDetail"
+        component={BarDetail}
       />
 
       <Tab.Screen

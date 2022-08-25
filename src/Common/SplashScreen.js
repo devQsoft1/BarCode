@@ -79,7 +79,7 @@ function SplashScreen({ navigation }) {
             navigation.replace('OwnerNavigator')
             :
             currentUser?.user_type === 'patron' ?
-                navigation.replace('UserNavigator')
+                navigation.replace('PatronTabNavigation')
                 :
                 navigation.replace('RoleSelectionScreen')
     }

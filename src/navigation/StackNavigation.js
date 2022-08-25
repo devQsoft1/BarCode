@@ -8,7 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import PatronAuthNavigation from "./AuthNavigator/PatronAuthNavigation";
 import OwnerNavigator from "./OwnerNavigator/OwnerNavigator";
-import UserTabNavigation from './UserTabNavigation/UserTabNavigation'
+import PatronTabNavigation from "./PatronTabNavigation/PatronTabNavigation"
 
 import SplashScreen from '../Common/SplashScreen';
 import TestScreen from '../Components/TestScreen';
@@ -62,8 +62,8 @@ function StackNaviagtion(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="UserNavigator"
-        component={UserTabNavigation}
+        name="PatronTabNavigation"
+        component={PatronTabNavigation}
       />
 
       <Stack.Screen

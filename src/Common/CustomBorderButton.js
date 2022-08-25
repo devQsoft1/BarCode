@@ -45,20 +45,20 @@ const CustomBorderButton = (props) => {
       }}
       style={{
         // paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
-        // paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
+        paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
         backgroundColor: isDarkTheme ? '#000' : '#fff',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: isDarkTheme ? '#fff' : '#000',
+        borderColor: props?.borderColor ? props?.borderColor : isDarkTheme ? '#fff' : '#000',
         paddingVertical: props?.paddingVertical ? props.paddingVertical : 10,
       }}
     >
       <CustomText
         style={{
-          color: isDarkTheme ? '#fff' : '#000',
+          color: props?.color ? props?.color : isDarkTheme ? '#fff' : '#000',
           fontSize: props?.fontSize ? props?.fontSize : 16,
           fontWeight: '400'
         }}

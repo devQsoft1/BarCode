@@ -24,7 +24,7 @@ import PatronProfile from "../../Components/Patron/Home/PatronProfile";
 import PatronHome from "../../Components/Patron/Home/PatronHome";
 import PatronFavorites from "../../Components/Patron/Home/PatronFavorites";
 import PatronSearch from "../../Components/Patron/Home/PatronSearch";
-import PatronBarDetail from "../../Components/CommonPatronAndOwner/PatronBarDetail";
+import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
@@ -35,10 +35,9 @@ const Stack = createStackNavigator();
 
 //---------- main app / component
 
-
 const Tab = createBottomTabNavigator();
 
-function UserTabNavigation() {
+function PatronTabNavigation() {
 
   //---------- return main view of drawer
 
@@ -130,8 +129,8 @@ function HomeNavigation(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="PatronBarDetail"
-        component={PatronBarDetail}
+        name="BarDetail"
+        component={BarDetail}
       />
 
     </Stack.Navigator>
@@ -155,8 +154,8 @@ function SearchNavigation(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="PatronBarDetail"
-        component={PatronBarDetail}
+        name="BarDetail"
+        component={BarDetail}
       />
 
     </Stack.Navigator>
@@ -180,8 +179,8 @@ function FavoritesNavigation(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="PatronBarDetail"
-        component={PatronBarDetail}
+        name="BarDetail"
+        component={BarDetail}
       />
 
     </Stack.Navigator>
@@ -210,4 +209,4 @@ function UserNavigation(props) {
 
 //---------- export component
 
-export default UserTabNavigation;
+export default PatronTabNavigation;

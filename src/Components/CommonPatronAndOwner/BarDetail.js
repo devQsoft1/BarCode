@@ -17,18 +17,19 @@ import CustomButton from "../../Common/CustomButton";
 import SwiperComponent from "../../Common/SwiperComponent";
 
 // images and icon
-import { GoogleMap } from "../../constants/Images";
+import { GoogleMap, AddYellow, YellowRight } from "../../constants/Images";
 import CameraIcon from "../../Assets/Icons/CameraIcon";
 import CallIconBlack from "../../Assets/Icons/CallIconBlack";
 import WorldIcon from "../../Assets/Icons/WorldIcon";
 import MarkRedIcon from "../../Assets/Icons/MarkRedIcon";
+import CustomBorderButton from "../../Common/CustomBorderButton";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const PatronBarDetail = ({ navigation }) => {
+const BarDetail = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
 
@@ -596,6 +597,61 @@ const PatronBarDetail = ({ navigation }) => {
           />
         }
 
+        {
+          currentUser.user_type === 'business_owner' ?
+
+            <CustomView
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                paddingHorizontal: 20
+              }}
+            >
+
+              <CustomBorderButton
+                fontSize={12}
+                borderColor={"#747474"}
+                color={"#747474"}
+                paddingHorizontal={10}
+                title={"VIEW MENU"}
+              />
+
+              <CustomView style={{ width: 20 }} />
+
+              <CustomBorderButton
+                fontSize={12}
+                borderColor={"#747474"}
+                color={"#747474"}
+                paddingHorizontal={10}
+                title={"VIEW GALLERY"}
+              />
+
+            </CustomView>
+            :
+            null
+        }
+
+        {
+          currentUser.user_type === 'business_owner' ?
+            <CustomView
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                paddingHorizontal: 20
+              }}
+            >
+              <Image
+                source={AddYellow}    //YellowRight
+                resizeMode='contain'
+              />
+            </CustomView>
+            :
+            null
+        }
 
 
       </CustomView>
@@ -605,7 +661,7 @@ const PatronBarDetail = ({ navigation }) => {
 
 //---------- export component
 
-export default PatronBarDetail;
+export default BarDetail;
 
 //---------- constants data
 

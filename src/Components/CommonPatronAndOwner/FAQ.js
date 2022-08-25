@@ -152,7 +152,7 @@ const FAQ = ({ navigation }) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('UserNavigator')
+                            navigation.navigate('PatronTabNavigation')
                         }}
                     >
                         <Image

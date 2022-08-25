@@ -2,7 +2,7 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-import { LogBox, SafeAreaView, StatusBar } from "react-native";
+import { LogBox, SafeAreaView, StatusBar, View, Text } from "react-native";
 import { Provider } from "react-redux";
 import { store, persistor } from "./src/redux/createStore";
 import { PersistGate } from "redux-persist/integration/react";

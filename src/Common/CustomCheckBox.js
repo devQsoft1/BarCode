@@ -1,21 +1,19 @@
-//---------- imports
-
 // react
-import React, { useContext } from "react";
-import { StyleSheet, Text } from "react-native";
+import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image } from "react-native";
+import CheckBox from '@react-native-community/checkbox';
 
-// third party lib
-import CheckBox from 'react-native-check-box';
-
-// helper
-import { BLACK } from "../constants/Colors";
-import ContextHelper from "../ContextHooks/ContextHelper";
+// context
+import ContextHelper from '../ContextHooks/ContextHelper'
+import CustomView from "./CustomView";
+import CustomText from "./CustomText";
 
 //---------- main component
 
-const CustomCheckBox = ({ isChecked, onClick, leftText, rightText, rightTextView, checkBoxColor, style }) => {
+const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightText, rightTextColor, fontSize }) => {
 
-  //---------- state, context
+  //---------- state, veriable, context and hooks
+  const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
   const {
     isDarkTheme,
@@ -32,21 +30,57 @@ const CustomCheckBox = ({ isChecked, onClick, leftText, rightText, rightTextView
     setCurrentUser,
   } = ContextHelper()
 
+  //---------- life cycles
+
+  useEffect(() => {
+
+  }, [])
+
+  //---------- main return
+
   return (
-    <CheckBox
-      style={[
-        { flex: 1, padding: 10 },
-        style
-      ]}
-      onClick={() => {
-        onClick()
+    <CustomView
+      style={{
+        // flex: 1,
+        width: '100%',
+        flexDirection: 'row',
+        // justifyContent: 'space-between',
+        alignItems: 'center',
       }}
-      checkBoxColor={checkBoxColor}
-      isChecked={isChecked}
-      leftText={leftText}
-      rightText={rightText}
-    />
+    >
+
+      <CheckBox
+        value={toggleCheckBox}
+        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+
+        // borderColor={'red'}
+        tintColors={{ColorValue:"#707070"}}
+        tintColor={{ColorValue:"#707070"}}
+        onCheckColor={{ColorValue:"#707070"}}
+        onFillColor={{ColorValue:"#707070"}}
+        onTintColor={{ColorValue:"#707070"}}
+
+      // value={isChecked}
+      // onValueChange={(newValue) => onValueChange(newValue)}
+      // onChange={onChange}
+      />
+
+      {
+        !!rightText &&
+        <CustomText
+          text={rightText}
+          style={{
+            color: rightTextColor ? rightTextColor : '#747474',
+            fontSize: fontSize ? fontSize : 16
+          }}
+        />
+      }
+
+    </CustomView>
   );
 };
 
+//---------- export component
+
 export default CustomCheckBox;
+
