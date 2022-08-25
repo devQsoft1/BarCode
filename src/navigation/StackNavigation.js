@@ -6,13 +6,14 @@ import React, { useEffect, useState } from "react";
 // navigations
 import { createStackNavigator } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
-import AuthNavigation from "./AuthNavigator/AuthNavigation";
+import PatronAuthNavigation from "./AuthNavigator/PatronAuthNavigation";
 import OwnerNavigator from "./OwnerNavigator/OwnerNavigator";
 import UserTabNavigation from './UserTabNavigation/UserTabNavigation'
 
 import SplashScreen from '../Common/SplashScreen';
 import TestScreen from '../Components/TestScreen';
 import RoleSelectionScreen from '../Components/RoleSelectionScreen';
+import OwnerAuthNavigation from "./AuthNavigator/OwnerAuthNavigation";
 
 
 // global stack veriable
@@ -49,8 +50,14 @@ function StackNaviagtion(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="AuthNavigator"
-        component={AuthNavigation}
+        name="PatronAuthNavigator"
+        component={PatronAuthNavigation}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="OwnerAuthNavigator"
+        component={OwnerAuthNavigation}
       />
 
       <Stack.Screen
@@ -76,7 +83,7 @@ function StackNaviagtion(props) {
         //   ) : (
         //     <Stack.Screen
         //       options={{ headerShown: false }}
-        //       name="AuthNavigator"
+        //       name="PatronAuthNavigator"
         //       component={AuthNavigation}
         //     />
         //   )

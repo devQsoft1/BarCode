@@ -67,7 +67,7 @@ export default function DrawerContent(props) {
 
   useEffect(() => {
 
-    props.navigation.navigate("AuthNavigator");
+    props.navigation.navigate("PatronAuthNavigator");
   }, [isLoggedIn])
 
   //---------- helper: user's actions
@@ -112,7 +112,7 @@ export default function DrawerContent(props) {
             <TouchableOpacity
               style={[SpaceStyles.rowFlex, SpaceStyles.top5]}
               onPress={() => {
-                // NavigationService.navigate("AuthNavigator");
+                // NavigationService.navigate("PatronAuthNavigator");
                 handleLoggedOut();
               }}
             >

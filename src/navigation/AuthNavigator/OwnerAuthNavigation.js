@@ -4,22 +4,24 @@
 import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-// components
+//----- components
+// patron
 import PatronLogin from "../../Components/Patron/Auth/PatronLogin";
 import PatronSignup from '../../Components/Patron/Auth/PatronSignup';
 import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron';
 import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
 import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 
+// business owner
+import BusinessDetailScreen from '../../Components/Owner/Auth/BusinessDetailScreen';
 
 // global stack veriable
 const Stack = createStackNavigator();
 
 //---------- main app / component
 
-function AuthNavigation(props) {
+function OwnerAuthNavigation(props) {
 
-    console.log('-------------------------, auth')
     //---------- return main view
 
     return (
@@ -59,6 +61,13 @@ function AuthNavigation(props) {
                 name="FAQ" component={FAQ} />
 
 
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="BusinessDetailScreen" component={BusinessDetailScreen} />
+
+
 
 
 
@@ -71,4 +80,4 @@ function AuthNavigation(props) {
 
 //---------- export component
 
-export default AuthNavigation
+export default OwnerAuthNavigation

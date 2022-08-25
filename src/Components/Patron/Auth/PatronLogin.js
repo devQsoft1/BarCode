@@ -140,7 +140,11 @@ const PatronLogin = ({ navigation }) => {
 
             <CustomButton
               onPress={() => {
-                navigation.navigate('UserNavigator')
+
+                currentUser?.user_type === 'business_owner' ?
+                  navigation.navigate('BusinessDetailScreen')
+                  :
+                  navigation.navigate('UserNavigator')
               }}
               title={'Login'}
               paddingVertical={20}

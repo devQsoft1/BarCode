@@ -59,7 +59,7 @@ const RoleSelectionScreen = ({ navigation }) => {
         text2={"TO JOIN? "}
         isDarkTheme={isDarkTheme}
       />
- 
+
 
       <CustomView
         style={{
@@ -71,7 +71,11 @@ const RoleSelectionScreen = ({ navigation }) => {
         <CustomBorderButton
           title={'PATRON'}
           onPress={() => {
-            navigation.navigate('AuthNavigator')
+
+            setCurrentUser({
+              user_type: 'patron'
+            })
+            navigation.navigate('PatronAuthNavigator')
           }}
         />
 
@@ -80,7 +84,11 @@ const RoleSelectionScreen = ({ navigation }) => {
         <CustomBorderButton
           title={'BUSINESS OWNER'}
           onPress={() => {
-            // navigation.navigate()
+
+            setCurrentUser({
+              user_type: 'business_owner'
+            })
+            navigation.navigate('OwnerAuthNavigator')
           }}
         />
 
