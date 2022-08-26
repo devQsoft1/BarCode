@@ -11,6 +11,7 @@ import PatronSignup from '../../Components/Patron/Auth/PatronSignup';
 import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron';
 import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
 import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
+import PatronOnboarding from "../../Components/Onboarding/PatronOnboarding/PatronOnboarding";
 
 // global stack veriable
 const Stack = createStackNavigator();
@@ -57,6 +58,14 @@ function PatronAuthNavigation(props) {
                     headerShown: false
                 }}
                 name="FAQ" component={FAQ} />
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="PatronOnboarding" component={PatronOnboarding} />
+
+
 
 
 

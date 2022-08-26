@@ -18,7 +18,6 @@ import CoustomPagination from "../../../Common/CoustomPagination";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 
 // images and icon
-import { authBg, rightYellow } from "../../../constants/Images";
 import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
@@ -714,6 +713,7 @@ const BusinessDetailScreen = ({ navigation }) => {
             }}
           >
             <CoustomPagination
+            // isCenter={true}
               dataLength={6}
               onPress={handlePagination}
             />

@@ -72,23 +72,6 @@ function StackNaviagtion(props) {
         component={OwnerNavigator}
       />
 
-
-      {
-        //   !isLoggedIn ? (
-        //     <Stack.Screen
-        //       options={{ headerShown: false }}
-        //       name="Route"
-        //       component={Route}
-        //     />
-        //   ) : (
-        //     <Stack.Screen
-        //       options={{ headerShown: false }}
-        //       name="PatronAuthNavigator"
-        //       component={AuthNavigation}
-        //     />
-        //   )
-      }
-
     </Stack.Navigator>
   );
 }

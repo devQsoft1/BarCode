@@ -20,7 +20,7 @@ import { rightYellow } from '../constants/Images'
 const CoustomPagination = (props) => {
 
     //---------- state, context, hooks, props and veriables
-    const { onPress, style, dataLength } = props;
+    const { onPress, style, dataLength, isCenter, activeScreenIndex } = props;
 
     const {
         isDarkTheme,
@@ -51,7 +51,7 @@ const CoustomPagination = (props) => {
                     height: 13,
                     width: 13,
                     borderRadius: 13,
-                    backgroundColor: '#D9D9D9'
+                    backgroundColor: activeScreenIndex === i + 1 ? '#919090' : '#D9D9D9'
                 }}
             />
             )
@@ -69,7 +69,7 @@ const CoustomPagination = (props) => {
         <CustomView
             style={[
                 {
-                    flex: 1,
+                    // flex: 1,
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                 },
@@ -77,12 +77,18 @@ const CoustomPagination = (props) => {
             ]}
         >
 
+            {
+                isCenter &&
+                <CustomView
+                    style={{ width: '20%' }}
+                />
+            }
             <CustomView
                 style={{
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
                     alignItems: 'center',
-                    width: '70%'
+                    // width: '70%'
                 }}
             >
                 {
