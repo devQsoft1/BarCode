@@ -55,11 +55,6 @@ const MenuScreen = ({ navigation }) => {
           style={[{ alignSelf: "center", fontStyle: 'italic' }, TextStyles.textQuicksandBold14Black, SpaceStyles.bottom5]}
         />
 
-        <CustomText
-          text={"By visiting, viewing, browsing, surfing or using our website www.soundandsoulful.com (“Website”) or availing any of the Website Services (as defined in the Terms and Conditions), you (“you”, “your” or “User”) agree to this MenuScreen of Liability."}
-          style={[TextStyles.textQuicksand14Black, { alignSelf: "center" }, SpaceStyles.bottom5]}
-        />
-
         <View
           style={[AuthStyles.ContentContainer, SpaceStyles.top20, { paddingHorizontal: 10 }]}
         >

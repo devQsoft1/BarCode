@@ -16,6 +16,17 @@ module.exports = {
   UserImg: require("../Assets/Image/UserImg.png"),
   AddYellow: require("../Assets/Image/AddYellow.png"),
   YellowRight: require("../Assets/Image/YellowRight.png"),
+  mobileOnboarding: require("../Assets/Image/mobileOnboarding.png"),
+  JoinUsOnboarding: require("../Assets/Image/JoinUsOnboarding.png"),
+  calenderOnboarding: require("../Assets/Image/calenderOnboardin.png"),
+  AddPicturesOnBoarding: require("../Assets/Image/AddPicturesOnBoarding.png"),
+  goLiveOnBording: require("../Assets/Image/goLiveOnBording.png"),
+  freeDrinkOnBoarding: require("../Assets/Image/freeDrinkOnBoarding.png"),
+  dateAndLocationOnBoarding: require("../Assets/Image/dateAndLocationOnBoarding.png"),
+  BusinessProfileOnBoarding: require("../Assets/Image/dateAndLocationOnBoarding.png"),
+  enjoyEclusiveOnBoarding: require("../Assets/Image/enjoyEclusiveOnBoarding.png"),
+
+
   Temp: require("../Assets/Image/temp.jpg"),
 
 };

@@ -14,6 +14,7 @@ import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 
 // business owner
 import BusinessDetailScreen from '../../Components/Owner/Auth/BusinessDetailScreen';
+import OwnerOnboarding from "../../Components/Onboarding/OwnerOnboarding/OwnerOnboarding";
 
 // global stack veriable
 const Stack = createStackNavigator();
@@ -66,6 +67,12 @@ function OwnerAuthNavigation(props) {
                     headerShown: false
                 }}
                 name="BusinessDetailScreen" component={BusinessDetailScreen} />
+
+            <Stack.Screen
+                options={{
+                    headerShown: false
+                }}
+                name="OwnerOnboarding" component={OwnerOnboarding} />
 
 
 

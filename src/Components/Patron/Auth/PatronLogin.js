@@ -142,9 +142,9 @@ const PatronLogin = ({ navigation }) => {
               onPress={() => {
 
                 currentUser?.user_type === 'business_owner' ?
-                  navigation.navigate('BusinessDetailScreen')
+                  navigation.navigate('OwnerOnboarding')
                   :
-                  navigation.navigate('PatronTabNavigation')
+                  navigation.navigate('PatronOnboarding')
               }}
               title={'Login'}
               paddingVertical={20}

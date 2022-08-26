@@ -100,6 +100,22 @@ const RoleSelectionScreen = ({ navigation }) => {
             changeTheme()
           }}
         />
+
+{/* 
+        <CustomBorderButton
+          title={'patrn Onboarding'}
+          onPress={() => {
+            navigation.navigate('')
+          }}
+        />
+
+        <CustomBorderButton
+          title={'owner onboarding'}
+          onPress={() => {
+            navigation.navigate('')
+
+          }}
+        /> */}
       </CustomView>
 
 
