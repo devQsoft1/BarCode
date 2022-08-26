@@ -14,9 +14,6 @@ import SpaceStyles from "../style/SpaceStyles";
 import TopContainer from "../Common/TopContainer";
 import TextStyles from "../style/TextStyles";
 import CustomText from "../Common/CustomText";
-import HeaderRight from "../Common/HeaderRight";
-import HeaderTitle from "../Common/HeaderTitle";
-import HeaderLeft from "../Common/HeaderLeft";
 import Frame from "../Common/Frame";
 import ContextHelper from '../ContextHooks/ContextHelper'
 import CustomView from "../Common/CustomView";
@@ -130,25 +127,3 @@ const RoleSelectionScreen = ({ navigation }) => {
 
 export default RoleSelectionScreen;
 
-
-
-// useLayoutEffect(() => {
-//   navigation.setOptions({
-//     headerRight: () => (
-//       <HeaderRight
-//         iconName1={""}
-//         iconName2={""}
-//         iconName3={drawerIcon}
-//         onPress3={() => navigation.openDrawer()}
-//       />
-//     ),
-//     headerTitle: () => <HeaderTitle title={"RoleSelectionScreen"} />,
-//     headerLeft: () => (
-//       <HeaderLeft
-//         text={""}
-//         iconName={backIcon}
-//         onPress={() => navigation.goBack()}
-//       />
-//     ),
-//   });
-// }, [navigation]);

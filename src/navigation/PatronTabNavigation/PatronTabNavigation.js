@@ -2,7 +2,7 @@
 
 // react
 import * as React from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from "react-native";
 
 // navigations
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -17,8 +17,6 @@ import MenuIcon from "../../Assets/Icons/MenuIcon";
 import SaveIcon from "../../Assets/Icons/SaveIcon";
 
 // components
-import SearchScreen from "../../Components/SearchScreen";
-import FavoriteScreen from "../../Components/FavoriteScreen";
 import MenuScreen from "../../Components/MenuScreen";
 import PatronProfile from "../../Components/Patron/Home/PatronProfile";
 import PatronHome from "../../Components/Patron/Home/PatronHome";
@@ -28,6 +26,24 @@ import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
+
+// context
+// import ContextHelper from '../../ContextHooks/ContextHelper'
+
+// const {
+//   isDarkTheme,
+//   theme,
+//   appStateObject,
+//   appStateArray,
+//   currentUser,
+
+//   changeTheme,
+//   storeDataInAppState,
+//   removeDataFromAppState,
+//   storeDataInAsyncStorage,
+//   getDataFromAsyncStorage,
+//   setCurrentUser,
+// } = ContextHelper()
 
 // global stack veriable
 const Drawer = createDrawerNavigator();
@@ -61,7 +77,14 @@ function PatronTabNavigation() {
             Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'MenuScreen') {
 
-            Icon = <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon =
+              <TouchableOpacity
+                onPress={() => {
+                  alert(0)
+                }}
+              >
+                <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+              </TouchableOpacity>
           }
 
           // You can return any component that you like here!
@@ -100,11 +123,11 @@ function PatronTabNavigation() {
         component={UserNavigation}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{ headerShown: false }}
         name="MenuScreen"
         component={MenuScreen}
-      />
+      /> */}
 
     </Tab.Navigator>
   );
