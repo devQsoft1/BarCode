@@ -6,7 +6,6 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 
 // images and icon
-import { authBg } from "../../../constants/Images";
 import { JoinUsOnboarding, mobileOnboarding, calenderOnboarding, AddPicturesOnBoarding, goLiveOnBording } from '../../../constants/Images'
 // common
 import TopContainer from "../../../Common/TopContainer";
@@ -77,28 +76,31 @@ const OwnerOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={JoinUsOnboarding}
-                        resizeMode='cover'
-                    />
-
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={JoinUsOnboarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
+                    <CustomView
+                        style={{ flex: 1 }}>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-                            marginTop: 40,
 
                         }}
                         text="Join BarCode today for free! Watch customers old and new start coming through your doors!"
                     />
+                      </CustomView>
                 </CustomView>
             </>
 
@@ -114,28 +116,29 @@ const OwnerOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            style={{
 
-                    <Image
-                        style={{
-
-                        }}
-                        source={mobileOnboarding}
-                        resizeMode='cover'
-                    />
-
+                            }}
+                            source={mobileOnboarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 40,
-
+                             flex: 1 
                         }}
                         text="Fill out your business profile, we make it easy for you not to forget anything with easy to check boxes."
                     />
@@ -156,25 +159,26 @@ const OwnerOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={calenderOnboarding}
-                        resizeMode='cover'
-                    />
-
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={calenderOnboarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 50,
-
+                            flex: 1
                         }}
                         text="Enter all of your events in our calender, these will show up in front of customers looking for what you have to offer; so don’t forget anything! "
                     />
@@ -196,25 +200,26 @@ const OwnerOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={AddPicturesOnBoarding}
-                        resizeMode='cover'
-                    />
-
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={AddPicturesOnBoarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 50,
-
+                            flex: 1
                         }}
                         text="Add pictures or videos of your food, drinks, and fun events; let your customers see what they’re missing."
                     />
@@ -236,25 +241,27 @@ const OwnerOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={goLiveOnBording}
-                        resizeMode='cover'
-                    />
-
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={goLiveOnBording}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
+
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 50,
-
+                            flex: 1
                         }}
                         text="ENROLL & GO LIVE! Now you’re part of the BarCode team. We can’t wait to be a small part of your success."
                     />

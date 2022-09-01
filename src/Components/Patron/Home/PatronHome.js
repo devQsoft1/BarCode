@@ -78,8 +78,9 @@ const PatronHome = ({ navigation }) => {
           isCenter={false}
           navigation={navigation}
           title={'WHAT’S HAPPENING TODAY?'}
+          fontWeight={"700"}
         />
-
+      { isDarkTheme && <CustomView style={{ borderBottomWidth: 1, borderBottomColor: "#9A9A9A",}}></CustomView> }
         <FlatList
           ItemSeparatorComponent={() => {
             return (
@@ -92,7 +93,7 @@ const PatronHome = ({ navigation }) => {
             )
           }}
           style={{
-            paddingHorizontal: 15,
+            paddingHorizontal: 10,
             paddingTop: 20,
             paddingBottom: 100
           }}

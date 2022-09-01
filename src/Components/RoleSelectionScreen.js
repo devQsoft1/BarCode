@@ -2,10 +2,6 @@
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 
-
-// images and icon
-import { authBg } from "../constants/Images";
-
 // styles
 import AuthStyles from "../style/AuthStyles";
 import SpaceStyles from "../style/SpaceStyles";
@@ -49,7 +45,9 @@ const RoleSelectionScreen = ({ navigation }) => {
   //---------- main return
 
   return (
-    <Frame>
+    <Frame
+      // scrollEnabled={false}
+    >
 
       <TopContainer
         text1={"HOW WOULD YOU LIKE"}
@@ -60,13 +58,18 @@ const RoleSelectionScreen = ({ navigation }) => {
 
       <CustomView
         style={{
-          // flex: 2,
           paddingTop: 50,
-          paddingHorizontal: 20
+          paddingHorizontal: 20,
+          paddingBottom: 10,
+          height: '100%',
         }}
       >
         <CustomBorderButton
           title={'PATRON'}
+          color={"#FFA500"}
+          fontSize={50}
+          fontWeight={"500"}
+          borderRadius={30}
           onPress={() => {
 
             setCurrentUser({
@@ -80,6 +83,10 @@ const RoleSelectionScreen = ({ navigation }) => {
 
         <CustomBorderButton
           title={'BUSINESS OWNER'}
+          color={"#42AEEC"}
+          fontSize={50}
+          fontWeight={"500"}
+          borderRadius={30}
           onPress={() => {
 
             setCurrentUser({
@@ -93,31 +100,17 @@ const RoleSelectionScreen = ({ navigation }) => {
 
         <CustomBorderButton
           title={'Only for testing theme'}
+          color={"#42AEEC"}
+          fontSize={24}
+          borderRadius={30}
+          fontWeight={"500"}
           onPress={() => {
             changeTheme()
           }}
         />
 
-{/* 
-        <CustomBorderButton
-          title={'patrn Onboarding'}
-          onPress={() => {
-            navigation.navigate('')
-          }}
-        />
 
-        <CustomBorderButton
-          title={'owner onboarding'}
-          onPress={() => {
-            navigation.navigate('')
-
-          }}
-        /> */}
       </CustomView>
-
-
-
-
 
     </Frame>
   );

@@ -16,7 +16,7 @@ function EyeCrossIcon(props) {
         >
           <Use xlinkHref="#image0_4_86" transform="scale(.01042)" />
         </Pattern>
-        <Image
+        <Image 
           id="image0_4_86"
           width={96}
           height={96}

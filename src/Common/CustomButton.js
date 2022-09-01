@@ -45,12 +45,12 @@ const CustomButton = (props) => {
       style={{
         paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
         paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
-        backgroundColor: props?.backgroundColor ? props?.backgroundColor : '#0066FF',
+        backgroundColor: props?.backgroundColor ? props?.backgroundColor : '#42AEEC',
         borderRadius: props?.borderRadius ? props?.borderRadius : 10,
         justifyContent: 'center',
         alignItems: 'center',
         width: props?.width ? props?.width : '100%',
-        borderColor: props?.borderColor ? props?.borderColor : '#0066FF',
+        borderColor: props?.borderColor ? props?.borderColor : '#42AEEC',
         borderWidth: props?.borderColor ? 1 : 0,
       }}
     >

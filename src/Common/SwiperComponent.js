@@ -6,6 +6,7 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 // third party lib
 import Swiper from 'react-native-swiper'
+import { Shadow } from 'react-native-shadow-2';
 
 // common
 import CustomText from "./CustomText";
@@ -16,7 +17,10 @@ import CustomView from "./CustomView";
 import { Logo2 } from '../constants/Images'
 import BackIcon from "../Assets/Icons/BackIcon";
 import BackIconBlack from "../Assets/Icons/BackIconBlack";
-
+import SaveIcon from "../Assets/Icons/SaveIcon";
+import UploadArrow from "../Assets/Icons/UploadArrow";
+import FeaturedRedIcon from "../Assets/Icons/FeaturedRedIcon";
+import BellIcon from "../Assets/Icons/BellIcon";
 // constants
 const windowHeight = Dimensions.get('window').height;
 
@@ -60,106 +64,158 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
     const renderContent = ({ item, index }) => {
 
         return (
-            <ImageBackground
-                key={index}
-                source={{ uri: item.image }}
-                resizeMode="cover"
+            <Shadow offset={[0, 5]}
                 style={{
-                    alignItems: 'flex-start',
-                    height: '100%',
+                    height: 300,
+                    width: '100%',
                 }}
             >
 
-                <CustomView
+                <ImageBackground
+                    key={index}
+                    source={{ uri: item.image }}
+                    resizeMode="cover"
                     style={{
-                        flex: 1,
-                        padding: 20,
-                        justifyContent: 'space-between',
+                        alignItems: 'flex-start',
+                        height: '100%',
+
                     }}
                 >
+                    <CustomView
+                        style={{
+                            flex: 1,
+                            padding: 20,
+                            justifyContent: 'space-between',
+                            width: '100%'
 
-                    {
-                        isDarkTheme
-                            ?
-                            <BackIconBlack />
-                            :
-                            <BackIcon />
-                    }
-
-                    <CustomView>
-
-                        <CustomText
+                        }}
+                    >
+                        <CustomView
                             style={{
-                                fontSize: 20,
-                                fontWeight: '700',
-                                color: isDarkTheme ? '#000' : '#fff'
-                            }}
-                            text={item.title}
-                        />
+                                flexDirection: 'row',
+                                justifyContent: 'space-between'
 
-                        <CustomText
-                            style={{
-                                fontSize: 14,
-                                fontWeight: '400',
-                                color: isDarkTheme ? '#000' : '#fff'
                             }}
-                            text={item.desc}
-                        />
+                        >
+                            {
+                                isDarkTheme
+                                    ?
+                                    <BackIconBlack />
+                                    :
+                                    <BackIcon />
+                            }
+
+                            <CustomView
+                                style={{
+                                    alignItems: 'center'
+                                }}
+                            >
+
+                                <TouchableOpacity
+
+                                >
+                                    <SaveIcon fill={"#FFFFFF"} />
+                                    {/* <FeaturedRedIcon /> */}
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    style={{
+                                        marginTop: 5,
+                                        marginBottom: 10
+                                    }}
+                                >
+
+                                    <UploadArrow height={26} width={26} fill={"#FFFFFF"} />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                >
+
+                                    <BellIcon fill={'transparent'} />
+                                </TouchableOpacity>
+
+
+
+                            </CustomView>
+                        </CustomView>
+
+
+                        <CustomView>
+
+
+                            <CustomText
+                                style={{
+                                    fontSize: 25,
+                                    fontWeight: '500',
+                                    color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                                }}
+                                text={item.title}
+                            />
+
+                            <CustomText
+                                style={{
+                                    fontSize: 17,
+                                    fontWeight: '400',
+                                    color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                                }}
+                                text={item.desc}
+                            />
+
+                        </CustomView>
 
                     </CustomView>
 
-                </CustomView>
-
-                <CustomView
-                    style={{
-                        paddingHorizontal: 20,
-                        width: '100%',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                    }}
-                >
-                    <TouchableOpacity
-                        onPress={() => {
-                            handleTabsClick('detail')
-                        }}
+                    <CustomView
                         style={{
-                            paddingBottom: 10,
-                            borderBottomWidth: current_tab === 'detail' ? 2 : 0,
-                            borderBottomColor: isDarkTheme ? '#000' : '#fff'
+                            paddingHorizontal: 20,
+                            width: '100%',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}
                     >
-                        <CustomText
-                            style={{
-                                fontSize: 14,
-                                fontWeight: '400',
-                                color: isDarkTheme ? '#000' : '#fff'
+                        <TouchableOpacity
+                            onPress={() => {
+                                handleTabsClick('detail')
                             }}
-                            text={'Details'}
-                        />
-                    </TouchableOpacity>
+                            style={{
+                                paddingBottom: 10,
+                                borderBottomWidth: current_tab === 'detail' ? 4 : 0,
+                                borderBottomColor: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                            }}
+                        >
+                            <CustomText
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: '400',
+                                    color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                                }}
+                                text={'Details'}
+                            />
+                        </TouchableOpacity>
 
-                    <TouchableOpacity
-                        onPress={() => {
-                            handleTabsClick('futute_events')
-                        }}
-                        style={{
-                            paddingBottom: 10,
-                            borderBottomWidth: current_tab === 'futute_events' ? 2 : 0,
-                            borderBottomColor: isDarkTheme ? '#000' : '#fff'
-                        }}
-                    >
-                        <CustomText
-                            style={{
-                                fontSize: 14,
-                                fontWeight: '400',
-                                color: isDarkTheme ? '#000' : '#fff'
+                        <TouchableOpacity
+                            onPress={() => {
+                                handleTabsClick('futute_events')
                             }}
-                            text={'Future Events'}
-                        />
-                    </TouchableOpacity>
-                </CustomView>
-            </ImageBackground>
+                            style={{
+                                paddingBottom: 10,
+                                borderBottomWidth: current_tab === 'futute_events' ? 4 : 0,
+                                borderBottomColor: isDarkTheme ? '#000' : '#fff'
+                            }}
+                        >
+                            <CustomText
+                                style={{
+                                    fontSize: 14,
+                                    fontWeight: '400',
+                                    color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                                }}
+                                text={'Future Events'}
+                            />
+                        </TouchableOpacity>
+                    </CustomView>
+                </ImageBackground>
+            </Shadow>
         )
     }
 

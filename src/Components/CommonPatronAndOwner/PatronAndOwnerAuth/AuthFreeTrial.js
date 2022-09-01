@@ -12,7 +12,7 @@ import CustomView from "../../../Common/CustomView";
 import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 // images and icon
-import { authBg, rightYellow } from "../../../constants/Images";
+import { rightYellow } from "../../../constants/Images";
 import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
@@ -26,7 +26,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const PatronFreeTrial = ({ navigation }) => {
+const AuthFreeTrial = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
   const [isVisible, setIsVisible] = useState(false);
@@ -84,6 +84,7 @@ const PatronFreeTrial = ({ navigation }) => {
         render_view_key={'lets_drink'}
         isVisible={isVisible}
         hideModal={() => setIsVisible(!isVisible)}
+        paddingBottom={25}
       />
     )
   }
@@ -99,7 +100,7 @@ const PatronFreeTrial = ({ navigation }) => {
       >
 
         <TopContainer
-          text1={"START YOUR FREE TRIAL NOW!"}
+          text1={`Start Your FREE TRIAL now!`}
           isDarkTheme={isDarkTheme}
         />
 
@@ -118,9 +119,10 @@ const PatronFreeTrial = ({ navigation }) => {
             <CustomText
               text={'You will recieve a FREE DRINK everyday during your free trial, as well as access to all premium features of BarCode members!'}
               style={{
-                color: '#747474',
-                fontSize: 20,
-                textAlign: 'center'
+                color: isDarkTheme?'#FFFFFF':"#747474",
+                fontSize: 22,
+                textAlign: 'center',
+                fontWeight: '400',
               }}
             />
 
@@ -129,9 +131,9 @@ const PatronFreeTrial = ({ navigation }) => {
               style={{
                 marginTop: 20,
                 textAlign: 'center',
-                fontSize: 20,
-                fontWeight: '700',
-                color: isDarkTheme ? '#FFF' : '#000',
+                fontSize: 23,
+                fontWeight: '500',
+                color: isDarkTheme ? '#FFFFFF' : '#A6A6A6',
               }}
             />
 
@@ -207,9 +209,9 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"TODAY"}
                 style={{
                   marginTop: 20,
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: isDarkTheme ? '#FFF' : '#000',
+                  fontSize: 28,
+                  fontWeight: '400',
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -217,8 +219,8 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"Get your first FREE drink!"}
                 style={{
                   marginTop: 10,
-                  fontSize: 18,
-                  color: '#747474',
+                  fontSize: 19,
+                   color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -226,9 +228,9 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"IN 7 DAYS"}
                 style={{
                   marginTop: 60,
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: isDarkTheme ? '#FFF' : '#000',
+                  fontSize: 28,
+                  fontWeight: '400',
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -236,8 +238,8 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"Get a reminder of "}
                 style={{
                   marginTop: 10,
-                  fontSize: 18,
-                  color: '#747474',
+                  fontSize: 19,
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -245,8 +247,8 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"when your trail ends "}
                 style={{
 
-                  fontSize: 18,
-                  color: '#747474',
+                  fontSize: 19,
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -254,9 +256,9 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"IN 7 DAYS"}
                 style={{
                   marginTop: 60,
-                  fontSize: 24,
-                  fontWeight: '700',
-                  color: isDarkTheme ? '#FFF' : '#000',
+                  fontSize: 28,
+                  fontWeight: '400',
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -264,16 +266,16 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"Get billed, unless you cancel "}
                 style={{
                   marginTop: 10,
-                  fontSize: 18,
-                  color: '#747474',
+                  fontSize: 19,
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
               <CustomText
                 text={"anytime before."}
                 style={{
-                  fontSize: 18,
-                  color: '#747474',
+                  fontSize: 19,
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -300,9 +302,9 @@ const PatronFreeTrial = ({ navigation }) => {
               text={"ALREADY SUBSCRIBED?"}
               style={{
                 textAlign: 'center',
-                fontSize: 16,
-                fontWeight: '500',
-                color: isDarkTheme ? '#FFF' : '#000',
+                fontSize: 13,
+                fontWeight: '400',
+                color: isDarkTheme ? '#FFF' : '#000000',
               }}
             />
 
@@ -321,8 +323,8 @@ const PatronFreeTrial = ({ navigation }) => {
                 text={"RESTORE"}
                 style={{
                   textAlign: 'center',
-                  fontSize: 14,
-                  fontWeight: '600',
+                  fontSize: 13,
+                  fontWeight: '400',
                   color: '#FFF',
                 }}
               />
@@ -343,4 +345,4 @@ const PatronFreeTrial = ({ navigation }) => {
 
 //---------- export component
 
-export default PatronFreeTrial;
+export default AuthFreeTrial;

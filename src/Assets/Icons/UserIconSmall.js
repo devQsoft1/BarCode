@@ -32,7 +32,7 @@ function UserIconSmall(props) {
 UserIconSmall.defaultProps={
     width: 24,
     height:24,
-    fill:'#000',
+    fill:'#fff',
     viewBox:"0 0 24 24"
 }
 

@@ -1,18 +1,21 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import { StyleSheet, ScrollView, View, Image, Text, TouchableOpacity, ImageBackground, Dimensions } from "react-native";
 
 // image
-import { authBg } from "../constants/Images";
-import Logo from '../Assets/Icons/Logo';
+import { AuthBgWhite, AuthBgBlack, Logo } from "../constants/Images";
+// import Logo from '../Assets/Icons/Logo';
 
 // common componets
 import CustomText from "./CustomText";
 import CustomView from "./CustomView";
 
+// constants
+const windowHeight = Dimensions.get('window').height;
+
 //---------- main component
 
-const TopContainer = ({ text1, text2, isDarkTheme, textAlign }) => {
+const TopContainer = ({ text1, text2, isDarkTheme, textAlign,fontSizetText2 }) => {
 
     //---------- state, veriable, context and hooks
 
@@ -23,47 +26,75 @@ const TopContainer = ({ text1, text2, isDarkTheme, textAlign }) => {
     return (
         <View
             style={{
-                height: 300
+                height: (windowHeight * 40) / 100
             }}
         >
 
             <ImageBackground
-                source={authBg}
-                resizeMode="contain"
+                source={isDarkTheme ? AuthBgBlack : AuthBgWhite}
+                resizeMode="stretch"
                 style={{
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                     height: '100%',
                 }}
             >
 
-                <Logo />
+                <CustomView
+                    style={{
+                        height: '70%',
+                        justifyContent: 'flex-end'
+                    }}
+                >
 
-                <View style={{ height: 30 }} />
-                {
-                    !!text1 &&
-                    <CustomText
-                        text={text1}
-                        style={{
-                            fontSize: 24,
-                            fontWeight: '700',
-                            color: isDarkTheme ? '#fff' : '#000',
-                            textAlign: textAlign
-                        }}
-                    />
-                }
+                    {/* <Logo /> */}
 
-                {
-                    !!text2 &&
-                    <CustomText
-                        text={text2}
+                    <Image
                         style={{
-                            fontSize: 24,
-                            fontWeight: '700',
-                            color: isDarkTheme ? '#fff' : '#000'
+                            height: 140,
+                            width: 140
                         }}
+                        source={Logo}
+                        resizeMode='contain'
                     />
-                }
+                </CustomView>
+
+                {/* <View style={{ height: 30 }} /> */}
+                <CustomView
+                    style={{
+                        height: '30%',
+                        justifyContent: 'flex-end',
+                        paddingBottom: 20,
+                        alignItems: 'center'
+
+                    }}
+                >
+
+                    {
+                        !!text1 &&
+                        <CustomText
+                            text={text1}
+                            style={{
+                                fontSize: 23,
+                                fontWeight: '700',
+                                color: isDarkTheme ? '#FFFFFF' : '#A6A6A6',
+                                textAlign: textAlign,
+                            }}
+                        />
+                    }
+
+                    {
+                        !!text2 &&
+                        <CustomText
+                            text={text2}
+                            style={{
+                                fontSize: fontSizetText2 ? fontSizetText2: 23,
+                                fontWeight: '700',
+                                color: isDarkTheme ? '#fff' : '#A6A6A6'
+                            }}
+                        />
+                    }
+                </CustomView>
 
             </ImageBackground>
         </View>

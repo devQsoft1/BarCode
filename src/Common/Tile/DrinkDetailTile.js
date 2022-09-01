@@ -2,7 +2,8 @@
 
 // react
 import React, { useContext } from "react";
-import { StyleSheet, Text, Image } from "react-native";
+import { StyleSheet, Text, Image, Dimensions } from "react-native";
+import { Shadow } from 'react-native-shadow-2'
 
 // style
 import { BLACK } from "../constants/Colors";
@@ -19,6 +20,9 @@ import CustomView from "../CustomView";
 import CustomText from "../CustomText";
 import CustomButton from "../CustomButton";
 
+
+const windowWidth = Dimensions.get('window').width;
+console.log('windowWidth', windowWidth)
 //---------- main components
 
 const DrinkDetailTile = (props) => {
@@ -42,110 +46,120 @@ const DrinkDetailTile = (props) => {
     //---------- Main View
 
     return (
-
-        <CustomView
-            style={{
-                height: '100%',
-                width: '100%',
-                backgroundColor: '#FFA500',
-                paddingRight: 10,
-                flexDirection: 'row',
-            }}
-        >
+        <Shadow offset={[0, 5]} >
 
             <CustomView
                 style={{
+                    // height: '100%',
+                    // width: '100%',
                     backgroundColor: '#FFA500',
-                    padding: 10,
-                    width: '30%',
-
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    paddingRight: 10,
+                    flexDirection: 'row',
                 }}
             >
-                <CustomText
+                <CustomView
                     style={{
-                        color: isDarkTheme ? "#fff" : '#000',
-                        fontSize: 14,
-                        fontWeight: '600',
-                        alignSelf: 'center'
+                        // backgroundColor: '#FFA500',
+                        padding: 10,
+                        width: '30%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
+                >
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#FFFFFF" : '#FFFFFF',
+                            fontSize: 20,
+                            fontWeight: '400',
+                            alignSelf: 'center',
+                            textAlign: "center"
+                        }}
+                        text={"13TH "}
+                    />
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#FFFFFF" : '#FFFFFF',
+                            fontSize: 16,
+                            fontWeight: '400',
+                            alignSelf: 'center',
+                            textAlign: "center"
+                        }}
+                        text={"OCTOBER"}
+                    />
 
-                    text={"13TH OCTOBER"}
-                />
+                </CustomView>
 
-            </CustomView>
-
-
-            <CustomView
-                style={{
-                    backgroundColor: isDarkTheme ? '#000' : '#EAE8E8',
-                    padding: 10,
-                    width: '50%'
-                }}
-            >
-                <CustomText
+                <CustomView
                     style={{
-                        color: isDarkTheme ? "#fff" : '#000',
-
-                        fontSize: 14,
-                        fontWeight: '500',
+                        backgroundColor: isDarkTheme ? '#1F1F1F' : '#FFFFFF',
+                        paddingLeft: 14
+                        // width: '50%'
                     }}
+                >
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#fff" : '#CCCCCC',
+                            fontSize: 18,
+                            fontWeight: '400',
+                            // lineHeight:20
+                        }}
 
-                    text={"$10 DRINKS ALL DAY"}
-                />
+                        text={"$10 DRINKS ALL DAY"}
+                    />
 
-                <CustomText
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#fff" : '#CCCCCC',
+                            fontSize: 16,
+                            fontWeight: '400',
+                        }}
+
+                        text={"8 AM - 2 PM"}
+                    />
+
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#fff" : '#CCCCCC',
+                            fontSize: 12,
+                            fontWeight: '400',
+                        }}
+
+                        text={"FREE APPETIZER FOR ALL"}
+                    />
+                    <CustomText
+                        style={{
+                            color: isDarkTheme ? "#fff" : '#CCCCCC',
+                            fontSize: 12,
+                            fontWeight: '400',
+                        }}
+
+                        text={"BROCODE MENBERS"}
+                    />
+
+                </CustomView>
+
+                <CustomView
                     style={{
-                        color: isDarkTheme ? "#fff" : '#000',
-
-                        fontSize: 14,
-                        fontWeight: '500',
+                        borderRightColor: "#FFA500",
+                        borderRightWidth: 12,
+                        width: '20%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: isDarkTheme? "#1F1F1F":"#FFFFFF"
                     }}
+                >
 
-                    text={"8 AM - 2 PM"}
-                />
+                    <AddIcon />
 
-                <CustomText
-                    style={{
-                        color: '#585858',
-                        fontSize: 10,
-                        fontWeight: '500',
-                    }}
-
-                    text={"FREE APPETIZER FOR ALL"}
-                />
-                <CustomText
-                    style={{
-                        color: '#585858',
-                        fontSize: 10,
-                        fontWeight: '500',
-                    }}
-
-                    text={"BROCODE MENBERS"}
-                />
-
-            </CustomView>
-
-            <CustomView
-                style={{
-                    backgroundColor: isDarkTheme ? '#000' : '#EAE8E8',
-                    width: '20%',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-            >
-
-                <AddIcon />
-
-                {/* <Image
+                    {/* <Image
                     style={{ marginRight: 10 }}
                     source={addIcon}
                     resizeMode='cover'
                 /> */}
 
+                </CustomView>
             </CustomView>
-        </CustomView>
+        </Shadow>
 
     );
 };

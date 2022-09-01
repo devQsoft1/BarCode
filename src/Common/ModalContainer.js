@@ -20,9 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Portal, Button, Provider } from "react-native-paper";
 
 // icon and images
-import {
-    addIcon,
-} from ".././constants/Images";
+import { addIcon, cheers } from ".././constants/Images";
 
 // common
 import CustomText from "./CustomText";
@@ -73,7 +71,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
     const showModal = () => setVisible(true);
 
 
-    const renderContentLayout = () => {
+    const renderModalContent = () => {
 
         return (
             <React.Fragment>
@@ -88,7 +86,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                 >
                     <CustomText
                         style={{
-                            fontSize: 20
+                            fontSize: 20,
+                            color: isDarkTheme ? '#fff' : '#000'
                         }}
                         text={content?.title}
                     />
@@ -153,6 +152,71 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         )
     }
 
+    const renderDrinkOnus = () => {
+
+        return (
+            <React.Fragment>
+                <CustomView
+                    style={[
+                        CommonStyles.RowCenter,
+                        {
+                            backgroundColor: isDarkTheme ? '#000' : '#fff',
+                            paddingTop: 20
+                        }
+                    ]}
+                >
+                    <CustomText
+                        style={{
+                            fontSize: 20,
+                            fontWeight: "700",
+                            color: '#42AEEC',
+                            marginBottom: 15
+                        }}
+                        text={"CHEERS!"}
+                    />
+                </CustomView>
+
+                <CustomText
+                    style={{
+                        fontSize: 20,
+                        fontWeight: "700",
+                        color: '#000000',
+                    }}
+                    text={"DRINKS ON US"}
+                />
+
+                <CustomView
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: 35
+                    }}>
+                    <Image
+                        source={cheers}
+                        resizeMode='cover'
+                    />
+
+                    <CustomText
+                        style={{
+                            fontSize: 16,
+                            fontWeight: "400",
+                            color: '#000000',
+                            textAlign: "center",
+                            marginTop: 34,
+                            lineHeight:25
+
+                        }}
+                        text={"Please show your app to your server to complete your free drink!"}
+                    />
+
+                </CustomView>
+
+            </React.Fragment >
+        )
+    }
+
+
+
     //---------- return main view
 
     return (
@@ -176,14 +240,13 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                     ]}
                 >
                     {
-                        renderContentLayout()
+                        renderDrinkOnus()
                     }
                 </CustomView>
             </CustomView>
         </Modal>
     );
 };
-
 
 //---------- export component
 

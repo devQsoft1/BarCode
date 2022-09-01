@@ -6,10 +6,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 //----- components
 // patron
-import PatronLogin from "../../Components/Patron/Auth/PatronLogin";
-import PatronSignup from '../../Components/Patron/Auth/PatronSignup';
-import ProfileImagePatron from '../../Components/Patron/Auth/ProfileImagePatron';
-import PatronFreeTrial from '../../Components/Patron/Auth/PatronFreeTrial';
+import AuthLogin from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthLogin";
+import AuthSignup from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthSignup";
+import ProfileImageAuth from  "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/ProfileImageAuth";
+import AuthFreeTrial from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthFreeTrial";
 import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 import PatronOnboarding from "../../Components/Onboarding/PatronOnboarding/PatronOnboarding";
 
@@ -25,7 +25,7 @@ function PatronAuthNavigation(props) {
 
     return (
         <Stack.Navigator
-            initialRouteName={'PatronLogin'}
+            initialRouteName={'AuthLogin'}
             options={{ headerShown: false }}
         >
 
@@ -33,25 +33,25 @@ function PatronAuthNavigation(props) {
                 options={{
                     headerShown: false
                 }}
-                name="PatronLogin" component={PatronLogin} />
+                name="AuthLogin" component={AuthLogin} />
 
             <Stack.Screen
                 options={{
                     headerShown: false
                 }}
-                name="PatronSignup" component={PatronSignup} />
+                name="AuthSignup" component={AuthSignup} />
 
             <Stack.Screen
                 options={{
                     headerShown: false
                 }}
-                name="ProfileImagePatron" component={ProfileImagePatron} />
+                name="ProfileImageAuth" component={ProfileImageAuth} />
 
             <Stack.Screen
                 options={{
                     headerShown: false
                 }}
-                name="PatronFreeTrial" component={PatronFreeTrial} />
+                name="AuthFreeTrial" component={AuthFreeTrial} />
 
             <Stack.Screen
                 options={{

@@ -4,7 +4,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
 // style
 import { BLACK } from "../constants/Colors";
 
@@ -37,36 +36,44 @@ const CustomBorderButton = (props) => {
   } = ContextHelper()
 
   //---------- Main View
-
   return (
-    <TouchableOpacity
+     <TouchableOpacity
       onPress={() => {
         props?.onPress()
       }}
       style={{
+         shadowColor: '#000',
+      shadowOffset: { width: 1, height: 1 },
+      shadowOpacity:  0.4,
+      shadowRadius: 3,
+      elevation: 5,
         // paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
         paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
         backgroundColor: isDarkTheme ? '#000' : '#fff',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        borderRadius: 10,
+        borderRadius: props.borderRadius ? props.borderRadius : 10,
         borderWidth: 1,
-        borderColor: props?.borderColor ? props?.borderColor : isDarkTheme ? '#fff' : '#000',
-        paddingVertical: props?.paddingVertical ? props.paddingVertical : 10,
+        borderColor: props?.borderColor ? props?.borderColor : isDarkTheme ? '#fff' : '#CCCCCC',
+        paddingVertical: props?.paddingVertical ? props.paddingVertical : 5,
       }}
     >
+      
       <CustomText
         style={{
-          color: props?.color ? props?.color : isDarkTheme ? '#fff' : '#000',
+          color: props?.color ? props?.color : isDarkTheme ? '#fff' : '#CCCCCC',
           fontSize: props?.fontSize ? props?.fontSize : 16,
-          fontWeight: '400'
+          fontWeight: props?.fontWeight ? props?.fontWeight : '400',
+          textAlign: "center"
+
         }}
 
         text={props?.title}
       />
 
     </TouchableOpacity>
+ 
   );
 };
 

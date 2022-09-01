@@ -65,28 +65,28 @@ const PatronProfile = ({ navigation }) => {
         <CustomText
           text={"GUEST"}
           style={{
-            fontSize: 24,
+            fontSize: 25,
             fontWeight: '700',
             textAlign: 'center',
-            color: '#0066FF',
+            color: '#42AEEC',
             marginVertical: 15
           }}
         />
 
-        <CustomView style={{ width: '70%', height: 1, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+        <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
         <CustomText
-          text={"LOGIN"}
+          text={"LOG IN"}
           style={{
             fontSize: 24,
             fontWeight: '700',
             textAlign: 'center',
-            color: '#848484',
+            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
             marginVertical: 15
           }}
         />
 
-        <CustomView style={{ width: '70%', height: 1, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
         <CustomText
           text={"RESTORE PURCHASES"}
@@ -94,12 +94,12 @@ const PatronProfile = ({ navigation }) => {
             fontSize: 24,
             fontWeight: '700',
             textAlign: 'center',
-            color: '#848484',
+            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
             marginVertical: 15
           }}
         />
 
-        <CustomView style={{ width: '70%', height: 1, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
         <CustomText
           text={"CONTACT US"}
@@ -107,12 +107,12 @@ const PatronProfile = ({ navigation }) => {
             fontSize: 24,
             fontWeight: '700',
             textAlign: 'center',
-            color: '#848484',
+            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
             marginVertical: 15
           }}
         />
 
-        <CustomView style={{ width: '70%', height: 1, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
         <CustomText
           text={"Privacy Policy \nTerms & Conditions"}
@@ -120,8 +120,8 @@ const PatronProfile = ({ navigation }) => {
             fontSize: 16,
             fontWeight: '400',
             textAlign: 'center',
-            color: '#989898',
-            marginTop: 70
+            color: isDarkTheme?"#FFFFFF": '#000000',
+            marginTop: 135
           }}
         />
 

@@ -77,14 +77,14 @@ function PatronTabNavigation() {
             Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'MenuScreen') {
 
-            Icon =
-              <TouchableOpacity
-                onPress={() => {
-                  alert(0)
-                }}
-              >
-                <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
-              </TouchableOpacity>
+            Icon =  <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+              // <TouchableOpacity
+              //   onPress={() => {
+              //     alert(0)
+              //   }}
+              // >
+              //   <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+              // </TouchableOpacity>
           }
 
           // You can return any component that you like here!

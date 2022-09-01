@@ -6,7 +6,6 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 
 // images and icon
-import { authBg } from "../../../constants/Images";
 import { freeDrinkOnBoarding, dateAndLocationOnBoarding, BusinessProfileOnBoarding, enjoyEclusiveOnBoarding } from '../../../constants/Images'
 
 // common
@@ -78,25 +77,26 @@ const PatronOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={freeDrinkOnBoarding}
-                        resizeMode='cover'
-                    />
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={freeDrinkOnBoarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
 
                     <CustomText
                         style={{
                             fontSize: 24,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-                            marginTop: 40,
-
+                            flex: 1
                         }}
                         text="GET A FREE DRINK EVERYDAY!"
                     />
@@ -115,27 +115,28 @@ const PatronOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            style={{
 
-                    <Image
-                        style={{
-
-                        }}
-                        source={dateAndLocationOnBoarding}
-                        resizeMode='cover'
-                    />
-
+                            }}
+                            source={dateAndLocationOnBoarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-
+                            flex: 1
                         }}
                         text="SEE WHAT’S HAPPENING AROUND YOU
                         OR PUT IN A DATE AND LOCATION
@@ -159,24 +160,26 @@ const PatronOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={BusinessProfileOnBoarding}
-                        resizeMode='cover'
-                    />
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={BusinessProfileOnBoarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
 
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-                            // marginTop: 50,
+                            flex: 1
 
                         }}
                         text="CHECK OUT THE BUSINESS PROFILE
@@ -201,25 +204,26 @@ const PatronOnboarding = ({ navigation }) => {
                 <CustomView
                     style={{
                         alignItems: 'center',
-                        // flex: 2,
+                        flex: 1,
                         paddingTop: 30,
                         paddingHorizontal: 20
                     }}
                 >
-
-                    <Image
-                        source={enjoyEclusiveOnBoarding}
-                        resizeMode='cover'
-                    />
-
+                    <CustomView
+                        style={{ flex: 2 }}>
+                        <Image
+                            source={enjoyEclusiveOnBoarding}
+                            resizeMode='cover'
+                        />
+                    </CustomView>
                     <CustomText
                         style={{
                             fontSize: 18,
                             fontWeight: '600',
-                            color: '#808080',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 60,
-
+                            flex: 1
                         }}
                         text="SHOW UP AND RECEIVE YOUR
                         FREE DRINK AND ENJOY

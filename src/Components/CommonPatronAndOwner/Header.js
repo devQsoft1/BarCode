@@ -23,7 +23,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const Header = ({ navigation, title, isCenter }) => {
+const Header = ({ navigation, title, isCenter,fontWeight }) => {
 
     //---------- state, veriable, context and hooks
 
@@ -85,10 +85,10 @@ const Header = ({ navigation, title, isCenter }) => {
                         numberOfLine={2}
                         style={{
                             color: isDarkTheme ? '#fff' : '#000',
-                            fontSize: 16,
-                            fontWeight: isCenter ? '700' : '400',
+                            fontSize: 17,
+                            fontWeight: fontWeight ? fontWeight : '400',
                             maxWidth: '70%',
-                            fontWeight: isCenter ? 'bold' : 'normal'
+                            // fontWeight: isCenter ? 'bold' : 'normal'
                         }}
                         text={title}
                     />

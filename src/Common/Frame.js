@@ -50,9 +50,14 @@ const Frame = ({
         >
             <ScrollView
                 scrollEnabled={scrollEnabled}
+                contentContainerStyle={{
+                    // flex:0   ,
+                    // height:'100%'
+                }}
                 style={{
                     flex: 1,
-                    paddingBottom: 30,
+                    // paddingBottom: 30,
+
                 }}
             >
                 {

@@ -20,9 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Portal, Button, Provider } from "react-native-paper";
 
 // icon and images
-import {
-    addIcon,
-} from ".././constants/Images";
+import {addIcon, } from ".././constants/Images";
 
 // common
 import CustomText from "./CustomText";
@@ -106,40 +104,44 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
                 <CustomText
                     text={'14 DAYS FREE, THEN $9.99/MONTH'}
                     style={{
-                        fontSize: 20,
-                        fontWeight: '700',
-                        color: isDarkTheme ? '#FFF' : '#000'
+                        fontSize: 18,
+                        fontWeight: '500',
+                        color: isDarkTheme ? '#FFF' : '#747474',
+                        textAlign:"center"
                     }}
                 />
 
                 <CustomView
                     style={{
-                        height: 30
+                        height: 25,
+                        
                     }}
                 />
 
                 <CustomButton
                     onPress={() => {
-                        // alert('in progress...')
-                        navigation.navigate('FAQ')
+                        alert('in progress...')
+                        // navigation.navigate('FAQ')
                     }}
                     paddingVertical={15}
-                    borderRadius={25}
+                    borderRadius={49.5}
                     title={"LET’S DRINK!"}
+                    fontSize={30}
+                    fontWeight={"500"}
                 />
 
                 <CustomView
                     style={{
-                        height: 50
+                        height: 10
                     }}
                 />
 
                 <CustomText
                     text={'OTHER PLANS'}
                     style={{
-                        fontSize: 20,
-                        fontWeight: '700',
-                        color: '#707070',
+                        fontSize: 19,
+                        fontWeight: '500',
+                        color: isDarkTheme?"#FFFFFF": '#7B7B7B',
                         textAlign: 'center'
                     }}
                 />

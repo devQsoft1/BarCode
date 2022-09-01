@@ -57,12 +57,14 @@ const ClainDrinkTile = (props) => {
                     <FeaturedRedIcon />
                 </CustomView>
             }
+            
             <CustomView
                 style={{
                     borderRadius: 20,
                     height: '100%',
                     width: '100%',
                     overflow: 'hidden',
+
                 }}
             >
                 <ImageBackground
@@ -72,6 +74,7 @@ const ClainDrinkTile = (props) => {
                         flex: 1,
                         height: '100%',
                         width: '100%',
+                        justifyContent: "center"
                     }}
                 >
 
@@ -79,16 +82,16 @@ const ClainDrinkTile = (props) => {
                         style={{
                             paddingTop: 27,
                             paddingLeft: 20,
-                            paddingBottom: 20,
-                            paddingRight: 15
+                            paddingBottom: 30,
+                            paddingRight: 15,
                         }}
                     >
 
                         <CustomText
                             style={{
                                 color: '#fff',
-                                fontSize: 24,
-                                fontWeight: 'bold',
+                                fontSize: 30,
+                                fontWeight: '600',
                             }}
 
                             text={"$10 DRINKS ALL DAY"}
@@ -98,7 +101,8 @@ const ClainDrinkTile = (props) => {
                         <CustomText
                             style={{
                                 color: '#fff',
-                                fontSize: 18
+                                fontSize: 30,
+                                fontWeight: '600',
 
                             }}
 
@@ -109,8 +113,9 @@ const ClainDrinkTile = (props) => {
                         <CustomText
                             style={{
                                 color: '#fff',
-                                marginBottom: 20,
-                                fontSize: 18
+                                marginBottom: 23,
+                                fontSize: 20,
+                                fontWeight: '400',
 
                             }}
 
@@ -132,9 +137,10 @@ const ClainDrinkTile = (props) => {
                                     numberOfLine={1}
                                     style={{
                                         color: '#fff',
-                                        marginVertical: 5,
-                                        fontSize: 24,
-                                        width: '80%'
+                                        // marginVertical: 6,
+                                        fontSize: 20,
+                                        width: '80%',
+                                        fontWeight: '400',
 
                                     }}
 
@@ -144,8 +150,9 @@ const ClainDrinkTile = (props) => {
                                 <CustomText
                                     style={{
                                         color: '#fff',
-                                        fontWeight: 'bold',
-                                        fontSize: 20
+                                        fontWeight: '400',
+                                        fontSize: 20,
+                                       
                                     }}
 
                                     text={"5 MILES BRIDGEPORT"}
@@ -156,7 +163,7 @@ const ClainDrinkTile = (props) => {
                             <CustomView
                                 style={{
                                     // width: '30%'
-                                    marginLeft: 10
+                                    marginLeft:2
 
                                 }}
                             >
@@ -165,6 +172,8 @@ const ClainDrinkTile = (props) => {
                                     paddingHorizontal={10}
                                     // borderRadius={20}
                                     title={'CLAIM DRINK'}
+                                    fontWeight={"500"}
+                                    fontSize={18}
                                 />
                             </CustomView>
 

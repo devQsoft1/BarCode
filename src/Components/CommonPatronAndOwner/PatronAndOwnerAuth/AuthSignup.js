@@ -4,7 +4,7 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 
 // images and icon
-import { authBg, rightYellow } from "../../../constants/Images";
+import { rightYellow } from "../../../constants/Images";
 import Logo from '../../../Assets/Icons/Logo';
 
 // styles
@@ -32,7 +32,7 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 //---------- main component
 
-const PatronSignup = ({ navigation }) => {
+const AuthSignup = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
 
@@ -64,13 +64,13 @@ const PatronSignup = ({ navigation }) => {
 
       <TopContainer
         text1={"WHO ARE YOU?"}
+        isDarkTheme={isDarkTheme}
       />
 
       <CustomView
         style={{
-          flex: 2,
-          paddingTop: 20,
-          paddingHorizontal: 20
+          // height: '100%',
+          paddingHorizontal: 20,
         }}
       >
         <CustomTextInput
@@ -129,12 +129,12 @@ const PatronSignup = ({ navigation }) => {
             paddingRigth: 10,
             marginTop: 20,
             paddingVertical: 20,
-            backgroundColor: isDarkTheme ? '#111111' : ''
+            backgroundColor: isDarkTheme ? '#000000' : '#FFFFFF'
           }}
         >
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('ProfileImagePatron')
+              navigation.navigate('ProfileImageAuth')
             }}
           >
 
@@ -142,6 +142,7 @@ const PatronSignup = ({ navigation }) => {
               style={{ marginRight: 10 }}
               source={rightYellow}
               resizeMode='cover'
+              
             />
           </TouchableOpacity>
         </CustomView>
@@ -154,5 +155,5 @@ const PatronSignup = ({ navigation }) => {
 
 //---------- export component
 
-export default PatronSignup;
+export default AuthSignup;
 

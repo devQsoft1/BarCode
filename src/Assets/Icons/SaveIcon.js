@@ -4,8 +4,8 @@ import Svg, { Path } from "react-native-svg"
 function SaveIcon(props) {
   return (
     <Svg
-      width={45}
-      height={44}
+      width={props.width}
+      height={props.height}
       // {...props}
     >
        <Path

@@ -12,7 +12,7 @@ import CustomView from "../../../Common/CustomView";
 import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 // images and icon
-import { authBg, rightYellow } from "../../../constants/Images";
+import { rightYellow } from "../../../constants/Images";
 import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
@@ -22,7 +22,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const ProfileImagePatron = ({ navigation }) => {
+const ProfileImageAuth = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
 
@@ -78,7 +78,7 @@ const ProfileImagePatron = ({ navigation }) => {
           <CustomView
             style={{
               borderWidth: 1,
-              borderColor: '#747474',
+              borderColor: isDarkTheme? "#FFFFFF": '#747474',
               height: 150,
               width: 150,
               alignSelf: 'center',
@@ -90,7 +90,7 @@ const ProfileImagePatron = ({ navigation }) => {
             <CustomView
               style={{
                 borderWidth: 1,
-                borderColor: '#747474',
+                borderColor: isDarkTheme? "#FFFFFF": '#747474',
                 height: 140,
                 width: 140,
                 borderRadius: 100,
@@ -98,7 +98,7 @@ const ProfileImagePatron = ({ navigation }) => {
                 alignItems: 'center'
               }}
             >
-              <UserIconSmall height={60} width={60} />
+              <UserIconSmall height={60} width={60}/>
 
             </CustomView>
 
@@ -131,7 +131,9 @@ const ProfileImagePatron = ({ navigation }) => {
                 <GallaryIcon />
                 <CustomText
                   style={{
-                    color: '#747474'
+                    color: isDarkTheme?"#FFFFFF":'#A6A6A6',
+                    fontSize: 18,
+                    fontWeight: '400'
                   }}
                   text={'Gallery'}
                 />
@@ -148,8 +150,9 @@ const ProfileImagePatron = ({ navigation }) => {
                 <CameraIcon />
                 <CustomText
                   style={{
-                    color: '#747474'
-                  }}
+                    color: isDarkTheme?"#FFFFFF":'#A6A6A6',
+                    fontSize: 18,
+                    fontWeight: '400'                  }}
                   text={'Camera'}
                 />
               </TouchableOpacity>
@@ -164,12 +167,12 @@ const ProfileImagePatron = ({ navigation }) => {
                 paddingRigth: 10,
                 // marginTop: 100,
                 paddingVertical: 20,
-                backgroundColor: isDarkTheme ? '#111111' : ''
+                backgroundColor: isDarkTheme ? '#000000' : '#FFFFFF'
               }}
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('PatronFreeTrial')
+                  navigation.navigate('AuthFreeTrial')
                 }}
               >
 
@@ -194,4 +197,4 @@ const ProfileImagePatron = ({ navigation }) => {
 
 //---------- export component
 
-export default ProfileImagePatron;
+export default ProfileImageAuth;

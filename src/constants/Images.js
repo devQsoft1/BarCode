@@ -1,6 +1,7 @@
 module.exports = {
   //login
-  authBg: require("../Assets/Image/AuthBg.png"),
+  AuthBgWhite: require("../Assets/Image/AuthBgWhite.png"),
+  AuthBgBlack: require("../Assets/Image/AuthBgBlack.png"),
   darkSplash: require("../Assets/Image/barcodeSplashDark.png"),
   lightSplash: require("../Assets/Image/barcodeSplashLight.png"),
   drawerIcon: require("../Assets/Image/drawerIcon.png"),
@@ -11,6 +12,7 @@ module.exports = {
   patronLoginBG: require("../Assets/Image/patronLoginBG.png"),
   rightYellow: require("../Assets/Image/rightYellow.png"),
   Cross: require("../Assets/Image/Cross.png"),
+  Logo: require("../Assets/Image/Logo.png"),
   Logo2: require("../Assets/Image/Logo2.png"),
   GoogleMap: require("../Assets/Image/GoogleMap.png"),
   UserImg: require("../Assets/Image/UserImg.png"),
@@ -23,8 +25,16 @@ module.exports = {
   goLiveOnBording: require("../Assets/Image/goLiveOnBording.png"),
   freeDrinkOnBoarding: require("../Assets/Image/freeDrinkOnBoarding.png"),
   dateAndLocationOnBoarding: require("../Assets/Image/dateAndLocationOnBoarding.png"),
-  BusinessProfileOnBoarding: require("../Assets/Image/dateAndLocationOnBoarding.png"),
+  BusinessProfileOnBoarding: require("../Assets/Image/BusinessProfileOnBoarding.png"),
   enjoyEclusiveOnBoarding: require("../Assets/Image/enjoyEclusiveOnBoarding.png"),
+  Apple: require("../Assets/Image/Apple.png"),
+  Facebook: require("../Assets/Image/Facebook.png"),
+  Google: require("../Assets/Image/Google.png"),
+  Twitter: require("../Assets/Image/Twitter.png"),
+
+
+
+  cheers: require("../Assets/Image/cheers.png"),
 
 
   Temp: require("../Assets/Image/temp.jpg"),
