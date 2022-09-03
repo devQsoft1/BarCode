@@ -83,7 +83,7 @@ const AuthStyles = StyleSheet.create({
     minWidth:width-100,
     flexDirection:'row',
     justifyContent:'center',
-    height:50
+    height:60
   },
 });
 

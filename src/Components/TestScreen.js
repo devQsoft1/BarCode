@@ -72,14 +72,14 @@ const TestScreen = ({ navigation }) => {
       </CustomView>
 
       <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('PatronHome')
-          }}
-        >
-          <CustomText
-            text={"change theme"}
-          />
-        </TouchableOpacity>
+        onPress={() => {
+          navigation.navigate('PatronHome')
+        }}
+      >
+        <CustomText
+          text={"change theme"}
+        />
+      </TouchableOpacity>
 
 
       <CustomView
@@ -163,7 +163,7 @@ const TestScreen = ({ navigation }) => {
         style={{
           paddingHorizontal: 10,
           paddingVertical: 10,
-          flex:1
+          flex: 1
         }}
       >
         <DrinkDetailTile />

@@ -37,6 +37,6 @@ module.exports = {
   cheers: require("../Assets/Image/cheers.png"),
 
 
-  Temp: require("../Assets/Image/temp.jpg"),
+  Temp: require("../Assets/Image/temp.png"),
 
 };

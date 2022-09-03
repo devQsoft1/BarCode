@@ -37,38 +37,68 @@ const CustomButton = (props) => {
 
   //---------- Main View
 
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        props?.onPress && props?.onPress()
-      }}
-      style={{
-        paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
-        paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
-        backgroundColor: props?.backgroundColor ? props?.backgroundColor : '#42AEEC',
-        borderRadius: props?.borderRadius ? props?.borderRadius : 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: props?.width ? props?.width : '100%',
-        borderColor: props?.borderColor ? props?.borderColor : '#42AEEC',
-        borderWidth: props?.borderColor ? 1 : 0,
-      }}
-    >
-      <CustomText
+  if (props?.icon) {
+
+    return (
+      <TouchableOpacity
         style={{
-          color: props?.color ? props?.color : '#fff',
-          fontSize: props?.fontSize ? props?.fontSize : 16,
-          fontWeight: props?.fontWeight ? props?.fontWeight : '400',
-          textAlign: 'center',
+
+          shadowOffset: { width: -2, height: 3 },
+          shadowColor: props?.shadowColor ? props?.shadowColor : '#42AEEC',
+          shadowOpacity: 0.2,
+          shadowRadius: 10,
+          elevation: 10
         }}
+        onPress={() => {
+          props?.onPress && props.onPress()
+        }}
+      >
+        {props?.icon}
+      </TouchableOpacity>
+    )
+  } else {
 
-        text={props?.title}
-      />
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          props?.onPress && props?.onPress()
+        }}
+        style={{
+          paddingVertical: props?.paddingVertical ? props.paddingVertical : 8,
+          paddingHorizontal: props?.paddingHorizontal ? props?.paddingHorizontal : 5,
+          backgroundColor: props?.backgroundColor ? props?.backgroundColor : '#42AEEC',
+          borderRadius: props?.borderRadius ? props?.borderRadius : 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: props?.width ? props?.width : '100%',
+          borderColor: props?.borderColor ? props?.borderColor : '#42AEEC',
+          borderWidth: props?.borderColor ? 1 : 0,
 
-    </TouchableOpacity>
-  );
+
+          shadowOffset: { width: -2, height: 4 },
+          shadowColor: props?.shadowColor ? props?.shadowColor : '#42AEEC',
+          shadowOpacity: 0.2,
+          shadowRadius: 3,
+          elevation: 10
+        }}
+      >
+        <CustomText
+          style={{
+            color: props?.color ? props?.color : '#fff',
+            fontSize: props?.fontSize ? props?.fontSize : 16,
+            fontWeight: props?.fontWeight ? props?.fontWeight : '400',
+            textAlign: 'center',
+          }}
+
+          text={props?.title}
+        />
+
+      </TouchableOpacity>
+    );
+  }
 };
 
 //---------- export component
 
 export default CustomButton;
+

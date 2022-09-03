@@ -44,25 +44,7 @@ const MenuScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <CustomText
-          text={"MenuScreen"}
-          style={[TextStyles.textBold24Black, { alignSelf: "center" }, SpaceStyles.bottom20]}
-        />
-
-        <CustomText
-          text={"MenuScreen OF LIABILITY AND WARNING"}
-          style={[{ alignSelf: "center", fontStyle: 'italic' }, TextStyles.textQuicksandBold14Black, SpaceStyles.bottom5]}
-        />
-
-        <View
-          style={[AuthStyles.ContentContainer, SpaceStyles.top20, { paddingHorizontal: 10 }]}
-        >
-
-
-        </View>
-
-      </ScrollView>
+      <Text>munu screen</Text>
     </View>
   );
 };
@@ -75,15 +57,9 @@ export default MenuScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:'50%',
+    backgroundColor:'red',
+    alignSelf:'flex-end'
   },
-  scrollView: {
-    flex: 1,
-    paddingBottom: 20
-  },
-  error: {
-    textAlign: "center",
-    fontSize: 16,
-    color: "red",
-  },
+
 });

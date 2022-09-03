@@ -15,7 +15,7 @@ import ContextHelper from "../ContextHooks/ContextHelper";
 
 //---------- main components
 
-const CustomTextInput = ({
+const  CustomTextInput = ({
   style,
   placeholder,
   onChangeText,
@@ -39,6 +39,7 @@ const CustomTextInput = ({
   padding,
   paddingHorizontal,
   paddingVertical,
+  backgroundColor
 }) => {
 
   //---------- state and context
@@ -69,6 +70,7 @@ const CustomTextInput = ({
           { borderColor: borderColor ? borderColor : isDarkTheme ? WHITE : "#DBDBDB", marginTop: marginTop ? marginTop : 0 },
           { paddingHorizontal: paddingHorizontal ? paddingHorizontal : 10 },
           { paddingVertical: paddingVertical ? paddingVertical : 0 },
+          { backgroundColor: backgroundColor ? backgroundColor : "#fff" },
   
         ]}
       >

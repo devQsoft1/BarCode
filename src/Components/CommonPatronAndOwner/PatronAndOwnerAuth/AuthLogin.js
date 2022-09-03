@@ -74,7 +74,7 @@ const AuthLogin = ({ navigation }) => {
           flex: 1,
           // height: windowHeight + 20,
           marginHorizontal: 20,
-          marginTop:20
+          marginTop: 20
         }}
       >
 
@@ -118,7 +118,7 @@ const AuthLogin = ({ navigation }) => {
           paddingVertical={10}
           fontSize={23}
           fontWeight={"500"}
-          color={"#000000"}
+          color={isDarkTheme ? "#000" : '#fff'}
         />
 
 
@@ -140,23 +140,49 @@ const AuthLogin = ({ navigation }) => {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 5
+                marginTop: 5,
+
               }}
             >
-
-              <AppleIcon />
               <CustomView
                 style={{
                   justifyContent: 'center',
                   alignItems: 'center',
-                  marginHorizontal: 10
+                  borderWidth: 1,
+                  borderColor: isDarkTheme ? "#FFFFFF" : '#747474',
+                  height: 45,
+                  width: 45,
+                  borderRadius: 100,
+                }}>
+                <GoogleIcon />
+              </CustomView>
+
+              <CustomView
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginHorizontal: 15,
+                  borderWidth: 1,
+                  borderColor: isDarkTheme ? "#FFFFFF" : '#747474',
+                  height: 45,
+                  width: 45,
+                  borderRadius: 100,
                 }}
               >
                 <FacebookIcon />
               </CustomView>
-
-              <GoogleIcon />
-
+              <CustomView
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 1,
+                  borderColor: isDarkTheme ? "#FFFFFF" : '#747474',
+                  height: 45,
+                  width: 45,
+                  borderRadius: 100,
+                }}>
+                <AppleIcon />
+              </CustomView>
             </CustomView>
             :
             <CustomView
@@ -175,7 +201,7 @@ const AuthLogin = ({ navigation }) => {
                 source={Apple}
                 resizeMode='contain'
               />
-               <Image
+              <Image
                 style={{
                   height: 48,
                   width: 48
@@ -183,7 +209,7 @@ const AuthLogin = ({ navigation }) => {
                 source={Facebook}
                 resizeMode='contain'
               />
-                <Image
+              <Image
                 style={{
                   height: 48,
                   width: 48
@@ -191,7 +217,7 @@ const AuthLogin = ({ navigation }) => {
                 source={Google}
                 resizeMode='contain'
               />
-                <Image
+              <Image
                 style={{
                   height: 48,
                   width: 48
@@ -199,17 +225,6 @@ const AuthLogin = ({ navigation }) => {
                 source={Twitter}
                 resizeMode='contain'
               />
-              {/* <CustomView
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginHorizontal: 10
-                }}
-              >
-                <FacebookIcon />
-              </CustomView>
-
-              <GoogleIcon /> */}
 
             </CustomView>
         }
@@ -219,7 +234,7 @@ const AuthLogin = ({ navigation }) => {
           style={{
             fontSize: 15,
             alignSelf: 'center',
-            marginTop: 6,
+            marginTop: 10,
             fontWeight: '400',
             color: isDarkTheme ? "#FFFFFF" : "#C7C7C7"
           }}

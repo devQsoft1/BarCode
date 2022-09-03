@@ -21,6 +21,11 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+     
       </activity>
+         <meta-data
+            android:name="com.google.android.geo.AIzaSyD4RS4mkT_ugNqYPHU1Oh7wzmWdOv7_ONE"
+            android:value="AIzaSyD4RS4mkT_ugNqYPHU1Oh7wzmWdOv7_ONE"/>
+      
     </application>
 </manifest>

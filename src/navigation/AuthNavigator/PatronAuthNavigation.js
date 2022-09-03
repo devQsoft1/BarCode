@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 // patron
 import AuthLogin from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthLogin";
 import AuthSignup from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthSignup";
-import ProfileImageAuth from  "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/ProfileImageAuth";
+import ProfileImageAuth from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/ProfileImageAuth";
 import AuthFreeTrial from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthFreeTrial";
 import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 import PatronOnboarding from "../../Components/Onboarding/PatronOnboarding/PatronOnboarding";

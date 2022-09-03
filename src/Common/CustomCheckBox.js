@@ -10,7 +10,7 @@ import CustomText from "./CustomText";
 
 //---------- main component
 
-const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightText, rightTextColor, fontSize }) => {
+const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightText, rightTextColor, fontSize,fontWeight }) => {
 
   //---------- state, veriable, context and hooks
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
@@ -59,6 +59,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
         onCheckColor={{ColorValue:"#707070"}}
         onFillColor={{ColorValue:"#707070"}}
         onTintColor={{ColorValue:"#707070"}}
+       
 
       // value={isChecked}
       // onValueChange={(newValue) => onValueChange(newValue)}
@@ -71,7 +72,8 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
           text={rightText}
           style={{
             color: rightTextColor ? rightTextColor : '#747474',
-            fontSize: fontSize ? fontSize : 16
+            fontSize: fontSize ? fontSize : 16,
+            fontWeight: fontWeight? fontWeight: '400',
           }}
         />
       }

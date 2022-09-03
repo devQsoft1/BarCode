@@ -48,23 +48,24 @@ const ClainDrinkTile = (props) => {
                 <CustomView
                     style={{
                         position: 'absolute',
-                        top: -10,
-                        right: 20,
-                        zIndex:100
+                        top: 23,
+                        right: 10,
+                        zIndex: 100
                     }}
                 >
 
                     <FeaturedRedIcon />
                 </CustomView>
             }
-            
+
             <CustomView
                 style={{
                     borderRadius: 20,
                     height: '100%',
                     width: '100%',
                     overflow: 'hidden',
-
+                    borderWidth: isDarkTheme ? 1 : 0,
+                    borderColor: '#fff'
                 }}
             >
                 <ImageBackground
@@ -152,7 +153,7 @@ const ClainDrinkTile = (props) => {
                                         color: '#fff',
                                         fontWeight: '400',
                                         fontSize: 20,
-                                       
+
                                     }}
 
                                     text={"5 MILES BRIDGEPORT"}
@@ -163,7 +164,7 @@ const ClainDrinkTile = (props) => {
                             <CustomView
                                 style={{
                                     // width: '30%'
-                                    marginLeft:2
+                                    marginLeft: 2
 
                                 }}
                             >

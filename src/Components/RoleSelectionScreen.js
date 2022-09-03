@@ -64,6 +64,7 @@ const RoleSelectionScreen = ({ navigation }) => {
           height: '100%',
         }}
       >
+
         <CustomBorderButton
           title={'PATRON'}
           color={"#FFA500"}

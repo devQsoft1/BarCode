@@ -23,9 +23,14 @@ import PatronHome from "../../Components/Patron/Home/PatronHome";
 import PatronFavorites from "../../Components/Patron/Home/PatronFavorites";
 import PatronSearch from "../../Components/Patron/Home/PatronSearch";
 import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
+import RestorePurchases from "../../Components/CommonPatronAndOwner/RestorePurchases";
+import ContactUs from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/ContactUs";
+
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
+import BottomModalContainer from "../../Common/BottomModalContainer";
+import AuthLogin from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthLogin";
 
 // context
 // import ContextHelper from '../../ContextHooks/ContextHelper'
@@ -77,14 +82,7 @@ function PatronTabNavigation() {
             Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'MenuScreen') {
 
-            Icon =  <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
-              // <TouchableOpacity
-              //   onPress={() => {
-              //     alert(0)
-              //   }}
-              // >
-              //   <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
-              // </TouchableOpacity>
+            Icon = <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
           }
 
           // You can return any component that you like here!
@@ -123,11 +121,18 @@ function PatronTabNavigation() {
         component={UserNavigation}
       />
 
-      {/* <Tab.Screen
+      <Tab.Screen
         options={{ headerShown: false }}
         name="MenuScreen"
+        listeners={({ navigation }) => ({
+
+          tabPress: event => {
+            event.preventDefault();
+            navigation.navigate('BottomModalContainer');
+          }
+        })}
         component={MenuScreen}
-      /> */}
+      />
 
     </Tab.Navigator>
   );
@@ -154,6 +159,14 @@ function HomeNavigation(props) {
         options={{ headerShown: false }}
         name="BarDetail"
         component={BarDetail}
+      />
+
+      <Stack.Screen
+        options={{
+          headerShown: false, animationEnabled: true, cardStyle: { backgroundColor: "transparent" }, mode: 'modal'
+        }}
+        name="BottomModalContainer"
+        component={BottomModalContainer}
       />
 
     </Stack.Navigator>
@@ -225,9 +238,27 @@ function UserNavigation(props) {
         name="PatronProfile"
         component={PatronProfile}
       />
+      <Stack.Screen
+        options={{
+          headerShown: false
+        }}
+        name="AuthLogin" component={AuthLogin} />
 
+      <Stack.Screen
+        options={{
+          headerShown: false
+        }}
+        name="RestorePurchases" component={RestorePurchases} />
+
+        
+      <Stack.Screen
+        options={{
+          headerShown: false
+        }}
+        name="ContactUs" component={ContactUs} />
     </Stack.Navigator>
   );
+
 }
 
 //---------- export component

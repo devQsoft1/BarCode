@@ -16,7 +16,7 @@ import CustomView from "./CustomView";
 // icon and imges
 import { Logo2 } from '../constants/Images'
 import BackIcon from "../Assets/Icons/BackIcon";
-import BackIconBlack from "../Assets/Icons/BackIconBlack";
+import ArrowIcon from "../Assets/Icons/ArrowIcon";
 import SaveIcon from "../Assets/Icons/SaveIcon";
 import UploadArrow from "../Assets/Icons/UploadArrow";
 import FeaturedRedIcon from "../Assets/Icons/FeaturedRedIcon";
@@ -87,23 +87,18 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
                             padding: 20,
                             justifyContent: 'space-between',
                             width: '100%'
-
                         }}
                     >
                         <CustomView
                             style={{
                                 flexDirection: 'row',
-                                justifyContent: 'space-between'
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
 
                             }}
                         >
-                            {
-                                isDarkTheme
-                                    ?
-                                    <BackIconBlack />
-                                    :
-                                    <BackIcon />
-                            }
+                            <ArrowIcon fill={null} stroke={"#fff"} />
+
 
                             <CustomView
                                 style={{
@@ -111,9 +106,7 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
                                 }}
                             >
 
-                                <TouchableOpacity
-
-                                >
+                                <TouchableOpacity >
                                     <SaveIcon fill={"#FFFFFF"} />
                                     {/* <FeaturedRedIcon /> */}
                                 </TouchableOpacity>

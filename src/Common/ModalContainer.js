@@ -34,10 +34,11 @@ import TextStyles from "../style/TextStyles";
 // context
 import ContextHelper from "../ContextHooks/ContextHelper";
 import CustomView from "./CustomView";
+import { Fonts } from "../constants";
 
 //---------- component
 
-function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal }) {
+function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight }) {
 
     //---------- state, context and hooks
 
@@ -87,7 +88,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                     <CustomText
                         style={{
                             fontSize: 20,
-                            color: isDarkTheme ? '#fff' : '#000'
+                            color: isDarkTheme ? '#fff' : '#000',
+                            textAlign: "center"
                         }}
                         text={content?.title}
                     />
@@ -112,10 +114,11 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
                         <CustomText
                             style={{
-                                fontSize: 20,
-                                fontWeight: '700',
+                                fontSize: fontSize ? fontSize : 20,
+                                fontWeight: fontWeight ? fontWeight : '700',
                                 textTransform: 'uppercase',
-                                color: '#0066FF'
+                                color: '#42AEEC',
+
                             }}
                             text={content?.left_content}
                         />
@@ -203,7 +206,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                             color: '#000000',
                             textAlign: "center",
                             marginTop: 34,
-                            lineHeight:25
+                            lineHeight: 25
 
                         }}
                         text={"Please show your app to your server to complete your free drink!"}
@@ -215,7 +218,83 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         )
     }
 
+    const renderTimeBardeitls = () => {
+        return (
 
+            <React.Fragment>
+                <CustomView
+                    style={[
+
+                        {
+                            backgroundColor: isDarkTheme ? '#000' : '#fff',
+                            paddingTop: 20,
+                            // paddingHorizontal: 10
+                        }
+                    ]}
+                >
+                    <CustomText
+                        style={{
+                            fontSize: 25,
+                            fontWeight: "600",
+                            color: isDarkTheme ? "#FFFFFF" : "#000000",
+                            textAlign: "center",
+                            marginBottom:-12
+                        }}
+                        text={"$10 Drinks all day"}
+                        style2={{
+                            fontSize: 41,
+                            fontWeight: "700",
+                            color: isDarkTheme ? "#FFFFFF" : "#000000",
+                            textAlign: "center",
+                        }}
+                        text2={" 8 AM - 2 PM!"}
+                    />
+                   
+                </CustomView>
+                <CustomView style={{ width: '100%', height: 10, backgroundColor: 'black' }} ></CustomView>
+                <CustomView
+                    style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: 35
+                    }}>
+                    <CustomText
+                        style={{
+                            fontSize: 25,
+                            fontWeight: "500",
+                            color: isDarkTheme ? "#fff" : '#000000',
+                            textAlign: "center",
+                            marginVertical: 15,
+                            lineHeight: 25
+                        }}
+                        style2={{
+                            fontSize: 25,
+                            fontWeight: "500",
+                            color: isDarkTheme ? "#fff" : '#000000',
+                            textAlign: "center",
+                            marginVertical: 15,
+                            lineHeight: 25
+                        }}
+                        text={"Free appetizer for all BarCode members."}
+                        text2={"Limited to well drinks \n and non-IPA’s."}
+                    />
+                    <CustomText
+                        style={{
+                            fontSize: 25,
+                            fontWeight: "500",
+                            color: isDarkTheme ? "#fff" : '#000000',
+                            textAlign: "center",
+
+                        }}
+                        text={"Whisper BarCode to \n the doorman for the secret backdoor \n special’s."}
+                    />
+
+
+                </CustomView>
+
+            </React.Fragment >
+        )
+    }
 
     //---------- return main view
 
@@ -240,7 +319,9 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                     ]}
                 >
                     {
-                        renderDrinkOnus()
+                        // renderDrinkOnus()
+                        // renderModalContent()
+                        renderTimeBardeitls()
                     }
                 </CustomView>
             </CustomView>

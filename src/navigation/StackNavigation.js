@@ -14,6 +14,7 @@ import SplashScreen from '../Common/SplashScreen';
 import TestScreen from '../Components/TestScreen';
 import RoleSelectionScreen from '../Components/RoleSelectionScreen';
 import OwnerAuthNavigation from "./AuthNavigator/OwnerAuthNavigation";
+import GoogleMaps from "../Components/Google_Maps/GoogleMaps";
 
 
 // global stack veriable

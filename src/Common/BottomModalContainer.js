@@ -20,7 +20,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Portal, Button, Provider } from "react-native-paper";
 
 // icon and images
-import {addIcon, } from ".././constants/Images";
+import { addIcon, } from ".././constants/Images";
 
 // common
 import CustomText from "./CustomText";
@@ -38,7 +38,7 @@ import CustomButton from "./CustomButton";
 
 //---------- component
 
-function BottomModalContainer({ navigation, faqData, render_view_key, content, isVisible, renderItem, hideModal, backgroundColor, paddingBottom }) {
+function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_drink', content, isVisible, renderItem, hideModal, backgroundColor, paddingBottom }) {
 
     //---------- state, context and hooks
 
@@ -107,14 +107,14 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
                         fontSize: 18,
                         fontWeight: '500',
                         color: isDarkTheme ? '#FFF' : '#747474',
-                        textAlign:"center"
+                        textAlign: "center",
                     }}
                 />
 
                 <CustomView
                     style={{
                         height: 25,
-                        
+
                     }}
                 />
 
@@ -141,7 +141,7 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
                     style={{
                         fontSize: 19,
                         fontWeight: '500',
-                        color: isDarkTheme?"#FFFFFF": '#7B7B7B',
+                        color: isDarkTheme ? "#FFFFFF" : '#7B7B7B',
                         textAlign: 'center'
                     }}
                 />
@@ -216,7 +216,7 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
 
                 <CustomButton
                     onPress={() => {
-                        hideModal()
+                        hideModal && hideModal()
                         setVisible(false)
                     }}
                     paddingVertical={15}
@@ -294,20 +294,25 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
 
         <Modal
             style={{
-                flex: 1
+                flex: 1,
             }}
             animationType="slide"
             transparent={true}
             visible={isVisible}
             onRequestClose={() => {
-                hideModal()
+                hideModal ? hideModal()
+                    :
+                    navigation.goBack()
                 setVisible(false)
             }}
         >
             <TouchableOpacity
                 onPress={() => {
                     // alert(0)
-                    hideModal()
+                    hideModal ? hideModal()
+                        :
+                        navigation.goBack()
+
                     setVisible(false)
                 }}
                 style={styles.centeredView1}
@@ -321,12 +326,12 @@ function BottomModalContainer({ navigation, faqData, render_view_key, content, i
                     }}
                     style={[
                         {
-                            backgroundColor: backgroundColor ? backgroundColor : isDarkTheme ? '#111111' : '#EBEBEB',
+                            backgroundColor: backgroundColor ? backgroundColor : isDarkTheme ? '#111111' : '#fff',
                             padding: 20,
                             borderRadius: 30,
                             botderTopWidht: backgroundColor ? 1 : 0,
                             broderTopColor: backgroundColor ? '#111111' : '#EBEBEB',
-                            paddingBottom : paddingBottom ? paddingBottom : 50,
+                            paddingBottom: paddingBottom ? paddingBottom : 50,
                             shadowOffset: {
                                 width: 0,
                                 height: -0

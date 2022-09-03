@@ -9,7 +9,7 @@ import CustomView from "../../../Common/CustomView";
 import CustomText from "../../../Common/CustomText";
 import Frame from "../../../Common/Frame";
 import BackIcon from "../../../Assets/Icons/BackIcon";
-import BackIconBlack from "../../../Assets/Icons/BackIconBlack";
+import ArrowIcon from "../../../Assets/Icons/ArrowIcon";
 import ContextHelper from '../../../ContextHooks/ContextHelper';
 
 
@@ -74,45 +74,60 @@ const PatronProfile = ({ navigation }) => {
         />
 
         <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+        <TouchableOpacity
+         onPress={() => {
+          navigation.navigate('AuthLogin')
+        }}
+        >
+          <CustomText
+            text={"LOG IN"}
+            style={{
+              fontSize: 24,
+              fontWeight: '700',
+              textAlign: 'center',
+              color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
+              marginVertical: 15
+            }}
+          />
+        </TouchableOpacity>
 
-        <CustomText
-          text={"LOG IN"}
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            textAlign: 'center',
-            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
-            marginVertical: 15
-          }}
-        />
-
-<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
-
+        <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+        <TouchableOpacity
+         onPress={() => {
+          navigation.navigate('RestorePurchases')
+        }}
+        >
         <CustomText
           text={"RESTORE PURCHASES"}
           style={{
             fontSize: 24,
             fontWeight: '700',
             textAlign: 'center',
-            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
+            color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
             marginVertical: 15
           }}
-        />
+          />
+          </TouchableOpacity>
 
-<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
-
+        <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+        <TouchableOpacity
+         onPress={() => {
+          navigation.navigate('ContactUs')
+        }}
+        >
         <CustomText
           text={"CONTACT US"}
           style={{
             fontSize: 24,
             fontWeight: '700',
             textAlign: 'center',
-            color: isDarkTheme ? "#FFFFFF":'#B1B1B1',
+            color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
             marginVertical: 15
           }}
-        />
+          />
+          </TouchableOpacity>
 
-<CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
+        <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
         <CustomText
           text={"Privacy Policy \nTerms & Conditions"}
@@ -120,7 +135,7 @@ const PatronProfile = ({ navigation }) => {
             fontSize: 16,
             fontWeight: '400',
             textAlign: 'center',
-            color: isDarkTheme?"#FFFFFF": '#000000',
+            color: isDarkTheme ? "#FFFFFF" : '#000000',
             marginTop: 135
           }}
         />
@@ -263,9 +278,9 @@ const PatronProfile = ({ navigation }) => {
 
           {
             isDarkTheme ?
-              <BackIcon />
+              <ArrowIcon fill={"#000"} stroke={"#fff"} />
               :
-              <BackIconBlack />
+              <ArrowIcon fill={"#fff"} stroke={"#000"} />
           }
         </TouchableOpacity>
 

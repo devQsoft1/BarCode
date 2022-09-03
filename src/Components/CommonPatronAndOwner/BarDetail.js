@@ -15,6 +15,7 @@ import ClainDrinkTile from "../../Common/Tile/ClainDrinkTile";
 import DrinkDetailTile from "../../Common/Tile/DrinkDetailTile";
 import CustomButton from "../../Common/CustomButton";
 import SwiperComponent from "../../Common/SwiperComponent";
+import ModalContainer from "../../Common/ModalContainer";
 
 // images and icon
 import { GoogleMap, AddYellow, YellowRight } from "../../constants/Images";
@@ -23,6 +24,7 @@ import CallIconBlack from "../../Assets/Icons/CallIconBlack";
 import WorldIcon from "../../Assets/Icons/WorldIcon";
 import MarkRedIcon from "../../Assets/Icons/MarkRedIcon";
 import CustomBorderButton from "../../Common/CustomBorderButton";
+import ClaimDrinkIcon from "../../Assets/Icons/ClaimDrinkIcon";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -32,7 +34,8 @@ const windowHeight = Dimensions.get('window').height;
 const BarDetail = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
+  //---------- state, veriable, context and hooks
+  const [isVisible, setIsVisible] = useState(false);
   const [tab, setTab] = useState('detail')  // futute_events 
 
   const {
@@ -77,6 +80,7 @@ const BarDetail = ({ navigation }) => {
         }}
       >
         <DrinkDetailTile />
+
       </TouchableOpacity>
     )
   }
@@ -111,18 +115,17 @@ const BarDetail = ({ navigation }) => {
           <CustomView
             style={{
               padding: 15,
-              
+
             }}
           >
 
-            <CustomView
-              style={{
-                height: 86
-              }}
+            <TouchableOpacity
+             onPress={() => {
+              setIsVisible(true)
+            }}
             >
-
               <DrinkDetailTile />
-            </CustomView>
+            </TouchableOpacity>
 
             <CustomView
               style={{
@@ -131,22 +134,19 @@ const BarDetail = ({ navigation }) => {
               }}
             >
 
-
-              <Shadow>
-                <CustomButton
-                  backgroundColor={'#CCCCCC'}
-                  fontSize={24}
-                  fontWeight={'700'}
-                  borderColor={'#fff'}
-                  paddingVertical={10}
-                  paddingHorizontal={15}
-                  width={'80%'}
-                  onPress={() => {
-                    alert('in progress ...')
-                  }}
-                  title={'NOT A BARCODE MEMBER'}
-                />
-              </Shadow>
+              {/* <Shadow
+              distance={1}
+              offset={[0, 1]} 
+              startColor={'rgba(0, 148, 255, 0.5)'}
+              > */}
+              <CustomButton
+                onPress={() => {
+                  setIsVisible(true)
+                }}
+                // title={'NOT A BARCODE MEMBER'}
+                icon={<ClaimDrinkIcon />}
+              />
+              {/* </Shadow> */}
 
               {/* <CustomButton
                 paddingVertical={15}
@@ -156,6 +156,7 @@ const BarDetail = ({ navigation }) => {
                 }}
                 title={'CLAIM DRINKS'}
               /> */}
+
             </CustomView>
 
             <CustomText
@@ -609,38 +610,38 @@ const BarDetail = ({ navigation }) => {
                 // alignItems: 'center',
                 justifyContent: 'flex-end',
                 paddingHorizontal: 20,
-                marginTop:15
+                marginTop: 15
               }}
             >
               <CustomView
-               style={{
-                marginRight:20
-               }}>
-              <CustomText
-              text={"View Menu"}
-              style={{
-                fontSize: 25,
-                fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#CCCCCC'
-              }}
-            />
-                
+                style={{
+                  marginRight: 20
+                }}>
+                <CustomText
+                  text={"View Menu"}
+                  style={{
+                    fontSize: 25,
+                    fontWeight: '400',
+                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                  }}
+                />
+
 
                 <CustomView style={{ height: 15 }} />
 
                 <CustomText
-              text={"View Gallery"}
-              style={{
-                fontSize: 25,
-                fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#CCCCCC'
-              }}
-            />
+                  text={"View Gallery"}
+                  style={{
+                    fontSize: 25,
+                    fontWeight: '400',
+                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                  }}
+                />
               </CustomView>
 
               <CustomView
                 style={{
-                 
+
                   // flexDirection: 'row',
                   // alignItems: 'center',
                   justifyContent: 'flex-end',
@@ -648,11 +649,11 @@ const BarDetail = ({ navigation }) => {
                 }}
               >
                 <Image
-                style={{
-                  height:83,
-                  width:83
-                }}
-                  source={AddYellow}  
+                  style={{
+                    height: 83,
+                    width: 83
+                  }}
+                  source={AddYellow}
                   resizeMode='contain'
                 />
               </CustomView>
@@ -662,9 +663,15 @@ const BarDetail = ({ navigation }) => {
             :
             null
         }
-
-
       </CustomView>
+      <ModalContainer
+        fontWeight={"500"}
+        fontSize={25}
+        isVisible={isVisible}
+        render_view_key={'affirmations'}
+        content={{ title: 'Are you sure you want  to claim this drink?', right_content: 'No. I’m not readyto party', left_content: 'Yes! let’s drink' }}
+        hideModal={() => setIsVisible(!isVisible)}
+      />
     </Frame >
   );
 };
