@@ -83,16 +83,18 @@ const AuthLogin = ({ navigation }) => {
           placeholder={'Eamil'}
           rightIcon={<MessageIconWhite />}
           placeholderTextColor={'#B4B4B4'}
-          borderColor={'#DBDBDB'}
+          borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <View style={{ height: 20 }} />
 
         <CustomTextInput
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
           placeholder={'Password'}
           rightIcon={<EyeCrossIconWhite />}
           placeholderTextColor={'#B4B4B4'}
-          borderColor={'#DBDBDB'}
+          borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
         />
 
         <CustomText

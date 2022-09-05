@@ -36,7 +36,10 @@ const BarDetail = ({ navigation }) => {
   //---------- state, veriable, context and hooks
   //---------- state, veriable, context and hooks
   const [isVisible, setIsVisible] = useState(false);
+  const [keyType, setKetType] = useState(null);
+
   const [tab, setTab] = useState('detail')  // futute_events 
+  
 
   const {
     isDarkTheme,
@@ -84,6 +87,20 @@ const BarDetail = ({ navigation }) => {
       </TouchableOpacity>
     )
   }
+  const renderModal = () => {
+
+        return (
+          <ModalContainer
+          navigation={navigation}
+          fontWeight={"500"}
+          fontSize={25}
+          isVisible={isVisible}
+          render_view_key={keyType}
+          content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
+          hideModal={() => setIsVisible(!isVisible)}
+        />
+        )
+}
 
   //---------- main return
 
@@ -118,14 +135,7 @@ const BarDetail = ({ navigation }) => {
 
             }}
           >
-
-            <TouchableOpacity
-             onPress={() => {
-              setIsVisible(true)
-            }}
-            >
               <DrinkDetailTile />
-            </TouchableOpacity>
 
             <CustomView
               style={{
@@ -141,6 +151,7 @@ const BarDetail = ({ navigation }) => {
               > */}
               <CustomButton
                 onPress={() => {
+                  setKetType("Clamim_Drink")
                   setIsVisible(true)
                 }}
                 // title={'NOT A BARCODE MEMBER'}
@@ -664,14 +675,7 @@ const BarDetail = ({ navigation }) => {
             null
         }
       </CustomView>
-      <ModalContainer
-        fontWeight={"500"}
-        fontSize={25}
-        isVisible={isVisible}
-        render_view_key={'affirmations'}
-        content={{ title: 'Are you sure you want  to claim this drink?', right_content: 'No. I’m not readyto party', left_content: 'Yes! let’s drink' }}
-        hideModal={() => setIsVisible(!isVisible)}
-      />
+    {renderModal()}
     </Frame >
   );
 };

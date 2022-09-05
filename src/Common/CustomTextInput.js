@@ -96,7 +96,7 @@ const  CustomTextInput = ({
         }
 
         <TextInput
-          style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontSize: 23, fontWeight: '500', }, style,]}
+          style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontSize: 23, fontWeight: '400', }, style,]}
           placeholder={placeholder}
           onChangeText={onChangeText}
           placeholderTextColor={placeholderTextColor ? placeholderTextColor : isDarkTheme ? WHITE : "#E5E5E5"}

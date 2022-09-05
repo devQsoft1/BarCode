@@ -28,9 +28,9 @@ const CustomText = (props) => {
       <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style,]}>
         {text}
       </Text>
-      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
+  {  text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
         {text2}
-      </Text>
+      </Text>}
     </>
 
 

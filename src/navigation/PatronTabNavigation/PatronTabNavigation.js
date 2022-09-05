@@ -128,7 +128,7 @@ function PatronTabNavigation() {
 
           tabPress: event => {
             event.preventDefault();
-            navigation.navigate('BottomModalContainer');
+            navigation.navigate('MenuScreen');
           }
         })}
         component={MenuScreen}
@@ -165,8 +165,8 @@ function HomeNavigation(props) {
         options={{
           headerShown: false, animationEnabled: true, cardStyle: { backgroundColor: "transparent" }, mode: 'modal'
         }}
-        name="BottomModalContainer"
-        component={BottomModalContainer}
+        name="MenuScreen"
+        component={MenuScreen}
       />
 
     </Stack.Navigator>

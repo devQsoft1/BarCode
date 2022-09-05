@@ -79,11 +79,11 @@ const AuthStyles = StyleSheet.create({
   ModalContentContainer: {
     // width: '100%',
     borderTopColor:'#CECECE',
-    borderTopWidth:1,
+    borderTopWidth:0.5,
     minWidth:width-100,
     flexDirection:'row',
     justifyContent:'center',
-    height:60
+    height:70
   },
 });
 

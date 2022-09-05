@@ -93,7 +93,7 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
                             style={{
                                 flexDirection: 'row',
                                 justifyContent: 'space-between',
-                                alignItems: 'center'
+                                // alignItems: 'center'
 
                             }}
                         >

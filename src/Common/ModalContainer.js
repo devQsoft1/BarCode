@@ -38,7 +38,7 @@ import { Fonts } from "../constants";
 
 //---------- component
 
-function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight }) {
+function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight ,rightFontSize }) {
 
     //---------- state, context and hooks
 
@@ -63,7 +63,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
     useEffect(() => {
 
-        console.log('isVisible :', isVisible, 'key:', render_view_key, 'content :', content)
+        console.log('isVisible :', isVisible, 'key:', render_view_key, 'content :',hideModal)
         setVisible(isVisible);
     }, [isVisible]);
 
@@ -81,7 +81,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                         CommonStyles.RowCenter,
                         {
                             backgroundColor: isDarkTheme ? '#000' : '#fff',
-                            padding: 40
+                            padding: 30,
+
                         }
                     ]}
                 >
@@ -89,7 +90,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                         style={{
                             fontSize: 20,
                             color: isDarkTheme ? '#fff' : '#000',
-                            textAlign: "center"
+                            textAlign: "center",
+                            lineHeight:37.5
                         }}
                         text={content?.title}
                     />
@@ -97,7 +99,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
                 <CustomView
                     style={
-                        AuthStyles.ModalContentContainer
+                        [AuthStyles.ModalContentContainer,
+                        ]
                     }
                 >
 
@@ -118,13 +121,14 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                                 fontWeight: fontWeight ? fontWeight : '700',
                                 textTransform: 'uppercase',
                                 color: '#42AEEC',
+                                textAlign:"center"
 
                             }}
                             text={content?.left_content}
                         />
                     </TouchableOpacity>
 
-                    <View style={{ backgroundColor: '#CECECE', width: 1 }} />
+                    <View style={{ backgroundColor: '#CBCBCB', width: 1 }} />
 
                     <TouchableOpacity
                         onPress={() => {
@@ -133,17 +137,17 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                         style={{
                             width: '40%',
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
                         }}
                     >
 
-
                         <CustomText
                             style={{
-                                fontSize: 20,
+                                fontSize: rightFontSize ? rightFontSize : 20,
                                 fontWeight: '700',
                                 textTransform: 'uppercase',
-                                color: '#FFA500'
+                                color: '#FFA500',
+                                textAlign: "center",
                             }}
                             text={content?.right_content}
                         />
@@ -170,8 +174,8 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                 >
                     <CustomText
                         style={{
-                            fontSize: 20,
-                            fontWeight: "700",
+                            fontSize: 35,
+                            fontWeight: "500",
                             color: '#42AEEC',
                             marginBottom: 15
                         }}
@@ -181,9 +185,9 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
                 <CustomText
                     style={{
-                        fontSize: 20,
-                        fontWeight: "700",
-                        color: '#000000',
+                        fontSize: 35,
+                        fontWeight: "500",
+                        color: isDarkTheme ? '#FFFFFF' : "#000",
                     }}
                     text={"DRINKS ON US"}
                 />
@@ -201,12 +205,12 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
 
                     <CustomText
                         style={{
-                            fontSize: 16,
+                            fontSize: 20,
                             fontWeight: "400",
-                            color: '#000000',
+                            color: isDarkTheme ? '#FFFFFF' : "#000",
                             textAlign: "center",
                             marginTop: 34,
-                            lineHeight: 25
+                            lineHeight: 30
 
                         }}
                         text={"Please show your app to your server to complete your free drink!"}
@@ -218,7 +222,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         )
     }
 
-    const renderTimeBardeitls = () => {
+    const renderTimeBardetails = () => {
         return (
 
             <React.Fragment>
@@ -238,7 +242,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                             fontWeight: "600",
                             color: isDarkTheme ? "#FFFFFF" : "#000000",
                             textAlign: "center",
-                            marginBottom:-12
+                            marginBottom: -12
                         }}
                         text={"$10 Drinks all day"}
                         style2={{
@@ -249,7 +253,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                         }}
                         text2={" 8 AM - 2 PM!"}
                     />
-                   
+
                 </CustomView>
                 <CustomView style={{ width: '100%', height: 10, backgroundColor: 'black' }} ></CustomView>
                 <CustomView
@@ -296,6 +300,26 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         )
     }
 
+    const renderContent = (key) => {
+
+        switch (key) {
+
+            case 'time_Bar_Details':
+
+                return renderTimeBardetails()
+                break;
+
+            case 'Clamim_Drink':
+
+                return renderModalContent()
+                break;
+
+                default:
+                    return renderModalContent()
+                    break;
+
+        }
+    }
     //---------- return main view
 
     return (
@@ -305,8 +329,10 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
             transparent={true}
             visible={isVisible}
             onRequestClose={() => {
-                hideModal()
-                setVisible(false)
+                hideModal ? hideModal()
+                :
+                navigation.goBack()
+            setVisible(false)
             }}
         >
             <CustomView
@@ -315,13 +341,10 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                 <CustomView
                     style={[
                         styles.modalView,
-                        { backgroundColor: isDarkTheme ? '#000' : '#fff' }
-                    ]}
+                        { backgroundColor: isDarkTheme ? '#000' : '#fff' }]}
                 >
                     {
-                        // renderDrinkOnus()
-                        // renderModalContent()
-                        renderTimeBardeitls()
+                        renderContent(render_view_key)
                     }
                 </CustomView>
             </CustomView>
@@ -349,8 +372,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     modalView: {
-        margin: 20,
-
+        margin: 25,
+        paddingVertical: 20,
         borderRadius: 20,
         alignItems: "center",
         shadowColor: "#000",

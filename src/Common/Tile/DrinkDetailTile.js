@@ -1,8 +1,8 @@
 //----------imports
 
 // react
-import React, { useContext } from "react";
-import { StyleSheet, Text, Image, Dimensions } from "react-native";
+import React, { useContext ,useState} from "react";
+import { StyleSheet, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { Shadow } from 'react-native-shadow-2'
 
 // style
@@ -19,15 +19,21 @@ import ContextHelper from "../../ContextHooks/ContextHelper";
 import CustomView from "../CustomView";
 import CustomText from "../CustomText";
 import CustomButton from "../CustomButton";
+import ModalContainer from "../ModalContainer";
+
 
 
 const windowWidth = Dimensions.get('window').width;
 console.log('windowWidth', windowWidth)
 //---------- main components
 
-const DrinkDetailTile = (props) => {
+const DrinkDetailTile = ({props,navigation}) => {
 
     //---------- state, veriable, context and hooks
+    const [isVisible, setIsVisible] = useState(false);
+  const [keyType, setKetType] = useState(null);
+    
+
     const {
         isDarkTheme,
         theme,
@@ -43,12 +49,31 @@ const DrinkDetailTile = (props) => {
         setCurrentUser,
     } = ContextHelper()
 
-    //---------- Main View
+    // render helper
+    const renderModal = () => {
 
+        return (
+          <ModalContainer
+          navigation={navigation}
+          fontWeight={"500"}
+          fontSize={25}
+          rightFontSize={25}
+          isVisible={isVisible}
+          render_view_key={keyType}
+          content={{ title: 'Do you want to add this event to your calendar? ', right_content: 'YES!', left_content: 'NO.' }}
+          hideModal={() => setIsVisible(!isVisible)}
+        />
+        )
+}
+    //---------- Main View
     return (
         <Shadow offset={[0, 5]} >
 
-            <CustomView
+            <TouchableOpacity
+            onPress={() => {
+                     setKetType("time_Bar_Details")
+                     setIsVisible(true)
+                   }}
                 style={{
                     // height: '100%',
                     // width: '100%',
@@ -57,6 +82,7 @@ const DrinkDetailTile = (props) => {
                     flexDirection: 'row',
                 }}
             >
+           
                 <CustomView
                     style={{
                         // backgroundColor: '#FFA500',
@@ -137,8 +163,12 @@ const DrinkDetailTile = (props) => {
                     />
 
                 </CustomView>
-
-                <CustomView
+                
+                <TouchableOpacity
+                 onPress={() => {
+                    setKetType("Clamim_Drink")
+                    setIsVisible(true)
+                  }}
                     style={{
                         borderRightColor: "#FFA500",
                         borderRightWidth: 12,
@@ -150,15 +180,9 @@ const DrinkDetailTile = (props) => {
                 >
 
                     <AddIcon />
-
-                    {/* <Image
-                    style={{ marginRight: 10 }}
-                    source={addIcon}
-                    resizeMode='cover'
-                /> */}
-
-                </CustomView>
-            </CustomView>
+                </TouchableOpacity>
+            </TouchableOpacity>
+            {renderModal()}
         </Shadow>
 
     );

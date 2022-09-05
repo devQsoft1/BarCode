@@ -160,7 +160,7 @@ const PatronFavorites = ({ navigation }) => {
               fontSize: 25,
               fontWeight: '400',
               color: isDarkTheme ? '#FFFFFF' : '#747474',
-              paddingHorizontal: 55,
+              paddingHorizontal: 50,
               borderRadius: 13,
               borderColor: "#D7D7D7",
               borderWidth: 1,
@@ -174,7 +174,7 @@ const PatronFavorites = ({ navigation }) => {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            marginVertical: 10,
+            marginVertical: 5,
             alignItems: "center"
           }}>
 
@@ -208,9 +208,8 @@ const PatronFavorites = ({ navigation }) => {
 
   const renderChekBox = ({ item, index }) => {
     return (
-      <>
-        {/* {
-          index === 0 &&
+      
+          index <= 1 ?
           <CustomView
             style={{
               // marginLeft: -20,
@@ -228,10 +227,12 @@ const PatronFavorites = ({ navigation }) => {
                 width:"100%"
                
               }}
-              text={"(Please select up to three amenities)"}
+              text={item.name}
             />
+            
           </CustomView>
-        } */}
+          :
+        
         <CustomView
           key={index}
           style={{
@@ -250,7 +251,7 @@ const PatronFavorites = ({ navigation }) => {
             fontSize={15}
           />
         </CustomView>
-      </>
+   
 
     )
   }
@@ -331,7 +332,7 @@ const PatronFavorites = ({ navigation }) => {
         >
 
           {/* {renderFlatList(CheckBox_data, renderChekBox, false, 2)} */}
-          {renderFlatList(data, renderContent, false)}
+          {renderFlatList(data, renderContent, false ,null)}
         </ScrollView>
         <ModalContainer
           isVisible={isVisible}
@@ -481,6 +482,14 @@ let recent_data = [
 
 
 let CheckBox_data = [
+  {
+    id: -1,
+    name: "(Please select up to three amenities)"
+  },
+  {
+    id: 0,
+    name: ""
+  },
   {
     id: 1,
     name: "MUSIC "
