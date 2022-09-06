@@ -91,7 +91,7 @@ const ClainDrinkTile = (props) => {
                         <CustomText
                             style={{
                                 color: '#fff',
-                                fontSize: 30,
+                                fontSize: 24,
                                 fontWeight: '600',
                             }}
 
@@ -102,7 +102,7 @@ const ClainDrinkTile = (props) => {
                         <CustomText
                             style={{
                                 color: '#fff',
-                                fontSize: 30,
+                                fontSize: 24,
                                 fontWeight: '600',
 
                             }}
@@ -115,7 +115,7 @@ const ClainDrinkTile = (props) => {
                             style={{
                                 color: '#fff',
                                 marginBottom: 23,
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: '400',
 
                             }}
@@ -141,7 +141,7 @@ const ClainDrinkTile = (props) => {
                                         // marginVertical: 6,
                                         fontSize: 20,
                                         width: '80%',
-                                        fontWeight: '400',
+                                        fontWeight: 'bold',
 
                                     }}
 
@@ -152,7 +152,7 @@ const ClainDrinkTile = (props) => {
                                     style={{
                                         color: '#fff',
                                         fontWeight: '400',
-                                        fontSize: 20,
+                                        fontSize: 18,
 
                                     }}
 
@@ -174,7 +174,7 @@ const ClainDrinkTile = (props) => {
                                     // borderRadius={20}
                                     title={'CLAIM DRINK'}
                                     fontWeight={"500"}
-                                    fontSize={18}
+                                    fontSize={16}
                                 />
                             </CustomView>
 

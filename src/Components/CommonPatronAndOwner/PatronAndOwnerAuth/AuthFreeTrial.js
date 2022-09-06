@@ -302,6 +302,7 @@ const AuthFreeTrial = ({ navigation }) => {
                 fontSize: 13,
                 fontWeight: '400',
                 color: isDarkTheme ? '#FFF' : '#000000',
+                marginLeft:20,
               }}
             />
 

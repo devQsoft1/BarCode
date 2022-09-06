@@ -132,7 +132,7 @@ const BusinessDetailScreen = ({ navigation }) => {
       <>
         <TopContainer
           textAlign={'center'}
-          text1={"DISCRIBE YOUR BUSINESS"}
+          text1={"DESCRIBE YOUR BUSINESS"}
           isDarkTheme={isDarkTheme}
         />
         <CustomView
@@ -155,6 +155,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               marginTop={20}
               placeholder={"This is your time to shine, tell your new customers about yourself. Give a great description for customers"}
               numberOfLines={4}
+              fontSize={18}
               paddingHorizontal={30}
               height={260}
               backgroundColor={isDarkTheme?"#000":"#fff"}
@@ -506,9 +507,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               placeholder={"EVENT TITLE"}
               borderRadius={30}
               borderColor={"#DBDBDB"}
-              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
-              fontSize={23}
+              fontSize={20}
               backgroundColor={isDarkTheme?"#000":"#fff"}
 
             />
@@ -519,9 +520,10 @@ const BusinessDetailScreen = ({ navigation }) => {
               paddingVertical={15}
               borderRadius={30}
               borderColor={"#DBDBDB"}
-              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={162}
               backgroundColor={isDarkTheme?"#000":"#fff"}
+              fontSize={20}
             />
             <CustomTextInput
               marginTop={20}
@@ -530,8 +532,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               paddingVertical={15}
               borderRadius={20}
               borderColor={"#DBDBDB"}
-              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={170}
+              fontSize={20}
               backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
@@ -539,18 +542,20 @@ const BusinessDetailScreen = ({ navigation }) => {
               placeholder={"START DATE"}
               borderRadius={30}
               borderColor={"#DBDBDB"}
-              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
               backgroundColor={isDarkTheme?"#000":"#fff"}
+              fontSize={20}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"END DATE"}
               borderRadius={30}
               borderColor={"#DBDBDB"}
-              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
               backgroundColor={isDarkTheme?"#000":"#fff"}
+              fontSize={20}
             />
 
             <CustomView
@@ -563,7 +568,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                 rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                 rightText={'RECURRING SPECIAL'}
                 isChecked={false}
-                fontSize={23}
+                fontSize={20}
                 fontWeight={"500"}
               />
             </CustomView>
@@ -587,7 +592,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                       <CustomCheckBox
                         rightText={item?.title}
                         isChecked={false}
-                        fontSize={23}
+                        fontSize={20}
                         fontWeight={"500"}
                         rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                       />

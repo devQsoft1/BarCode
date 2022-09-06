@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 22,
         justifyContent: "flex-end",
-        // backgroundColor: 'red',
+        backgroundColor: 'rgba(0,0,0,0.7)',
     },
 
 });

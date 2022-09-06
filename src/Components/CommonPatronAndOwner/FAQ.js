@@ -79,7 +79,7 @@ const FAQ = ({ navigation }) => {
                     text={item.title}
                     style={{
                         color: '#9A9A9A',
-                        fontSize: 28,
+                        fontSize: 24,
                         fontWeight: '700',
                     }}
                 />

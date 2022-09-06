@@ -2,7 +2,7 @@
 
 // react
 import * as React from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
+import { StyleSheet, ScrollView, View, Text, Image } from "react-native";
 
 // navigations
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -15,6 +15,24 @@ import SearchIcon from "../../Assets/Icons/SearchIcon";
 import UserIcon from "../../Assets/Icons/UserIcon";
 import MenuIcon from "../../Assets/Icons/MenuIcon";
 import SaveIcon from "../../Assets/Icons/SaveIcon";
+import {
+  Bookmark,
+  BookmarkBlue,
+  BookmarkGray,
+  Home,
+  HomeBlue,
+  HomeGray,
+  Menu,
+  MenuBlue,
+  MenuGray,
+  Search,
+  SearchBlue,
+  SearchGray,
+  User,
+  UserBlue,
+  UserGray,
+
+} from '../../constants/Images'
 
 // components
 import FavoriteScreen from "../../Components/FavoriteScreen";
@@ -25,6 +43,9 @@ import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
+
+// context
+import ContextHelper from '../../ContextHooks/ContextHelper';
 
 // global stack veriable
 const Drawer = createDrawerNavigator();
@@ -55,6 +76,21 @@ const Tab = createBottomTabNavigator();
 
 function AdminTabNavigation() {
 
+  const {
+    isDarkTheme,
+    theme,
+    appStateObject,
+    appStateArray,
+    currentUser,
+
+    changeTheme,
+    storeDataInAppState,
+    removeDataFromAppState,
+    storeDataInAsyncStorage,
+    getDataFromAsyncStorage,
+    setCurrentUser,
+  } = ContextHelper()
+
   console.log('-------------------------, user')
 
   //---------- return main view of drawer
@@ -62,18 +98,31 @@ function AdminTabNavigation() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarStyle: { backgroundColor: isDarkTheme ? '#1F1F1F' : "#fff", height: 78 },
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
           if (route.name === 'BarDetail') {
 
-            Icon = <HomeIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <Image
+              source={focused ? HomeBlue : isDarkTheme ? Home : HomeGray}
+              resizeMode='contain'
+            />
+            // Icon = <HomeIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'UserScreen') {
 
-            Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <Image
+              source={focused ? UserBlue : isDarkTheme ? User : UserGray}
+              resizeMode='contain'
+            />
+            // Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
           } else if (route.name === 'MenuScreen') {
 
-            Icon = <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <Image
+              source={focused ? MenuBlue : isDarkTheme ? Menu : MenuGray}
+              resizeMode='contain'
+            />
+            // Icon = <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
           }
 
           // You can return any component that you like here!

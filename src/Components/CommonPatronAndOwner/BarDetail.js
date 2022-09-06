@@ -18,7 +18,7 @@ import SwiperComponent from "../../Common/SwiperComponent";
 import ModalContainer from "../../Common/ModalContainer";
 
 // images and icon
-import { GoogleMap, AddYellow, YellowRight } from "../../constants/Images";
+import { GoogleMap, AddYellow, YellowRight, Phone, LyftBlack, Lyft, Globe, } from "../../constants/Images";
 import CameraIcon from "../../Assets/Icons/CameraIcon";
 import CallIconBlack from "../../Assets/Icons/CallIconBlack";
 import WorldIcon from "../../Assets/Icons/WorldIcon";
@@ -39,7 +39,7 @@ const BarDetail = ({ navigation }) => {
   const [keyType, setKetType] = useState(null);
 
   const [tab, setTab] = useState('detail')  // futute_events 
-  
+
 
   const {
     isDarkTheme,
@@ -89,18 +89,18 @@ const BarDetail = ({ navigation }) => {
   }
   const renderModal = () => {
 
-        return (
-          <ModalContainer
-          navigation={navigation}
-          fontWeight={"500"}
-          fontSize={25}
-          isVisible={isVisible}
-          render_view_key={keyType}
-          content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
-          hideModal={() => setIsVisible(!isVisible)}
-        />
-        )
-}
+    return (
+      <ModalContainer
+        navigation={navigation}
+        fontWeight={"500"}
+        fontSize={25}
+        isVisible={isVisible}
+        render_view_key={keyType}
+        content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
+        hideModal={() => setIsVisible(!isVisible)}
+      />
+    )
+  }
 
   //---------- main return
 
@@ -131,12 +131,18 @@ const BarDetail = ({ navigation }) => {
           tab === 'detail' &&
           <CustomView
             style={{
-              padding: 15,
-
+              padding: 20,
+              // alignItems:'center'
             }}
           >
+            <CustomView
+              style={{
+                flex: 1,
+                alignItems: 'center'
+              }}
+            >
               <DrinkDetailTile />
-
+            </CustomView>
             <CustomView
               style={{
                 marginTop: 30,
@@ -175,8 +181,8 @@ const BarDetail = ({ navigation }) => {
               style={{
                 marginTop: 30,
                 marginBottom: 10,
-                fontSize: 25,
-                fontWeight: '400',
+                fontSize: 24,
+                fontWeight: 'bold',
                 color: isDarkTheme ? '#fff' : '#CCCCCC'
               }}
             />
@@ -184,7 +190,7 @@ const BarDetail = ({ navigation }) => {
             <CustomText
               text={'Great Bar, great whores, lovely family club. Family friendly restaurant with McNuggests on speed dail. Free covid testing and shots on deck.'}
               style={{
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: '400',
                 color: isDarkTheme ? '#fff' : '#7B7B7B'
               }}
@@ -207,8 +213,8 @@ const BarDetail = ({ navigation }) => {
                 <CustomText
                   text={'Address'}
                   style={{
-                    fontSize: 25,
-                    fontWeight: '400',
+                    fontSize: 24,
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
@@ -217,7 +223,7 @@ const BarDetail = ({ navigation }) => {
                   text={'27th North Avenue Bridgeport, NY, 06623'}
                   style={{
                     marginTop: 10,
-                    fontSize: 17,
+                    fontSize: 16,
                     fontWeight: '400',
                     color: isDarkTheme ? '#fff' : '#7B7B7B'
                   }}
@@ -227,8 +233,8 @@ const BarDetail = ({ navigation }) => {
                   text={'Hours'}
                   style={{
                     marginTop: 10,
-                    fontSize: 25,
-                    fontWeight: '400',
+                    fontSize: 24,
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
@@ -237,7 +243,7 @@ const BarDetail = ({ navigation }) => {
                   text={'Mon - Fri Open from 11 am - 4 pm'}
                   style={{
                     marginTop: 10,
-                    fontSize: 15,
+                    fontSize: 16,
                     fontWeight: '400',
                     color: isDarkTheme ? '#fff' : '#7B7B7B'
                   }}
@@ -247,8 +253,8 @@ const BarDetail = ({ navigation }) => {
                   text={'Categories'}
                   style={{
                     marginTop: 10,
-                    fontSize: 25,
-                    fontWeight: '400',
+                    fontSize: 24,
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
 
                   }}
@@ -258,7 +264,7 @@ const BarDetail = ({ navigation }) => {
                   text={'American, Nightlife'}
                   style={{
                     marginTop: 10,
-                    fontSize: 15,
+                    fontSize: 16,
                     fontWeight: '400',
                     color: isDarkTheme ? '#fff' : '#7B7B7B'
                   }}
@@ -304,11 +310,16 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     fontSize: 20,
-                    fontWeight: '400',
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
-                <CallIconBlack color={'#000'} />
+                {/* <CallIconBlack color={'#000'} /> */}
+
+                <Image
+                  source={Phone}
+                  resizeMode='cover'
+                />
               </CustomView>
 
               <CustomView
@@ -322,17 +333,22 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     fontSize: 20,
-                    fontWeight: '400',
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
-                <WorldIcon />
+                {/* <WorldIcon /> */}
+
+                <Image
+                  source={Globe}
+                  resizeMode='cover'
+                />
               </CustomView>
 
               <CustomView
                 style={{
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
                 }}
               >
                 <CustomText
@@ -340,11 +356,26 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     marginBottom: 10,
                     fontSize: 20,
-                    fontWeight: '400',
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
-                <MarkRedIcon />
+                <CustomView
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center'
+                  }}
+                >
+                  <MarkRedIcon />
+
+                  <Image
+                    style={{
+                      marginLeft: 10
+                    }}
+                    source={isDarkTheme ? Lyft : LyftBlack}
+                    resizeMode='cover'
+                  />
+                </CustomView>
               </CustomView>
 
             </CustomView>
@@ -353,7 +384,7 @@ const BarDetail = ({ navigation }) => {
 
             <CustomView
               style={{
-                marginTop: 40,
+                marginTop: 20,
                 flexDirection: 'row',
                 justifyContent: 'space-between'
               }}
@@ -367,15 +398,15 @@ const BarDetail = ({ navigation }) => {
                 <CustomText
                   text={'Amenities'}
                   style={{
-                    fontSize: 25,
-                    fontWeight: '400',
+                    fontSize: 24,
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
 
                 <CustomView
                   style={{
-                    marginTop: 2,
+                    marginTop: 10,
                     flexDirection: 'row',
                     alignItems: 'center'
                   }}
@@ -392,7 +423,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Free Parking'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -418,7 +449,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Dog friendly'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -444,7 +475,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Pool'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -470,7 +501,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Hookah'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -486,15 +517,15 @@ const BarDetail = ({ navigation }) => {
                 <CustomText
                   text={'Dress Code'}
                   style={{
-                    fontSize: 25,
-                    fontWeight: '400',
+                    fontSize: 24,
+                    fontWeight: 'bold',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
                 />
 
                 <CustomView
                   style={{
-                    marginTop: 2,
+                    marginTop: 10,
                     flexDirection: 'row',
                     alignItems: 'center'
                   }}
@@ -511,7 +542,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Business Casual'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -537,7 +568,7 @@ const BarDetail = ({ navigation }) => {
                   <CustomText
                     text={'Free Parking'}
                     style={{
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: '400',
                       color: isDarkTheme ? '#fff' : '#7B7B7B'
                     }}
@@ -551,7 +582,7 @@ const BarDetail = ({ navigation }) => {
             <CustomText
               text={'BarCode Member Free Drinks'}
               style={{
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: '400',
                 color: isDarkTheme ? '#fff' : '#CCCCCC'
               }}
@@ -559,7 +590,7 @@ const BarDetail = ({ navigation }) => {
             <CustomText
               text={'Well alcohol, beer and wine'}
               style={{
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: '400',
                 color: isDarkTheme ? '#fff' : '#7B7B7B'
               }}
@@ -569,7 +600,7 @@ const BarDetail = ({ navigation }) => {
               text={'BarCode Member Specials'}
               style={{
                 marginTop: 30,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: '400',
                 color: isDarkTheme ? '#fff' : '#CCCCCC'
               }}
@@ -577,7 +608,7 @@ const BarDetail = ({ navigation }) => {
             <CustomText
               text={'20% off on entire entree'}
               style={{
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: '400',
                 color: isDarkTheme ? '#fff' : '#7B7B7B'
               }}
@@ -631,7 +662,7 @@ const BarDetail = ({ navigation }) => {
                 <CustomText
                   text={"View Menu"}
                   style={{
-                    fontSize: 25,
+                    fontSize: 24,
                     fontWeight: '400',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
@@ -643,7 +674,7 @@ const BarDetail = ({ navigation }) => {
                 <CustomText
                   text={"View Gallery"}
                   style={{
-                    fontSize: 25,
+                    fontSize: 24,
                     fontWeight: '400',
                     color: isDarkTheme ? '#fff' : '#CCCCCC'
                   }}
@@ -675,7 +706,7 @@ const BarDetail = ({ navigation }) => {
             null
         }
       </CustomView>
-    {renderModal()}
+      {renderModal()}
     </Frame >
   );
 };

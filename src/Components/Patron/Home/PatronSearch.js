@@ -115,15 +115,15 @@ const PatronFavorites = ({ navigation }) => {
             fontWeight: '400',
             color: isDarkTheme ? '#FFFFFF' : '#747474',
             marginHorizontal: 5,
-            marginVertical:4,
+            marginVertical: 4,
             textAlign: "center",
             borderRadius: 10,
             borderColor: "#D7D7D7",
             borderWidth: 1,
-            backgroundColor:isDarkTheme? "#1F1F1F":null,
-            width:102,
-            height:30
-
+            backgroundColor: isDarkTheme ? "#1F1F1F" : null,
+            width: 102,
+            height: 30,
+            marginRight: (recent_data.length - 1) === index ? 50 : 5
           }}
           text={item.name}
         />
@@ -208,31 +208,31 @@ const PatronFavorites = ({ navigation }) => {
 
   const renderChekBox = ({ item, index }) => {
     return (
-      
-          index <= 1 ?
-          <CustomView
+
+      index <= 1 ?
+        <CustomView
+          style={{
+            // marginLeft: -20,
+            alignItems: 'center',
+
+          }}
+        >
+          <CustomText
             style={{
-              // marginLeft: -20,
-              alignItems: 'center',
-          
+              fontSize: 20,
+              fontWeight: '400',
+              color: isDarkTheme ? '#FFFFFF' : '#FFA500',
+              // marginHorizontal: 30,
+              alignItems: 'space-between',
+              width: "100%"
+
             }}
-          >
-            <CustomText
-              style={{
-                fontSize: 20,
-                fontWeight: '400',
-                color: isDarkTheme ? '#FFFFFF' : '#FFA500',
-                // marginHorizontal: 30,
-                alignItems: 'space-between',
-                width:"100%"
-               
-              }}
-              text={item.name}
-            />
-            
-          </CustomView>
-          :
-        
+            text={item.name}
+          />
+
+        </CustomView>
+        :
+
         <CustomView
           key={index}
           style={{
@@ -245,13 +245,13 @@ const PatronFavorites = ({ navigation }) => {
 
           <CustomCheckBox
             rightText={item?.name}
-            rightTextColor={isDarkTheme?"#FFFFFF" :"#747474"}
+            rightTextColor={isDarkTheme ? "#FFFFFF" : "#747474"}
             isChecked={false}
             fontWeight={"500"}
             fontSize={15}
           />
         </CustomView>
-   
+
 
     )
   }
@@ -296,9 +296,9 @@ const PatronFavorites = ({ navigation }) => {
                   placeholder={'Search'}
                   borderRadius={13}
                   borderColor={isDarkTheme ? "##1F1F1F" : "#DBDBDB"}
-                  backgroundColor={ isDarkTheme ?"#1F1F1F":"#fff"}
+                  backgroundColor={isDarkTheme ? "#1F1F1F" : "#fff"}
                   style={{
-                    fontSize: 25,
+                    fontSize: 24,
                     fontWeight: "400"
                   }}
                   leftIcon={
@@ -332,7 +332,7 @@ const PatronFavorites = ({ navigation }) => {
         >
 
           {/* {renderFlatList(CheckBox_data, renderChekBox, false, 2)} */}
-          {renderFlatList(data, renderContent, false ,null)}
+          {renderFlatList(data, renderContent, false, null)}
         </ScrollView>
         <ModalContainer
           isVisible={isVisible}

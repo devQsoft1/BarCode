@@ -41,7 +41,7 @@ const CustomTextInput = ({
   paddingVertical,
   backgroundColor,
   fontSize,
-  height
+  height,
 }) => {
 
   //---------- state and context
@@ -99,10 +99,10 @@ const CustomTextInput = ({
       }
 
       <TextInput
-        style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontWeight: '400', fontSize: fontSize ? fontSize : 23, }, style,]}
+        style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontWeight: '400', fontSize: fontSize ? fontSize : 24, }, style,]}
         placeholder={placeholder}
         onChangeText={onChangeText}
-        placeholderTextColor={placeholderTextColor ? placeholderTextColor : isDarkTheme ? WHITE : "#E5E5E5"}
+        placeholderTextColor={placeholderTextColor ? placeholderTextColor : isDarkTheme ? WHITE : "#C7C7C7"}
         keyboardType={keyboardType}
         maxLength={maxLength}
         autoCapitalize={autoCapitalize ? autoCapitalize : 'none'}

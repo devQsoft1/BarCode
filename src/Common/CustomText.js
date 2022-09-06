@@ -6,7 +6,7 @@ import ContextHelper from "../ContextHooks/ContextHelper";
 
 const CustomText = (props) => {
 
-  const { numberOfLines, text, text2, style,style2 } = props;
+  const { numberOfLines, text, text2, style, style2 } = props;
 
   const {
     isDarkTheme,
@@ -25,10 +25,10 @@ const CustomText = (props) => {
 
   return (
     <>
-      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style,]}>
+      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily:'inter' }, style,]}>
         {text}
       </Text>
-  {  text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
+      {text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
         {text2}
       </Text>}
     </>

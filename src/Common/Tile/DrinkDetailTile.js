@@ -96,7 +96,7 @@ const DrinkDetailTile = ({props,navigation}) => {
                         style={{
                             color: isDarkTheme ? "#FFFFFF" : '#FFFFFF',
                             fontSize: 20,
-                            fontWeight: '400',
+                            fontWeight: 'bold',
                             alignSelf: 'center',
                             textAlign: "center"
                         }}
@@ -106,7 +106,7 @@ const DrinkDetailTile = ({props,navigation}) => {
                         style={{
                             color: isDarkTheme ? "#FFFFFF" : '#FFFFFF',
                             fontSize: 16,
-                            fontWeight: '400',
+                            fontWeight: 'bold',
                             alignSelf: 'center',
                             textAlign: "center"
                         }}
@@ -125,7 +125,7 @@ const DrinkDetailTile = ({props,navigation}) => {
                     <CustomText
                         style={{
                             color: isDarkTheme ? "#fff" : '#CCCCCC',
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: '400',
                             // lineHeight:20
                         }}
@@ -136,7 +136,7 @@ const DrinkDetailTile = ({props,navigation}) => {
                     <CustomText
                         style={{
                             color: isDarkTheme ? "#fff" : '#CCCCCC',
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: '400',
                         }}
 

@@ -31,10 +31,42 @@ module.exports = {
   Facebook: require("../Assets/Image/Facebook.png"),
   Google: require("../Assets/Image/Google.png"),
   Twitter: require("../Assets/Image/Twitter.png"),
-
-
-
   cheers: require("../Assets/Image/cheers.png"),
+
+
+  Bookmark: require("../Assets/Image/Bookmark.png"),
+  BookmarkBlue: require("../Assets/Image/BookmarkBlue.png"),
+  Home: require("../Assets/Image/Home.png"),
+  HomeBlue: require("../Assets/Image/HomeBlue.png"),
+  Menu: require("../Assets/Image/Menu.png"),
+  MenuBlue: require("../Assets/Image/MenuBlue.png"),
+  Search: require("../Assets/Image/Search.png"),
+  SearchBlue: require("../Assets/Image/SearchBlue.png"),
+  User: require("../Assets/Image/User.png"),
+  UserBlue: require("../Assets/Image/UserBlue.png"),
+
+  Phone: require("../Assets/Image/Phone.png"),
+  LyftBlack: require("../Assets/Image/LyftBlack.png"),
+  Lyft: require("../Assets/Image/Lyft.png"),
+  Globe: require("../Assets/Image/Globe.png"),
+
+  CheckboxWhite: require("../Assets/Image/CheckboxWhite.png"),
+  CheckboxBlack: require("../Assets/Image/CheckboxBlack.png"),
+
+
+  BookmarkGray: require("../Assets/Image/BookmarkGray.png"),
+  HomeGray: require("../Assets/Image/HomeGray.png"),
+  MenuGray: require("../Assets/Image/MenuGray.png"),
+  SearchGray: require("../Assets/Image/SearchGray.png"),
+  UserGray: require("../Assets/Image/UserGray.png"),
+
+
+  
+
+
+
+
+
 
 
   Temp: require("../Assets/Image/temp.png"),

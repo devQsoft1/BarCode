@@ -2,7 +2,7 @@
 
 // react
 import * as React from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
 
 // navigations
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -15,6 +15,24 @@ import SearchIcon from "../../Assets/Icons/SearchIcon";
 import UserIcon from "../../Assets/Icons/UserIcon";
 import MenuIcon from "../../Assets/Icons/MenuIcon";
 import SaveIcon from "../../Assets/Icons/SaveIcon";
+import {
+  Bookmark,
+  BookmarkBlue,
+  BookmarkGray,
+  Home,
+  HomeBlue,
+  HomeGray,
+  Menu,
+  MenuBlue,
+  MenuGray,
+  Search,
+  SearchBlue,
+  SearchGray,
+  User,
+  UserBlue,
+  UserGray,
+
+} from '../../constants/Images'
 
 // components
 import MenuScreen from "../../Components/MenuScreen";
@@ -67,25 +85,56 @@ function PatronTabNavigation() {
     <Tab.Navigator
 
       screenOptions={({ route }) => ({
-        tabBarStyle: { backgroundColor: isDarkTheme ? '#1F1F1F' : "#fff",height:78 },
+        tabBarStyle: { backgroundColor: isDarkTheme ? '#1F1F1F' : "#fff", height: 78 },
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
           if (route.name === 'PatronHome') {
 
-            Icon = <HomeIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
+            Icon = <Image
+              source={focused ? HomeBlue : isDarkTheme ? Home : HomeGray}
+              resizeMode='contain'
+            />
+            // Icon = <HomeIcon
+            //   fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"}
+            // />
           } else if (route.name === 'PatronSearch') {
 
-            Icon = <SearchIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
+            Icon = <Image
+              source={focused ? SearchBlue : isDarkTheme ? Search : SearchGray}
+              resizeMode='contain'
+            />
+            // Icon = <SearchIcon
+            //   fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"}
+            // />
           } else if (route.name === 'PatronFavorites') {
 
-            Icon = <SaveIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
+            Icon = <Image
+              source={focused ? BookmarkBlue : isDarkTheme ? Bookmark : BookmarkGray}
+              resizeMode='contain'
+            />
+            // Icon = <SaveIcon
+            //   fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"}
+            // />
           } else if (route.name === 'PatronProfile') {
 
-            Icon = <UserIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
+            Icon = <Image
+              source={focused ? UserBlue : isDarkTheme ? User : UserGray}
+              resizeMode='contain'
+            />
+            // Icon = <UserIcon
+            //   fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"}
+            // />
           } else if (route.name === 'MenuScreen') {
 
-            Icon = <MenuIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
+
+            Icon = <Image
+              source={focused ? MenuBlue : isDarkTheme ? Menu : MenuGray}
+              resizeMode='contain'
+            />
+            // Icon = <MenuIcon
+            //   fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"}
+            // />
           }
 
           // You can return any component that you like here!

@@ -14,6 +14,8 @@ import Frame from "../Common/Frame";
 import ContextHelper from '../ContextHooks/ContextHelper'
 import CustomView from "../Common/CustomView";
 import CustomBorderButton from "../Common/CustomBorderButton";
+import CustomCheckBox from "../Common/CustomCheckBox";
+
 
 //---------- main component
 
@@ -70,10 +72,10 @@ const RoleSelectionScreen = ({ navigation }) => {
         <CustomBorderButton
           title={'PATRON'}
           color={"#FFA500"}
-          fontSize={50}
+          fontSize={30}
           fontWeight={"500"}
           borderRadius={30}
-          height={115}
+          height={75}
           onPress={() => {
 
             setCurrentUser({
@@ -83,17 +85,29 @@ const RoleSelectionScreen = ({ navigation }) => {
           }}
         />
 
+
+
+{/* <CustomCheckBox
+                rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
+                rightText={'RECURRING SPECIAL'}
+                isChecked={false}
+                fontSize={20}
+                fontWeight={"500"}
+              /> */}
+
+
+
         <View style={{ height: 20 }} />
 
         <CustomBorderButton
           title={'BUSINESS OWNER'}
           color={"#42AEEC"}
-          fontSize={50}
+          fontSize={30}
           fontWeight={"500"}
           borderRadius={30}
           lineHeight={40}
-          paddingTop={15}
-          height={115}
+          // paddingTop={15}
+          height={75}
           onPress={() => {
 
             setCurrentUser({

@@ -139,7 +139,7 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
                             <CustomText
                                 style={{
                                     fontSize: 25,
-                                    fontWeight: '500',
+                                    fontWeight: 'bold',
                                     color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
                                 }}
                                 text={item.title}

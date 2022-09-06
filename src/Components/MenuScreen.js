@@ -114,7 +114,8 @@ const MenuScreen = ({ navigation }) => {
   return (
     <CustomView
       style={{
-        backgroundColor: isDarkTheme ? "#000" : "#fff"
+        backgroundColor: isDarkTheme ? "#000" : "#fff",
+        flex:1
       }}
     >
       {renderFlatList()}

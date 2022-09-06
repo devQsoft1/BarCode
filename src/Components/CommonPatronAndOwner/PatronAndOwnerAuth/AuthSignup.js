@@ -73,55 +73,61 @@ const AuthSignup = ({ navigation }) => {
         }}
       >
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Name'}
           rightIcon={<UserIconSmall />}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Birthday'}
           rightIcon={<CalenderIcon />}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Phone'}
           rightIcon={<CallIcon />}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Email'}
           rightIcon={<MessageIcon />}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Password'}
           rightIcon={<EyeCrossIcon />}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          fontSize={20}
           marginTop={20}
           placeholder={'Confirm Password'}
-          placeholderTextColor={"#fff"}
-          backgroundColor={isDarkTheme?"#000":"#fff"}
+          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          backgroundColor={isDarkTheme ? "#000" : "#fff"}
           rightIcon={<EyeCrossIcon />}
-        
+
         />
 
 
@@ -154,7 +160,7 @@ const AuthSignup = ({ navigation }) => {
               style={{ marginRight: 10 }}
               source={rightYellow}
               resizeMode='cover'
-              
+
             />
           </TouchableOpacity>
         </CustomView>

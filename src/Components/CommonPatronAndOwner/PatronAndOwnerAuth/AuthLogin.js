@@ -22,6 +22,9 @@ import { Apple, Facebook, Google, patronLoginBG, Twitter } from "../../../consta
 import Logo from '../../../Assets/Icons/Logo';
 import MessageIconWhite from '../../../Assets/Icons/MessageIconWhite'
 import EyeCrossIconWhite from '../../../Assets/Icons/EyeCrossIconWhite'
+import MessageIcon from '../../../Assets/Icons/MessageIcon'
+import EyeCrossIcon from '../../../Assets/Icons/EyeCrossIcon'
+
 import AppleIcon from "../../../Assets/Icons/AppleIcon";
 import GoogleIcon from "../../../Assets/Icons/GoogleIcon";
 import FacebookIcon from "../../../Assets/Icons/FacebookIcon";
@@ -89,10 +92,11 @@ const AuthLogin = ({ navigation }) => {
       >
         <CustomTextInput
           placeholder={'Email'}
-          rightIcon={<MessageIconWhite />}
+          rightIcon={isDarkTheme ? <MessageIconWhite /> : <MessageIcon />}
+          // rightIcon={<MessageIconWhite />}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
-          placeholderTextColor={isDarkTheme?"#fff":"#B4B4B4"}
+          placeholderTextColor={isDarkTheme ? "#fff" : "#B4B4B4"}
           borderRadius={15}
           height={61}
         />
@@ -102,12 +106,14 @@ const AuthLogin = ({ navigation }) => {
         <CustomTextInput
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           placeholder={'Password'}
-          rightIcon={<EyeCrossIconWhite />}
-          placeholderTextColor={isDarkTheme?"#fff":"#B4B4B4"}
+          rightIcon={isDarkTheme ? <EyeCrossIconWhite /> : <EyeCrossIcon />}
+          // rightIcon={<EyeCrossIcon />}
+
+          placeholderTextColor={isDarkTheme ? "#fff" : "#B4B4B4"}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           borderRadius={15}
           height={61}
-      
+
         />
 
         <CustomText
@@ -135,7 +141,8 @@ const AuthLogin = ({ navigation }) => {
           paddingVertical={10}
           fontSize={23}
           fontWeight={"500"}
-          color={isDarkTheme ? "#000" : '#fff'}
+          color={'#fff'}
+        // color={isDarkTheme ? "#000" : '#fff'}
         />
 
 
@@ -281,7 +288,8 @@ const AuthLogin = ({ navigation }) => {
             style={{
               fontSize: 16,
               alignSelf: 'center',
-              color: '#FFA500'
+              color: '#FFA500',
+              marginBottom: 20,
             }}
           />
         </TouchableOpacity>

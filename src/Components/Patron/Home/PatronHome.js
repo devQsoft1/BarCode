@@ -94,7 +94,7 @@ const PatronHome = ({ navigation }) => {
             )
           }}
           style={{
-            paddingHorizontal: 10,
+            paddingHorizontal: 15,
             paddingTop: 20,
             paddingBottom: 100
           }}
