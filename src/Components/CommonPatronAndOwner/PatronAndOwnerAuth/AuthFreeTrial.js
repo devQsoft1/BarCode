@@ -106,7 +106,7 @@ const AuthFreeTrial = ({ navigation }) => {
 
         <CustomView
           style={{
-            paddingTop: 30,
+            paddingTop: 20,
             paddingHorizontal: 20
           }}
         >
@@ -218,7 +218,6 @@ const AuthFreeTrial = ({ navigation }) => {
               <CustomText
                 text={"Get your first FREE drink!"}
                 style={{
-                  marginTop: 10,
                   fontSize: 19,
                    color: isDarkTheme ? '#FFF' : '#747474',
                 }}
@@ -237,7 +236,6 @@ const AuthFreeTrial = ({ navigation }) => {
               <CustomText
                 text={"Get a reminder of "}
                 style={{
-                  marginTop: 10,
                   fontSize: 19,
                   color: isDarkTheme ? '#FFF' : '#747474',
                 }}
@@ -253,7 +251,7 @@ const AuthFreeTrial = ({ navigation }) => {
               />
 
               <CustomText
-                text={"IN 7 DAYS"}
+                text={"IN 14 DAYS"}
                 style={{
                   marginTop: 60,
                   fontSize: 28,
@@ -265,7 +263,6 @@ const AuthFreeTrial = ({ navigation }) => {
               <CustomText
                 text={"Get billed, unless you cancel "}
                 style={{
-                  marginTop: 10,
                   fontSize: 19,
                   color: isDarkTheme ? '#FFF' : '#747474',
                 }}

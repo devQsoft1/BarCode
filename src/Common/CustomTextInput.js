@@ -15,7 +15,7 @@ import ContextHelper from "../ContextHooks/ContextHelper";
 
 //---------- main components
 
-const  CustomTextInput = ({
+const CustomTextInput = ({
   style,
   placeholder,
   onChangeText,
@@ -39,7 +39,9 @@ const  CustomTextInput = ({
   padding,
   paddingHorizontal,
   paddingVertical,
-  backgroundColor
+  backgroundColor,
+  fontSize,
+  height
 }) => {
 
   //---------- state and context
@@ -62,78 +64,80 @@ const  CustomTextInput = ({
   //---------- main view
 
   return (
-      <View
-        style={[,
-          AuthStyles.textInputView,
-          { borderRadius: borderRadius ? borderRadius : 30, },
-          { flexDirection: 'row', alignContent: 'flex-end', height: numberOfLines > 1 ? 28 * numberOfLines : 50 },
-          { borderColor: borderColor ? borderColor : isDarkTheme ? WHITE : "#DBDBDB", marginTop: marginTop ? marginTop : 0 },
-          { paddingHorizontal: paddingHorizontal ? paddingHorizontal : 10 },
-          { paddingVertical: paddingVertical ? paddingVertical : 0 },
-          { backgroundColor: backgroundColor ? backgroundColor : "#fff" },
-  
-        ]}
-      >
+    <View
+      style={[
+        AuthStyles.textInputView,
+        { borderRadius: borderRadius ? borderRadius : 30, },
+        { flexDirection: 'row', alignContent: 'flex-end', height: numberOfLines > 1 ? 28 * numberOfLines : 50 },
+        { borderColor: borderColor ? borderColor : isDarkTheme ? WHITE : "#DBDBDB", marginTop: marginTop ? marginTop : 0 },
+        { paddingHorizontal: paddingHorizontal ? paddingHorizontal : 20 },
+        { paddingVertical: paddingVertical ? paddingVertical : 0 },
+        { backgroundColor: backgroundColor ? backgroundColor : "#fff" },
+        {height:height}
 
-        {
-          !!leftIcon &&
-          <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              alignSelf: textAlignVertical === 'top' ? 'flex-start' : numberOfLines > 1 ? 'flex-start' : 'center',
-              marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0,
-              marginRight: 10
-            }}
-            onPress={() => {
-              iconClick && iconClick()
-            }}
-          >
-            {
-              leftIcon
-            }
-          </TouchableOpacity>
-        }
+      ]}
+    >
 
-        <TextInput
-          style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontSize: 23, fontWeight: '400', }, style,]}
-          placeholder={placeholder}
-          onChangeText={onChangeText}
-          placeholderTextColor={placeholderTextColor ? placeholderTextColor : isDarkTheme ? WHITE : "#E5E5E5"}
-          keyboardType={keyboardType}
-          maxLength={maxLength}
-          autoCapitalize={autoCapitalize ? autoCapitalize : 'none'}
-          autoCorrect={false}
-          secureTextEntry={secureTextEntry}
-          value={value}
-          defaultValue={defaultValue}
-          editable={editable}
-          // multiline={multiline}
-          multiline={multiline || textAlignVertical ? true : numberOfLines > 1 ? true : false}
-          numberOfLines={numberOfLines ? numberOfLines : 1}
-          textAlignVertical={textAlignVertical ? textAlignVertical : numberOfLines > 1 ? 'top' : 'center'}
-        />
+      {
+        !!leftIcon &&
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignSelf: textAlignVertical === 'top' ? 'flex-start' : numberOfLines > 1 ? 'flex-start' : 'center',
+            marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0,
+            marginRight: 10
+          }}
+          onPress={() => {
+            iconClick && iconClick()
+          }}
+        >
+          {
+            leftIcon
+          }
+        </TouchableOpacity>
+      }
 
-        {
-          !!rightIcon &&
-          <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              alignSelf: textAlignVertical === 'top' ? 'flex-start' : numberOfLines > 1 ? 'flex-start' : 'center',
-              marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0
-            }}
-            onPress={() => {
-              iconClick && iconClick()
-            }}
-          >
-            {
-              rightIcon
-            }
-          </TouchableOpacity>
-        }
+      <TextInput
+        style={[{ color: isDarkTheme ? '#fff' : '#000', flex: 1, fontWeight: '400', fontSize: fontSize ? fontSize : 23, }, style,]}
+        placeholder={placeholder}
+        onChangeText={onChangeText}
+        placeholderTextColor={placeholderTextColor ? placeholderTextColor : isDarkTheme ? WHITE : "#E5E5E5"}
+        keyboardType={keyboardType}
+        maxLength={maxLength}
+        autoCapitalize={autoCapitalize ? autoCapitalize : 'none'}
+        autoCorrect={false}
+        secureTextEntry={secureTextEntry}
+        value={value}
+        defaultValue={defaultValue}
+        editable={editable}
+        // multiline={multiline}
+        multiline={multiline || textAlignVertical ? true : numberOfLines > 1 ? true : false}
+        numberOfLines={numberOfLines ? numberOfLines : 1}
+        textAlignVertical={textAlignVertical ? textAlignVertical : numberOfLines > 1 ? 'top' : 'center'}
 
-      </View>
+      />
+
+      {
+        !!rightIcon &&
+        <TouchableOpacity
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignSelf: textAlignVertical === 'top' ? 'flex-start' : numberOfLines > 1 ? 'flex-start' : 'center',
+            marginTop: textAlignVertical === 'top' ? 10 : numberOfLines > 1 ? 10 : 0
+          }}
+          onPress={() => {
+            iconClick && iconClick()
+          }}
+        >
+          {
+            rightIcon
+          }
+        </TouchableOpacity>
+      }
+
+    </View>
   )
 }
 

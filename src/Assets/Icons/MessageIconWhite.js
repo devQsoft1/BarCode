@@ -7,6 +7,7 @@ function MessageIconWhite(props) {
       {...props}
     >
      <Path fill="url(#pattern0)" d="M0 0H24V24H0z" />
+     
       <Defs>
         <Pattern
           id="pattern0"

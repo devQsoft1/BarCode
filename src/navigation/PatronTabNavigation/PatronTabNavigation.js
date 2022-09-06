@@ -25,30 +25,18 @@ import PatronSearch from "../../Components/Patron/Home/PatronSearch";
 import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
 import RestorePurchases from "../../Components/CommonPatronAndOwner/RestorePurchases";
 import ContactUs from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/ContactUs";
-
+import FAQ from "../../Components/CommonPatronAndOwner/FAQ"
+import AuthLogin from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthLogin";
+import AuthFreeTrial from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthFreeTrial";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
 import BottomModalContainer from "../../Common/BottomModalContainer";
-import AuthLogin from "../../Components/CommonPatronAndOwner/PatronAndOwnerAuth/AuthLogin";
 
 // context
-// import ContextHelper from '../../ContextHooks/ContextHelper'
+import ContextHelper from '../../ContextHooks/ContextHelper';
 
-// const {
-//   isDarkTheme,
-//   theme,
-//   appStateObject,
-//   appStateArray,
-//   currentUser,
 
-//   changeTheme,
-//   storeDataInAppState,
-//   removeDataFromAppState,
-//   storeDataInAsyncStorage,
-//   getDataFromAsyncStorage,
-//   setCurrentUser,
-// } = ContextHelper()
 
 // global stack veriable
 const Drawer = createDrawerNavigator();
@@ -59,30 +47,45 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function PatronTabNavigation() {
+  const {
+    isDarkTheme,
+    theme,
+    appStateObject,
+    appStateArray,
+    currentUser,
 
+    changeTheme,
+    storeDataInAppState,
+    removeDataFromAppState,
+    storeDataInAsyncStorage,
+    getDataFromAsyncStorage,
+    setCurrentUser,
+  } = ContextHelper()
   //---------- return main view of drawer
 
   return (
     <Tab.Navigator
+
       screenOptions={({ route }) => ({
+        tabBarStyle: { backgroundColor: isDarkTheme ? '#1F1F1F' : "#fff",height:78 },
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
           if (route.name === 'PatronHome') {
 
-            Icon = <HomeIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <HomeIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
           } else if (route.name === 'PatronSearch') {
 
-            Icon = <SearchIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <SearchIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
           } else if (route.name === 'PatronFavorites') {
 
-            Icon = <SaveIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <SaveIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
           } else if (route.name === 'PatronProfile') {
 
-            Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <UserIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
           } else if (route.name === 'MenuScreen') {
 
-            Icon = <MenuIcon fill={focused ? '#42AEEC' : '#000'} />
+            Icon = <MenuIcon fill={focused ? '#42AEEC' : isDarkTheme ? '#FFFFFF' : "#000000"} />
           }
 
           // You can return any component that you like here!
@@ -168,6 +171,21 @@ function HomeNavigation(props) {
         name="MenuScreen"
         component={MenuScreen}
       />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="FAQ"
+        component={FAQ}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="OwnerLogin"
+        component={AuthLogin}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="AuthFreeTrial"
+        component={AuthFreeTrial}
+      />
 
     </Stack.Navigator>
   );
@@ -250,7 +268,7 @@ function UserNavigation(props) {
         }}
         name="RestorePurchases" component={RestorePurchases} />
 
-        
+
       <Stack.Screen
         options={{
           headerShown: false

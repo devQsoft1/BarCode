@@ -62,7 +62,7 @@ const BusinessDetailScreen = ({ navigation }) => {
 
   const handlePagination = (key) => {
 
-    if (count === 6) {
+    if (count === 7) {
 
       navigation.navigate('OwnerNavigator')
     } else {
@@ -83,12 +83,11 @@ const BusinessDetailScreen = ({ navigation }) => {
 
         <TopContainer
           text1={"FILL IN YOUR BUSINESS DETAILS"}
-          // text2={"UPLOAD A PROFILE PICTURE"}
           isDarkTheme={isDarkTheme}
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 5,
             paddingHorizontal: 20,
           }}
         >
@@ -96,23 +95,31 @@ const BusinessDetailScreen = ({ navigation }) => {
             <CustomTextInput
               marginTop={20}
               placeholder={"Name"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Address"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Phone"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Website"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
-            <CustomTextInput
+            {/* <CustomTextInput
               marginTop={20}
               placeholder={"EIN Number"}
-            />
+            /> */}
           </CustomView>
         </CustomView>
       </>
@@ -130,22 +137,27 @@ const BusinessDetailScreen = ({ navigation }) => {
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 30,
             paddingHorizontal: 20,
           }}
         >
           <CustomView>
 
             <CustomTextInput
-              marginTop={20}
+              fontSize={18}
+              marginTop={10}
               placeholder={"What kind of establishment are you?"}
+              paddingVertical={3}
+              height={65}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"This is your time to shine, tell your new customers about yourself. Give a great description for customers"}
-              numberOfLines={6}
+              numberOfLines={4}
               paddingHorizontal={30}
-              paddingVertical={30}
+              height={260}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
 
           </CustomView>
@@ -162,12 +174,12 @@ const BusinessDetailScreen = ({ navigation }) => {
         <TopContainer
           textAlign={'center'}
           text1={"WHAT DOES YOUR BUSINESS OFFER?"}
-          // text2={"UPLOAD A PROFILE PICTURE"}
           isDarkTheme={isDarkTheme}
+          fontSize={20}
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 30,
             paddingHorizontal: 20,
           }}
         >
@@ -193,19 +205,19 @@ const BusinessDetailScreen = ({ navigation }) => {
     )
   }
 
-  const renderUploadBusinessPhoto = () => {
+  const renderUploadBusinessPhoto = (isMenu) => {
 
     return (
       <>
 
         <TopContainer
-          text1={"UPLOAD YOUR MENU"}
-          // text2={"UPLOAD A PROFILE PICTURE"}
+          text1={isMenu ? "UPLOAD YOUR MENU" : "UPLOAD YOUR BUSINESS PHOTO"}
           isDarkTheme={isDarkTheme}
+          fontSize={21}
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 30,
             paddingHorizontal: 20,
           }}
         >
@@ -260,7 +272,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                   <GallaryIcon />
                   <CustomText
                     style={{
-                      color: '#747474'
+                      color: isDarkTheme?"#fff":'#747474'
                     }}
                     text={'Gallery'}
                   />
@@ -277,7 +289,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                   <CameraIcon />
                   <CustomText
                     style={{
-                      color: '#747474'
+                      color: isDarkTheme?"#fff":'#747474'
                     }}
                     text={'Camera'}
                   />
@@ -290,15 +302,14 @@ const BusinessDetailScreen = ({ navigation }) => {
 
             <CustomText
               style={{
-                fontSize: 14,
-                fontWeight: '400',
-                color: '#B1B1B1',
+                fontSize: 17,
+                fontWeight: '500',
+                color: isDarkTheme ? "#FFFFFF" : '#FF0000',
                 textAlign: "center",
-                marginTop: 50,
+                marginTop: 30,
+                lineHeight: 16
               }}
-              text="REMAINDER! AN IMAGE IS REQUIRED
-            TO SUCCESSFULLY COMPLETE THE SIGN UP
-            PROCESS!"
+              text={isMenu ? "PLEASE UPLOAD A PDF IMAGE \n  OF YOUR MENU" : "REMAINDER! AN IMAGE IS REQUIRED TO SUCCESSFULLY COMPLETE THE SIGN UP PROCESS!"}
             />
 
           </CustomView>
@@ -312,12 +323,12 @@ const BusinessDetailScreen = ({ navigation }) => {
       <>
         <TopContainer
           text1={"UPLOAD GALLERY PHOTO’S"}
-          // text2={"UPLOAD A PROFILE PICTURE"}
           isDarkTheme={isDarkTheme}
+          fontSize={21}
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 30,
             paddingHorizontal: 20,
           }}
         >
@@ -399,6 +410,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                     alignItems: 'center',
+                    marginTop: 20
                   }}
                 >
                   <TouchableOpacity
@@ -412,7 +424,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                     <GallaryIcon />
                     <CustomText
                       style={{
-                        color: '#747474'
+                        color: isDarkTheme?"#fff":'#747474'
                       }}
                       text={'Gallery'}
                     />
@@ -429,7 +441,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                     <CameraIcon />
                     <CustomText
                       style={{
-                        color: '#747474'
+                        color: isDarkTheme?"#fff":'#747474'
                       }}
                       text={'Camera'}
                     />
@@ -444,25 +456,25 @@ const BusinessDetailScreen = ({ navigation }) => {
 
                 <CustomText
                   style={{
-                    fontSize: 14,
-                    fontWeight: '400',
-                    color: '#B1B1B1',
+                    fontSize: 17,
+                    fontWeight: '500',
+                    color: isDarkTheme ? "#fff" : '#FF0000',
                     textAlign: "center",
-                    marginTop: 50,
+                    marginTop: 35,
+                    lineHeight: 16.94
                   }}
-                  text="PLEASE UPLOAD UPTO 10 PHOTOS TO SHOW OFF
-            YOUR RESTAURANT"
+                  text={"PLEASE UPLOAD UPTO 10 PHOTOS \n  TO SHOW OFF YOUR RESTAURANT"}
                 />
                 <CustomText
                   style={{
-                    fontSize: 14,
-                    fontWeight: '400',
-                    color: '#B1B1B1',
+                    fontSize: 17,
+                    fontWeight: '500',
+                    color: isDarkTheme ? "#fff" : '#FF0000',
                     textAlign: "center",
                     marginTop: 20,
+                    lineHeight: 16.94
                   }}
-                  text="INCLUDE PICTURES OF FOOD AND ANY SPECIALITY
-          YOU MAY OFFER TO GUEST!"
+                  text={"INCLUDE PICTURES OF FOOD AND \n ANY SPECIALITY YOU MAY \n OFFER TO GUEST!"}
                 />
               </CustomView>
             </CustomView>
@@ -479,12 +491,12 @@ const BusinessDetailScreen = ({ navigation }) => {
       <>
         <TopContainer
           text1={"WHAT’S GOING ON?"}
-          // text2={"UPLOAD A PROFILE PICTURE"}
           isDarkTheme={isDarkTheme}
+          fontSize={23}
         />
         <CustomView
           style={{
-            paddingTop: 30,
+            // paddingTop: 30,
             paddingHorizontal: 20,
           }}
         >
@@ -493,58 +505,66 @@ const BusinessDetailScreen = ({ navigation }) => {
             <CustomTextInput
               placeholder={"EVENT TITLE"}
               borderRadius={30}
-              borderColor={"#CDCDCD"}
-              placeholderTextColor={"#B1B1B1"}
+              borderColor={"#DBDBDB"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              height={62}
+              fontSize={23}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
 
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"DESCRIBE YOUR EVENT"}
               numberOfLines={6}
-              paddingHorizontal={20}
-              paddingVertical={20}
-              borderRadius={20}
-              borderColor={"#CDCDCD"}
-              placeholderTextColor={"#B1B1B1"}
-
+              paddingVertical={15}
+              borderRadius={30}
+              borderColor={"#DBDBDB"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              height={162}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
-              placeholder={"BARCODE MEMBER ELIGABLE DRINKS"}
+              placeholder={"BARCODE MEMBER \n ELIGABLE DRINKS"}
               numberOfLines={6}
-              paddingHorizontal={20}
-              paddingVertical={20}
+              paddingVertical={15}
               borderRadius={20}
-              borderColor={"#CDCDCD"}
-              placeholderTextColor={"#B1B1B1"}
-
+              borderColor={"#DBDBDB"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              height={170}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"START DATE"}
               borderRadius={30}
-              borderColor={"#CDCDCD"}
-              placeholderTextColor={"#B1B1B1"}
-
+              borderColor={"#DBDBDB"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"END DATE"}
               borderRadius={30}
-              borderColor={"#CDCDCD"}
-              placeholderTextColor={"#B1B1B1"}
-
+              borderColor={"#DBDBDB"}
+              placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#E5E5E5"}
+              height={62}
+              backgroundColor={isDarkTheme?"#000":"#fff"}
             />
 
             <CustomView
               style={{
-                width: '50%',
-                marginVertical: 30
+                // width: '50%',
+                marginTop: 30
               }}
             >
               <CustomCheckBox
+                rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                 rightText={'RECURRING SPECIAL'}
                 isChecked={false}
+                fontSize={23}
+                fontWeight={"500"}
               />
             </CustomView>
 
@@ -561,12 +581,15 @@ const BusinessDetailScreen = ({ navigation }) => {
                     <CustomView
                       style={{
                         width: '50%',
-                        marginTop: 10,
+                        marginTop: 20,
                       }}
                     >
                       <CustomCheckBox
                         rightText={item?.title}
                         isChecked={false}
+                        fontSize={23}
+                        fontWeight={"500"}
+                        rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                       />
                     </CustomView>
 
@@ -586,9 +609,9 @@ const BusinessDetailScreen = ({ navigation }) => {
 
               <CustomText
                 style={{
-                  fontSize: 14,
-                  fontWeight: '600',
-                  color: '#B1B1B1',
+                  fontSize: 23,
+                  fontWeight: '500',
+                  color: isDarkTheme ? "#fff" : '#CECECE',
                   textAlign: "center",
                   marginLeft: 10
                 }}
@@ -616,6 +639,8 @@ const BusinessDetailScreen = ({ navigation }) => {
           <CustomCheckBox
             rightText={item?.title}
             isChecked={false}
+            rightTextColor={isDarkTheme?"#fff":"#A6A6A6"}
+            fontSize={15}
           />
 
         </CustomView>
@@ -659,6 +684,7 @@ const BusinessDetailScreen = ({ navigation }) => {
         <CustomView
           style={{
             justifyContent: 'space-between',
+
           }}
         >
           <ScrollView
@@ -669,7 +695,8 @@ const BusinessDetailScreen = ({ navigation }) => {
 
             <CustomView
               style={{
-                width: windowWidth
+                width: windowWidth,
+                paddingBottom: 10
               }}
             >
               {
@@ -692,13 +719,17 @@ const BusinessDetailScreen = ({ navigation }) => {
                         :
                         count === 5
                           ?
-                          renderUploadGalleryPhoto()
+                          renderUploadBusinessPhoto(true)
                           :
                           count === 6
                             ?
-                            renderGoingOnDetailsSection()
+                            renderUploadGalleryPhoto()
                             :
-                            null
+                            count === 7
+                              ?
+                              renderGoingOnDetailsSection()
+                              :
+                              null
 
               }
 
@@ -709,12 +740,14 @@ const BusinessDetailScreen = ({ navigation }) => {
           <CustomView
             style={{
               paddingHorizontal: 20,
-              marginTop: 20
+              marginTop: 50,
+
             }}
           >
             <CoustomPagination
-            // isCenter={true}
-              dataLength={6}
+              activeScreenIndex={count}
+              // isCenter={true}
+              dataLength={7}
               onPress={handlePagination}
             />
           </CustomView>

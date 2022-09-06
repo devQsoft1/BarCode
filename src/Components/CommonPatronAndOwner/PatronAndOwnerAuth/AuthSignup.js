@@ -69,7 +69,6 @@ const AuthSignup = ({ navigation }) => {
 
       <CustomView
         style={{
-          // height: '100%',
           paddingHorizontal: 20,
         }}
       >
@@ -77,6 +76,8 @@ const AuthSignup = ({ navigation }) => {
           marginTop={20}
           placeholder={'Name'}
           rightIcon={<UserIconSmall />}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
         />
 
 
@@ -84,18 +85,24 @@ const AuthSignup = ({ navigation }) => {
           marginTop={20}
           placeholder={'Birthday'}
           rightIcon={<CalenderIcon />}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
         />
 
         <CustomTextInput
           marginTop={20}
           placeholder={'Phone'}
           rightIcon={<CallIcon />}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
         />
 
         <CustomTextInput
           marginTop={20}
           placeholder={'Email'}
           rightIcon={<MessageIcon />}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
         />
 
 
@@ -103,13 +110,18 @@ const AuthSignup = ({ navigation }) => {
           marginTop={20}
           placeholder={'Password'}
           rightIcon={<EyeCrossIcon />}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
         />
 
 
         <CustomTextInput
           marginTop={20}
           placeholder={'Confirm Password'}
+          placeholderTextColor={"#fff"}
+          backgroundColor={isDarkTheme?"#000":"#fff"}
           rightIcon={<EyeCrossIcon />}
+        
         />
 
 

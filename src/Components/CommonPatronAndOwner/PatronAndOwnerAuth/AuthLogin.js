@@ -62,29 +62,39 @@ const AuthLogin = ({ navigation }) => {
   return (
     <Frame>
 
-      <TopContainer
-        text1={"JOIN NOW TO START YOUR"}
-        text2={"FREE TRIAL!"}
-        isDarkTheme={isDarkTheme}
-        fontSizetText2={35}
-      />
+      {currentUser?.user_type === "patron" ?
+        <TopContainer
+          text1={"JOIN NOW TO START YOUR"}
+          text2={"FREE TRIAL!"}
+          isDarkTheme={isDarkTheme}
+          fontSizetText2={33}
+          lineHeightText2={35}
+        /> :
+        <TopContainer
+          text1={"JOIN NOW TO START YOUR"}
+          text2={"6 MONTH FREE TRIAL!"}
+          isDarkTheme={isDarkTheme}
+          fontSizetText2={29}
+          lineHeightText2={35}
 
+        />
+      }
       <CustomView
         style={{
           flex: 1,
-          // height: windowHeight + 20,
           marginHorizontal: 20,
           marginTop: 20
+
         }}
       >
-
-
         <CustomTextInput
-          placeholder={'Eamil'}
+          placeholder={'Email'}
           rightIcon={<MessageIconWhite />}
-          placeholderTextColor={'#B4B4B4'}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
+          placeholderTextColor={isDarkTheme?"#fff":"#B4B4B4"}
+          borderRadius={15}
+          height={61}
         />
 
         <View style={{ height: 20 }} />
@@ -93,16 +103,21 @@ const AuthLogin = ({ navigation }) => {
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           placeholder={'Password'}
           rightIcon={<EyeCrossIconWhite />}
-          placeholderTextColor={'#B4B4B4'}
+          placeholderTextColor={isDarkTheme?"#fff":"#B4B4B4"}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
+          borderRadius={15}
+          height={61}
+      
         />
 
         <CustomText
           text={"Forgot Password?"}
           style={{
-            fontSize: 14,
+            fontSize: 15,
             color: '#42AEEC',
-            alignSelf: 'flex-end'
+            alignSelf: 'flex-end',
+            marginTop: 10,
+            fontWeight: "400"
           }}
         />
 
@@ -116,7 +131,7 @@ const AuthLogin = ({ navigation }) => {
               :
               navigation.navigate('PatronOnboarding')
           }}
-          title={'LOG IN'}
+          title={'LOGIN'}
           paddingVertical={10}
           fontSize={23}
           fontWeight={"500"}
@@ -254,7 +269,10 @@ const AuthLogin = ({ navigation }) => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('AuthSignup')
+            currentUser?.user_type === "patron" ?
+              navigation.navigate('AuthSignup')
+              : navigation.navigate('BusinessDetailScreen')
+
           }}
         >
 

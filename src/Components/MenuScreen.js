@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { StyleSheet, ScrollView, View, Text, FlatList } from "react-native";
+import { StyleSheet, ScrollView, View, Text, FlatList, TouchableOpacity } from "react-native";
 
 // common componets
 import CustomText from "../Common/CustomText";
@@ -24,7 +24,7 @@ import TextStyles from "../style/TextStyles";
 const MenuScreen = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
+  const [FAQdata, setFAQdata] = useState()
   const {
     isDarkTheme,
     theme,
@@ -63,6 +63,19 @@ const MenuScreen = ({ navigation }) => {
 
 
   //---------- render helper
+  const renderFAQ = (item) => {
+ if(item?.name==="FAQ"){
+  navigation.navigate('FAQ')
+ }else if(item?.name==="BUSINESS SIGN IN"){
+  navigation.navigate('OwnerLogin')
+ }else if(item?.name==="MANAGE SUBSCRIPTION"){
+  navigation.navigate('AuthFreeTrial')
+ }else{
+  navigation.navigate('OwnerLogin')
+ }
+
+
+  }
   const renderFlatList = () => {
     return (
       <FlatList
@@ -79,7 +92,10 @@ const MenuScreen = ({ navigation }) => {
   }
   const renderContent = ({ item, index }) => {
     return (
-      <CustomView
+      <TouchableOpacity
+        onPress={() => {
+          renderFAQ(item)
+        }}
         key={index}>
         <CustomText
           text={item?.name}
@@ -87,19 +103,18 @@ const MenuScreen = ({ navigation }) => {
             fontSize: 22,
             fontWeight: '700',
             color: isDarkTheme ? '#fff' : '#000',
-            marginVertical: 35
+            marginVertical: 35,
           }}
         />
-
-        {item.id != 5 && <CustomView style={{ width: '90%', height: 1, backgroundColor: isDarkTheme ? "#fff" : '#000' }} />}
-      </CustomView>
+        {item.id !== 5 && <CustomView style={{ width: '90%', height: 1, backgroundColor: isDarkTheme ? "#fff" : '#000' }} />}
+      </TouchableOpacity>
     )
   }
   //---------- return
   return (
     <CustomView
       style={{
-        backgroundColor: isDarkTheme? "#000":"#fff"
+        backgroundColor: isDarkTheme ? "#000" : "#fff"
       }}
     >
       {renderFlatList()}

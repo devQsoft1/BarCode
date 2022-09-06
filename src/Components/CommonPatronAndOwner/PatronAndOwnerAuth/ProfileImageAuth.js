@@ -62,6 +62,7 @@ const ProfileImageAuth = ({ navigation }) => {
         <TopContainer
           text1={"LET’S SEE THAT SMILE!"}
           text2={"UPLOAD A PROFILE PICTURE"}
+          lineHeightText2={22.5}
           isDarkTheme={isDarkTheme}
         />
 

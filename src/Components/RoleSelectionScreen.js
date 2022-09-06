@@ -50,9 +50,11 @@ const RoleSelectionScreen = ({ navigation }) => {
     >
 
       <TopContainer
-        text1={"HOW WOULD YOU LIKE"}
-        text2={"TO JOIN? "}
+        text1={"HOW WOULD YOU LIKE \n TO JOIN?"}
+        textAlign={"center"}
+        // text2={"TO JOIN? "}
         isDarkTheme={isDarkTheme}
+        lineHeight={22.5}
       />
 
 
@@ -71,6 +73,7 @@ const RoleSelectionScreen = ({ navigation }) => {
           fontSize={50}
           fontWeight={"500"}
           borderRadius={30}
+          height={115}
           onPress={() => {
 
             setCurrentUser({
@@ -88,6 +91,9 @@ const RoleSelectionScreen = ({ navigation }) => {
           fontSize={50}
           fontWeight={"500"}
           borderRadius={30}
+          lineHeight={40}
+          paddingTop={15}
+          height={115}
           onPress={() => {
 
             setCurrentUser({

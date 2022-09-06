@@ -15,7 +15,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const TopContainer = ({ text1, text2, isDarkTheme, textAlign,fontSizetText2 }) => {
+const TopContainer = ({ text1, text2, isDarkTheme, textAlign, fontSizetText2, lineHeight, lineHeightText2 ,fontSize}) => {
 
     //---------- state, veriable, context and hooks
 
@@ -75,10 +75,11 @@ const TopContainer = ({ text1, text2, isDarkTheme, textAlign,fontSizetText2 }) =
                         <CustomText
                             text={text1}
                             style={{
-                                fontSize: 23,
-                                fontWeight: '700',
+                                fontSize: fontSize ? fontSize : 23,
+                                fontWeight: '500',
                                 color: isDarkTheme ? '#FFFFFF' : '#A6A6A6',
                                 textAlign: textAlign,
+                                lineHeight: lineHeight,
                             }}
                         />
                     }
@@ -88,9 +89,10 @@ const TopContainer = ({ text1, text2, isDarkTheme, textAlign,fontSizetText2 }) =
                         <CustomText
                             text={text2}
                             style={{
-                                fontSize: fontSizetText2 ? fontSizetText2: 23,
+                                fontSize: fontSizetText2 ? fontSizetText2 : 23,
                                 fontWeight: '700',
-                                color: isDarkTheme ? '#fff' : '#A6A6A6'
+                                color: isDarkTheme ? '#fff' : '#A6A6A6',
+                                lineHeight: lineHeightText2
                             }}
                         />
                     }
