@@ -48,7 +48,7 @@ const RoleSelectionScreen = ({ navigation }) => {
 
   return (
     <Frame
-      // scrollEnabled={false}
+    // scrollEnabled={false}
     >
 
       <TopContainer
@@ -87,7 +87,7 @@ const RoleSelectionScreen = ({ navigation }) => {
 
 
 
-{/* <CustomCheckBox
+        {/* <CustomCheckBox
                 rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                 rightText={'RECURRING SPECIAL'}
                 isChecked={false}
