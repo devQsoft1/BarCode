@@ -100,6 +100,12 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
                 return renderFaqData()
                 break;
 
+
+            case 'gallary':
+
+                return renderGallary()
+                break;
+
             default:
                 break;
         }
@@ -226,7 +232,7 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
                         fontWeight: '700',
                         color: '#707070',
                         textAlign: 'center',
-                        marginBottom:10
+                        marginBottom: 10
                     }}
                 />
 
@@ -307,6 +313,17 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
                         }}
                     />
                 }
+
+            </React.Fragment>
+        )
+    }
+
+    const renderGallary = () => {
+
+        return (
+            <React.Fragment>
+
+            
 
             </React.Fragment>
         )

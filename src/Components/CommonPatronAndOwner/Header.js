@@ -14,7 +14,7 @@ import ContextHelper from '../../ContextHooks/ContextHelper'
 import CustomView from "../../Common/CustomView";
 
 // icon and imges
-// import Logo2 from "../../Assets/Icons/Logo2";
+// import Logo2 from "../../assets/Icons/Logo2";
 import { Logo2 } from '../../constants/Images'
 import { TextInput } from "react-native-gesture-handler";
 

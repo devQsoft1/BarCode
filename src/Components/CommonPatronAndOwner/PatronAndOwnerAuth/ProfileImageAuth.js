@@ -14,9 +14,9 @@ import { handleLunchCamra, handleImagePicker } from "../../../Utils/Helper";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
-import CameraIcon from "../../../Assets/Icons/CameraIcon";
+import UserIconSmall from "../../../assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../assets/Icons/GallaryIcon";
+import CameraIcon from "../../../assets/Icons/CameraIcon";
 
 // api constants
 import { api_end_point_constants } from "../../../Utils/ApiConstants";

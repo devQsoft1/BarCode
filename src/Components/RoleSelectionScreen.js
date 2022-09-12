@@ -62,6 +62,23 @@ const RoleSelectionScreen = ({ navigation }) => {
       />
 
 
+
+      <Text
+        style={{
+          color: 'red',
+          fontSize: 60,
+          fontFamily: 'inter',
+        }}
+      >asdadfasdfadfasdf</Text>
+
+
+      <Text
+        style={{
+          color: 'red',
+          fontSize: 60,
+        }}
+      >asdadfasdfadfasdf</Text>
+
       <CustomView
         style={{
           paddingTop: 50,

@@ -5,17 +5,17 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-import Logo from '../../../Assets/Icons/Logo';
+import Logo from '../../../assets/Icons/Logo';
 
 // styles
 import AuthStyles from "../../../style/AuthStyles";
 import SpaceStyles from "../../../style/SpaceStyles";
-import CalenderIcon from "../../../Assets/Icons/CalenderIcon";
-import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
-import EyeCrossIcon from "../../../Assets/Icons/EyeCrossIcon";
-import CallIcon from '../../../Assets/Icons/CallIcon'
-import MessageIcon from '../../../Assets/Icons/MessageIcon'
-import RightYellowIcon from "../../../Assets/Icons/RightYellowIcon";
+import CalenderIcon from "../../../assets/Icons/CalenderIcon";
+import UserIconSmall from "../../../assets/Icons/UserIconSmall";
+import EyeCrossIcon from "../../../assets/Icons/EyeCrossIcon";
+import CallIcon from '../../../assets/Icons/CallIcon'
+import MessageIcon from '../../../assets/Icons/MessageIcon'
+import RightYellowIcon from "../../../assets/Icons/RightYellowIcon";
 
 // common
 import TopContainer from "../../../Common/TopContainer";

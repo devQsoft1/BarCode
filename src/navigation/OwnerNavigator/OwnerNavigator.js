@@ -10,11 +10,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // icons
-import HomeIcon from "../../Assets/Icons/HomeIcon";
-import SearchIcon from "../../Assets/Icons/SearchIcon";
-import UserIcon from "../../Assets/Icons/UserIcon";
-import MenuIcon from "../../Assets/Icons/MenuIcon";
-import SaveIcon from "../../Assets/Icons/SaveIcon";
+import HomeIcon from "../../assets/Icons/HomeIcon";
+import SearchIcon from "../../assets/Icons/SearchIcon";
+import UserIcon from "../../assets/Icons/UserIcon";
+import MenuIcon from "../../assets/Icons/MenuIcon";
+import SaveIcon from "../../assets/Icons/SaveIcon";
 import {
   Bookmark,
   BookmarkBlue,

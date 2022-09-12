@@ -11,7 +11,7 @@ import Frame from "../../../Common/Frame";
 import ClainDrinkTile from "../../../Common/Tile/ClainDrinkTile";
 
 // images and icon
-import CameraIcon from "../../../Assets/Icons/CameraIcon";
+import CameraIcon from "../../../assets/Icons/CameraIcon";
 
 // constants
 const windowHeight = Dimensions.get('window').height;

@@ -11,11 +11,11 @@ import CustomText from "../../../Common/CustomText";
 
 
 // images and icon
-import SearchIconSearch from "../../../Assets/Icons/SearchIconSearch";
-import ArrowIcon from "../../../Assets/Icons/ArrowIcon";
+import SearchIconSearch from "../../../assets/Icons/SearchIconSearch";
+import ArrowIcon from "../../../assets/Icons/ArrowIcon";
 import { Shadow } from "react-native-shadow-2";
-import CrossYellow from "../../../Assets/Icons/CrossYellow";
-import AddFilterIcon from "../../../Assets/Icons/AddFilterIcon";
+import CrossYellow from "../../../assets/Icons/CrossYellow";
+import AddFilterIcon from "../../../assets/Icons/AddFilterIcon";
 import CustomCheckBox from "../../../Common/CustomCheckBox";
 import { Item } from "react-native-paper/lib/typescript/components/List/List";
 import ModalContainer from "../../../Common/ModalContainer";

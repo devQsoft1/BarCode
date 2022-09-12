@@ -4,7 +4,7 @@ import { StyleSheet, ScrollView, View, Image, Text, TouchableOpacity, ImageBackg
 
 // image
 import { AuthBgWhite, AuthBgBlack, Logo } from "../constants/Images";
-// import Logo from '../Assets/Icons/Logo';
+// import Logo from '../assets/Icons/Logo';
 
 // common componets
 import CustomText from "./CustomText";
