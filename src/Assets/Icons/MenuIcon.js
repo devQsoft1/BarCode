@@ -6,9 +6,9 @@ function MenuIcon(props) {
     <Svg
       width={45}
       height={44}
-      // {...props}
+    // {...props}
     >
-       <Path
+      <Path
         d="M10.554 12.225H35M10.554 22H35m-24.446 9.775H35"
         stroke={props.fill}
         // stroke="#000"
@@ -21,11 +21,12 @@ function MenuIcon(props) {
   )
 }
 
-MenuIcon.defaultProps={
-    width: 45,
-    height:44,
-    fill:'#000',
-    viewBox:"0 0 45 44"
+MenuIcon.defaultProps = {
+  width: 45,
+  height: 44,
+  fill: '#000',
+  viewBox: "0 0 45 44"
 }
 
 export default MenuIcon;
+

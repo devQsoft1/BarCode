@@ -3,7 +3,6 @@ import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Pressable } from "react-native";
 import CheckBox from '@react-native-community/checkbox';
 // import CheckBox from 'react-native-check-box'
-import { Ionicons } from "@expo/vector-icons";
 // images
 import { CheckboxWhite, CheckboxBlack } from "../constants/Images";
 
@@ -41,7 +40,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
   }, [])
 
   //---------- main return
-  // const iconProps = checked ? styles?.checkboxChecked : {};
+
   return (
     <CustomView
       style={{
@@ -84,21 +83,3 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
 //---------- export component
 
 export default CustomCheckBox;
-
-const styles = StyleSheet.create({
-  checkboxBase: {
-    width: 24,
-    height: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: 'transparent',
-  },
-  checkboxChecked: {
-    backgroundColor: 'transparent',
-    color: "red"
-  },
-
-})

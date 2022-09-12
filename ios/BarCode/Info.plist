@@ -22,6 +22,16 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+
+  	<key>NSCameraUsageDescription</key>
+  	<string>we want to access your camera for take image</string>
+	<key>NSMicrophoneUsageDescription</key>
+  	<string>we want to record video for the app</string>
+  	<key>NSPhotoLibraryUsageDescription</key>
+  	<string>we want to access your photos for upload image and video</string>
+  	<key>NSPhotoLibraryAddUsageDescription</key>
+  	<string>we want to access your photos for upload image and video</string>
+
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

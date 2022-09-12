@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions,  } from "react-native";
 
 // common
 import TopContainer from "../../../Common/TopContainer";
@@ -10,6 +10,7 @@ import Frame from "../../../Common/Frame";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 import CustomView from "../../../Common/CustomView";
 import CustomBorderButton from "../../../Common/CustomBorderButton";
+import { handleLunchCamra, handleImagePicker } from "../../../Utils/Helper";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
@@ -25,7 +26,6 @@ const windowHeight = Dimensions.get('window').height;
 const ProfileImageAuth = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
   const {
     isDarkTheme,
     theme,
@@ -47,6 +47,9 @@ const ProfileImageAuth = ({ navigation }) => {
 
   }, [])
 
+
+
+ 
   //---------- main return
 
   return (
@@ -79,7 +82,7 @@ const ProfileImageAuth = ({ navigation }) => {
           <CustomView
             style={{
               borderWidth: 1,
-              borderColor: isDarkTheme? "#FFFFFF": '#747474',
+              borderColor: isDarkTheme ? "#FFFFFF" : '#747474',
               height: 150,
               width: 150,
               alignSelf: 'center',
@@ -91,7 +94,7 @@ const ProfileImageAuth = ({ navigation }) => {
             <CustomView
               style={{
                 borderWidth: 1,
-                borderColor: isDarkTheme? "#FFFFFF": '#747474',
+                borderColor: isDarkTheme ? "#FFFFFF" : '#747474',
                 height: 140,
                 width: 140,
                 borderRadius: 100,
@@ -99,7 +102,7 @@ const ProfileImageAuth = ({ navigation }) => {
                 alignItems: 'center'
               }}
             >
-              <UserIconSmall height={60} width={60}/>
+              <UserIconSmall height={60} width={60} />
 
             </CustomView>
 
@@ -126,13 +129,13 @@ const ProfileImageAuth = ({ navigation }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  alert('in process....')
+                  handleImagePicker()
                 }}
               >
                 <GallaryIcon />
                 <CustomText
                   style={{
-                    color: isDarkTheme?"#FFFFFF":'#A6A6A6',
+                    color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                     fontSize: 18,
                     fontWeight: '400'
                   }}
@@ -145,15 +148,16 @@ const ProfileImageAuth = ({ navigation }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  alert('in process....')
+                  handleLunchCamra()
                 }}
               >
                 <CameraIcon />
                 <CustomText
                   style={{
-                    color: isDarkTheme?"#FFFFFF":'#A6A6A6',
+                    color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                     fontSize: 18,
-                    fontWeight: '400'                  }}
+                    fontWeight: '400'
+                  }}
                   text={'Camera'}
                 />
               </TouchableOpacity>
