@@ -15,6 +15,7 @@ const CustomText = (props) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -22,6 +23,7 @@ const CustomText = (props) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   return (
     <>

@@ -72,6 +72,7 @@ function PatronTabNavigation() {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -79,6 +80,7 @@ function PatronTabNavigation() {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
   //---------- return main view of drawer
 
   return (

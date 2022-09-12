@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions,  } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, } from "react-native";
 
 // common
 import TopContainer from "../../../Common/TopContainer";
@@ -18,12 +18,19 @@ import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
+// api constants
+import { api_end_point_constants } from "../../../Utils/ApiConstants";
+
 // constants
 const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const ProfileImageAuth = ({ navigation }) => {
+const ProfileImageAuth = ({ navigation, route }) => {
+
+  const { data } = route.params;
+
+  console.log('data:', data)
 
   //---------- state, veriable, context and hooks
   const {
@@ -33,6 +40,7 @@ const ProfileImageAuth = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -41,15 +49,20 @@ const ProfileImageAuth = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
+
   //---------- life cycles
 
   useEffect(() => {
 
-  }, [])
+    console.log('--------------------------')
+    console.log('status', appStateObject)
+    console.log('--------------------------')
+
+  }, [appStateObject])
 
 
 
- 
+
   //---------- main return
 
   return (
@@ -178,6 +191,16 @@ const ProfileImageAuth = ({ navigation }) => {
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('AuthFreeTrial')
+                  // postData({
+                  //   key: 'signup_pocket',
+                  //   end_point: api_end_point_constants.sign_up,
+                  //   data: {
+                  //     ...data,
+                  //     role: 0,
+                  //     profile_image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+
+                  //   }
+                  // })
                 }}
               >
 

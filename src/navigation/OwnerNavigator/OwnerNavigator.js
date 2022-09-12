@@ -83,6 +83,7 @@ function AdminTabNavigation() {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -90,6 +91,7 @@ function AdminTabNavigation() {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   console.log('-------------------------, user')
 

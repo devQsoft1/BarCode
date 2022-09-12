@@ -25,6 +25,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -32,6 +33,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 

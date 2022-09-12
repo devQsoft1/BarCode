@@ -7,6 +7,9 @@ import { StyleSheet, ScrollView, View, Text, useColorScheme } from "react-native
 // third party lib
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// api call
+import { postDataToServer, postFormDataToServer } from '../Utils/Axios'
+
 
 //---------- context
 
@@ -57,6 +60,38 @@ const GlobalContextProvide = (props) => {
 
         console.log('---- is dark theme ----', isDarkTheme)
     }, [isDarkTheme])
+
+
+    //---------------------------------- Axios Api cal ----------------------------------------//
+
+    const postData = ({
+        data, key, end_point, params = {}
+    }) => {
+
+        postFormDataToServer({
+            data, key, end_point, call_back: postDataCallBack
+        })
+
+
+    }
+
+    const postDataCallBack = (response) => {
+
+        console.log('response : ', response);
+        storeDataInAppState(response.key, response.response)
+
+    }
+
+
+
+
+
+
+
+
+
+    //------------------------------------- change theme --------------------------------------//
+
     //---------- user's action
 
     // change theme
@@ -95,8 +130,12 @@ const GlobalContextProvide = (props) => {
         }
     }
 
+
+    //----------------------------------- Store data in state---------------------------------//
+
+
     // store data in state
-    const storeDataInAppState = ({ data, key }) => {
+    const storeDataInAppState = ({ key, data }) => {
 
         setAppStateObject({
             [key]: data,
@@ -112,6 +151,8 @@ const GlobalContextProvide = (props) => {
             ...appStateObject
         })
     }
+
+    //------------------------------ Async Storage ------------------------------------------//
 
     //---------- async storage
 
@@ -156,6 +197,7 @@ const GlobalContextProvide = (props) => {
                 appStateArray,
                 currentUser,
 
+                postData,
                 changeTheme,
                 storeDataInAppState,
                 removeDataFromAppState,

@@ -32,6 +32,7 @@ const MenuScreen = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -39,6 +40,7 @@ const MenuScreen = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   // useLayoutEffect(() => {
   //   navigation.setOptions({

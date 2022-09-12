@@ -27,6 +27,7 @@ const CustomBorderButton = (props) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -34,6 +35,7 @@ const CustomBorderButton = (props) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- Main View
   return (

@@ -53,6 +53,7 @@ const CustomTextInput = ({
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -60,6 +61,7 @@ const CustomTextInput = ({
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- main view
 

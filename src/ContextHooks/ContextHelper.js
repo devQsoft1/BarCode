@@ -18,6 +18,7 @@ const ContextHelper = () => {
         appStateArray,
         currentUser,
 
+        postData,
         changeTheme,
         storeDataInAppState,
         removeDataFromAppState,
@@ -35,6 +36,7 @@ const ContextHelper = () => {
         appStateArray,
         currentUser,
 
+        postData,
         changeTheme,
         storeDataInAppState,
         removeDataFromAppState,

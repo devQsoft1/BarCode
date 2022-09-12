@@ -48,6 +48,7 @@ const BarDetail = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -55,6 +56,7 @@ const BarDetail = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 
@@ -183,7 +185,7 @@ const BarDetail = ({ navigation }) => {
                 marginBottom: 10,
                 fontSize: 24,
                 fontWeight: 'bold',
-                color: isDarkTheme ? '#fff' : '#CCCCCC'
+                color: isDarkTheme ? '#fff' : '#747474'
               }}
             />
 
@@ -192,7 +194,7 @@ const BarDetail = ({ navigation }) => {
               style={{
                 fontSize: 20,
                 fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#7B7B7B'
+                color: isDarkTheme ? '#fff' : '#A4A4A4'
               }}
             />
 
@@ -215,7 +217,7 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
 
@@ -225,7 +227,7 @@ const BarDetail = ({ navigation }) => {
                     marginTop: 10,
                     fontSize: 16,
                     fontWeight: '400',
-                    color: isDarkTheme ? '#fff' : '#7B7B7B'
+                    color: isDarkTheme ? '#fff' : '#A4A4A4'
                   }}
                 />
 
@@ -235,7 +237,7 @@ const BarDetail = ({ navigation }) => {
                     marginTop: 10,
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
 
@@ -245,7 +247,7 @@ const BarDetail = ({ navigation }) => {
                     marginTop: 10,
                     fontSize: 16,
                     fontWeight: '400',
-                    color: isDarkTheme ? '#fff' : '#7B7B7B'
+                    color: isDarkTheme ? '#fff' : '#A4A4A4'
                   }}
                 />
 
@@ -255,7 +257,7 @@ const BarDetail = ({ navigation }) => {
                     marginTop: 10,
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
 
                   }}
                 />
@@ -266,7 +268,7 @@ const BarDetail = ({ navigation }) => {
                     marginTop: 10,
                     fontSize: 16,
                     fontWeight: '400',
-                    color: isDarkTheme ? '#fff' : '#7B7B7B'
+                    color: isDarkTheme ? '#fff' : '#A4A4A4'
                   }}
                 />
 
@@ -311,7 +313,7 @@ const BarDetail = ({ navigation }) => {
                     marginBottom: 10,
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
                 {/* <CallIconBlack color={'#000'} /> */}
@@ -334,7 +336,7 @@ const BarDetail = ({ navigation }) => {
                     marginBottom: 10,
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
                 {/* <WorldIcon /> */}
@@ -357,7 +359,7 @@ const BarDetail = ({ navigation }) => {
                     marginBottom: 10,
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
                 <CustomView
@@ -400,7 +402,7 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
 
@@ -425,7 +427,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -451,7 +453,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -477,7 +479,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -503,7 +505,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -519,7 +521,7 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
 
@@ -544,7 +546,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -570,7 +572,7 @@ const BarDetail = ({ navigation }) => {
                     style={{
                       fontSize: 18,
                       fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#7B7B7B'
+                      color: isDarkTheme ? '#fff' : '#A4A4A4'
                     }}
                   />
                 </CustomView>
@@ -584,7 +586,7 @@ const BarDetail = ({ navigation }) => {
               style={{
                 fontSize: 20,
                 fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#CCCCCC'
+                color: isDarkTheme ? '#fff' : '#747474'
               }}
             />
             <CustomText
@@ -592,7 +594,7 @@ const BarDetail = ({ navigation }) => {
               style={{
                 fontSize: 18,
                 fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#7B7B7B'
+                color: isDarkTheme ? '#fff' : '#A4A4A4'
               }}
             />
 
@@ -602,7 +604,7 @@ const BarDetail = ({ navigation }) => {
                 marginTop: 30,
                 fontSize: 20,
                 fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#CCCCCC'
+                color: isDarkTheme ? '#fff' : '#747474'
               }}
             />
             <CustomText
@@ -610,7 +612,7 @@ const BarDetail = ({ navigation }) => {
               style={{
                 fontSize: 18,
                 fontWeight: '400',
-                color: isDarkTheme ? '#fff' : '#7B7B7B'
+                color: isDarkTheme ? '#fff' : '#A4A4A4'
               }}
             />
 
@@ -664,7 +666,7 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     fontSize: 24,
                     fontWeight: '400',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
 
@@ -676,7 +678,7 @@ const BarDetail = ({ navigation }) => {
                   style={{
                     fontSize: 24,
                     fontWeight: '400',
-                    color: isDarkTheme ? '#fff' : '#CCCCCC'
+                    color: isDarkTheme ? '#fff' : '#747474'
                   }}
                 />
               </CustomView>
@@ -703,7 +705,42 @@ const BarDetail = ({ navigation }) => {
 
 
             :
-            null
+            <CustomView
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                // alignItems: 'center',
+                justifyContent: 'flex-end',
+                paddingHorizontal: 20,
+                marginTop: 15
+              }}
+            >
+              <CustomView
+                style={{
+                  marginRight: 20
+                }}>
+                <CustomText
+                  text={"View Menu"}
+                  style={{
+                    fontSize: 24,
+                    fontWeight: '400',
+                    color: isDarkTheme ? '#fff' : '#747474'
+                  }}
+                />
+
+                <CustomView style={{ height: 15 }} />
+
+                <CustomText
+                  text={"View Gallery"}
+                  style={{
+                    fontSize: 24,
+                    fontWeight: '400',
+                    color: isDarkTheme ? '#fff' : '#747474'
+                  }}
+                />
+              </CustomView>
+
+            </CustomView>
         }
       </CustomView>
       {renderModal()}

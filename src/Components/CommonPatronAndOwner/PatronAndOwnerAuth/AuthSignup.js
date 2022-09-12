@@ -34,6 +34,15 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 const AuthSignup = ({ navigation }) => {
 
+  const [data, setData] = useState({
+    // name: 'mohi0t',
+    // dob: '06-12-1992',
+    // email: 'my12@gmail.com',
+    // mobile:'2133666699',
+    // password: '12345',
+    // confirm_password: '12345'
+  })
+
   //---------- state, veriable, context and hooks
 
   const {
@@ -43,6 +52,7 @@ const AuthSignup = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -53,9 +63,6 @@ const AuthSignup = ({ navigation }) => {
 
   //---------- life cycles
 
-  useEffect(() => {
-
-  }, [])
 
   //---------- main return
 
@@ -73,58 +80,91 @@ const AuthSignup = ({ navigation }) => {
         }}
       >
         <CustomTextInput
+          onChangeText={(text) => setData({
+            name: text,
+            ...data
+          })}
+          value={data.name}
           fontSize={20}
           marginTop={20}
           placeholder={'Name'}
           rightIcon={<UserIconSmall />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            dob: text,
+            ...data
+          })}
+          value={data.dob}
+
           fontSize={20}
           marginTop={20}
           placeholder={'Birthday'}
           rightIcon={<CalenderIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            mobile: text,
+            ...data
+          })}
+          value={data.mobile}
+
           fontSize={20}
           marginTop={20}
           placeholder={'Phone'}
           rightIcon={<CallIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            email: text,
+            ...data
+          })}
+          value={data.email}
+
           fontSize={20}
           marginTop={20}
           placeholder={'Email'}
           rightIcon={<MessageIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            password: text,
+            ...data
+          })}
+          value={data.password}
           fontSize={20}
           marginTop={20}
           placeholder={'Password'}
           rightIcon={<EyeCrossIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            confirm_password: text,
+            ...data
+          })}
+          value={data.confirm_password}
           fontSize={20}
           marginTop={20}
           placeholder={'Confirm Password'}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           rightIcon={<EyeCrossIcon />}
 
@@ -152,7 +192,7 @@ const AuthSignup = ({ navigation }) => {
         >
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('ProfileImageAuth')
+              navigation.navigate('ProfileImageAuth', { data })
             }}
           >
 
