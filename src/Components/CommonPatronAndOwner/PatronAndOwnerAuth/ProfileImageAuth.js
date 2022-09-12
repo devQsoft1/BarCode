@@ -79,6 +79,7 @@ const ProfileImageAuth = ({ navigation }) => {
           }}
         >
 
+
           <CustomView
             style={{
               borderWidth: 1,
