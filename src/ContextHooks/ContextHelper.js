@@ -24,6 +24,7 @@ const ContextHelper = () => {
         removeDataFromAppState,
         storeDataInAsyncStorage,
         getDataFromAsyncStorage,
+        removeDataFromAsyncStorage,
         setCurrentUser,
     } = useContext(AppContext);
 
@@ -42,6 +43,7 @@ const ContextHelper = () => {
         removeDataFromAppState,
         storeDataInAsyncStorage,
         getDataFromAsyncStorage,
+        removeDataFromAsyncStorage,
         setCurrentUser,
     }
 

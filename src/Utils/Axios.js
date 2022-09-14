@@ -32,6 +32,7 @@ export const getDataFromServerWithGivenParams = async ({ data, end_point }) => {
 
 export const postFormDataToServer = async ({ data, key, end_point, call_back }) => {
 
+    // create form data 
     var form_data = new FormData();
 
     form_data.append("control", end_point);
@@ -39,21 +40,22 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
         form_data.append(id, data[id]);
     }
 
-    console.log('form data', form_data);
-
-
+    // api call
     await axios.post(BASE_URL, form_data, {
 
         headers: {
             "Content-Type": "multipart/form-data",
         },
     })
+
+        // success
         .then(function (response) {
 
             console.log('                                     ')
             console.log('api respone', response.data)
             console.log('                                     ')
 
+            // success
             if (response?.data?.result) {
 
                 call_back({
@@ -61,6 +63,8 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
                     response: response?.data?.data,
                     key
                 })
+
+                // error
             } else {
 
                 call_back({
@@ -70,6 +74,8 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
                 })
             }
         })
+
+        // axios error
         .catch(function (error) {
 
             console.log('catch error=', error)

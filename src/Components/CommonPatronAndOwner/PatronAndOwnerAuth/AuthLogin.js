@@ -19,16 +19,16 @@ import TopContainer from "../../../Common/TopContainer";
 
 // images and icon
 import { Apple, Facebook, Google, patronLoginBG, Twitter } from "../../../constants/Images";
-import Logo from '../../../assets/Icons/Logo';
-import MessageIconWhite from '../../../assets/Icons/MessageIconWhite'
-import EyeCrossIconWhite from '../../../assets/Icons/EyeCrossIconWhite'
-import MessageIcon from '../../../assets/Icons/MessageIcon'
-import EyeCrossIcon from '../../../assets/Icons/EyeCrossIcon'
+import Logo from '../../../Assets/Icons/Logo';
+import MessageIconWhite from '../../../Assets/Icons/MessageIconWhite'
+import EyeCrossIconWhite from '../../../Assets/Icons/EyeCrossIconWhite'
+import MessageIcon from '../../../Assets/Icons/MessageIcon'
+import EyeCrossIcon from '../../../Assets/Icons/EyeCrossIcon'
 
-import AppleIcon from "../../../assets/Icons/AppleIcon";
-import GoogleIcon from "../../../assets/Icons/GoogleIcon";
-import FacebookIcon from "../../../assets/Icons/FacebookIcon";
-import AppleIconShadow from "../../../assets/Icons/AppleIconShadow";
+import AppleIcon from "../../../Assets/Icons/AppleIcon";
+import GoogleIcon from "../../../Assets/Icons/GoogleIcon";
+import FacebookIcon from "../../../Assets/Icons/FacebookIcon";
+import AppleIconShadow from "../../../Assets/Icons/AppleIconShadow";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -38,7 +38,6 @@ const windowHeight = Dimensions.get('window').height;
 const AuthLogin = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
   const {
     isDarkTheme,
     theme,
@@ -54,7 +53,10 @@ const AuthLogin = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
-
+  const [data, setData] = useState({
+    email: "",
+    password: ""
+  })
 
   //---------- life cycles
 
@@ -93,9 +95,12 @@ const AuthLogin = ({ navigation }) => {
         }}
       >
         <CustomTextInput
+          onChangeText={(text) => setData({
+            ...data,
+            email: text,
+          })}
           placeholder={'Email'}
           rightIcon={isDarkTheme ? <MessageIconWhite /> : <MessageIcon />}
-          // rightIcon={<MessageIconWhite />}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           placeholderTextColor={isDarkTheme ? "#fff" : "#B4B4B4"}
@@ -106,11 +111,13 @@ const AuthLogin = ({ navigation }) => {
         <View style={{ height: 20 }} />
 
         <CustomTextInput
+          onChangeText={(text) => setData({
+            ...data,
+            password: text,
+          })}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           placeholder={'Password'}
           rightIcon={isDarkTheme ? <EyeCrossIconWhite /> : <EyeCrossIcon />}
-          // rightIcon={<EyeCrossIcon />}
-
           placeholderTextColor={isDarkTheme ? "#fff" : "#B4B4B4"}
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           borderRadius={15}
@@ -133,7 +140,6 @@ const AuthLogin = ({ navigation }) => {
 
         <CustomButton
           onPress={() => {
-
             currentUser?.user_type === 'business_owner' ?
               navigation.navigate('OwnerOnboarding')
               :

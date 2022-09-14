@@ -19,12 +19,12 @@ import ModalContainer from "../../Common/ModalContainer";
 
 // images and icon
 import { GoogleMap, AddYellow, YellowRight, Phone, LyftBlack, Lyft, Globe, } from "../../constants/Images";
-import CameraIcon from "../../assets/Icons/CameraIcon";
-import CallIconBlack from "../../assets/Icons/CallIconBlack";
-import WorldIcon from "../../assets/Icons/WorldIcon";
-import MarkRedIcon from "../../assets/Icons/MarkRedIcon";
+import CameraIcon from "../../Assets/Icons/CameraIcon";
+import CallIconBlack from "../../Assets/Icons/CallIconBlack";
+import WorldIcon from "../../Assets/Icons/WorldIcon";
+import MarkRedIcon from "../../Assets/Icons/MarkRedIcon";
 import CustomBorderButton from "../../Common/CustomBorderButton";
-import ClaimDrinkIcon from "../../assets/Icons/ClaimDrinkIcon";
+import ClaimDrinkIcon from "../../Assets/Icons/ClaimDrinkIcon";
 import BottomModalContainer from "../../Common/BottomModalContainer";
 
 // constants

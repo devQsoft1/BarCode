@@ -8,8 +8,8 @@ import { StyleSheet, ScrollView, View, Text, Image, Dimensions, FlatList, Toucha
 import CustomView from "../../../Common/CustomView";
 import CustomText from "../../../Common/CustomText";
 import Frame from "../../../Common/Frame";
-import BackIcon from "../../../assets/Icons/BackIcon";
-import ArrowIcon from "../../../assets/Icons/ArrowIcon";
+import BackIcon from "../../../Assets/Icons/BackIcon";
+import ArrowIcon from "../../../Assets/Icons/ArrowIcon";
 import ContextHelper from '../../../ContextHooks/ContextHelper';
 
 

@@ -10,7 +10,7 @@ import { BLACK } from "../constants/Colors";
 import { addIcon } from "../../constants/Images";
 
 // icon
-import AddIcon from '../../assets/Icons/AddIcon'
+import AddIcon from '../../Assets/Icons/AddIcon'
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";

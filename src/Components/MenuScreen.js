@@ -38,6 +38,7 @@ const MenuScreen = ({ navigation }) => {
     removeDataFromAppState,
     storeDataInAsyncStorage,
     getDataFromAsyncStorage,
+    removeDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
 
@@ -66,15 +67,19 @@ const MenuScreen = ({ navigation }) => {
 
   //---------- render helper
   const renderFAQ = (item) => {
- if(item?.name==="FAQ"){
-  navigation.navigate('FAQ')
- }else if(item?.name==="BUSINESS SIGN IN"){
-  navigation.navigate('OwnerLogin')
- }else if(item?.name==="MANAGE SUBSCRIPTION"){
-  navigation.navigate('AuthFreeTrial')
- }else{
-  navigation.navigate('OwnerLogin')
- }
+    if (item?.name === "FAQ") {
+      navigation.navigate('FAQ')
+    } else if (item?.name === "BUSINESS SIGN IN") {
+      navigation.navigate('OwnerLogin')
+    } else if (item?.name === "MANAGE SUBSCRIPTION") {
+      navigation.navigate('AuthFreeTrial')
+    } else {
+
+      // logout
+      removeDataFromAsyncStorage('current_user')
+      setCurrentUser({})
+      navigation.navigate('SplashScreen')
+    }
 
 
   }
@@ -117,7 +122,7 @@ const MenuScreen = ({ navigation }) => {
     <CustomView
       style={{
         backgroundColor: isDarkTheme ? "#000" : "#fff",
-        flex:1
+        flex: 1
       }}
     >
       {renderFlatList()}
@@ -130,21 +135,12 @@ const MenuScreen = ({ navigation }) => {
 
 export default MenuScreen;
 
-//---------- css
-
-const styles = StyleSheet.create({
-  container: {
-    height: '50%',
-    backgroundColor: 'red',
-    alignSelf: 'flex-end'
-  },
-
-});
+//---------- static data 
 
 let data = [
   {
     id: 1,
-    name: "LOG OUT"
+    name: "LOGOUT"
   },
   {
     id: 2,

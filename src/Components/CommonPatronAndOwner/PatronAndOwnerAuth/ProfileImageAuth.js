@@ -9,17 +9,19 @@ import CustomText from "../../../Common/CustomText";
 import Frame from "../../../Common/Frame";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 import CustomView from "../../../Common/CustomView";
-import CustomBorderButton from "../../../Common/CustomBorderButton";
-import { handleLunchCamra, handleImagePicker } from "../../../Utils/Helper";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-import UserIconSmall from "../../../assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../assets/Icons/GallaryIcon";
-import CameraIcon from "../../../assets/Icons/CameraIcon";
+import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
+import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
 // api constants
 import { api_end_point_constants } from "../../../Utils/ApiConstants";
+
+// helpers
+import { handleImagePicker, handleLunchCamra } from '../../../Utils/Helper';
+import { uploadImageToStorage } from "../../../Utils/Firebase";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -28,6 +30,9 @@ const windowHeight = Dimensions.get('window').height;
 
 const ProfileImageAuth = ({ navigation, route }) => {
 
+
+  //---------- state, veriables and params
+  const [imageLocalUri, setImageLocalUri] = useState()
   const { data } = route.params;
 
   console.log('data:', data)
@@ -51,7 +56,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
 
   //---------- life cycles
-
   useEffect(() => {
 
     // success
@@ -60,16 +64,41 @@ const ProfileImageAuth = ({ navigation, route }) => {
       navigation.navigate('AuthFreeTrial')
     }
 
-    // error
-    if (appStateObject?.signup_pocket?.error) {
-
-      alert(appStateObject?.signup_pocket?.error?.message)
-    }
-
   }, [appStateObject?.signup_pocket])
 
+  //------------ user's actions
 
+  const handleSelectedImage = (image) => {
 
+    console.log('image', image)
+    setImageLocalUri(image)
+  }
+
+  const handleUploadImage = () => {
+
+    if (imageLocalUri) {
+
+      let path = `usersimage/${data.email}/profileImage.jpg`
+      uploadImageToStorage(path, imageLocalUri, handleSubmit)
+    }
+  }
+
+  // submit to server
+  const handleSubmit = (response) => {
+
+    console.log('image url ', response)
+    if (response.status === "success") {
+      postData({
+        key: 'signup_pocket',
+        end_point: api_end_point_constants.sign_up,
+        data: {
+          ...data,
+          role: 0,
+          profile_image: response.firebase_image_url
+        }
+      })
+    }
+  }
 
   //---------- main return
 
@@ -150,7 +179,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  handleImagePicker()
+                  handleImagePicker({ call_back: handleSelectedImage })
                 }}
               >
                 <GallaryIcon />
@@ -169,7 +198,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  handleLunchCamra()
+                  handleLunchCamra({ call_back: handleSelectedImage })
                 }}
               >
                 <CameraIcon />
@@ -198,16 +227,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
             >
               <TouchableOpacity
                 onPress={() => {
-                  postData({
-                    key: 'signup_pocket',
-                    end_point: api_end_point_constants.sign_up,
-                    data: {
-                      ...data,
-                      role: 0,
-                      profile_image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'
-
-                    }
-                  })
+                  handleUploadImage()
                 }}
               >
 

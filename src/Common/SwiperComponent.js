@@ -15,12 +15,12 @@ import CustomView from "./CustomView";
 
 // icon and imges
 import { Logo2 } from '../constants/Images'
-import BackIcon from "../assets/Icons/BackIcon";
-import ArrowIcon from "../assets/Icons/ArrowIcon";
-import SaveIcon from "../assets/Icons/SaveIcon";
-import UploadArrow from "../assets/Icons/UploadArrow";
-import FeaturedRedIcon from "../assets/Icons/FeaturedRedIcon";
-import BellIcon from "../assets/Icons/BellIcon";
+import BackIcon from "../Assets/Icons/BackIcon";
+import ArrowIcon from "../Assets/Icons/ArrowIcon";
+import SaveIcon from "../Assets/Icons/SaveIcon";
+import UploadArrow from "../Assets/Icons/UploadArrow";
+import FeaturedRedIcon from "../Assets/Icons/FeaturedRedIcon";
+import BellIcon from "../Assets/Icons/BellIcon";
 // constants
 const windowHeight = Dimensions.get('window').height;
 

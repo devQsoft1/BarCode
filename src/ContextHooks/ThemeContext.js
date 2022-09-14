@@ -6,10 +6,13 @@ import { StyleSheet, ScrollView, View, Text, useColorScheme } from "react-native
 
 // third party lib
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 // api call
 import { postDataToServer, postFormDataToServer } from '../Utils/Axios'
 
+// constants helper
+import { errors } from "../constants/ErrorConstants";
 
 //---------- context
 
@@ -71,26 +74,31 @@ const GlobalContextProvide = (props) => {
         postFormDataToServer({
             data, key, end_point, call_back: postDataCallBack
         })
-
-
     }
-
     const postDataCallBack = (response) => {
 
-        console.log('response : ', response);
+        // veriable
         let key = response.key
         let data
 
+        // success
         if (response.status === 'success') {
 
             data = {
                 response: response.response
             }
+
+            // error
         } else {
 
             data = {
                 error: response.error
             }
+
+            showMessage({
+                message: errors[key],
+                type: 'danger',
+            });
         }
 
         storeDataInAppState({ key, data })
@@ -155,6 +163,19 @@ const GlobalContextProvide = (props) => {
             ...appStateObject,
             [key]: data,
         })
+
+        console.log('data :', data)
+
+        if (data?.response?.TOKEN) {
+            if (key === 'signup_pocket' || key === 'login_pocket') {
+
+                let user_type = (data.response.role === '0' || data.response.role === 0) ? 'patron' :
+
+                    (data.response.role === '0' || data.response.role === 0) ? 'business_owner' : 'none'
+
+                storeDataInAsyncStorage({ key: 'current_user', value: { ...data.response, user_type } })
+            }
+        }
     }
 
     // remove data from app state
@@ -200,6 +221,12 @@ const GlobalContextProvide = (props) => {
         }
     }
 
+    // remove async storage
+    const removeDataFromAsyncStorage = async (key) => {
+
+        await AsyncStorage.removeItem(key)
+    }
+
     //---------- return main view
 
     return (
@@ -217,6 +244,7 @@ const GlobalContextProvide = (props) => {
                 removeDataFromAppState,
                 storeDataInAsyncStorage,
                 getDataFromAsyncStorage,
+                removeDataFromAsyncStorage,
                 setCurrentUser,
             }}
         >

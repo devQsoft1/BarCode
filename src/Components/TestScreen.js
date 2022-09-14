@@ -20,7 +20,7 @@ import TextStyles from "../style/TextStyles";
 import Frame from "../Common/Frame";
 
 // icon
-import UserIconSmall from "../assets/Icons/UserIconSmall";
+import UserIconSmall from "../Assets/Icons/UserIconSmall";
 import ModalContainer from '../Common/ModalContainer';
 import ClainDrinkTile from "../Common/Tile/ClainDrinkTile";
 import DrinkDetailTile from "../Common/Tile/DrinkDetailTile";

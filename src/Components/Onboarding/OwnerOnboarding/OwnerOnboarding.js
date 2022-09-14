@@ -6,7 +6,7 @@ import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, 
 
 
 // images and icon
-import GoliveIcon from "../../../assets/Icons/GoLiveIcon";
+import GoliveIcon from "../../../Assets/Icons/GoLiveIcon";
 import { JoinUsOnboarding, mobileOnboarding, calenderOnboarding, AddPicturesOnBoarding } from '../../../constants/Images'
 // common
 import TopContainer from "../../../Common/TopContainer";
