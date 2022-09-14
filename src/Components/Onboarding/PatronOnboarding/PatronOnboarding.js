@@ -35,13 +35,13 @@ const PatronOnboarding = ({ navigation }) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycles
@@ -98,7 +98,7 @@ const PatronOnboarding = ({ navigation }) => {
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             flex: 0.5,
-                        
+
                         }}
                         text="GET A FREE DRINK EVERYDAY!"
                     />
@@ -123,7 +123,7 @@ const PatronOnboarding = ({ navigation }) => {
                     }}
                 >
                     <CustomView
-                        style={{ flex: 1.5}}>
+                        style={{ flex: 1.5 }}>
                         <Image
                             style={{
 
@@ -139,7 +139,7 @@ const PatronOnboarding = ({ navigation }) => {
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             flex: 0.5,
-                            marginTop:60
+                            marginTop: 60
                         }}
                         text="SEE WHAT’S HAPPENING AROUND YOU
                         OR PUT IN A DATE AND LOCATION
@@ -175,20 +175,20 @@ const PatronOnboarding = ({ navigation }) => {
                             resizeMode='cover'
                         />
                     </CustomView>
-                 
-                        <CustomText
-                            style={{
-                                fontSize: 18,
-                                fontWeight: '600',
-                                color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
-                                textAlign: "center",
-                                flex: 0.5,
-                                marginTop:60
-                            }}
-                            text="CHECK OUT THE BUSINESS PROFILE
+
+                    <CustomText
+                        style={{
+                            fontSize: 18,
+                            fontWeight: '600',
+                            color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
+                            textAlign: "center",
+                            flex: 0.5,
+                            marginTop: 60
+                        }}
+                        text="CHECK OUT THE BUSINESS PROFILE
                         TO VIEW PICTURES, MENUS, EVENTS,
                         AND BARCODE MEMBER SPECIALS!"
-                        />
+                    />
                 </CustomView>
             </>
 

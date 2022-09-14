@@ -36,6 +36,7 @@ const MenuScreen = ({ navigation }) => {
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
+    removeAllDataFromAppState,
     storeDataInAsyncStorage,
     getDataFromAsyncStorage,
     removeDataFromAsyncStorage,
@@ -74,11 +75,11 @@ const MenuScreen = ({ navigation }) => {
     } else if (item?.name === "MANAGE SUBSCRIPTION") {
       navigation.navigate('AuthFreeTrial')
     } else {
-
       // logout
       removeDataFromAsyncStorage('current_user')
       setCurrentUser({})
-      navigation.navigate('SplashScreen')
+      removeAllDataFromAppState()
+      navigation.navigate('RoleSelectionScreen')
     }
 
 

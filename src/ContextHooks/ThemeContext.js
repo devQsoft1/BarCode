@@ -72,7 +72,7 @@ const GlobalContextProvide = (props) => {
     }) => {
 
         postFormDataToServer({
-            data, key, end_point, call_back: postDataCallBack
+            currentUser, data, key, end_point, call_back: postDataCallBack
         })
     }
     const postDataCallBack = (response) => {
@@ -84,8 +84,33 @@ const GlobalContextProvide = (props) => {
         // success
         if (response.status === 'success') {
 
-            data = {
-                response: response.response
+            if (key === 'login_pocket') {
+
+                // check patron or business owner for success response from server and check from local give by : roleselectionscreen
+                if ((currentUser?.user_type === 'business_owner' &&
+                    response?.response?.role === '1' ||
+                    response?.response?.role === 1) ||
+
+                    (currentUser?.user_type === 'patron' &&
+                        response?.response?.role === '0' ||
+                        response?.response?.role === 0)) {
+
+                    data = {
+                        response: response.response
+                    }
+                } else {
+
+                    // show error
+                    showMessage({
+                        message: "User is not registered",
+                        type: 'danger',
+                    });
+                }
+            } else {
+
+                data = {
+                    response: response.response
+                }
             }
 
             // error
@@ -95,6 +120,7 @@ const GlobalContextProvide = (props) => {
                 error: response.error
             }
 
+            // show error
             showMessage({
                 message: errors[key],
                 type: 'danger',
@@ -182,9 +208,16 @@ const GlobalContextProvide = (props) => {
     const removeDataFromAppState = ({ key }) => {
 
         setAppStateObject({
+            ...appStateObject,
             [key]: {},
-            ...appStateObject
         })
+    }
+
+
+    // remove data from app state
+    const removeAllDataFromAppState = () => {
+
+        setAppStateObject({})
     }
 
     //------------------------------ Async Storage ------------------------------------------//
@@ -242,6 +275,7 @@ const GlobalContextProvide = (props) => {
                 changeTheme,
                 storeDataInAppState,
                 removeDataFromAppState,
+                removeAllDataFromAppState,
                 storeDataInAsyncStorage,
                 getDataFromAsyncStorage,
                 removeDataFromAsyncStorage,

@@ -32,7 +32,14 @@ const windowWidth = Dimensions.get('window').width;
 //---------- main component
 
 const BusinessDetailScreen = ({ navigation }) => {
-
+  const [data, setData] = useState({
+    name: "",
+    mobile: '',
+    email: '',
+    dob: '',
+    password: '',
+    confirm_password: ''
+  })
   //---------- state, veriable, context and ref
 
   const [count, setCount] = useState(1)
@@ -98,25 +105,25 @@ const BusinessDetailScreen = ({ navigation }) => {
               marginTop={20}
               placeholder={"Name"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Address"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Phone"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
               marginTop={20}
               placeholder={"Website"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             {/* <CustomTextInput
               marginTop={20}
@@ -151,7 +158,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               placeholder={"What kind of establishment are you?"}
               paddingVertical={3}
               height={65}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
               marginTop={20}
@@ -160,7 +167,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               fontSize={18}
               paddingHorizontal={30}
               height={260}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
 
           </CustomView>
@@ -275,7 +282,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                   <GallaryIcon />
                   <CustomText
                     style={{
-                      color: isDarkTheme?"#fff":'#747474'
+                      color: isDarkTheme ? "#fff" : '#747474'
                     }}
                     text={'Gallery'}
                   />
@@ -292,7 +299,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                   <CameraIcon />
                   <CustomText
                     style={{
-                      color: isDarkTheme?"#fff":'#747474'
+                      color: isDarkTheme ? "#fff" : '#747474'
                     }}
                     text={'Camera'}
                   />
@@ -427,7 +434,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                     <GallaryIcon />
                     <CustomText
                       style={{
-                        color: isDarkTheme?"#fff":'#747474'
+                        color: isDarkTheme ? "#fff" : '#747474'
                       }}
                       text={'Gallery'}
                     />
@@ -444,7 +451,7 @@ const BusinessDetailScreen = ({ navigation }) => {
                     <CameraIcon />
                     <CustomText
                       style={{
-                        color: isDarkTheme?"#fff":'#747474'
+                        color: isDarkTheme ? "#fff" : '#747474'
                       }}
                       text={'Camera'}
                     />
@@ -512,7 +519,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
               fontSize={20}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
 
             />
             <CustomTextInput
@@ -524,7 +531,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               borderColor={"#DBDBDB"}
               placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={162}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
               fontSize={20}
             />
             <CustomTextInput
@@ -537,7 +544,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={170}
               fontSize={20}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
               marginTop={20}
@@ -546,7 +553,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               borderColor={"#DBDBDB"}
               placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
               fontSize={20}
             />
             <CustomTextInput
@@ -556,7 +563,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               borderColor={"#DBDBDB"}
               placeholderTextColor={isDarkTheme ? "#FFFFFF" : "#C7C7C7"}
               height={62}
-              backgroundColor={isDarkTheme?"#000":"#fff"}
+              backgroundColor={isDarkTheme ? "#000" : "#fff"}
               fontSize={20}
             />
 
@@ -646,7 +653,7 @@ const BusinessDetailScreen = ({ navigation }) => {
           <CustomCheckBox
             rightText={item?.title}
             isChecked={false}
-            rightTextColor={isDarkTheme?"#fff":"#A6A6A6"}
+            rightTextColor={isDarkTheme ? "#fff" : "#A6A6A6"}
             fontSize={15}
           />
 

@@ -20,8 +20,12 @@ const Stack = createStackNavigator();
 
 function PatronAuthNavigation(props) {
 
-    console.log('-------------------------, auth')
     //---------- return main view
+
+    console.log('==================================')
+    console.log('props :', props)
+    console.log('==================================')
+
 
     return (
         <Stack.Navigator
@@ -64,13 +68,6 @@ function PatronAuthNavigation(props) {
                     headerShown: false
                 }}
                 name="PatronOnboarding" component={PatronOnboarding} />
-
-
-
-
-
-
-
 
         </Stack.Navigator>
     )

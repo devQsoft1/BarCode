@@ -93,8 +93,6 @@ function AdminTabNavigation() {
   } = ContextHelper()
 
 
-  console.log('-------------------------, user')
-
   //---------- return main view of drawer
 
   return (

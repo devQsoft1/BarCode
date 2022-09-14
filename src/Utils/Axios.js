@@ -26,11 +26,10 @@ export const getDataFromServerWithGivenParams = async ({ data, end_point }) => {
         .catch(function (error) {
             console.log(error);
         });
-
 }
 
 
-export const postFormDataToServer = async ({ data, key, end_point, call_back }) => {
+export const postFormDataToServer = async ({ currentUser, data, key, end_point, call_back }) => {
 
     // create form data 
     var form_data = new FormData();
@@ -40,19 +39,29 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
         form_data.append(id, data[id]);
     }
 
+    let headers = {
+        "Content-Type": "multipart/form-data",
+    }
+    console.log("currentUser?.TOKEN :", currentUser);
+    // if (currentUser?.TOKEN) {
+
+    //     headers = {
+    //         "Content-Type": "multipart/form-data",
+    //         // TOKEN: 
+    //     }
+    // }
+
     // api call
     await axios.post(BASE_URL, form_data, {
 
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
+        headers: headers
     })
 
         // success
         .then(function (response) {
 
             console.log('                                     ')
-            console.log('api respone', response.data)
+            console.log(`api resposense for  key : ${key}, end point : ${end_point}  `, response.data)
             console.log('                                     ')
 
             // success
@@ -67,6 +76,12 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
                 // error
             } else {
 
+
+                console.log('                                     ')
+                console.log(` error :==> api resposense for  key : ${key}, end point : ${end_point}  `, response.data)
+                console.log('                                     ')
+
+
                 call_back({
                     status: 'error',
                     error: response?.data,
@@ -78,7 +93,7 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
         // axios error
         .catch(function (error) {
 
-            console.log('catch error=', error)
+            console.log('catch error axios error =', error)
 
             call_back({
                 status: 'error',

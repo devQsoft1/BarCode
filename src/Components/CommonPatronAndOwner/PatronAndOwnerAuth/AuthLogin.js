@@ -5,7 +5,8 @@ import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Image } from "rea
 // styles
 import AuthStyles from "../../../style/AuthStyles";
 import SpaceStyles from "../../../style/SpaceStyles";
-
+// third party lib
+import { showMessage, hideMessage } from "react-native-flash-message";
 // common
 import TextStyles from "../../../style/TextStyles";
 import CustomText from "../../../Common/CustomText";
@@ -17,6 +18,8 @@ import CustomTextInput from "../../../Common/CustomTextInput";
 import CustomButton from "../../../Common/CustomButton";
 import TopContainer from "../../../Common/TopContainer";
 
+// api constants
+import { api_end_point_constants } from "../../../Utils/ApiConstants";
 // images and icon
 import { Apple, Facebook, Google, patronLoginBG, Twitter } from "../../../constants/Images";
 import Logo from '../../../Assets/Icons/Logo';
@@ -62,8 +65,40 @@ const AuthLogin = ({ navigation }) => {
 
   useEffect(() => {
 
-  }, [])
+    console.log('------------------------------')
+    console.log('appSteate obje', appStateObject)
+    console.log('------------------------------')
 
+    // success
+    if (appStateObject?.login_pocket?.response) {
+
+      if ((currentUser?.user_type === 'business_owner' &&
+        appStateObject?.login_pocket?.response?.role === '1' ||
+        appStateObject?.login_pocket?.response?.role === 1) ||
+
+        (currentUser?.user_type === 'patron' &&
+          appStateObject?.login_pocket?.response?.role === '0' ||
+          appStateObject?.login_pocket?.response?.role === 0)) {
+
+        currentUser?.user_type === 'business_owner' ?
+          navigation.navigate('OwnerOnboarding')
+          :
+          navigation.navigate('PatronOnboarding')
+      }
+    }
+  }, [appStateObject?.login_pocket])
+
+  //--------- user Login
+
+  const handleLogin = () => {
+    postData({
+      key: 'login_pocket',
+      end_point: api_end_point_constants.login,
+      data: {
+        ...data,
+      }
+    })
+  }
   //---------- main return
 
   return (
@@ -139,12 +174,7 @@ const AuthLogin = ({ navigation }) => {
         <View style={{ height: 20 }} />
 
         <CustomButton
-          onPress={() => {
-            currentUser?.user_type === 'business_owner' ?
-              navigation.navigate('OwnerOnboarding')
-              :
-              navigation.navigate('PatronOnboarding')
-          }}
+          onPress={() => handleLogin()}
           title={'LOGIN'}
           paddingVertical={10}
           fontSize={23}

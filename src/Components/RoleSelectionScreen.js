@@ -15,6 +15,7 @@ import ContextHelper from '../ContextHooks/ContextHelper'
 import CustomView from "../Common/CustomView";
 import CustomBorderButton from "../Common/CustomBorderButton";
 import CustomCheckBox from "../Common/CustomCheckBox";
+import { log } from "react-native-reanimated";
 
 
 //---------- main component
@@ -22,7 +23,6 @@ import CustomCheckBox from "../Common/CustomCheckBox";
 const RoleSelectionScreen = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
   const {
     isDarkTheme,
     theme,
@@ -96,7 +96,6 @@ const RoleSelectionScreen = ({ navigation }) => {
           borderRadius={30}
           height={75}
           onPress={() => {
-
             setCurrentUser({
               user_type: 'patron'
             })

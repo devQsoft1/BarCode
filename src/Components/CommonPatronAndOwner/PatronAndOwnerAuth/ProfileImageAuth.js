@@ -35,7 +35,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
   const [imageLocalUri, setImageLocalUri] = useState()
   const { data } = route.params;
 
-  console.log('data:', data)
+  // console.log('data:', data)
 
   //---------- state, veriable, context and hooks
   const {
@@ -75,9 +75,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
   }
 
   const handleUploadImage = () => {
-
     if (imageLocalUri) {
-
       let path = `usersimage/${data.email}/profileImage.jpg`
       uploadImageToStorage(path, imageLocalUri, handleSubmit)
     }
@@ -85,7 +83,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
   // submit to server
   const handleSubmit = (response) => {
-
     console.log('image url ', response)
     if (response.status === "success") {
       postData({

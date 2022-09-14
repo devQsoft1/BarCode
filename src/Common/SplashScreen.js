@@ -27,13 +27,13 @@ function SplashScreen({ navigation }) {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
 
@@ -74,8 +74,7 @@ function SplashScreen({ navigation }) {
 
     const navigateHelper = () => {
 
-        console.log('-------------------currentUser------, currentUser', currentUser)
-        
+        // console.log('-------------------currentUser------, currentUser', currentUser)
 
         currentUser?.user_type === 'business_owner' ?
             navigation.replace('OwnerNavigator')
