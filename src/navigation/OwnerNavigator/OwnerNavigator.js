@@ -142,7 +142,7 @@ function AdminTabNavigation() {
       <Tab.Screen
         options={{ headerShown: false }}
         name="BarDetail"
-        component={BarDetail}
+        component={HomeNavigation}
       />
 
       <Tab.Screen
@@ -160,6 +160,29 @@ function AdminTabNavigation() {
     </Tab.Navigator>
   );
 }
+
+
+//---------- navigations
+
+function HomeNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"BarDetail"}
+    >
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="BarDetail"
+        component={BarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
 
 //---------- export component
 

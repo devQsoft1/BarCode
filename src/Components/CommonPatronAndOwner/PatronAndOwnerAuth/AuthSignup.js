@@ -35,11 +35,11 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 const AuthSignup = ({ navigation }) => {
 
   const [data, setData] = useState({
-    // name: 'mohi0t',
-    // dob: '06-12-1992',
-    // email: 'my12@gmail.com',
-    // mobile:'2133666699',
-    // password: '12345',
+    name: 'mohi0t',
+    dob: '06-12-1992',
+    email: 'my08@gmail.com',
+    mobile:'2502006699',
+    password: '12345',
     // confirm_password: '12345'
   })
 

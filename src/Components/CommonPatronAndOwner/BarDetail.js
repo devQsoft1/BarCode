@@ -108,8 +108,6 @@ const BarDetail = ({ navigation }) => {
 
   const renderGalaryModal = () => {
 
-    if (!!faqData) {
-
       return (
         <BottomModalContainer
           // faqData={faqData?.content}
@@ -120,7 +118,6 @@ const BarDetail = ({ navigation }) => {
           hideModal={() => setIsGallaryModal(!isGallaryModal)}
         />
       )
-    }
   }
 
   //---------- main return

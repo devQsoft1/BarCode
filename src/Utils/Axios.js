@@ -35,35 +35,43 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
     var form_data = new FormData();
 
     form_data.append("control", end_point);
-    for (var key in data) {
-        form_data.append(key, data[key]);
+    for (var id in data) {
+        form_data.append(id, data[id]);
     }
-    
+
     console.log('form data', form_data);
 
-    await axios({
-        method: "post",
-        url: BASE_URL,
-        data: form_data?._parts,
-        headers: { 
-            "content-type": "application/json",
-        // "Keep-Alive":"timeout=5, max=1000",
-        // "Connection":"Keep-Alive"
+
+    await axios.post(BASE_URL, form_data, {
+
+        headers: {
+            "Content-Type": "multipart/form-data",
         },
     })
         .then(function (response) {
 
+            console.log('                                     ')
             console.log('api respone', response.data)
-            console.log('api respone', response.response)
+            console.log('                                     ')
 
-            call_back({
-                status: 'success',
-                response,
-                key
-            })
+            if (response?.data?.result) {
+
+                call_back({
+                    status: 'success',
+                    response: response?.data?.data,
+                    key
+                })
+            } else {
+
+                call_back({
+                    status: 'error',
+                    error: response?.data,
+                    key
+                })
+            }
         })
         .catch(function (error) {
-            
+
             console.log('catch error=', error)
 
             call_back({
@@ -72,6 +80,38 @@ export const postFormDataToServer = async ({ data, key, end_point, call_back }) 
                 key
             })
         });
+
+    // await axios({
+    //     method: "post",
+    //     url: BASE_URL,
+    //     data: form_data?._parts,
+    //     headers: { 
+    //         "content-type": "application/json",
+    //     // "Keep-Alive":"timeout=5, max=1000",
+    //     // "Connection":"Keep-Alive"
+    //     },
+    // })
+    //     .then(function (response) {
+
+    //         console.log('api respone', response.data)
+    //         console.log('api respone', response.response)
+
+    //         call_back({
+    //             status: 'success',
+    //             response,
+    //             key
+    //         })
+    //     })
+    //     .catch(function (error) {
+
+    //         console.log('catch error=', error)
+
+    //         call_back({
+    //             status: 'error',
+    //             error,
+    //             key
+    //         })
+    //     });
 }
 
 export const postDataToServer = async ({ data, end_point, call_back }) => {

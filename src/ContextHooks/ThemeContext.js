@@ -78,8 +78,22 @@ const GlobalContextProvide = (props) => {
     const postDataCallBack = (response) => {
 
         console.log('response : ', response);
-        storeDataInAppState(response.key, response.response)
+        let key = response.key
+        let data
 
+        if (response.status === 'success') {
+
+            data = {
+                response: response.response
+            }
+        } else {
+
+            data = {
+                error: response.error
+            }
+        }
+
+        storeDataInAppState({ key, data })
     }
 
 
@@ -138,8 +152,8 @@ const GlobalContextProvide = (props) => {
     const storeDataInAppState = ({ key, data }) => {
 
         setAppStateObject({
+            ...appStateObject,
             [key]: data,
-            ...appStateObject
         })
     }
 

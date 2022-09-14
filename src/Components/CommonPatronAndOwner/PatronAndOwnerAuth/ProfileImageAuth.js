@@ -54,11 +54,19 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
   useEffect(() => {
 
-    console.log('--------------------------')
-    console.log('status', appStateObject)
-    console.log('--------------------------')
+    // success
+    if (appStateObject?.signup_pocket?.response) {
 
-  }, [appStateObject])
+      navigation.navigate('AuthFreeTrial')
+    }
+
+    // error
+    if (appStateObject?.signup_pocket?.error) {
+
+      alert(appStateObject?.signup_pocket?.error?.message)
+    }
+
+  }, [appStateObject?.signup_pocket])
 
 
 
@@ -190,17 +198,16 @@ const ProfileImageAuth = ({ navigation, route }) => {
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('AuthFreeTrial')
-                  // postData({
-                  //   key: 'signup_pocket',
-                  //   end_point: api_end_point_constants.sign_up,
-                  //   data: {
-                  //     ...data,
-                  //     role: 0,
-                  //     profile_image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'
+                  postData({
+                    key: 'signup_pocket',
+                    end_point: api_end_point_constants.sign_up,
+                    data: {
+                      ...data,
+                      role: 0,
+                      profile_image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'
 
-                  //   }
-                  // })
+                    }
+                  })
                 }}
               >
 
