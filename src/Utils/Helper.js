@@ -2,6 +2,7 @@ import { Permission, PermissionsAndroid, Platform } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 const options = {
+  // selectionLimit: 10,
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from galery' }],
   storageOptions: {
@@ -14,6 +15,7 @@ const options = {
 // --------- select from gallery
 export const handleImagePicker = ({ call_back }) => {
 
+
   launchImageLibrary(options, (res) => {
     console.log('Response = ', res);
     if (res.didCancel) {
@@ -24,7 +26,7 @@ export const handleImagePicker = ({ call_back }) => {
       console.log('User tapped custom button: ', res.customButton);
       alert(res.customButton);
     } else {
-      console.log(res.assets);
+      console.log("success", res.assets);
       let url = Platform.OS === 'ios' ? res.assets[0].uri.replace('file://', '') : res.assets[0].uri;
       call_back(url)
     }

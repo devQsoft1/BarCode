@@ -39,17 +39,19 @@ export const postFormDataToServer = async ({ currentUser, data, key, end_point, 
         form_data.append(id, data[id]);
     }
 
-    let headers = {
-        "Content-Type": "multipart/form-data",
-    }
     console.log("currentUser?.TOKEN :", currentUser);
-    // if (currentUser?.TOKEN) {
+    if (currentUser?.TOKEN) {
 
-    //     headers = {
-    //         "Content-Type": "multipart/form-data",
-    //         // TOKEN: 
-    //     }
-    // }
+        var headers = {
+            "Content-Type": "multipart/form-data",
+            "TOKEN": currentUser.TOKEN
+        }
+    } else {
+
+        headers = {
+            "Content-Type": "multipart/form-data",
+        }
+    }
 
     // api call
     await axios.post(BASE_URL, form_data, {

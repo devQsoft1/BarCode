@@ -22,10 +22,6 @@ function PatronAuthNavigation(props) {
 
     //---------- return main view
 
-    console.log('==================================')
-    console.log('props :', props)
-    console.log('==================================')
-
 
     return (
         <Stack.Navigator

@@ -316,7 +316,7 @@ const AuthLogin = ({ navigation }) => {
           onPress={() => {
             currentUser?.user_type === "patron" ?
               navigation.navigate('AuthSignup')
-              : navigation.navigate('BusinessDetailScreen')
+              : navigation.navigate('BusinessSignup')
 
           }}
         >

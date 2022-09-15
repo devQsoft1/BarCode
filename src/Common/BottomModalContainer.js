@@ -106,9 +106,183 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
                 return renderGallary()
                 break;
 
+            case 'LIST MY BUSINESS!':
+
+                return renderBusinesPlans()
+                break;
+
+            case 'LIST MY BUSINESS!_2':
+
+                return renderBusinesPlans2()
+                break;
             default:
                 break;
         }
+    }
+
+    //  render Modal Business Free trial Screee 
+    const renderBusinesPlans = () => {
+        return (
+            <React.Fragment>
+
+                <CustomText
+                    text={'6 MONTHS FREE, THEN $19.99/MONTH'}
+                    style={{
+                        fontSize: 18,
+                        fontWeight: '500',
+                        color: isDarkTheme ? '#FFF' : '#7B7B7B',
+                        textAlign: "center",
+                    }}
+                />
+
+                <CustomView
+                    style={{
+                        height: 25,
+
+                    }}
+                />
+
+                <CustomButton
+                    onPress={() => {
+                        alert('in progress...')
+                        // navigation.navigate('FAQ')
+                    }}
+                    paddingVertical={15}
+                    borderRadius={49.5}
+                    title={"LIST MY BUSINESS!"}
+                    fontSize={27}
+                    fontWeight={"500"}
+                />
+
+                <CustomView
+                    style={{
+                        height: 10
+                    }}
+                />
+
+                <TouchableOpacity
+                    onPress={() => {
+                        setModalKey('LIST MY BUSINESS!_2')
+                    }}
+                >
+
+                    <CustomText
+                        text={'OTHER PLANS'}
+                        style={{
+                            fontSize: 19,
+                            fontWeight: '500',
+                            color: isDarkTheme ? "#FFFFFF" : '#7B7B7B',
+                            textAlign: 'center'
+                        }}
+                    />
+                </TouchableOpacity>
+
+            </React.Fragment >
+        )
+    }
+
+    //  render Modal Business Free trial Screee 
+    const renderBusinesPlans2 = () => {
+
+        return (
+            <React.Fragment>
+
+                <CustomView
+                    style={{
+                        // marginTop:10,
+                        paddingVertical: 10,
+                        width: '100%',
+                        borderWidth: 1,
+                        borderColor: '#0094FF',
+                        borderRadius: 30,
+                    }}
+                >
+                    <CustomText
+                        text={'MONTHLY $19.99'}
+                        style={{
+                            fontSize: 22,
+                            fontWeight: '700',
+                            textAlign: 'center',
+                            color: isDarkTheme ? '#FFF' : '#747474'
+                        }}
+                    />
+
+                </CustomView>
+
+                <CustomView
+                    style={{
+                        height: 10
+                    }}
+                />
+
+                <CustomText
+                    text={'YEARLY $199'}
+                    style={{
+                        fontSize: 22,
+                        fontWeight: '700',
+                        textAlign: 'center',
+                        paddingVertical: 10,
+                        color: isDarkTheme ? '#FFF' : '#747474',
+                        borderWidth: 1,
+                        borderColor: '#D3D3D3',
+                        borderRadius: 30,
+                    }}
+                />
+
+                <CustomView
+                    style={{
+                        height: 10
+                    }}
+                />
+
+                <CustomText
+                    text={'6 MONTHS FREE, THEN $19.99/MONTH'}
+                    style={{
+                        fontSize: 18,
+                        fontWeight: '700',
+                        color: '#7B7B7B',
+                        textAlign: 'center',
+                        marginBottom: 10,
+                        marginTop: 20
+                    }}
+                />
+
+                <CustomButton
+                    onPress={() => {
+                        alert('in progress...')
+                        // navigation.navigate('FAQ')
+                    }}
+                    paddingVertical={15}
+                    borderRadius={49.5}
+                    title={"LIST MY BUSINESS!"}
+                    fontSize={27}
+                    fontWeight={"500"}
+                />
+
+                <CustomView
+                    style={{
+                        height: 10
+                    }}
+                />
+
+                <TouchableOpacity
+                    onPress={() => {
+                        setModalKey('LIST MY BUSINESS!_2')
+                    }}
+                >
+
+                    <CustomText
+                        text={'OTHER PLANS'}
+                        style={{
+                            fontSize: 20,
+                            fontWeight: '500',
+                            color: isDarkTheme ? "#FFFFFF" : '#7B7B7B',
+                            textAlign: 'center'
+                        }}
+                    />
+                </TouchableOpacity>
+            </React.Fragment >
+        )
     }
 
     const renderLetsDrink1 = () => {
@@ -171,6 +345,7 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
             </React.Fragment >
         )
     }
+
 
     const renderLetsDrink2 = () => {
 
@@ -323,7 +498,7 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
         return (
             <React.Fragment>
 
-            
+
 
             </React.Fragment>
         )

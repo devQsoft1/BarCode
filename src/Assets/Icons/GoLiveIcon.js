@@ -1,11 +1,10 @@
 import * as React from "react"
-import Svg, {  Path, Defs, Pattern, Use, Image } from "react-native-svg"
+import Svg, { Path, Defs, Pattern, Use, Image } from "react-native-svg"
 
 function GoliveIcon(props) {
-    console.log(">>>>>",props);
   return (
     <Svg
-    //   fill={props.fill}
+      //   fill={props.fill}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...props}

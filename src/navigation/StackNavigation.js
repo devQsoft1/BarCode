@@ -23,7 +23,6 @@ const Stack = createStackNavigator();
 //---------- main app / component
 
 function StackNaviagtion(props) {
-  console.log("StackNaviagtion >>>> props", props);
   //---------- state, redux state, veriable and hooks
 
   //---------- life cycle

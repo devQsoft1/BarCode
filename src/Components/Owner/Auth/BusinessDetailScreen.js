@@ -24,27 +24,24 @@ import CameraIcon from "../../../Assets/Icons/CameraIcon";
 import BorderAddIcon from "../../../Assets/Icons/BorderAddIcon";
 import GallaryIconGray from "../../../Assets/Icons/GallaryIconGray";
 import AddIconGray from "../../../Assets/Icons/AddIconGray";
+import { log } from "react-native-reanimated";
 
+// helpers
+import { handleImagePicker, handleLunchCamra } from '../../../Utils/Helper';
+import { uploadImageToStorage } from "../../../Utils/Firebase";
 // constants
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 //---------- main component
 
-const BusinessDetailScreen = ({ navigation }) => {
-  const [data, setData] = useState({
-    name: "",
-    mobile: '',
-    email: '',
-    dob: '',
-    password: '',
-    confirm_password: ''
-  })
-  //---------- state, veriable, context and ref
+const BusinessDetailScreen = ({ navigation, route }) => {
 
+  //---------- state, veriable, context , params and ref
+  const { data } = route.params;
+  // console.log(">>>>>>>>>>>>", data);
   const [count, setCount] = useState(1)
   let scroll_ref = useRef()
-
   const {
     isDarkTheme,
     theme,
@@ -61,19 +58,45 @@ const BusinessDetailScreen = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
+  // business Signup data
+  const [business_Details, setBusiness_Details] = useState({
+    name: "",
+    address: '',
+    phone: '',
+    website: '',
+    business_title: "",
+    business_text: '',
+    // amenity: '',
+    profile_image: ""
+  })
+  const [data_GoingOn, setdata_GoingOn] = useState({
+    title: "",
+    description: '',
+    elgible_drink: '',
+    start_date: '',
+    end_date: "",
+    recurring: '',
+    // day: '',
+  })
+
+  // handleError Hooks
+  const [isError, setIsError] = useState(false)
+  const [isCheckedArray, setIsCheckedArray] = useState([])
+  const [imageLocalUri, setImageLocalUri] = useState()
+  const [recurringCheched, setRecurringCheched] = useState(false)
+  const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
+
 
   //---------- life cycles
-
+  // console.log(">>>>>>>>>>>>>>>>", data_GoingOn);
   useEffect(() => {
   }, [])
 
   //---------- helper user's action
 
   const handlePagination = (key) => {
-
     if (count === 7) {
-
-      navigation.navigate('OwnerNavigator')
+      navigation.navigate('BusinessFreeTrial')
     } else {
 
       setCount(count + 1)
@@ -83,13 +106,48 @@ const BusinessDetailScreen = ({ navigation }) => {
     }
   }
 
+  const isCheckedClick = (id, isType) => {
+    if (isType === "check_day") {
+      return isDayCheckedArray.includes(id);
+
+    } else {
+      return isCheckedArray.includes(id);
+    }
+  }
+
+  //------------ user's actions
+  const handleSelectedImage = (image) => {
+    console.log('image', image)
+    setImageLocalUri(image)
+    handleUploadImage()
+  }
+
+  const handleUploadImage = () => {
+
+    if (imageLocalUri) {
+      let path = `BusinessProfile/${data.email}/BusinessProfileImage.jpg`
+      console.log("path ??? :", path);
+      uploadImageToStorage(path, imageLocalUri, handleSubmit)
+    }
+  }
+
+  // submit to server
+  const handleSubmit = (response) => {
+    console.log('image url ', response)
+    if (response.status === "success") {
+      setBusiness_Details({
+        ...business_Details,
+        profile_image: response.firebase_image_url,
+      })
+    }
+  }
+
   //---------- render helper's
 
   const renderBusinessDetailSecton = () => {
 
     return (
       <>
-
         <TopContainer
           text1={"FILL IN YOUR BUSINESS DETAILS"}
           isDarkTheme={isDarkTheme}
@@ -102,24 +160,52 @@ const BusinessDetailScreen = ({ navigation }) => {
         >
           <CustomView>
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  name: text,
+                })
+              }}
               marginTop={20}
               placeholder={"Name"}
               height={62}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  address: text,
+                })
+              }}
               marginTop={20}
               placeholder={"Address"}
               height={62}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  phone: text,
+                })
+              }}
               marginTop={20}
               placeholder={"Phone"}
               height={62}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  website: text,
+                })
+              }}
               marginTop={20}
               placeholder={"Website"}
               height={62}
@@ -153,6 +239,13 @@ const BusinessDetailScreen = ({ navigation }) => {
           <CustomView>
 
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  business_title: text,
+                })
+              }}
               fontSize={18}
               marginTop={10}
               placeholder={"What kind of establishment are you?"}
@@ -161,6 +254,13 @@ const BusinessDetailScreen = ({ navigation }) => {
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setBusiness_Details({
+                  ...business_Details,
+                  business_text: text,
+                })
+              }}
               marginTop={20}
               placeholder={"This is your time to shine, tell your new customers about yourself. Give a great description for customers"}
               numberOfLines={4}
@@ -202,7 +302,7 @@ const BusinessDetailScreen = ({ navigation }) => {
           >
             {
 
-              data.map((item, index) => {
+              datas?.map((item, index) => {
 
                 return renderContent({
                   item, index
@@ -276,7 +376,8 @@ const BusinessDetailScreen = ({ navigation }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
-                    alert('in process....')
+                    isMenu ? null :
+                      handleImagePicker({ call_back: handleSelectedImage })
                   }}
                 >
                   <GallaryIcon />
@@ -293,7 +394,8 @@ const BusinessDetailScreen = ({ navigation }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
-                    alert('in process....')
+                    isMenu ? null :
+                      handleLunchCamra({ call_back: handleSelectedImage })
                   }}
                 >
                   <CameraIcon />
@@ -513,6 +615,13 @@ const BusinessDetailScreen = ({ navigation }) => {
           <CustomView>
 
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setdata_GoingOn({
+                  ...data_GoingOn,
+                  title: text,
+                })
+              }}
               placeholder={"EVENT TITLE"}
               borderRadius={30}
               borderColor={"#DBDBDB"}
@@ -523,6 +632,13 @@ const BusinessDetailScreen = ({ navigation }) => {
 
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setdata_GoingOn({
+                  ...data_GoingOn,
+                  description: text,
+                })
+              }}
               marginTop={20}
               placeholder={"DESCRIBE YOUR EVENT"}
               numberOfLines={6}
@@ -535,6 +651,13 @@ const BusinessDetailScreen = ({ navigation }) => {
               fontSize={20}
             />
             <CustomTextInput
+              onChangeText={(text) => {
+                setIsError(false);
+                setdata_GoingOn({
+                  ...data_GoingOn,
+                  elgible_drink: text,
+                })
+              }}
               marginTop={20}
               placeholder={"BARCODE MEMBER \n ELIGABLE DRINKS"}
               numberOfLines={6}
@@ -547,6 +670,13 @@ const BusinessDetailScreen = ({ navigation }) => {
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
+              onChangeText={(date) => {
+                setIsError(false);
+                setdata_GoingOn({
+                  ...data_GoingOn,
+                  start_date: date,
+                })
+              }}
               marginTop={20}
               placeholder={"START DATE"}
               borderRadius={30}
@@ -557,6 +687,13 @@ const BusinessDetailScreen = ({ navigation }) => {
               fontSize={20}
             />
             <CustomTextInput
+              onChangeText={(date) => {
+                setIsError(false);
+                setdata_GoingOn({
+                  ...data_GoingOn,
+                  end_date: date,
+                })
+              }}
               marginTop={20}
               placeholder={"END DATE"}
               borderRadius={30}
@@ -574,9 +711,16 @@ const BusinessDetailScreen = ({ navigation }) => {
               }}
             >
               <CustomCheckBox
+                onValueChange={isChecked => {
+                  setdata_GoingOn({
+                    ...data_GoingOn,
+                    recurring: 1,
+                  })
+                  setRecurringCheched(isChecked)
+                }}
                 rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
                 rightText={'RECURRING SPECIAL'}
-                isChecked={false}
+                isChecked={recurringCheched}
                 fontSize={20}
                 fontWeight={"500"}
               />
@@ -599,8 +743,19 @@ const BusinessDetailScreen = ({ navigation }) => {
                       }}
                     >
                       <CustomCheckBox
+                        onValueChange={isChecked => {
+                          setIsError(false);
+                          if (isChecked) {
+                            setIsDayCheckedArray([item.id, ...isDayCheckedArray])
+                          } else {
+                            var filtered = isDayCheckedArray.filter(function (value, index, arr) {
+                              return value !== item.id;
+                            });
+                            setIsDayCheckedArray(filtered)
+                          }
+                        }}
+                        isChecked={isCheckedClick(item.id, "check_day")}
                         rightText={item?.title}
-                        isChecked={false}
                         fontSize={20}
                         fontWeight={"500"}
                         rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
@@ -641,7 +796,6 @@ const BusinessDetailScreen = ({ navigation }) => {
   const renderContent = ({ item, index }) => {
 
     if (item.isCheckbox) {
-
       return (
         <CustomView
           style={{
@@ -651,8 +805,19 @@ const BusinessDetailScreen = ({ navigation }) => {
         >
 
           <CustomCheckBox
+            onValueChange={isChecked => {
+              setIsError(false);
+              if (isChecked) {
+                setIsCheckedArray([item.id, ...isCheckedArray])
+              } else {
+                var filtered = isCheckedArray.filter(function (value, index, arr) {
+                  return value !== item.id;
+                });
+                setIsCheckedArray(filtered)
+              }
+            }}
+            isChecked={isCheckedClick(item.id)}
             rightText={item?.title}
-            isChecked={false}
             rightTextColor={isDarkTheme ? "#fff" : "#A6A6A6"}
             fontSize={15}
           />
@@ -663,7 +828,6 @@ const BusinessDetailScreen = ({ navigation }) => {
     } else {
 
       return (
-
         <CustomView
           style={{
             width: '50%',
@@ -779,7 +943,7 @@ export default BusinessDetailScreen;
 
 //---------- constants
 
-const data = [
+const datas = [
 
   {
     id: 1,

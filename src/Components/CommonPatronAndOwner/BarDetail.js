@@ -59,7 +59,6 @@ const BarDetail = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
-
   //---------- life cycles
 
   useEffect(() => {
@@ -108,16 +107,16 @@ const BarDetail = ({ navigation }) => {
 
   const renderGalaryModal = () => {
 
-      return (
-        <BottomModalContainer
-          // faqData={faqData?.content}
-          backgroundColor={isDarkTheme ? '#000' : '#FFF'}
-          navigation={navigation}
-          render_view_key={'gallary'}
-          isVisible={isGallaryModal}
-          hideModal={() => setIsGallaryModal(!isGallaryModal)}
-        />
-      )
+    return (
+      <BottomModalContainer
+        // faqData={faqData?.content}
+        backgroundColor={isDarkTheme ? '#000' : '#FFF'}
+        navigation={navigation}
+        render_view_key={'gallary'}
+        isVisible={isGallaryModal}
+        hideModal={() => setIsGallaryModal(!isGallaryModal)}
+      />
+    )
   }
 
   //---------- main return
