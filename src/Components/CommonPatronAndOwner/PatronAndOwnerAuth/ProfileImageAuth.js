@@ -126,6 +126,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
           }}
         >
 
+
           <CustomView
             style={{
               borderWidth: 1,
