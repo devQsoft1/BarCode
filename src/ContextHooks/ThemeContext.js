@@ -72,7 +72,7 @@ const GlobalContextProvide = (props) => {
     }) => {
 
         postFormDataToServer({
-            currentUser, data, key, end_point, call_back: postDataCallBack
+            appStateObject, data, key, end_point, call_back: postDataCallBack
         })
     }
     const postDataCallBack = (response) => {
@@ -129,8 +129,6 @@ const GlobalContextProvide = (props) => {
 
         storeDataInAppState({ key, data })
     }
-
-
 
 
 

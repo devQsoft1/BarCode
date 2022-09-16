@@ -119,7 +119,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const handleSelectedImage = (image) => {
     console.log('image', image)
     setImageLocalUri(image)
-    handleUploadImage()
+    // handleUploadImage()
   }
 
   const handleUploadImage = () => {
@@ -215,6 +215,23 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               marginTop={20}
               placeholder={"EIN Number"}
             /> */}
+            {isError &&
+              <CustomView
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginVertical: 10
+                }}>
+                <CustomText
+                  style={{
+                    color: isDarkTheme ? "#FFFFFF" : 'red',
+                    fontSize: 16,
+                    fontWeight: '400',
+                  }}
+                  text={'all fields required '}
+                />
+              </CustomView>
+            }
           </CustomView>
         </CustomView>
       </>
@@ -269,7 +286,23 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               height={260}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
-
+            {isError &&
+              <CustomView
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginVertical: 10
+                }}>
+                <CustomText
+                  style={{
+                    color: isDarkTheme ? "#FFFFFF" : 'red',
+                    fontSize: 16,
+                    fontWeight: '400',
+                  }}
+                  text={'all fields required '}
+                />
+              </CustomView>
+            }
           </CustomView>
         </CustomView>
       </>
@@ -530,7 +563,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                       alignItems: 'center'
                     }}
                     onPress={() => {
-                      alert('in process....')
+                      handleImagePicker({ call_back: handleSelectedImage, item: 2 })
                     }}
                   >
                     <GallaryIcon />

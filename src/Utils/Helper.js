@@ -13,10 +13,10 @@ const options = {
 
 
 // --------- select from gallery
-export const handleImagePicker = ({ call_back }) => {
+export const handleImagePicker = ({ call_back, item }) => {
+  const selected_Num = item ? item : 1
 
-
-  launchImageLibrary(options, (res) => {
+  launchImageLibrary({ options, selectionLimit: selected_Num }, (res) => {
     console.log('Response = ', res);
     if (res.didCancel) {
       console.log('User cancelled image picker');
@@ -32,7 +32,6 @@ export const handleImagePicker = ({ call_back }) => {
     }
   });
 }
-
 
 // ---------- select from Camra
 export const handleLunchCamra = async ({ call_back }) => {

@@ -29,7 +29,7 @@ export const getDataFromServerWithGivenParams = async ({ data, end_point }) => {
 }
 
 
-export const postFormDataToServer = async ({ currentUser, data, key, end_point, call_back }) => {
+export const postFormDataToServer = async ({ appStateObject, data, key, end_point, call_back }) => {
 
     // create form data 
     var form_data = new FormData();
@@ -39,12 +39,12 @@ export const postFormDataToServer = async ({ currentUser, data, key, end_point, 
         form_data.append(id, data[id]);
     }
 
-    console.log("currentUser?.TOKEN :", currentUser);
-    if (currentUser?.TOKEN) {
+    console.log("currentUser?.TOKEN :", appStateObject);
+    if (appStateObject?.login_pocket?.response?.TOKEN) {
 
         var headers = {
             "Content-Type": "multipart/form-data",
-            "TOKEN": currentUser.TOKEN
+            "TOKEN": appStateObject?.login_pocket?.response?.TOKEN
         }
     } else {
 
