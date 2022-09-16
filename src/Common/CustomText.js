@@ -38,3 +38,4 @@ const CustomText = (props) => {
 };
 
 export default CustomText;
+
