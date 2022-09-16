@@ -32,6 +32,7 @@ const HomeScreen = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -39,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 

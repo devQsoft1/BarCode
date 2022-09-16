@@ -51,12 +51,13 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         appStateArray,
         currentUser,
 
-        changeTheme,
-        storeDataInAppState,
-        removeDataFromAppState,
-        storeDataInAsyncStorage,
-        getDataFromAsyncStorage,
-        setCurrentUser,
+          postData,
+                changeTheme,
+                storeDataInAppState,
+                removeDataFromAppState,
+                storeDataInAsyncStorage,
+                getDataFromAsyncStorage,
+                setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycle

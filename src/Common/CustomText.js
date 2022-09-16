@@ -15,6 +15,7 @@ const CustomText = (props) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -23,14 +24,17 @@ const CustomText = (props) => {
     setCurrentUser,
   } = ContextHelper()
 
+
   return (
     <>
-      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily:'inter' }, style,]}>
+      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily: 'inter' }, style,]}>
         {text}
       </Text>
-      {text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
-        {text2}
-      </Text>}
+      {
+        !!text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
+          {text2}
+        </Text>
+      }
     </>
 
 

@@ -6,7 +6,13 @@ import { StyleSheet, ScrollView, View, Text, useColorScheme } from "react-native
 
 // third party lib
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
+// api call
+import { postDataToServer, postFormDataToServer } from '../Utils/Axios'
+
+// constants helper
+import { errors } from "../constants/ErrorConstants";
 
 //---------- context
 
@@ -57,6 +63,81 @@ const GlobalContextProvide = (props) => {
 
         console.log('---- is dark theme ----', isDarkTheme)
     }, [isDarkTheme])
+
+
+    //---------------------------------- Axios Api cal ----------------------------------------//
+
+    const postData = ({
+        data, key, end_point, params = {}
+    }) => {
+
+        postFormDataToServer({
+            appStateObject, data, key, end_point, call_back: postDataCallBack
+        })
+    }
+    const postDataCallBack = (response) => {
+
+        // veriable
+        let key = response.key
+        let data
+
+        // success
+        if (response.status === 'success') {
+
+            if (key === 'login_pocket') {
+
+                // check patron or business owner for success response from server and check from local give by : roleselectionscreen
+                if ((currentUser?.user_type === 'business_owner' &&
+                    response?.response?.role === '1' ||
+                    response?.response?.role === 1) ||
+
+                    (currentUser?.user_type === 'patron' &&
+                        response?.response?.role === '0' ||
+                        response?.response?.role === 0)) {
+
+                    data = {
+                        response: response.response
+                    }
+                } else {
+
+                    // show error
+                    showMessage({
+                        message: "User is not registered",
+                        type: 'danger',
+                    });
+                }
+            } else {
+
+                data = {
+                    response: response.response
+                }
+            }
+
+            // error
+        } else {
+
+            data = {
+                error: response.error
+            }
+
+            // show error
+            showMessage({
+                message: errors[key],
+                type: 'danger',
+            });
+        }
+
+        storeDataInAppState({ key, data })
+    }
+
+
+
+
+
+
+
+    //------------------------------------- change theme --------------------------------------//
+
     //---------- user's action
 
     // change theme
@@ -95,23 +176,49 @@ const GlobalContextProvide = (props) => {
         }
     }
 
+
+    //----------------------------------- Store data in state---------------------------------//
+
+
     // store data in state
-    const storeDataInAppState = ({ data, key }) => {
+    const storeDataInAppState = ({ key, data }) => {
 
         setAppStateObject({
+            ...appStateObject,
             [key]: data,
-            ...appStateObject
         })
+
+        console.log('data :', data)
+
+        if (data?.response?.TOKEN) {
+            if (key === 'signup_pocket' || key === 'login_pocket') {
+
+                let user_type = (data.response.role === '0' || data.response.role === 0) ? 'patron' :
+
+                    (data.response.role === '0' || data.response.role === 0) ? 'business_owner' : 'none'
+
+                storeDataInAsyncStorage({ key: 'current_user', value: { ...data.response, user_type } })
+            }
+        }
     }
 
     // remove data from app state
     const removeDataFromAppState = ({ key }) => {
 
         setAppStateObject({
+            ...appStateObject,
             [key]: {},
-            ...appStateObject
         })
     }
+
+
+    // remove data from app state
+    const removeAllDataFromAppState = () => {
+
+        setAppStateObject({})
+    }
+
+    //------------------------------ Async Storage ------------------------------------------//
 
     //---------- async storage
 
@@ -145,6 +252,12 @@ const GlobalContextProvide = (props) => {
         }
     }
 
+    // remove async storage
+    const removeDataFromAsyncStorage = async (key) => {
+
+        await AsyncStorage.removeItem(key)
+    }
+
     //---------- return main view
 
     return (
@@ -156,11 +269,14 @@ const GlobalContextProvide = (props) => {
                 appStateArray,
                 currentUser,
 
+                postData,
                 changeTheme,
                 storeDataInAppState,
                 removeDataFromAppState,
+                removeAllDataFromAppState,
                 storeDataInAsyncStorage,
                 getDataFromAsyncStorage,
+                removeDataFromAsyncStorage,
                 setCurrentUser,
             }}
         >

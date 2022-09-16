@@ -41,12 +41,13 @@ const DrinkDetailTile = ({props,navigation}) => {
         appStateArray,
         currentUser,
 
-        changeTheme,
-        storeDataInAppState,
-        removeDataFromAppState,
-        storeDataInAsyncStorage,
-        getDataFromAsyncStorage,
-        setCurrentUser,
+          postData,
+                changeTheme,
+                storeDataInAppState,
+                removeDataFromAppState,
+                storeDataInAsyncStorage,
+                getDataFromAsyncStorage,
+                setCurrentUser,
     } = ContextHelper()
 
     // render helper

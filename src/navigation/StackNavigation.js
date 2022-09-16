@@ -23,13 +23,12 @@ const Stack = createStackNavigator();
 //---------- main app / component
 
 function StackNaviagtion(props) {
-
   //---------- state, redux state, veriable and hooks
-
 
   //---------- life cycle
 
   useEffect(() => {
+
   }, []);
 
   //---------- return main view

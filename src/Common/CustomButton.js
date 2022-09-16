@@ -27,6 +27,7 @@ const CustomButton = (props) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -34,6 +35,7 @@ const CustomButton = (props) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- Main View
 

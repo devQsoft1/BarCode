@@ -34,12 +34,13 @@ const FAQ = ({ navigation }) => {
         appStateArray,
         currentUser,
 
-        changeTheme,
-        storeDataInAppState,
-        removeDataFromAppState,
-        storeDataInAsyncStorage,
-        getDataFromAsyncStorage,
-        setCurrentUser,
+          postData,
+                changeTheme,
+                storeDataInAppState,
+                removeDataFromAppState,
+                storeDataInAsyncStorage,
+                getDataFromAsyncStorage,
+                setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycles

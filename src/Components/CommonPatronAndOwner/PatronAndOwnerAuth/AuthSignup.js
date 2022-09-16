@@ -33,9 +33,16 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 //---------- main component
 
 const AuthSignup = ({ navigation }) => {
-
+  const [data, setData] = useState({
+    name: "",
+    dob: '',
+    email: '',
+    mobile: '',
+    password: '',
+    confirm_password: ''
+  })
+  const [isError, setIsError] = useState(false)
   //---------- state, veriable, context and hooks
-
   const {
     isDarkTheme,
     theme,
@@ -43,6 +50,7 @@ const AuthSignup = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -52,10 +60,6 @@ const AuthSignup = ({ navigation }) => {
   } = ContextHelper()
 
   //---------- life cycles
-
-  useEffect(() => {
-
-  }, [])
 
   //---------- main return
 
@@ -73,63 +77,119 @@ const AuthSignup = ({ navigation }) => {
         }}
       >
         <CustomTextInput
-          fontSize={20}
+          onChangeText={(text) => {
+            setIsError(false);
+            setData({
+              ...data,
+              name: text,
+            })
+          }} fontSize={20}
           marginTop={20}
           placeholder={'Name'}
           rightIcon={<UserIconSmall />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
 
         <CustomTextInput
+          onChangeText={(text) => {
+            setIsError(false);
+            setData({
+              ...data,
+              dob: text,
+            })
+          }}
           fontSize={20}
           marginTop={20}
           placeholder={'Birthday'}
           rightIcon={<CalenderIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          onChangeText={(text) => {
+            setIsError(false);
+
+            setData({
+              ...data,
+              mobile: text,
+            })
+          }}
           fontSize={20}
           marginTop={20}
           placeholder={'Phone'}
+          keyboardType={'numeric'}
           rightIcon={<CallIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
 
         <CustomTextInput
+          onChangeText={(text) => {
+            setIsError(false);
+            setData({
+              ...data,
+              email: text,
+            })
+          }}
           fontSize={20}
           marginTop={20}
           placeholder={'Email'}
           rightIcon={<MessageIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
-
-
         <CustomTextInput
-          fontSize={20}
+          onChangeText={(text) => {
+            setIsError(false);
+            setData({
+              ...data,
+              password: text,
+            })
+          }} fontSize={20}
           marginTop={20}
           placeholder={'Password'}
           rightIcon={<EyeCrossIcon />}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          secureTextEntry={true}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
         />
-
-
         <CustomTextInput
+          onChangeText={(text) => {
+            setIsError(false);
+            setData({
+              ...data,
+              confirm_password: text,
+            })
+          }
+          }
           fontSize={20}
           marginTop={20}
           placeholder={'Confirm Password'}
-          placeholderTextColor={isDarkTheme ? '#fff':"#C7C7C7"}
+          secureTextEntry={true}
+          placeholderTextColor={isDarkTheme ? '#fff' : "#C7C7C7"}
           backgroundColor={isDarkTheme ? "#000" : "#fff"}
           rightIcon={<EyeCrossIcon />}
-
         />
-
+        {isError &&
+          <CustomView
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              marginVertical: 10
+            }}>
+            <CustomText
+              style={{
+                color: isDarkTheme ? "#FFFFFF" : 'red',
+                fontSize: 16,
+                fontWeight: '400',
+              }}
+              text={'all fields required '}
+            />
+          </CustomView>
+        }
 
         {/* <CustomBorderButton
           title={'Only for testing theme'}
@@ -152,10 +212,31 @@ const AuthSignup = ({ navigation }) => {
         >
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('ProfileImageAuth')
+              // data.name && data.dob && data.email && data.password && data.confirm_password && data.confirm_password === data.password ?
+              //  ---- navigate patrone signUp
+              currentUser?.user_type === 'patron' ?
+                navigation.navigate('ProfileImageAuth', {
+                  data: {
+                    name: data.name,
+                    dob: data.dob,
+                    email: data.email,
+                    mobile: data.mobile,
+                    password: data.password,
+                  }
+                })
+                //  ---- navigate Business signUp
+                : navigation.navigate('BusinessDetailScreen', {
+                  data: {
+                    name: data.name,
+                    dob: data.dob,
+                    email: data.email,
+                    mobile: data.mobile,
+                    password: data.password,
+                  }
+                })
+              // : setIsError(!isError)
             }}
           >
-
             <Image
               style={{ marginRight: 10 }}
               source={rightYellow}
@@ -164,7 +245,6 @@ const AuthSignup = ({ navigation }) => {
             />
           </TouchableOpacity>
         </CustomView>
-
       </CustomView>
 
     </Frame >

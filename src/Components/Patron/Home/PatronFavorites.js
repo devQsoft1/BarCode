@@ -29,6 +29,7 @@ const PatronHome = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -36,6 +37,7 @@ const PatronHome = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 

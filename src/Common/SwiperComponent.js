@@ -37,12 +37,13 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
         appStateArray,
         currentUser,
 
-        changeTheme,
-        storeDataInAppState,
-        removeDataFromAppState,
-        storeDataInAsyncStorage,
-        getDataFromAsyncStorage,
-        setCurrentUser,
+          postData,
+                changeTheme,
+                storeDataInAppState,
+                removeDataFromAppState,
+                storeDataInAsyncStorage,
+                getDataFromAsyncStorage,
+                setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycles

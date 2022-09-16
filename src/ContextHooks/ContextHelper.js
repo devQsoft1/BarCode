@@ -18,11 +18,14 @@ const ContextHelper = () => {
         appStateArray,
         currentUser,
 
+        postData,
         changeTheme,
         storeDataInAppState,
         removeDataFromAppState,
+        removeAllDataFromAppState,
         storeDataInAsyncStorage,
         getDataFromAsyncStorage,
+        removeDataFromAsyncStorage,
         setCurrentUser,
     } = useContext(AppContext);
 
@@ -35,11 +38,14 @@ const ContextHelper = () => {
         appStateArray,
         currentUser,
 
+        postData,
         changeTheme,
         storeDataInAppState,
         removeDataFromAppState,
+        removeAllDataFromAppState,
         storeDataInAsyncStorage,
         getDataFromAsyncStorage,
+        removeDataFromAsyncStorage,
         setCurrentUser,
     }
 

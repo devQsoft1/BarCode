@@ -16,6 +16,7 @@ import { GlobalContextProvide } from './src/ContextHooks/ThemeContext'
 
 // helper
 import NavigationService from "./src/navigation/NavigationService";
+import ErrorMessage from "./src/Common/Errors";
 
 //---------- context
 
@@ -48,8 +49,8 @@ const App = () => {
           >
 
             <StatusBar />
-
             <StackNaviagtion />
+            <ErrorMessage />
 
           </NavigationContainer>
         </GlobalContextProvide>

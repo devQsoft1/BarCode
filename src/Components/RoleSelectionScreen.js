@@ -15,6 +15,7 @@ import ContextHelper from '../ContextHooks/ContextHelper'
 import CustomView from "../Common/CustomView";
 import CustomBorderButton from "../Common/CustomBorderButton";
 import CustomCheckBox from "../Common/CustomCheckBox";
+import { log } from "react-native-reanimated";
 
 
 //---------- main component
@@ -22,7 +23,6 @@ import CustomCheckBox from "../Common/CustomCheckBox";
 const RoleSelectionScreen = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-
   const {
     isDarkTheme,
     theme,
@@ -30,6 +30,7 @@ const RoleSelectionScreen = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -37,6 +38,7 @@ const RoleSelectionScreen = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 
@@ -60,6 +62,23 @@ const RoleSelectionScreen = ({ navigation }) => {
       />
 
 
+
+      {/* <Text
+        style={{
+          color: 'red',
+          fontSize: 60,
+          fontFamily: 'inter',
+        }}
+      >asdadfasdfadfasdf</Text> */}
+
+
+      {/* <Text
+        style={{
+          color: 'red',
+          fontSize: 60,
+        }}
+      >asdadfasdfadfasdf</Text> */}
+
       <CustomView
         style={{
           paddingTop: 50,
@@ -77,7 +96,6 @@ const RoleSelectionScreen = ({ navigation }) => {
           borderRadius={30}
           height={75}
           onPress={() => {
-
             setCurrentUser({
               user_type: 'patron'
             })

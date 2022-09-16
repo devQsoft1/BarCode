@@ -41,6 +41,7 @@ const TestScreen = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -48,6 +49,7 @@ const TestScreen = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 

@@ -13,7 +13,7 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
+// import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
 import UnlockYellowIcon from "../../../Assets/Icons/UnlockYellowIcon";
@@ -38,6 +38,7 @@ const AuthFreeTrial = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -45,6 +46,7 @@ const AuthFreeTrial = ({ navigation }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 

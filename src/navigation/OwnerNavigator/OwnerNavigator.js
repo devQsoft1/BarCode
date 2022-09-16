@@ -10,8 +10,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // icons
-import HomeIcon from "../../Assets/Icons/HomeIcon";
-import SearchIcon from "../../Assets/Icons/SearchIcon";
+// import HomeIcon from "../../Assets/Icons/HomeIcon";
+// import SearchIcon from "../../Assets/Icons/SearchIcon";
 import UserIcon from "../../Assets/Icons/UserIcon";
 import MenuIcon from "../../Assets/Icons/MenuIcon";
 import SaveIcon from "../../Assets/Icons/SaveIcon";
@@ -83,6 +83,7 @@ function AdminTabNavigation() {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -91,7 +92,6 @@ function AdminTabNavigation() {
     setCurrentUser,
   } = ContextHelper()
 
-  console.log('-------------------------, user')
 
   //---------- return main view of drawer
 
@@ -140,7 +140,7 @@ function AdminTabNavigation() {
       <Tab.Screen
         options={{ headerShown: false }}
         name="BarDetail"
-        component={BarDetail}
+        component={HomeNavigation}
       />
 
       <Tab.Screen
@@ -158,6 +158,29 @@ function AdminTabNavigation() {
     </Tab.Navigator>
   );
 }
+
+
+//---------- navigations
+
+function HomeNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"BarDetail"}
+    >
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="BarDetail"
+        component={BarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
 
 //---------- export component
 

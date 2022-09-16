@@ -16,7 +16,7 @@ import CustomText from "./CustomText";
 const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightText, rightTextColor, fontSize, fontWeight }) => {
 
   //---------- state, veriable, context and hooks
-  const [checked, setChecked] = useState(false);
+
 
   const {
     isDarkTheme,
@@ -25,6 +25,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -32,6 +33,7 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
 
   //---------- life cycles
 
@@ -51,17 +53,13 @@ const CustomCheckBox = ({ navigation, isChecked, onValueChange, onChange, rightT
         alignItems: 'center',
       }}
     >
-     
+
       <CheckBox
-        value={checked}
-        onValueChange={(newValue) =>{
-        
-          console.log('asdasdfa', newValue)
-          setChecked(newValue)
-        }}
+        value={isChecked}
+        onValueChange={onValueChange}
 
         tintColors={{ true: isDarkTheme ? '#fff' : '#707070', false: isDarkTheme ? '#fff' : '#707070' }}
-      
+
       />
 
       {

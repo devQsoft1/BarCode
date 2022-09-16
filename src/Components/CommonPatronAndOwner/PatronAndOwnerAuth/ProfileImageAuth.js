@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions,  } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, } from "react-native";
 
 // common
 import TopContainer from "../../../Common/TopContainer";
@@ -9,8 +9,6 @@ import CustomText from "../../../Common/CustomText";
 import Frame from "../../../Common/Frame";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 import CustomView from "../../../Common/CustomView";
-import CustomBorderButton from "../../../Common/CustomBorderButton";
-import { handleLunchCamra, handleImagePicker } from "../../../Utils/Helper";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
@@ -18,12 +16,26 @@ import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
+// api constants
+import { api_end_point_constants } from "../../../Utils/ApiConstants";
+
+// helpers
+import { handleImagePicker, handleLunchCamra } from '../../../Utils/Helper';
+import { uploadImageToStorage } from "../../../Utils/Firebase";
+
 // constants
 const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const ProfileImageAuth = ({ navigation }) => {
+const ProfileImageAuth = ({ navigation, route }) => {
+
+
+  //---------- state, veriables and params
+  const [imageLocalUri, setImageLocalUri] = useState()
+  const { data } = route.params;
+
+  // console.log('data:', data)
 
   //---------- state, veriable, context and hooks
   const {
@@ -33,6 +45,7 @@ const ProfileImageAuth = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    postData,
     changeTheme,
     storeDataInAppState,
     removeDataFromAppState,
@@ -41,15 +54,49 @@ const ProfileImageAuth = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
-  //---------- life cycles
 
+  //---------- life cycles
   useEffect(() => {
 
-  }, [])
+    // success
+    if (appStateObject?.signup_pocket?.response) {
 
+      navigation.navigate('AuthFreeTrial')
+    }
 
+  }, [appStateObject?.signup_pocket])
 
- 
+  //------------ user's actions
+
+  const handleSelectedImage = (image) => {
+
+    console.log('image', image)
+    setImageLocalUri(image)
+  }
+
+  const handleUploadImage = () => {
+    if (imageLocalUri) {
+      let path = `usersimage/${data.email}/profileImage.jpg`
+      uploadImageToStorage(path, imageLocalUri, handleSubmit)
+    }
+  }
+
+  // submit to server
+  const handleSubmit = (response) => {
+    console.log('image url ', response)
+    if (response.status === "success") {
+      postData({
+        key: 'signup_pocket',
+        end_point: api_end_point_constants.sign_up,
+        data: {
+          ...data,
+          role: 0,
+          profile_image: response.firebase_image_url
+        }
+      })
+    }
+  }
+
   //---------- main return
 
   return (
@@ -130,7 +177,7 @@ const ProfileImageAuth = ({ navigation }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  handleImagePicker()
+                  handleImagePicker({ call_back: handleSelectedImage })
                 }}
               >
                 <GallaryIcon />
@@ -149,7 +196,7 @@ const ProfileImageAuth = ({ navigation }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
-                  handleLunchCamra()
+                  handleLunchCamra({ call_back: handleSelectedImage })
                 }}
               >
                 <CameraIcon />
@@ -178,7 +225,7 @@ const ProfileImageAuth = ({ navigation }) => {
             >
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('AuthFreeTrial')
+                  handleUploadImage()
                 }}
               >
 
