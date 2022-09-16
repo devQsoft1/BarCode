@@ -67,12 +67,12 @@ const RoleSelectionScreen = ({ navigation }) => {
         style={{
           color: 'red',
           fontSize: 60,
-          fontFamily: 'inter',
+          fontFamily: 'Inter-Regular',
         }}
-      >asdadfasdfadfasdf</Text> */}
+      >asdadfasdfadfasdf</Text> 
 
 
-      {/* <Text
+      <Text
         style={{
           color: 'red',
           fontSize: 60,
