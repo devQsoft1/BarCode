@@ -27,7 +27,7 @@ const CustomText = (props) => {
 
   return (
     <>
-      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily: 'inter' }, style,]}>
+      <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily: 'Inter-Regular' }, style,]}>
         {text}
       </Text>
       {
@@ -42,3 +42,4 @@ const CustomText = (props) => {
 };
 
 export default CustomText;
+

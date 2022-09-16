@@ -22,16 +22,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-
-  	<key>NSCameraUsageDescription</key>
-  	<string>we want to access your camera for take image</string>
+	<key>NSCameraUsageDescription</key>
+	<string>we want to access your camera for take image</string>
 	<key>NSMicrophoneUsageDescription</key>
-  	<string>we want to record video for the app</string>
-  	<key>NSPhotoLibraryUsageDescription</key>
-  	<string>we want to access your photos for upload image and video</string>
-  	<key>NSPhotoLibraryAddUsageDescription</key>
-  	<string>we want to access your photos for upload image and video</string>
-
+	<string>we want to record video for the app</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>we want to access your photos for upload image and video</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>we want to access your photos for upload image and video</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -46,7 +44,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -61,5 +59,17 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-ExtraBold.ttf</string>
+		<string>Inter-ExtraLight.ttf</string>
+		<string>Inter-Light.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-Thin.ttf</string>
+	</array>
 </dict>
 </plist>
