@@ -31,7 +31,7 @@ const CustomText = (props) => {
         {text}
       </Text>
       {
-        !!text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000' }, style2]}>
+        !!text2 && <Text numberOfLines={numberOfLines} style={[{ color: theme?.color ? theme?.color : '#000', fontFamily: 'Inter-Regular' }, style2]}>
           {text2}
         </Text>
       }

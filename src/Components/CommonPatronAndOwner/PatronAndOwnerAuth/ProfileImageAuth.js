@@ -9,6 +9,7 @@ import CustomText from "../../../Common/CustomText";
 import Frame from "../../../Common/Frame";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 import CustomView from "../../../Common/CustomView";
+import ModalContainer from "../../../Common/ModalContainer";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
@@ -34,6 +35,8 @@ const ProfileImageAuth = ({ navigation, route }) => {
   //---------- state, veriables and params
   const [imageLocalUri, setImageLocalUri] = useState()
   const { data } = route.params;
+  const [isVisible, setIsVisible] = useState(true);
+  const [firebaseImagePath, setFirebaseImagePath] = useState(null)
 
   // console.log('data:', data)
 
@@ -83,8 +86,13 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
   // submit to server
   const handleSubmit = (response) => {
+
     console.log('image url ', response)
     if (response.status === "success") {
+      setFirebaseImagePath(response.firebase_image_url)
+      if (firebaseImagePath) {
+        setIsVisible(true)
+      }
       postData({
         key: 'signup_pocket',
         end_point: api_end_point_constants.sign_up,
@@ -97,6 +105,29 @@ const ProfileImageAuth = ({ navigation, route }) => {
     }
   }
 
+  // const renderModal = () => {
+  //   return (
+  //     // <ModalContainer
+  //     //   navigation={navigation}
+  //     //   fontWeight={"500"}
+  //     //   fontSize={25}
+  //     //   isVisible={isVisible}
+  //     //   // render_view_key={""}
+  //     //   // content={firebaseImagePath}
+  //     //   hideModal={() => setIsVisible(!isVisible)}
+  //     // />
+  //     <ModalContainer
+  //       navigation={navigation}
+  //       fontWeight={"500"}
+  //       fontSize={25}
+  //       isVisible={isVisible}
+  //       render_view_key={"Image_Ur"}
+  //       content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
+  //       hideModal={() => setIsVisible(!isVisible)}
+  //     />
+  //   )
+
+  // }
   //---------- main return
 
   return (
@@ -238,10 +269,12 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
               </TouchableOpacity>
             </CustomView>
+
           </CustomView>
 
 
         </CustomView>
+        {/* {isVisible && renderModal()} */}
       </CustomView>
 
     </Frame>

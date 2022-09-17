@@ -24,6 +24,7 @@ import { addIcon, cheers } from ".././constants/Images";
 
 // common
 import CustomText from "./CustomText";
+import CustomBorderButton from "./CustomBorderButton";
 
 // styles
 import AuthStyles from "../style/AuthStyles";
@@ -38,7 +39,7 @@ import { Fonts } from "../constants";
 
 //---------- component
 
-function ModalContainer({ navigation, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight ,rightFontSize }) {
+function ModalContainer({ navigation, handleSubmit, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight, rightFontSize }) {
 
     //---------- state, context and hooks
 
@@ -51,20 +52,20 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycle
 
     useEffect(() => {
 
-        console.log('isVisible :', isVisible, 'key:', render_view_key, 'content :',hideModal)
+        console.log('isVisible :', isVisible, 'key:', render_view_key, 'content :', hideModal)
         setVisible(isVisible);
     }, [isVisible]);
 
@@ -92,7 +93,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                             fontSize: 20,
                             color: isDarkTheme ? '#fff' : '#000',
                             textAlign: "center",
-                            lineHeight:37.5
+                            lineHeight: 37.5
                         }}
                         text={content?.title}
                     />
@@ -122,7 +123,7 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                                 fontWeight: fontWeight ? fontWeight : '700',
                                 textTransform: 'uppercase',
                                 color: '#42AEEC',
-                                textAlign:"center"
+                                textAlign: "center"
 
                             }}
                             text={content?.left_content}
@@ -301,6 +302,77 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
         )
     }
 
+
+    const renderModalImageURL = () => {
+
+        return (
+
+            <>
+
+                <Image
+                    style={{
+                        height: 380,
+                        width: 850
+                    }}
+                    source={{ uri: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" }}
+                    resizeMode='contain'
+                />
+                <CustomView style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    height: 70
+                }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            hideModal()
+                        }}
+                        style={{
+                            width: '60%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+
+                        <CustomText
+                            style={{
+                                fontSize: 19,
+                                fontWeight: "500",
+                                textTransform: 'uppercase',
+                                color: '#42AEEC',
+                                textAlign: "center"
+
+                            }}
+                            text={"CANCEL"}
+                        />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            handleSubmit()
+                        }}
+                        style={{
+                            width: '50%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+
+                        <CustomText
+                            style={{
+                                fontSize: 19,
+                                fontWeight: "500",
+                                textTransform: 'uppercase',
+                                color: '#FFA500',
+                                textAlign: "center",
+                            }}
+                            text={"SUBMIT"}
+                        />
+                    </TouchableOpacity>
+                </CustomView>
+            </>
+        )
+    }
+
     const renderContent = (key) => {
 
         switch (key) {
@@ -315,9 +387,14 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
                 return renderModalContent()
                 break;
 
-                default:
-                    return renderModalContent()
-                    break;
+            case 'Image_URL':
+
+                return renderModalImageURL()
+                break;
+
+            default:
+                return renderModalContent()
+                break;
 
         }
     }
@@ -331,9 +408,9 @@ function ModalContainer({ navigation, render_view_key, content, isVisible, rende
             visible={isVisible}
             onRequestClose={() => {
                 hideModal ? hideModal()
-                :
-                navigation.goBack()
-            setVisible(false)
+                    :
+                    navigation.goBack()
+                setVisible(false)
             }}
         >
             <CustomView

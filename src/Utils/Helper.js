@@ -26,9 +26,12 @@ export const handleImagePicker = ({ call_back, item }) => {
       console.log('User tapped custom button: ', res.customButton);
       alert(res.customButton);
     } else {
-      console.log("success", res.assets);
+      console.log("success /////////////////", res.assets);
       let url = Platform.OS === 'ios' ? res.assets[0].uri.replace('file://', '') : res.assets[0].uri;
       call_back(url)
+      console.log("Platform //////////////////", url);
+
+
     }
   });
 }

@@ -17,6 +17,9 @@ import CustomCheckBox from "../../../Common/CustomCheckBox";
 import CoustomPagination from "../../../Common/CoustomPagination";
 import ContextHelper from '../../../ContextHooks/ContextHelper'
 
+// api constants
+import { api_end_point_constants } from "../../../Utils/ApiConstants";
+
 // images and icon
 import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
 import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
@@ -39,7 +42,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   //---------- state, veriable, context , params and ref
   const { data } = route.params;
-  // console.log(">>>>>>>>>>>>", data);
   const [count, setCount] = useState(1)
   let scroll_ref = useRef()
   const {
@@ -57,17 +59,18 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+  // console.log("appStateObject----------> ::", appStateObject);
 
   // business Signup data
   const [business_Details, setBusiness_Details] = useState({
     name: "",
     address: '',
-    phone: '',
+    business_name: '',
     website: '',
     business_title: "",
     business_text: '',
-    // amenity: '',
-    profile_image: ""
+    profile_image: "",
+    business_phone_number: ""
   })
   const [data_GoingOn, setdata_GoingOn] = useState({
     title: "",
@@ -86,9 +89,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [recurringCheched, setRecurringCheched] = useState(false)
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
 
-
   //---------- life cycles
-  // console.log(">>>>>>>>>>>>>>>>", data_GoingOn);
   useEffect(() => {
   }, [])
 
@@ -98,13 +99,12 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     if (count === 7) {
       navigation.navigate('BusinessFreeTrial')
     } else {
-
       setCount(count + 1)
       let scroll = windowWidth * count
-
       scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
     }
   }
+
 
   const isCheckedClick = (id, isType) => {
     if (isType === "check_day") {
@@ -119,7 +119,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const handleSelectedImage = (image) => {
     console.log('image', image)
     setImageLocalUri(image)
-    // handleUploadImage()
+    handleUploadImage()
   }
 
   const handleUploadImage = () => {
@@ -139,9 +139,32 @@ const BusinessDetailScreen = ({ navigation, route }) => {
         ...business_Details,
         profile_image: response.firebase_image_url,
       })
+      if (business_Details.profile_image) {
+
+        submitBusinesss_Ragistrasion()
+      }
     }
   }
 
+  //  Submit SignUp data For Api
+  const submitBusinesss_Ragistrasion = () => {
+    postData({
+      key: 'Business_signup_pocket',
+      end_point: api_end_point_constants.sign_up,
+      data: {
+        ...data,
+        ...business_Details,
+        amenity: isCheckedArray,
+        role: 1,
+      }
+    })
+    console.log("Payload Business details", {
+      ...data,
+      ...business_Details,
+      amenity: isCheckedArray,
+      role: 1,
+    });
+  }
   //---------- render helper's
 
   const renderBusinessDetailSecton = () => {
@@ -186,14 +209,15 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
-              onChangeText={(text) => {
-                setIsError(false);
-                setBusiness_Details({
-                  ...business_Details,
-                  phone: text,
-                })
-              }}
+              // onChangeText={(text) => {
+              //   setIsError(false);
+              //   setBusiness_Details({
+              //     ...business_Details,
+              //     phone: text,
+              //   })
+              // }}
               marginTop={20}
+              keyboardType={'numeric'}
               placeholder={"Phone"}
               height={62}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
@@ -452,7 +476,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                 color: isDarkTheme ? "#FFFFFF" : '#FF0000',
                 textAlign: "center",
                 marginTop: 30,
-                lineHeight: 16
+                // lineHeight: 20
               }}
               text={isMenu ? "PLEASE UPLOAD A PDF IMAGE \n  OF YOUR MENU" : "REMAINDER! AN IMAGE IS REQUIRED TO SUCCESSFULLY COMPLETE THE SIGN UP PROCESS!"}
             />

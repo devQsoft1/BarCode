@@ -17,6 +17,9 @@ import CustomButton from "../../Common/CustomButton";
 import SwiperComponent from "../../Common/SwiperComponent";
 import ModalContainer from "../../Common/ModalContainer";
 
+// api constants
+import { api_end_point_constants } from "../../Utils/ApiConstants";
+
 // images and icon
 import { GoogleMap, AddYellow, YellowRight, Phone, LyftBlack, Lyft, Globe, } from "../../constants/Images";
 import CameraIcon from "../../Assets/Icons/CameraIcon";
@@ -61,8 +64,15 @@ const BarDetail = ({ navigation }) => {
 
   //---------- life cycles
 
+  console.log("bar Details }}}}}}}}}}}}", appStateObject);
   useEffect(() => {
-
+    postData({
+      key: 'bar_Detail_Poket',
+      end_point: api_end_point_constants.show_profile_business,
+      data: {
+        userID: 42
+      }
+    })
   }, [])
 
   //---------- handle user's action

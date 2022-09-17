@@ -31,6 +31,7 @@ const GlobalContextProvide = (props) => {
     const [appStateObject, setAppStateObject] = useState({})
     const [appStateArray, setAppStateArray] = useState([])
     const [currentUser, setCurrentUser] = useState({})
+    const [authTokan, setAuthToken] = useState()
 
     //---------- life cycle
 
@@ -38,6 +39,8 @@ const GlobalContextProvide = (props) => {
         const setup = async () => {
             const current_theme = await getDataFromAsyncStorage('current_theme');
             // const current_user = await getDataFromAsyncStorage('current_user');
+            const current_User_Tokan = await getDataFromAsyncStorage('current_user');
+
             if (current_theme) {
 
                 setIsDarkTheme(current_theme?.isDarkTheme)
@@ -47,17 +50,16 @@ const GlobalContextProvide = (props) => {
                 })
             }
 
-            // if (current_user) {
+            if (current_User_Tokan) {
 
-            //     setCurrentUser(current_user)
-            // }
+                setAuthToken(current_User_Tokan)
+            }
         }
         setup()
         return () => {
             // this now gets called when the component unmounts
         };
     }, []);
-
 
     useEffect(() => {
 
@@ -66,13 +68,12 @@ const GlobalContextProvide = (props) => {
 
 
     //---------------------------------- Axios Api cal ----------------------------------------//
-
     const postData = ({
         data, key, end_point, params = {}
     }) => {
-
+        console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
         postFormDataToServer({
-            appStateObject, data, key, end_point, call_back: postDataCallBack
+            authTokan, data, key, end_point, call_back: postDataCallBack
         })
     }
     const postDataCallBack = (response) => {
@@ -178,7 +179,6 @@ const GlobalContextProvide = (props) => {
 
 
     //----------------------------------- Store data in state---------------------------------//
-
 
     // store data in state
     const storeDataInAppState = ({ key, data }) => {
