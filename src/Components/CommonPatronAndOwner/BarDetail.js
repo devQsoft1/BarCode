@@ -100,20 +100,7 @@ const BarDetail = ({ navigation }) => {
       </TouchableOpacity>
     )
   }
-  const renderModal = () => {
 
-    return (
-      <ModalContainer
-        navigation={navigation}
-        fontWeight={"500"}
-        fontSize={25}
-        isVisible={isVisible}
-        render_view_key={keyType}
-        content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
-        hideModal={() => setIsVisible(!isVisible)}
-      />
-    )
-  }
 
   const renderGalaryModal = () => {
 
@@ -792,7 +779,6 @@ const BarDetail = ({ navigation }) => {
               null
           }
         </CustomView>
-        {renderModal()}
         {renderGalaryModal()}
       </ScrollView >
     </CustomView>

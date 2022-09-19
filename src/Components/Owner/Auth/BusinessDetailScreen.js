@@ -1,9 +1,11 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext, useRef } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList, Alert } from "react-native";
 
 // third party lib
 import Swiper from 'react-native-swiper'
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 
 // common
 import TopContainer from "../../../Common/TopContainer";
@@ -59,18 +61,18 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     getDataFromAsyncStorage,
     setCurrentUser,
   } = ContextHelper()
+
   // console.log("appStateObject----------> ::", appStateObject);
 
   // business Signup data
   const [business_Details, setBusiness_Details] = useState({
-    name: "",
+    // business_name: '',
     address: '',
-    business_name: '',
+    // business_phone_number: "",
     website: '',
     business_title: "",
     business_text: '',
     profile_image: "",
-    business_phone_number: ""
   })
   const [data_GoingOn, setdata_GoingOn] = useState({
     title: "",
@@ -79,15 +81,21 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     start_date: '',
     end_date: "",
     recurring: '',
-    // day: '',
   })
 
   // handleError Hooks
   const [isError, setIsError] = useState(false)
+  const [isErrorBusinessProfile, setIsErrorBusinessProfile] = useState(false)
+  const [isErrorBusinessGallery, setIsErrorBusinessGallery] = useState(false)
+
   const [isCheckedArray, setIsCheckedArray] = useState([])
   const [imageLocalUri, setImageLocalUri] = useState()
+  const [imageLocalGalleryUri, setIUmageLocalGalleryUri] = useState([])
   const [recurringCheched, setRecurringCheched] = useState(false)
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
+  const [firebaseImagesURL, setfirebaseImagesURL] = useState([])
+
+
 
   //---------- life cycles
   useEffect(() => {
@@ -99,12 +107,70 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     if (count === 7) {
       navigation.navigate('BusinessFreeTrial')
     } else {
-      setCount(count + 1)
-      let scroll = windowWidth * count
-      scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
+
+      if (key === 1 && (!business_Details?.address ||
+        !business_Details.website)) {
+        setIsError(true)
+        return;
+      }
+
+      if (key === 2 && (!business_Details?.business_title || !business_Details?.business_text)) {
+
+        setIsError(true)
+        return
+      }
+
+      if (key === 3 && !isCheckedArray.length) {
+
+        setIsError(true)
+        return
+      }
+
+      if (key === 4 && !imageLocalUri) {
+        console.log("check business_Details?.profile_image ******", imageLocalUri);
+        setIsErrorBusinessProfile(true)
+        return
+      }
+
+      // if (key === 5) {
+
+      //   setIsError(true)
+      //   return
+      // }
+
+      // if (key === 6 && !imageLocalGalleryUri?.length) {
+
+      //   setIsError(true)
+      //   return
+      // }
+
+      // if (key === 7) {
+
+      //   setIsError(true)
+      //   return
+      // }
+
+      // if (imageLocalUri) {
+      //   handelePaginationNextPage()
+      // } else {
+      //   setCount(count + 1)
+      //   let scroll = windowWidth * count
+      //   scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
+      // }
+      handleUploadBusinessImage(0)
     }
   }
 
+  //---------------- Change pagination 
+  const handelePaginationNextPage = () => {
+    handleUploadImage()
+    if (appStateObject?.Business_signup_pocket?.response?.TOKEN) {
+      setCount(count + 1)
+      let scroll = windowWidth * count
+      scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
+      setImageLocalUri()
+    }
+  }
 
   const isCheckedClick = (id, isType) => {
     if (isType === "check_day") {
@@ -114,21 +180,73 @@ const BusinessDetailScreen = ({ navigation, route }) => {
       return isCheckedArray.includes(id);
     }
   }
-
   //------------ user's actions
-  const handleSelectedImage = (image) => {
-    console.log('image', image)
-    setImageLocalUri(image)
-    handleUploadImage()
+  const handleSelectedImage = (image, key) => {
+
+    if (key === "upload_Gallery_image") {
+
+      setIUmageLocalGalleryUri([...imageLocalGalleryUri, image])
+    } else {
+
+      setImageLocalUri(image)
+      // handleUploadImage()
+
+    }
   }
 
+  //------------ handle User Profile image  
   const handleUploadImage = () => {
 
     if (imageLocalUri) {
+
       let path = `BusinessProfile/${data.email}/BusinessProfileImage.jpg`
-      console.log("path ??? :", path);
+
       uploadImageToStorage(path, imageLocalUri, handleSubmit)
     }
+  }
+
+  //--------------- handele Business Gallery 
+  const handleUploadBusinessImage = (index) => {
+
+    if (imageLocalGalleryUri?.length > 0) {
+
+      var RandomNumber = Math.floor(Math.random() * 100) + 1;
+
+      let path = `BusinessGallery/${data.email}/BusinessGallery${RandomNumber}.jpg`
+
+      uploadImageToStorage(path, imageLocalGalleryUri[index], manageGalaryImages)
+    } else {
+
+      // show error
+      showMessage({
+        message: "Please selected the gallary images!",
+        type: 'danger',
+      });
+    }
+  }
+
+  const manageGalaryImages = (response) => {
+    if (response?.status === 'success') {
+
+      let current_image_index = imageLocalGalleryUri.findIndex(index => index === response?.imageName)
+
+      console.log("indexNUmber", current_image_index);
+      saveFirebaseGallaryImgesToState(response.firebase_image_url)
+
+      if (current_image_index === (imageLocalGalleryUri.length - 1)) {
+        alert("Upload SuccessFully")
+      } else {
+
+        handleUploadBusinessImage(current_image_index + 1)
+      }
+
+    }
+  }
+
+  console.log("firebaseImagesURL : ", firebaseImagesURL);
+  const saveFirebaseGallaryImgesToState = (firebase_image_url) => {
+    setfirebaseImagesURL([...firebaseImagesURL, firebase_image_url])
+
   }
 
   // submit to server
@@ -148,25 +266,19 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   //  Submit SignUp data For Api
   const submitBusinesss_Ragistrasion = () => {
-    postData({
-      key: 'Business_signup_pocket',
-      end_point: api_end_point_constants.sign_up,
-      data: {
-        ...data,
-        ...business_Details,
-        amenity: isCheckedArray,
-        role: 1,
-      }
-    })
-    console.log("Payload Business details", {
-      ...data,
-      ...business_Details,
-      amenity: isCheckedArray,
-      role: 1,
-    });
+    // postData({
+    //   key: 'Business_signup_pocket',
+    //   end_point: api_end_point_constants.sign_up,
+    //   data: {
+    //     ...data,
+    //     ...business_Details,
+    //     amenity: isCheckedArray,
+    //     role: 1,
+    //   }
+    // })
   }
-  //---------- render helper's
 
+  //---------- render helper's
   const renderBusinessDetailSecton = () => {
 
     return (
@@ -185,10 +297,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             <CustomTextInput
               onChangeText={(text) => {
                 setIsError(false);
-                setBusiness_Details({
-                  ...business_Details,
-                  name: text,
-                })
+                // setBusiness_Details({
+                //   ...business_Details,
+                //   business_name: text,
+                // })
               }}
               marginTop={20}
               placeholder={"Name"}
@@ -209,13 +321,13 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
             <CustomTextInput
-              // onChangeText={(text) => {
-              //   setIsError(false);
-              //   setBusiness_Details({
-              //     ...business_Details,
-              //     phone: text,
-              //   })
-              // }}
+              onChangeText={(text) => {
+                setIsError(false);
+                // setBusiness_Details({
+                //   ...business_Details,
+                //   business_phone_number: text,
+                // })
+              }}
               marginTop={20}
               keyboardType={'numeric'}
               placeholder={"Phone"}
@@ -239,23 +351,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               marginTop={20}
               placeholder={"EIN Number"}
             /> */}
-            {isError &&
-              <CustomView
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginVertical: 10
-                }}>
-                <CustomText
-                  style={{
-                    color: isDarkTheme ? "#FFFFFF" : 'red',
-                    fontSize: 16,
-                    fontWeight: '400',
-                  }}
-                  text={'all fields required '}
-                />
-              </CustomView>
-            }
           </CustomView>
         </CustomView>
       </>
@@ -310,23 +405,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               height={260}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
-            {isError &&
-              <CustomView
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginVertical: 10
-                }}>
-                <CustomText
-                  style={{
-                    color: isDarkTheme ? "#FFFFFF" : 'red',
-                    fontSize: 16,
-                    fontWeight: '400',
-                  }}
-                  text={'all fields required '}
-                />
-              </CustomView>
-            }
+
           </CustomView>
         </CustomView>
       </>
@@ -376,7 +455,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
     return (
       <>
-
         <TopContainer
           text1={isMenu ? "UPLOAD YOUR MENU" : "UPLOAD YOUR BUSINESS PHOTO"}
           isDarkTheme={isDarkTheme}
@@ -408,7 +486,19 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
               }}
             >
-              <GallaryIconGray />
+
+              {
+                imageLocalUri ?
+                  <Image
+                    // resizeMode="contain"
+                    style={{
+                      height: '100%',
+                      width: '100%'
+                    }}
+                    source={{ uri: imageLocalUri }} />
+                  :
+                  <GallaryIconGray />
+              }
 
             </CustomView>
 
@@ -433,6 +523,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
+                    setIsErrorBusinessProfile(false)
                     isMenu ? null :
                       handleImagePicker({ call_back: handleSelectedImage })
                   }}
@@ -451,6 +542,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
+                    setIsErrorBusinessProfile(false)
                     isMenu ? null :
                       handleLunchCamra({ call_back: handleSelectedImage })
                   }}
@@ -482,6 +574,11 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             />
 
           </CustomView>
+          {
+            isErrorBusinessGallery && isMenu ?
+              renderBusinessImageError()
+              : isErrorBusinessProfile && renderBusinessImageError()
+          }
         </CustomView>
       </>
     )
@@ -509,53 +606,76 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             <ScrollView
               horizontal={true}
             >
-              <CustomView
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#CDCDCD',
-                  height: 93,
-                  width: 143,
-                  alignSelf: 'center',
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: 10
-                }}
-              >
-                <AddIconGray />
-              </CustomView>
+              {
+                imageLocalGalleryUri?.length < 10 &&
 
-              <CustomView
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#CDCDCD',
-                  height: 93,
-                  width: 143,
-                  alignSelf: 'center',
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginRight: 10
-                }}
-              >
-                <GallaryIconGray />
-              </CustomView>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
+                  }}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#CDCDCD',
+                    height: 93,
+                    width: 143,
+                    alignSelf: 'center',
+                    borderRadius: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginRight: 10
+                  }}
+                >
+                  <AddIconGray />
+                </TouchableOpacity>
 
-              <CustomView
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#CDCDCD',
-                  height: 93,
-                  width: 143,
-                  alignSelf: 'center',
-                  borderRadius: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <GallaryIconGray />
-              </CustomView>
+              }
+              {
+                imageLocalGalleryUri?.length ?
+                  imageLocalGalleryUri.map((Image_uri) => {
+                    return (
 
+                      <CustomView
+                        style={{
+                          borderWidth: 1,
+                          borderColor: '#CDCDCD',
+                          height: 93,
+                          width: 143,
+                          alignSelf: 'center',
+                          borderRadius: 10,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          marginRight: 10
+                        }}
+                      >
+                        <Image
+                          // resizeMode="contain"
+                          style={{
+                            height: '100%',
+                            width: '100%'
+                          }}
+                          source={{ uri: Image_uri }} />
+
+                      </CustomView>
+
+                    )
+                  })
+                  :
+                  <CustomView
+                    style={{
+                      borderWidth: 1,
+                      borderColor: '#CDCDCD',
+                      height: 93,
+                      width: 143,
+                      alignSelf: 'center',
+                      borderRadius: 10,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <GallaryIconGray />
+                  </CustomView>
+
+              }
             </ScrollView>
 
             <CustomView
@@ -587,7 +707,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                       alignItems: 'center'
                     }}
                     onPress={() => {
-                      handleImagePicker({ call_back: handleSelectedImage, item: 2 })
+                      imageLocalGalleryUri?.length === 10 ?
+                        alert("NOT MORE THAN TEN IMAGES")
+                        :
+                        handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
                     }}
                   >
                     <GallaryIcon />
@@ -604,7 +727,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                       alignItems: 'center'
                     }}
                     onPress={() => {
-                      alert('in process....')
+                      imageLocalGalleryUri?.length === 10 ?
+                        alert("NOT MORE THAN TEN IMAGES")
+                        :
+                        handleLunchCamra({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
                     }}
                   >
                     <CameraIcon />
@@ -902,6 +1028,50 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }
 
+  const renderError = () => {
+
+    return (
+
+      <CustomView
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginVertical: 10
+        }}>
+        <CustomText
+          style={{
+            color: isDarkTheme ? "#FFFFFF" : 'red',
+            fontSize: 16,
+            fontWeight: '400',
+          }}
+          text={'all fields required '}
+        />
+      </CustomView>
+
+    )
+  }
+  const renderBusinessImageError = () => {
+
+    return (
+      <CustomView
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginVertical: 10
+        }}>
+        <CustomText
+          style={{
+            color: isDarkTheme ? "#FFFFFF" : 'red',
+            fontSize: 16,
+            fontWeight: '400',
+          }}
+          text={'Please Upload Image  '}
+        />
+      </CustomView>
+
+    )
+  }
+
 
   //---------- main return
 
@@ -972,6 +1142,13 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
           </ScrollView>
 
+
+          {
+            isError &&
+            renderError()
+          }
+
+
           <CustomView
             style={{
               paddingHorizontal: 20,
@@ -983,7 +1160,8 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               activeScreenIndex={count}
               // isCenter={true}
               dataLength={7}
-              onPress={handlePagination}
+              onPress={
+                handlePagination}
             />
           </CustomView>
         </CustomView>

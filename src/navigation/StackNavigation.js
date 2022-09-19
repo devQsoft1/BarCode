@@ -16,6 +16,7 @@ import RoleSelectionScreen from '../Components/RoleSelectionScreen';
 import OwnerAuthNavigation from "./AuthNavigator/OwnerAuthNavigation";
 import GoogleMaps from "../Components/Google_Maps/GoogleMaps";
 
+import ContextHelper from '../ContextHooks/ContextHelper'
 
 // global stack veriable
 const Stack = createStackNavigator();
@@ -24,14 +25,35 @@ const Stack = createStackNavigator();
 
 function StackNaviagtion(props) {
   //---------- state, redux state, veriable and hooks
+  const {
+    loading,
+    isDarkTheme,
+    theme,
+    appStateObject,
+    appStateArray,
+    currentUser,
 
+    postData,
+    changeTheme,
+    storeDataInAppState,
+    removeDataFromAppState,
+    storeDataInAsyncStorage,
+    getDataFromAsyncStorage,
+    setCurrentUser,
+  } = ContextHelper()
   //---------- life cycle
 
+  console.log("isDarkTheme>>////", isDarkTheme);
   useEffect(() => {
 
   }, []);
 
-  //---------- return main view
+  useEffect(() => {
+
+    props?.calll_back_for_loading(loading)
+  }, [loading])
+
+  //---------- return main view   
 
   return (
     <Stack.Navigator initialRouteName="SplashScreen">

@@ -2,7 +2,7 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-import { LogBox, SafeAreaView, StatusBar, View, Text } from "react-native";
+import { LogBox, SafeAreaView, StatusBar, View, Text, ActivityIndicator } from "react-native";
 import { Provider } from "react-redux";
 import { store, persistor } from "./src/redux/createStore";
 import { PersistGate } from "redux-persist/integration/react";
@@ -17,6 +17,7 @@ import { GlobalContextProvide } from './src/ContextHooks/ThemeContext'
 // helper
 import NavigationService from "./src/navigation/NavigationService";
 import ErrorMessage from "./src/Common/Errors";
+import CustomView from "./src/Common/CustomView";
 
 //---------- context
 
@@ -25,6 +26,8 @@ import ErrorMessage from "./src/Common/Errors";
 const App = () => {
 
   //---------- state
+
+  const [loading, setLoading] = useState(false);
 
   //---------- life cycle
 
@@ -36,7 +39,22 @@ const App = () => {
 
   //---------- user's action
 
+  const handleLoading = (isLoading) => {
+
+    if (isLoading) {
+
+      setLoading(true);
+
+    } else {
+
+      setLoading(false);
+    }
+
+  }
+
   //---------- return main view
+
+  console.log('-----------------', loading);
 
   return (
     <Provider store={store}>
@@ -49,8 +67,27 @@ const App = () => {
           >
 
             <StatusBar />
-            <StackNaviagtion />
+            <StackNaviagtion calll_back_for_loading={handleLoading} />
             <ErrorMessage />
+
+            {
+              loading &&
+              <CustomView
+                style={{
+                  position: 'absolute',
+                  zIndex: 10000,
+                  elevation: 1000,
+                  height: '100%',
+                  width: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+
+                }}
+              >
+                <ActivityIndicator size={'large'} color={'gray'} />
+              </CustomView>
+            }
 
           </NavigationContainer>
         </GlobalContextProvide>

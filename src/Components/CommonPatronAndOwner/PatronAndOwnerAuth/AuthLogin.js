@@ -5,8 +5,10 @@ import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Image } from "rea
 // styles
 import AuthStyles from "../../../style/AuthStyles";
 import SpaceStyles from "../../../style/SpaceStyles";
+
 // third party lib
 import { showMessage, hideMessage } from "react-native-flash-message";
+
 // common
 import TextStyles from "../../../style/TextStyles";
 import CustomText from "../../../Common/CustomText";
@@ -91,13 +93,24 @@ const AuthLogin = ({ navigation }) => {
   //--------- user Login
 
   const handleLogin = () => {
-    postData({
-      key: 'login_pocket',
-      end_point: api_end_point_constants.login,
-      data: {
-        ...data,
-      }
-    })
+
+    if (data?.email && data?.password) {
+
+      postData({
+        key: 'login_pocket',
+        end_point: api_end_point_constants.login,
+        data: {
+          ...data,
+        }
+      })
+    } else {
+
+      // show error
+      showMessage({
+        message: 'All Fields are required...',
+        type: 'danger',
+      });
+    }
   }
   //---------- main return
 
@@ -157,7 +170,7 @@ const AuthLogin = ({ navigation }) => {
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           borderRadius={15}
           height={61}
-
+          secureTextEntry={true}
         />
 
         <CustomText

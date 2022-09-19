@@ -32,6 +32,7 @@ const GlobalContextProvide = (props) => {
     const [appStateArray, setAppStateArray] = useState([])
     const [currentUser, setCurrentUser] = useState({})
     const [authTokan, setAuthToken] = useState()
+    const [loading, setLoading] = useState(false);
 
     //---------- life cycle
 
@@ -71,10 +72,15 @@ const GlobalContextProvide = (props) => {
     const postData = ({
         data, key, end_point, params = {}
     }) => {
-        console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
-        postFormDataToServer({
-            authTokan, data, key, end_point, call_back: postDataCallBack
-        })
+
+        if (!loading) {
+
+            setLoading(true);
+            console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
+            postFormDataToServer({
+                authTokan, data, key, end_point, call_back: postDataCallBack
+            })
+        }
     }
     const postDataCallBack = (response) => {
 
@@ -101,6 +107,9 @@ const GlobalContextProvide = (props) => {
                     }
                 } else {
 
+                    // set global loading 
+                    setLoading(false);
+
                     // show error
                     showMessage({
                         message: "User is not registered",
@@ -121,11 +130,14 @@ const GlobalContextProvide = (props) => {
                 error: response.error
             }
 
+            setLoading(false);
+
             // show error
             showMessage({
                 message: errors[key],
                 type: 'danger',
             });
+
         }
 
         storeDataInAppState({ key, data })
@@ -209,6 +221,8 @@ const GlobalContextProvide = (props) => {
             ...appStateObject,
             [key]: {},
         })
+
+        setLoading(false);
     }
 
 
@@ -263,12 +277,14 @@ const GlobalContextProvide = (props) => {
     return (
         <AppContext.Provider
             value={{
+                loading,
                 isDarkTheme,
                 theme,
                 appStateObject,
                 appStateArray,
                 currentUser,
 
+                setLoading,
                 postData,
                 changeTheme,
                 storeDataInAppState,

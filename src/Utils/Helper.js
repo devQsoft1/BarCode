@@ -13,10 +13,10 @@ const options = {
 
 
 // --------- select from gallery
-export const handleImagePicker = ({ call_back, item }) => {
-  const selected_Num = item ? item : 1
+export const handleImagePicker = ({ call_back, key }) => {
+  // const selected_Num = item ? item : 1
 
-  launchImageLibrary({ options, selectionLimit: selected_Num }, (res) => {
+  launchImageLibrary(options, (res) => {
     console.log('Response = ', res);
     if (res.didCancel) {
       console.log('User cancelled image picker');
@@ -26,9 +26,9 @@ export const handleImagePicker = ({ call_back, item }) => {
       console.log('User tapped custom button: ', res.customButton);
       alert(res.customButton);
     } else {
-      console.log("success /////////////////", res.assets);
+      // console.log("success /////////////////", res.assets);
       let url = Platform.OS === 'ios' ? res.assets[0].uri.replace('file://', '') : res.assets[0].uri;
-      call_back(url)
+      call_back(url, key)
       console.log("Platform //////////////////", url);
 
 
@@ -37,7 +37,7 @@ export const handleImagePicker = ({ call_back, item }) => {
 }
 
 // ---------- select from Camra
-export const handleLunchCamra = async ({ call_back }) => {
+export const handleLunchCamra = async ({ call_back, key }) => {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -65,7 +65,7 @@ export const handleLunchCamra = async ({ call_back }) => {
           console.log("responce=>>>>>>>>>", res.assets[0].uri)
           console.log(res.assets);
           let url = Platform.OS === 'ios' ? res.assets[0].uri.replace('file://', '') : res.assets[0].uri;
-          call_back(url)
+          call_back(url, key)
 
         }
       });

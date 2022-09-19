@@ -11,7 +11,9 @@ export const uploadImageToStorage = (path, imageName, call_back) => {
 
             call_back({
                 status: 'success',
-                firebase_image_url: image_url
+                firebase_image_url: image_url,
+                imageName,
+                path
             })
         })
             .catch((error) => { throw error });

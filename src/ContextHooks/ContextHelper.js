@@ -12,12 +12,14 @@ const ContextHelper = () => {
 
     //---------- state, veriable, context and hooks
     const {
+        loading,
         isDarkTheme,
         theme,
         appStateObject,
         appStateArray,
         currentUser,
 
+        setLoading,
         postData,
         changeTheme,
         storeDataInAppState,
@@ -32,12 +34,14 @@ const ContextHelper = () => {
     //---------- main app / component
 
     return {
+        loading,
         isDarkTheme,
         theme,
         appStateObject,
         appStateArray,
         currentUser,
 
+        setLoading,
         postData,
         changeTheme,
         storeDataInAppState,

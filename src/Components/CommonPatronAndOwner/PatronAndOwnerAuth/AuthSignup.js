@@ -212,29 +212,29 @@ const AuthSignup = ({ navigation }) => {
         >
           <TouchableOpacity
             onPress={() => {
-              // data.name && data.dob && data.email && data.password && data.confirm_password && data.confirm_password === data.password ?
-              //  ---- navigate patrone signUp
-              currentUser?.user_type === 'patron' ?
-                navigation.navigate('ProfileImageAuth', {
-                  data: {
-                    name: data.name,
-                    dob: data.dob,
-                    email: data.email,
-                    mobile: data.mobile,
-                    password: data.password,
-                  }
-                })
-                //  ---- navigate Business signUp
-                : navigation.navigate('BusinessDetailScreen', {
-                  data: {
-                    name: data.name,
-                    dob: data.dob,
-                    email: data.email,
-                    mobile: data.mobile,
-                    password: data.password,
-                  }
-                })
-              // : setIsError(!isError)
+              data.name && data.dob && data.email && data.password && data.confirm_password && data.confirm_password === data.password ?
+                //  ---- navigate patrone signUp
+                currentUser?.user_type === 'patron' ?
+                  navigation.navigate('ProfileImageAuth', {
+                    data: {
+                      name: data.name,
+                      dob: data.dob,
+                      email: data.email,
+                      mobile: data.mobile,
+                      password: data.password,
+                    }
+                  })
+                  //  ---- navigate Business signUp
+                  : navigation.navigate('BusinessDetailScreen', {
+                    data: {
+                      name: data.name,
+                      dob: data.dob,
+                      email: data.email,
+                      mobile: data.mobile,
+                      password: data.password,
+                    }
+                  })
+                : setIsError(!isError)
             }}
           >
             <Image

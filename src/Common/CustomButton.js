@@ -21,12 +21,14 @@ const CustomButton = (props) => {
   //---------- state, veriable, context and hooks
 
   const {
+    loading,
     isDarkTheme,
     theme,
     appStateObject,
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -54,6 +56,7 @@ const CustomButton = (props) => {
         onPress={() => {
           props?.onPress && props.onPress()
         }}
+        disabled={loading}
       >
         {props?.icon}
       </TouchableOpacity>

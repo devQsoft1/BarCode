@@ -29,13 +29,13 @@ const CoustomPagination = (props) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
 
@@ -99,7 +99,7 @@ const CoustomPagination = (props) => {
 
             <TouchableOpacity
                 onPress={() => {
-                    onPress && onPress()
+                    onPress && onPress(activeScreenIndex)
                 }}
             >
                 <Image
