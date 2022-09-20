@@ -31,7 +31,6 @@ const GlobalContextProvide = (props) => {
     const [appStateObject, setAppStateObject] = useState({})
     const [appStateArray, setAppStateArray] = useState([])
     const [currentUser, setCurrentUser] = useState({})
-    const [authTokan, setAuthToken] = useState()
     const [loading, setLoading] = useState(false);
 
     //---------- life cycle
@@ -40,7 +39,6 @@ const GlobalContextProvide = (props) => {
         const setup = async () => {
             const current_theme = await getDataFromAsyncStorage('current_theme');
             // const current_user = await getDataFromAsyncStorage('current_user');
-            const current_User_Tokan = await getDataFromAsyncStorage('current_user');
 
             if (current_theme) {
 
@@ -51,10 +49,7 @@ const GlobalContextProvide = (props) => {
                 })
             }
 
-            if (current_User_Tokan) {
 
-                setAuthToken(current_User_Tokan)
-            }
         }
         setup()
         return () => {
@@ -78,7 +73,7 @@ const GlobalContextProvide = (props) => {
             setLoading(true);
             console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
             postFormDataToServer({
-                authTokan, data, key, end_point, call_back: postDataCallBack
+                currentUser, data, key, end_point, call_back: postDataCallBack
             })
         }
     }
@@ -108,7 +103,6 @@ const GlobalContextProvide = (props) => {
                 } else {
 
                     // set global loading 
-                    setLoading(false);
 
                     // show error
                     showMessage({
@@ -121,6 +115,7 @@ const GlobalContextProvide = (props) => {
                 data = {
                     response: response.response
                 }
+
             }
 
             // error

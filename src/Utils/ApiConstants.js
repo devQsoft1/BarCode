@@ -13,7 +13,9 @@ export const api_end_point_constants = {
 
     login: "login",
     sign_up: "signup",
-    show_profile_business: "show_profile_business"
+    show_bar_details: "show_bar_details",
+    show_bars: "show_bars",
+    add_gallery: "add_gallery"
 
 
 }

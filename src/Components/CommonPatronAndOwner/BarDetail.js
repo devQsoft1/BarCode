@@ -38,10 +38,10 @@ const windowHeight = Dimensions.get('window').height;
 const BarDetail = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
-  //---------- state, veriable, context and hooks
   const [isVisible, setIsVisible] = useState(false);
   const [isGallaryModal, setIsGallaryModal] = useState(false);
   const [keyType, setKetType] = useState(null);
+  const [dataBarDetails, setDataBarDetals] = useState()
 
   const [tab, setTab] = useState('detail')  // futute_events 
 
@@ -53,6 +53,7 @@ const BarDetail = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -64,16 +65,31 @@ const BarDetail = ({ navigation }) => {
 
   //---------- life cycles
 
-  console.log("bar Details }}}}}}}}}}}}", appStateObject);
+
+
   useEffect(() => {
-    postData({
-      key: 'bar_Detail_Poket',
-      end_point: api_end_point_constants.show_profile_business,
-      data: {
-        userID: 42
-      }
-    })
+    if (appStateObject?.bar_Detail_Poket?.response) {
+
+      setDataBarDetals(appStateObject?.bar_Detail_Poket?.response)
+      setLoading(false)
+    }
+
+  }, [appStateObject?.bar_Detail_Poket?.response])
+
+  console.log("dataBarDetails }}}}}}}}}}}}", appStateObject);
+  useEffect(() => {
+
+    // postData({
+    //   key: 'bar_Detail_Poket',
+    //   end_point: api_end_point_constants.show_bar_details,
+    //   data: {
+    //     userID: currentUser?.userID,
+    //     barID: 22
+
+    //   }
+    // })
   }, [])
+
 
   //---------- handle user's action
 

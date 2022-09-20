@@ -43,7 +43,7 @@ function StackNaviagtion(props) {
   } = ContextHelper()
   //---------- life cycle
 
-  console.log("isDarkTheme>>////", isDarkTheme);
+
   useEffect(() => {
 
   }, []);

@@ -50,6 +50,7 @@ const AuthLogin = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -73,7 +74,7 @@ const AuthLogin = ({ navigation }) => {
 
     // success
     if (appStateObject?.login_pocket?.response) {
-
+      setLoading(false)
       if ((currentUser?.user_type === 'business_owner' &&
         appStateObject?.login_pocket?.response?.role === '1' ||
         appStateObject?.login_pocket?.response?.role === 1) ||

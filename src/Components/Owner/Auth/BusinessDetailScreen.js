@@ -44,7 +44,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   //---------- state, veriable, context , params and ref
   const { data } = route.params;
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(5)
   let scroll_ref = useRef()
   const {
     isDarkTheme,
@@ -53,6 +53,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -66,9 +67,9 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   // business Signup data
   const [business_Details, setBusiness_Details] = useState({
-    // business_name: '',
+    business_name: '',
     address: '',
-    // business_phone_number: "",
+    business_phone_number: "",
     website: '',
     business_title: "",
     business_text: '',
@@ -93,83 +94,121 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [imageLocalGalleryUri, setIUmageLocalGalleryUri] = useState([])
   const [recurringCheched, setRecurringCheched] = useState(false)
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
-  const [firebaseImagesURL, setfirebaseImagesURL] = useState([])
+  const [firebaseImagesURL, setFirebaseImagesURL] = useState([])
 
-
-
+  console.log("appstatobject???", appStateObject);
   //---------- life cycles
   useEffect(() => {
   }, [])
 
+  // handel next Pagination business ragistration 
+  useEffect(() => {
+
+    if (appStateObject?.Business_signup_pocket?.response) {
+
+      setLoading(false);
+
+      handelePaginationNextPage()
+
+    } else if (appStateObject?.Business_Gallery_pocket?.response) {
+
+      setLoading(false);
+
+      handelePaginationNextPage()
+    }
+  }, [appStateObject])
+
   //---------- helper user's action
 
+  // bottom yellow btn click for manage form
   const handlePagination = (key) => {
+
+    // all data submited to server
     if (count === 7) {
+
       navigation.navigate('BusinessFreeTrial')
     } else {
 
-      if (key === 1 && (!business_Details?.address ||
-        !business_Details.website)) {
-        setIsError(true)
-        return;
+      if (key === 1) {
+
+        if ((!business_Details?.address ||
+          !business_Details.website || !business_Details?.business_name || !business_Details?.business_phone_number)) {
+
+          setIsError(true)
+          return;
+        } else {
+          handelePaginationNextPage()
+        }
       }
 
-      if (key === 2 && (!business_Details?.business_title || !business_Details?.business_text)) {
+      if (key === 2) {
+
+        if (!business_Details?.business_title || !business_Details?.business_text) {
+
+          setIsError(true)
+          return
+        } else {
+
+          handelePaginationNextPage()
+        }
+      }
+
+      if (key === 3) {
+
+        if (isCheckedArray?.length > 0) {
+
+          handelePaginationNextPage()
+        } else {
+
+          setIsError(true)
+          return
+        }
+      }
+
+      if (key === 4) {
+
+        if (!imageLocalUri) {
+
+          setIsErrorBusinessProfile(true)
+          return
+        } else {
+          setLoading(true)
+          upLoadBusinessProfileImage()
+        }
+      }
+
+      if (key === 5) {
+        handelePaginationNextPage()
+        // setIsError(true)
+        // return
+      }
+
+      if (key === 6) {
+        if (imageLocalGalleryUri?.length) {
+          setLoading(true)
+
+          handleUploadBusinessImage(0)
+        } else {
+
+          setIsErrorBusinessGallery(true)
+          return
+        }
+      }
+
+      if (key === 7) {
 
         setIsError(true)
         return
       }
-
-      if (key === 3 && !isCheckedArray.length) {
-
-        setIsError(true)
-        return
-      }
-
-      if (key === 4 && !imageLocalUri) {
-        console.log("check business_Details?.profile_image ******", imageLocalUri);
-        setIsErrorBusinessProfile(true)
-        return
-      }
-
-      // if (key === 5) {
-
-      //   setIsError(true)
-      //   return
-      // }
-
-      // if (key === 6 && !imageLocalGalleryUri?.length) {
-
-      //   setIsError(true)
-      //   return
-      // }
-
-      // if (key === 7) {
-
-      //   setIsError(true)
-      //   return
-      // }
-
-      // if (imageLocalUri) {
-      //   handelePaginationNextPage()
-      // } else {
-      //   setCount(count + 1)
-      //   let scroll = windowWidth * count
-      //   scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
-      // }
-      handleUploadBusinessImage(0)
     }
   }
 
-  //---------------- Change pagination 
+  // Change pagination 
   const handelePaginationNextPage = () => {
-    handleUploadImage()
-    if (appStateObject?.Business_signup_pocket?.response?.TOKEN) {
-      setCount(count + 1)
-      let scroll = windowWidth * count
-      scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
-      setImageLocalUri()
-    }
+    setCount(count + 1)
+    let scroll = windowWidth * count
+    scroll_ref?.current?.scrollTo && scroll_ref?.current?.scrollTo(({ x: scroll, y: 0, animated: true }))
+
   }
 
   const isCheckedClick = (id, isType) => {
@@ -180,22 +219,26 @@ const BusinessDetailScreen = ({ navigation, route }) => {
       return isCheckedArray.includes(id);
     }
   }
-  //------------ user's actions
+
+  // image selection from galary or camera
   const handleSelectedImage = (image, key) => {
+    setLoading(false)
 
     if (key === "upload_Gallery_image") {
 
       setIUmageLocalGalleryUri([...imageLocalGalleryUri, image])
+      setLoading(false)
+
     } else {
 
       setImageLocalUri(image)
-      // handleUploadImage()
-
     }
   }
 
-  //------------ handle User Profile image  
-  const handleUploadImage = () => {
+  //---------- image upload to firebase for 3 component
+
+  // 
+  const upLoadBusinessProfileImage = () => {
 
     if (imageLocalUri) {
 
@@ -205,7 +248,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }
 
-  //--------------- handele Business Gallery 
+  // Business Gallery images upload to firbase 
   const handleUploadBusinessImage = (index) => {
 
     if (imageLocalGalleryUri?.length > 0) {
@@ -216,7 +259,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
       uploadImageToStorage(path, imageLocalGalleryUri[index], manageGalaryImages)
     } else {
-
       // show error
       showMessage({
         message: "Please selected the gallary images!",
@@ -225,16 +267,25 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }
 
+
+
   const manageGalaryImages = (response) => {
+
+    // console.log("responce _________ ", response);
     if (response?.status === 'success') {
 
       let current_image_index = imageLocalGalleryUri.findIndex(index => index === response?.imageName)
 
-      console.log("indexNUmber", current_image_index);
-      saveFirebaseGallaryImgesToState(response.firebase_image_url)
+      let array = []
+
+      array.push(response.firebase_image_url)
+
+      // store firebase URL state
+      // setFirebaseImagesURL(array)
 
       if (current_image_index === (imageLocalGalleryUri.length - 1)) {
-        alert("Upload SuccessFully")
+        handelSubmitBusinessGallery(array)
+
       } else {
 
         handleUploadBusinessImage(current_image_index + 1)
@@ -243,42 +294,44 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }
 
-  console.log("firebaseImagesURL : ", firebaseImagesURL);
-  const saveFirebaseGallaryImgesToState = (firebase_image_url) => {
-    setfirebaseImagesURL([...firebaseImagesURL, firebase_image_url])
 
-  }
 
-  // submit to server
+  //--------- server comunication
+
+  // submit to server and Api 
   const handleSubmit = (response) => {
     console.log('image url ', response)
     if (response.status === "success") {
-      setBusiness_Details({
-        ...business_Details,
-        profile_image: response.firebase_image_url,
+      postData({
+        key: 'Business_signup_pocket',
+        end_point: api_end_point_constants.sign_up,
+        data: {
+          ...data,
+          ...business_Details,
+          profile_image: response.firebase_image_url,
+          amenity: isCheckedArray,
+          role: 1,
+        }
       })
-      if (business_Details.profile_image) {
-
-        submitBusinesss_Ragistrasion()
-      }
     }
   }
 
-  //  Submit SignUp data For Api
-  const submitBusinesss_Ragistrasion = () => {
-    // postData({
-    //   key: 'Business_signup_pocket',
-    //   end_point: api_end_point_constants.sign_up,
-    //   data: {
-    //     ...data,
-    //     ...business_Details,
-    //     amenity: isCheckedArray,
-    //     role: 1,
-    //   }
-    // })
+  // submit Gallery images to server and Api 
+  const handelSubmitBusinessGallery = (firebase_image_url) => {
+
+    postData({
+      key: 'Business_Gallery_pocket',
+      end_point: api_end_point_constants.add_gallery,
+      data: {
+        image: firebase_image_url,
+        userID: currentUser?.userID,
+      }
+    })
+
   }
 
   //---------- render helper's
+
   const renderBusinessDetailSecton = () => {
 
     return (
@@ -297,11 +350,12 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             <CustomTextInput
               onChangeText={(text) => {
                 setIsError(false);
-                // setBusiness_Details({
-                //   ...business_Details,
-                //   business_name: text,
-                // })
+                setBusiness_Details({
+                  ...business_Details,
+                  business_name: text,
+                })
               }}
+              keyboardType={'numeric'}
               marginTop={20}
               placeholder={"Name"}
               height={62}
@@ -323,10 +377,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             <CustomTextInput
               onChangeText={(text) => {
                 setIsError(false);
-                // setBusiness_Details({
-                //   ...business_Details,
-                //   business_phone_number: text,
-                // })
+                setBusiness_Details({
+                  ...business_Details,
+                  business_phone_number: text,
+                })
               }}
               marginTop={20}
               keyboardType={'numeric'}
@@ -523,6 +577,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
+                    setLoading(true)
                     setIsErrorBusinessProfile(false)
                     isMenu ? null :
                       handleImagePicker({ call_back: handleSelectedImage })
@@ -542,6 +597,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                     alignItems: 'center'
                   }}
                   onPress={() => {
+                    setLoading(true)
                     setIsErrorBusinessProfile(false)
                     isMenu ? null :
                       handleLunchCamra({ call_back: handleSelectedImage })
@@ -575,7 +631,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
           </CustomView>
           {
-            isErrorBusinessGallery && isMenu ?
+            isErrorBusinessProfile && isMenu ?
               renderBusinessImageError()
               : isErrorBusinessProfile && renderBusinessImageError()
           }
@@ -611,6 +667,8 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
                 <TouchableOpacity
                   onPress={() => {
+                    setLoading(true)
+                    setIsErrorBusinessGallery(false)
                     handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
                   }}
                   style={{
@@ -707,10 +765,12 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                       alignItems: 'center'
                     }}
                     onPress={() => {
+                      setLoading(true)
                       imageLocalGalleryUri?.length === 10 ?
                         alert("NOT MORE THAN TEN IMAGES")
                         :
-                        handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
+                        setIsErrorBusinessGallery(false)
+                      handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
                     }}
                   >
                     <GallaryIcon />
@@ -727,10 +787,13 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                       alignItems: 'center'
                     }}
                     onPress={() => {
+                      setLoading(true)
                       imageLocalGalleryUri?.length === 10 ?
                         alert("NOT MORE THAN TEN IMAGES")
                         :
-                        handleLunchCamra({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
+                        setIsErrorBusinessGallery(false)
+
+                      handleLunchCamra({ call_back: handleSelectedImage, key: 'upload_Gallery_image' })
                     }}
                   >
                     <CameraIcon />
@@ -774,8 +837,9 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               </CustomView>
             </CustomView>
 
-
           </CustomView>
+          {isErrorBusinessGallery && renderBusinessImageError()}
+
         </CustomView>
       </>
     )
@@ -1050,6 +1114,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
     )
   }
+
   const renderBusinessImageError = () => {
 
     return (

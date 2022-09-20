@@ -10,6 +10,10 @@ import ContextHelper from '../../../ContextHooks/ContextHelper';
 import Frame from "../../../Common/Frame";
 import ClainDrinkTile from "../../../Common/Tile/ClainDrinkTile";
 
+
+// api constants
+import { api_end_point_constants } from "../../../Utils/ApiConstants";
+
 // images and icon
 import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
@@ -21,6 +25,7 @@ const windowHeight = Dimensions.get('window').height;
 const PatronHome = ({ navigation }) => {
 
   //---------- state, veriable, context and hooks
+  const [dataShowBarDetails, setDataShowBarDetals] = useState() // state in store data Show_bar
 
   const {
     isDarkTheme,
@@ -29,6 +34,7 @@ const PatronHome = ({ navigation }) => {
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -41,9 +47,29 @@ const PatronHome = ({ navigation }) => {
 
   //---------- life cycles
 
+  // store data for state
+  useEffect(() => {
+    if (appStateObject?.show_bars_Poket?.response) {
+
+      setDataShowBarDetals(appStateObject?.show_bars_Poket?.response)
+      setLoading(false)
+    }
+
+  }, [appStateObject?.show_bars_Poket?.response])
+
+  console.log("appStateObject >>>>", appStateObject);
   useEffect(() => {
 
+    // postData({
+    //   key: 'show_bars_Poket',
+    //   end_point: api_end_point_constants.show_bars,
+    //   data: {
+    //     userID: currentUser?.userID,
+    //   }
+    // })
   }, [])
+
+
 
   //---------- render helper
 
@@ -51,14 +77,14 @@ const PatronHome = ({ navigation }) => {
 
     return (
       <TouchableOpacity
-      onPress={()=>{
-        navigation.navigate('BarDetail')
-      }}
+        onPress={() => {
+          navigation.navigate('BarDetail', { item })
+        }}
         style={{
           height: 225
         }}
       >
-        <ClainDrinkTile />
+        <ClainDrinkTile item={item} />
       </TouchableOpacity>
     )
   }
@@ -83,7 +109,7 @@ const PatronHome = ({ navigation }) => {
           fontWeight={"700"}
         />
 
-      { isDarkTheme && <CustomView style={{ borderBottomWidth: 1, borderBottomColor: "#9A9A9A", with:"50%"}}></CustomView> }
+        {isDarkTheme && <CustomView style={{ borderBottomWidth: 1, borderBottomColor: "#9A9A9A", with: "50%" }}></CustomView>}
         <FlatList
           ItemSeparatorComponent={() => {
             return (
@@ -100,7 +126,7 @@ const PatronHome = ({ navigation }) => {
             paddingTop: 20,
             paddingBottom: 100
           }}
-          data={data}
+          data={dataShowBarDetails}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

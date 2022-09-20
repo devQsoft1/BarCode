@@ -22,7 +22,7 @@ import CustomButton from "../CustomButton";
 //---------- main components
 
 const ClainDrinkTile = (props) => {
-
+    // console.log("+++++++++++", props);
     //---------- state, veriable, context and hooks
     const {
         isDarkTheme,
@@ -31,13 +31,13 @@ const ClainDrinkTile = (props) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     //---------- Main View

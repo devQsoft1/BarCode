@@ -35,19 +35,19 @@ const ProfileImageAuth = ({ navigation, route }) => {
   //---------- state, veriables and params
   const [imageLocalUri, setImageLocalUri] = useState()
   const { data } = route.params;
-  const [isVisible, setIsVisible] = useState(true);
-  const [firebaseImagePath, setFirebaseImagePath] = useState(null)
 
   // console.log('data:', data)
 
   //---------- state, veriable, context and hooks
   const {
+    loading,
     isDarkTheme,
     theme,
     appStateObject,
     appStateArray,
     currentUser,
 
+    setLoading,
     postData,
     changeTheme,
     storeDataInAppState,
@@ -72,12 +72,13 @@ const ProfileImageAuth = ({ navigation, route }) => {
   //------------ user's actions
 
   const handleSelectedImage = (image) => {
-
     console.log('image', image)
     setImageLocalUri(image)
+    setLoading(false)
   }
 
   const handleUploadImage = () => {
+    setLoading(true)
     if (imageLocalUri) {
       let path = `usersimage/${data.email}/profileImage.jpg`
       uploadImageToStorage(path, imageLocalUri, handleSubmit)
@@ -89,10 +90,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
     console.log('image url ', response)
     if (response.status === "success") {
-      setFirebaseImagePath(response.firebase_image_url)
-      if (firebaseImagePath) {
-        setIsVisible(true)
-      }
       postData({
         key: 'signup_pocket',
         end_point: api_end_point_constants.sign_up,
@@ -102,32 +99,11 @@ const ProfileImageAuth = ({ navigation, route }) => {
           profile_image: response.firebase_image_url
         }
       })
+      setLoading(false)
     }
   }
 
-  // const renderModal = () => {
-  //   return (
-  //     // <ModalContainer
-  //     //   navigation={navigation}
-  //     //   fontWeight={"500"}
-  //     //   fontSize={25}
-  //     //   isVisible={isVisible}
-  //     //   // render_view_key={""}
-  //     //   // content={firebaseImagePath}
-  //     //   hideModal={() => setIsVisible(!isVisible)}
-  //     // />
-  //     <ModalContainer
-  //       navigation={navigation}
-  //       fontWeight={"500"}
-  //       fontSize={25}
-  //       isVisible={isVisible}
-  //       render_view_key={"Image_Ur"}
-  //       content={{ title: 'Are you sure you want \n to claim this drink?', right_content: 'No.  I’m not ready  to party', left_content: 'Yes! let’s drink' }}
-  //       hideModal={() => setIsVisible(!isVisible)}
-  //     />
-  //   )
 
-  // }
   //---------- main return
 
   return (
@@ -181,8 +157,20 @@ const ProfileImageAuth = ({ navigation, route }) => {
                 alignItems: 'center'
               }}
             >
-              <UserIconSmall height={60} width={60} />
 
+              {
+                imageLocalUri ?
+                  <Image
+                    // resizeMode="contain"
+                    style={{
+                      height: '100%',
+                      width: '100%',
+                      borderRadius: 100,
+                    }}
+                    source={{ uri: imageLocalUri }} />
+                  :
+                  <UserIconSmall height={60} width={60} />
+              }
             </CustomView>
 
           </CustomView>
@@ -208,6 +196,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
+                  setLoading(true)
                   handleImagePicker({ call_back: handleSelectedImage })
                 }}
               >
@@ -227,6 +216,8 @@ const ProfileImageAuth = ({ navigation, route }) => {
                   alignItems: 'center'
                 }}
                 onPress={() => {
+                  setLoading(true)
+
                   handleLunchCamra({ call_back: handleSelectedImage })
                 }}
               >
@@ -274,7 +265,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
 
         </CustomView>
-        {/* {isVisible && renderModal()} */}
       </CustomView>
 
     </Frame>
