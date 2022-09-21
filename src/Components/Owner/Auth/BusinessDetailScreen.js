@@ -96,7 +96,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
   const [firebaseImagesURL, setFirebaseImagesURL] = useState([])
 
-  console.log("appstatobject???", appStateObject);
+  // console.log("appstatobject???", appStateObject);
   //---------- life cycles
   useEffect(() => {
   }, [])

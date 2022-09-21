@@ -77,9 +77,9 @@ const PatronProfile = ({ navigation }) => {
 
         <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
         <TouchableOpacity
-         onPress={() => {
-          navigation.navigate('AuthLogin')
-        }}
+          onPress={() => {
+            navigation.navigate('AuthLogin')
+          }}
         >
           <CustomText
             text={"LOG IN"}
@@ -95,39 +95,39 @@ const PatronProfile = ({ navigation }) => {
 
         <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
         <TouchableOpacity
-         onPress={() => {
-          navigation.navigate('RestorePurchases')
-        }}
-        >
-        <CustomText
-          text={"RESTORE PURCHASES"}
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            textAlign: 'center',
-            color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
-            marginVertical: 15
+          onPress={() => {
+            navigation.navigate('RestorePurchases')
           }}
+        >
+          <CustomText
+            text={"RESTORE PURCHASES"}
+            style={{
+              fontSize: 24,
+              fontWeight: '700',
+              textAlign: 'center',
+              color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
+              marginVertical: 15
+            }}
           />
-          </TouchableOpacity>
+        </TouchableOpacity>
 
         <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
         <TouchableOpacity
-         onPress={() => {
-          navigation.navigate('ContactUs')
-        }}
-        >
-        <CustomText
-          text={"CONTACT US"}
-          style={{
-            fontSize: 24,
-            fontWeight: '700',
-            textAlign: 'center',
-            color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
-            marginVertical: 15
+          onPress={() => {
+            navigation.navigate('ContactUs')
           }}
+        >
+          <CustomText
+            text={"CONTACT US"}
+            style={{
+              fontSize: 24,
+              fontWeight: '700',
+              textAlign: 'center',
+              color: isDarkTheme ? "#FFFFFF" : '#B1B1B1',
+              marginVertical: 15
+            }}
           />
-          </TouchableOpacity>
+        </TouchableOpacity>
 
         <CustomView style={{ width: '30%', height: 1.5, backgroundColor: '#C8C8C8', marginVertical: 10 }} />
 
@@ -145,7 +145,7 @@ const PatronProfile = ({ navigation }) => {
       </CustomView>
     )
   }
-
+  console.log(currentUser?.profile_image);
   const renderUserProfile = () => {
 
     return (
@@ -165,7 +165,7 @@ const PatronProfile = ({ navigation }) => {
         >
 
           <Image
-            source={Temp}
+            source={{ uri: currentUser?.profile_image }}
             resizeMode='cover'
             style={{
               height: 150,
@@ -181,7 +181,7 @@ const PatronProfile = ({ navigation }) => {
         </CustomView>
 
         <CustomText
-          text={"ALEX MITCHEL"}
+          text={currentUser?.name}
           style={{
             fontSize: 24,
             fontWeight: '700',
@@ -286,11 +286,8 @@ const PatronProfile = ({ navigation }) => {
           }
         </TouchableOpacity>
 
-        {
-          renderGustProfile()
-          // renderUserProfile
-        }
 
+        {renderUserProfile()}
 
       </CustomView>
     </Frame>

@@ -70,16 +70,27 @@ const MenuScreen = ({ navigation }) => {
   const renderFAQ = (item) => {
     if (item?.name === "FAQ") {
       navigation.navigate('FAQ')
-    } else if (item?.name === "BUSINESS SIGN IN") {
-      navigation.navigate('OwnerLogin')
+    } else if (item?.name === "BUSINESS SIGN IN" || item?.name === "ADD  YOUR BUSINESS") {
+
+      // logout and  Business Login
+      removeDataFromAsyncStorage('current_user')
+      setCurrentUser({})
+      removeAllDataFromAppState()
+
+      navigation.navigate('OwnerAuthNavigator')
+
     } else if (item?.name === "MANAGE SUBSCRIPTION") {
+
       navigation.navigate('AuthFreeTrial')
+
     } else {
+
       // logout
       removeDataFromAsyncStorage('current_user')
       setCurrentUser({})
       removeAllDataFromAppState()
       navigation.navigate('RoleSelectionScreen')
+
     }
 
 

@@ -23,7 +23,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const Header = ({ navigation, title, isCenter,fontWeight }) => {
+const Header = ({ navigation, title, isCenter, fontWeight }) => {
 
     //---------- state, veriable, context and hooks
 
@@ -34,14 +34,16 @@ const Header = ({ navigation, title, isCenter,fontWeight }) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
+
+
 
     //---------- life cycles
 
@@ -108,7 +110,7 @@ const Header = ({ navigation, title, isCenter,fontWeight }) => {
                     }}
                 >
                     <Image
-                        source={{ uri: 'https://source.unsplash.com/user/c_v_r/100x100' }}
+                        source={{ uri: currentUser?.profile_image }}
                         resizeMode='cover'
                         style={{
                             width: '100%',

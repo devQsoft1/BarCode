@@ -35,13 +35,13 @@ const OwnerOnboarding = ({ navigation }) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycles
@@ -181,7 +181,7 @@ const OwnerOnboarding = ({ navigation }) => {
                             textAlign: "center",
                             marginTop: 50,
                             flex: 0.5,
-                            marginBottom:10
+                            marginBottom: 10
                         }}
                         text="Enter all of your events in our calender, these will show up in front of customers looking for what you have to offer; so don’t forget anything! "
                     />
@@ -255,7 +255,7 @@ const OwnerOnboarding = ({ navigation }) => {
                             source={GoliveIcon}
                             resizeMode='cover'
                         /> */}
-                        <GoliveIcon fill={"#fff"}/>
+                        <GoliveIcon fill={"#fff"} />
                     </CustomView>
                     <CustomText
                         style={{

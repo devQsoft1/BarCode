@@ -320,7 +320,7 @@ const PatronFavorites = ({ navigation }) => {
                 height: 20
               }}
             />
-            {/* {renderLocationAndDate()} */}
+            {renderLocationAndDate()}
             {renderFlatList(recent_data, renderRecentSerch, true)}
 
           </CustomView>

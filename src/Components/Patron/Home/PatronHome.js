@@ -57,17 +57,18 @@ const PatronHome = ({ navigation }) => {
 
   }, [appStateObject?.show_bars_Poket?.response])
 
-  console.log("appStateObject >>>>", appStateObject);
+  // console.log("dataShowBarDetails >>>>", dataShowBarDetails);
   useEffect(() => {
 
-    // postData({
-    //   key: 'show_bars_Poket',
-    //   end_point: api_end_point_constants.show_bars,
-    //   data: {
-    //     userID: currentUser?.userID,
-    //   }
-    // })
+    postData({
+      key: 'show_bars_Poket',
+      end_point: api_end_point_constants.show_bars,
+      data: {
+        userID: currentUser?.userID,
+      }
+    })
   }, [])
+
 
 
 
@@ -78,7 +79,10 @@ const PatronHome = ({ navigation }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('BarDetail', { item })
+
+          // @temp
+
+          navigation.navigate('BarDetail', { item: { ...item, bar_id: item?.userID } })
         }}
         style={{
           height: 225
@@ -140,11 +144,3 @@ const PatronHome = ({ navigation }) => {
 //---------- export component
 
 export default PatronHome;
-
-
-let data = [
-  {},
-  {},
-  {},
-
-]

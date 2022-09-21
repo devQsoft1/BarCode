@@ -71,17 +71,17 @@ const GlobalContextProvide = (props) => {
         if (!loading) {
 
             setLoading(true);
-            console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
+            // console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
             postFormDataToServer({
                 currentUser, data, key, end_point, call_back: postDataCallBack
             })
         }
     }
     const postDataCallBack = (response) => {
-
         // veriable
         let key = response.key
         let data
+
 
         // success
         if (response.status === 'success') {
@@ -103,6 +103,7 @@ const GlobalContextProvide = (props) => {
                 } else {
 
                     // set global loading 
+                    setLoading(false);
 
                     // show error
                     showMessage({
@@ -117,7 +118,6 @@ const GlobalContextProvide = (props) => {
                 }
 
             }
-
             // error
         } else {
 
@@ -195,7 +195,8 @@ const GlobalContextProvide = (props) => {
             [key]: data,
         })
 
-        console.log('data :', data)
+        // set global loading
+        setLoading(false);
 
         if (data?.response?.TOKEN) {
             if (key === 'signup_pocket' || key === 'login_pocket') {
@@ -204,6 +205,7 @@ const GlobalContextProvide = (props) => {
 
                     (data.response.role === '0' || data.response.role === 0) ? 'business_owner' : 'none'
 
+                setCurrentUser({ ...data.response, user_type });
                 storeDataInAsyncStorage({ key: 'current_user', value: { ...data.response, user_type } })
             }
         }

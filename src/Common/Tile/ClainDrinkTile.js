@@ -22,8 +22,9 @@ import CustomButton from "../CustomButton";
 //---------- main components
 
 const ClainDrinkTile = (props) => {
-    // console.log("+++++++++++", props);
+
     //---------- state, veriable, context and hooks
+    let data = props?.item || {}
     const {
         isDarkTheme,
         theme,
@@ -96,7 +97,7 @@ const ClainDrinkTile = (props) => {
                                 fontWeight: '600',
                             }}
 
-                            text={"$10 DRINKS ALL DAY"}
+                            text={data?.member_special}
 
                         />
 
@@ -108,7 +109,7 @@ const ClainDrinkTile = (props) => {
 
                             }}
 
-                            text={"8 AM - 2 PM"}
+                            text={data?.opening_hour}
 
                         />
 
@@ -121,7 +122,7 @@ const ClainDrinkTile = (props) => {
 
                             }}
 
-                            text={"MONDAY OCT 13"}
+                            text={data?.opening_days}
 
                         />
 
@@ -146,7 +147,7 @@ const ClainDrinkTile = (props) => {
 
                                     }}
 
-                                    text={"BROCODE BAR"}
+                                    text={data?.business_title}
 
                                 />
                                 <CustomText
@@ -156,8 +157,10 @@ const ClainDrinkTile = (props) => {
                                         fontSize: 18,
 
                                     }}
-
-                                    text={"5 MILES BRIDGEPORT"}
+                                    text={data?.business_text?.length >= 22
+                                        ? `${data?.business_text.substring(0, 22)}...`
+                                        :
+                                        data?.business_text}
 
                                 />
                             </CustomView>

@@ -54,7 +54,7 @@ const App = () => {
 
   //---------- return main view
 
-  console.log('-----------------', loading);
+  console.log('------ App.js -----------', loading);
 
   return (
     <Provider store={store}>
@@ -85,7 +85,7 @@ const App = () => {
 
                 }}
               >
-                <ActivityIndicator size={'large'} color={'gray'} />
+                <ActivityIndicator size={'large'} color={'#000'} />
               </CustomView>
             }
 

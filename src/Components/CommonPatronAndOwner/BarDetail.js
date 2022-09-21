@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList, Linking } from "react-native";
 
 // third party lib
 import { Shadow } from 'react-native-shadow-2';
@@ -35,9 +35,11 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const BarDetail = ({ navigation }) => {
+const BarDetail = ({ navigation, route }) => {
 
-  //---------- state, veriable, context and hooks
+  //---------- state, veriable, context and hooks , params
+
+
   const [isVisible, setIsVisible] = useState(false);
   const [isGallaryModal, setIsGallaryModal] = useState(false);
   const [keyType, setKetType] = useState(null);
@@ -45,8 +47,8 @@ const BarDetail = ({ navigation }) => {
 
   const [tab, setTab] = useState('detail')  // futute_events 
 
-
   const {
+    loading,
     isDarkTheme,
     theme,
     appStateObject,
@@ -63,31 +65,32 @@ const BarDetail = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
+  let bar_id = route?.params?.item?.bar_id || currentUser?.userID;
   //---------- life cycles
 
 
-
   useEffect(() => {
+
     if (appStateObject?.bar_Detail_Poket?.response) {
 
+
       setDataBarDetals(appStateObject?.bar_Detail_Poket?.response)
-      setLoading(false)
+      // setLoading(false)
     }
 
   }, [appStateObject?.bar_Detail_Poket?.response])
 
-  console.log("dataBarDetails }}}}}}}}}}}}", appStateObject);
   useEffect(() => {
 
-    // postData({
-    //   key: 'bar_Detail_Poket',
-    //   end_point: api_end_point_constants.show_bar_details,
-    //   data: {
-    //     userID: currentUser?.userID,
-    //     barID: 22
+    postData({
+      key: 'bar_Detail_Poket',
+      end_point: api_end_point_constants.show_bar_details,
+      data: {
+        userID: currentUser?.userID,
+        barID: bar_id
 
-    //   }
-    // })
+      }
+    })
   }, [])
 
 
@@ -148,6 +151,7 @@ const BarDetail = ({ navigation }) => {
             position: 'absolute',
             bottom: 20,
             right: 20,
+
             zIndex: 100
 
           }}
@@ -250,7 +254,7 @@ const BarDetail = ({ navigation }) => {
               />
 
               <CustomText
-                text={'Great Bar, great whores, lovely family club. Family friendly restaurant with McNuggests on speed dail. Free covid testing and shots on deck.'}
+                text={dataBarDetails?.business_text}
                 style={{
                   fontSize: 20,
                   fontWeight: '400',
@@ -282,7 +286,7 @@ const BarDetail = ({ navigation }) => {
                   />
 
                   <CustomText
-                    text={'27th North Avenue Bridgeport, NY, 06623'}
+                    text={dataBarDetails?.address}
                     style={{
                       marginTop: 10,
                       fontSize: 16,
@@ -302,7 +306,7 @@ const BarDetail = ({ navigation }) => {
                   />
 
                   <CustomText
-                    text={'Mon - Fri Open from 11 am - 4 pm'}
+                    text={`${dataBarDetails?.opening_days} Open from ${dataBarDetails?.opening_hour}`}
                     style={{
                       marginTop: 10,
                       fontSize: 16,
@@ -323,7 +327,7 @@ const BarDetail = ({ navigation }) => {
                   />
 
                   <CustomText
-                    text={'American, Nightlife'}
+                    text={dataBarDetails?.category.map((item) => item.name + " ")}
                     style={{
                       marginTop: 10,
                       fontSize: 16,
@@ -400,11 +404,16 @@ const BarDetail = ({ navigation }) => {
                     }}
                   />
                   {/* <WorldIcon /> */}
+                  <TouchableOpacity
 
-                  <Image
-                    source={Globe}
-                    resizeMode='cover'
-                  />
+                    onPress={() => {
+                      Linking.openURL(dataBarDetails?.website)
+                    }}>
+                    <Image
+                      source={Globe}
+                      resizeMode='cover'
+                    />
+                  </TouchableOpacity>
                 </CustomView>
 
                 <CustomView
@@ -482,92 +491,21 @@ const BarDetail = ({ navigation }) => {
                         width: 5
                       }}
                     />
-                    <CustomText
-                      text={'Free Parking'}
-                      style={{
-                        fontSize: 18,
-                        fontWeight: '400',
-                        color: isDarkTheme ? '#fff' : '#A4A4A4'
-                      }}
-                    />
-                  </CustomView>
+                    {
+                      dataBarDetails?.amenity.map((item) => {
+                        return (
 
-                  <CustomView
-                    style={{
-                      marginTop: 2,
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <CustomView
-                      style={{
-                        marginHorizontal: 5,
-                        backgroundColor: '#D9D9D9',
-                        borderRadius: 5,
-                        height: 5,
-                        width: 5
-                      }}
-                    />
-                    <CustomText
-                      text={'Dog friendly'}
-                      style={{
-                        fontSize: 18,
-                        fontWeight: '400',
-                        color: isDarkTheme ? '#fff' : '#A4A4A4'
-                      }}
-                    />
-                  </CustomView>
-
-                  <CustomView
-                    style={{
-                      marginTop: 2,
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <CustomView
-                      style={{
-                        marginHorizontal: 5,
-                        backgroundColor: '#D9D9D9',
-                        borderRadius: 5,
-                        height: 5,
-                        width: 5
-                      }}
-                    />
-                    <CustomText
-                      text={'Pool'}
-                      style={{
-                        fontSize: 18,
-                        fontWeight: '400',
-                        color: isDarkTheme ? '#fff' : '#A4A4A4'
-                      }}
-                    />
-                  </CustomView>
-
-                  <CustomView
-                    style={{
-                      marginTop: 2,
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <CustomView
-                      style={{
-                        marginHorizontal: 5,
-                        backgroundColor: '#D9D9D9',
-                        borderRadius: 5,
-                        height: 5,
-                        width: 5
-                      }}
-                    />
-                    <CustomText
-                      text={'Hookah'}
-                      style={{
-                        fontSize: 18,
-                        fontWeight: '400',
-                        color: isDarkTheme ? '#fff' : '#A4A4A4'
-                      }}
-                    />
+                          <CustomText
+                            text={item.name}
+                            style={{
+                              fontSize: 18,
+                              fontWeight: '400',
+                              color: isDarkTheme ? '#fff' : '#A4A4A4'
+                            }}
+                          />
+                        )
+                      })
+                    }
                   </CustomView>
 
                 </CustomView>
@@ -650,7 +588,7 @@ const BarDetail = ({ navigation }) => {
                 }}
               />
               <CustomText
-                text={'Well alcohol, beer and wine'}
+                text={dataBarDetails?.free_drinks}
                 style={{
                   fontSize: 18,
                   fontWeight: '400',
@@ -668,7 +606,7 @@ const BarDetail = ({ navigation }) => {
                 }}
               />
               <CustomText
-                text={'20% off on entire entree'}
+                text={dataBarDetails?.member_special}
                 style={{
                   fontSize: 18,
                   fontWeight: '400',
