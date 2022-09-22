@@ -70,8 +70,6 @@ const PatronHome = ({ navigation }) => {
   }, [])
 
 
-
-
   //---------- render helper
 
   const renderItem = ({ item, index }) => {
@@ -81,7 +79,6 @@ const PatronHome = ({ navigation }) => {
         onPress={() => {
 
           // @temp
-
           navigation.navigate('BarDetail', { item: { ...item, bar_id: item?.userID } })
         }}
         style={{

@@ -72,7 +72,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
   //------------ user's actions
 
   const handleSelectedImage = (image) => {
-    console.log('image', image)
     setImageLocalUri(image)
     setLoading(false)
   }
@@ -87,8 +86,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
   // submit to server
   const handleSubmit = (response) => {
-
-    console.log('image url ', response)
     if (response.status === "success") {
       postData({
         key: 'signup_pocket',

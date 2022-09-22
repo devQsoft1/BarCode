@@ -1,7 +1,7 @@
 //----------imports
 
 // react
-import React, { useContext ,useState} from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { Shadow } from 'react-native-shadow-2'
 
@@ -24,15 +24,14 @@ import ModalContainer from "../ModalContainer";
 
 
 const windowWidth = Dimensions.get('window').width;
-console.log('windowWidth', windowWidth)
 //---------- main components
 
-const DrinkDetailTile = ({props,navigation}) => {
+const DrinkDetailTile = ({ props, navigation }) => {
 
     //---------- state, veriable, context and hooks
     const [isVisible, setIsVisible] = useState(false);
-  const [keyType, setKetType] = useState(null);
-    
+    const [keyType, setKetType] = useState(null);
+
 
     const {
         isDarkTheme,
@@ -41,40 +40,40 @@ const DrinkDetailTile = ({props,navigation}) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     // render helper
     const renderModal = () => {
 
         return (
-          <ModalContainer
-          navigation={navigation}
-          fontWeight={"500"}
-          fontSize={25}
-          rightFontSize={25}
-          isVisible={isVisible}
-          render_view_key={keyType}
-          content={{ title: 'Do you want to add this event to your calendar? ', right_content: 'YES!', left_content: 'NO.' }}
-          hideModal={() => setIsVisible(!isVisible)}
-        />
+            <ModalContainer
+                navigation={navigation}
+                fontWeight={"500"}
+                fontSize={25}
+                rightFontSize={25}
+                isVisible={isVisible}
+                render_view_key={keyType}
+                content={{ title: 'Do you want to add this event to your calendar? ', right_content: 'YES!', left_content: 'NO.' }}
+                hideModal={() => setIsVisible(!isVisible)}
+            />
         )
-}
+    }
     //---------- Main View
     return (
         <Shadow offset={[0, 5]} >
 
             <TouchableOpacity
-            onPress={() => {
-                     setKetType("time_Bar_Details")
-                     setIsVisible(true)
-                   }}
+                onPress={() => {
+                    setKetType("time_Bar_Details")
+                    setIsVisible(true)
+                }}
                 style={{
                     // height: '100%',
                     // width: '100%',
@@ -83,7 +82,7 @@ const DrinkDetailTile = ({props,navigation}) => {
                     flexDirection: 'row',
                 }}
             >
-           
+
                 <CustomView
                     style={{
                         // backgroundColor: '#FFA500',
@@ -164,19 +163,19 @@ const DrinkDetailTile = ({props,navigation}) => {
                     />
 
                 </CustomView>
-                
+
                 <TouchableOpacity
-                 onPress={() => {
-                    setKetType("Clamim_Drink")
-                    setIsVisible(true)
-                  }}
+                    onPress={() => {
+                        setKetType("Clamim_Drink")
+                        setIsVisible(true)
+                    }}
                     style={{
                         borderRightColor: "#FFA500",
                         borderRightWidth: 12,
                         width: '20%',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        backgroundColor: isDarkTheme? "#1F1F1F":"#FFFFFF"
+                        backgroundColor: isDarkTheme ? "#1F1F1F" : "#FFFFFF"
                     }}
                 >
 

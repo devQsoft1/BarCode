@@ -1,6 +1,6 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
-import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList, Linking } from "react-native";
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList, Linking, Modal } from "react-native";
 
 // third party lib
 import { Shadow } from 'react-native-shadow-2';
@@ -88,7 +88,6 @@ const BarDetail = ({ navigation, route }) => {
       data: {
         userID: currentUser?.userID,
         barID: bar_id
-
       }
     })
   }, [])
@@ -125,6 +124,7 @@ const BarDetail = ({ navigation, route }) => {
 
     return (
       <BottomModalContainer
+        Gallery_URL={Gallery_URL}
         // faqData={faqData?.content}
         backgroundColor={isDarkTheme ? '#000' : '#FFF'}
         navigation={navigation}
@@ -189,6 +189,7 @@ const BarDetail = ({ navigation, route }) => {
             <SwiperComponent
               current_tab={tab}
               handleTabsClick={handleTabsClick}
+              bar_content={route}
             />
 
           </Shadow>
@@ -325,16 +326,29 @@ const BarDetail = ({ navigation, route }) => {
 
                     }}
                   />
-
-                  <CustomText
-                    text={dataBarDetails?.category.map((item) => item.name + " ")}
+                  <CustomView
                     style={{
-                      marginTop: 10,
-                      fontSize: 16,
-                      fontWeight: '400',
-                      color: isDarkTheme ? '#fff' : '#A4A4A4'
+                      flex: 1,
+                      flexDirection: 'row',
+                      alignItems: 'center'
                     }}
-                  />
+                  >
+                    {
+                      dataBarDetails?.category.map((item, index) =>
+                        <CustomText
+                          text={item.name + " "}
+                          style={{
+                            marginTop: 10,
+                            fontSize: 16,
+                            fontWeight: '400',
+                            color: isDarkTheme ? '#fff' : '#A4A4A4',
+                          }}
+                        />
+
+
+                      )
+                    }
+                  </CustomView>
 
                 </CustomView>
 
@@ -407,7 +421,7 @@ const BarDetail = ({ navigation, route }) => {
                   <TouchableOpacity
 
                     onPress={() => {
-                      Linking.openURL(dataBarDetails?.website)
+                      // Linking.openURL(dataBarDetails?.website)
                     }}>
                     <Image
                       source={Globe}
@@ -475,25 +489,28 @@ const BarDetail = ({ navigation, route }) => {
                     }}
                   />
 
-                  <CustomView
-                    style={{
-                      marginTop: 10,
-                      flexDirection: 'row',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <CustomView
-                      style={{
-                        marginHorizontal: 5,
-                        backgroundColor: '#C4C4C4',
-                        borderRadius: 5,
-                        height: 5,
-                        width: 5
-                      }}
-                    />
-                    {
-                      dataBarDetails?.amenity.map((item) => {
-                        return (
+
+                  {
+                    dataBarDetails?.amenity.map((item, index) => {
+                      return (
+                        <CustomView
+                          key={index}
+                          style={{
+                            marginTop: index === 0 ? 10 : 2,
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <CustomView
+                            style={{
+                              marginHorizontal: 5,
+                              backgroundColor: '#C4C4C4',
+                              borderRadius: 5,
+                              height: 5,
+                              width: 5
+                            }}
+                          />
+
 
                           <CustomText
                             text={item.name}
@@ -503,10 +520,11 @@ const BarDetail = ({ navigation, route }) => {
                               color: isDarkTheme ? '#fff' : '#A4A4A4'
                             }}
                           />
-                        )
-                      })
-                    }
-                  </CustomView>
+
+                        </CustomView>
+                      )
+                    })
+                  }
 
                 </CustomView>
                 <CustomView
@@ -671,7 +689,11 @@ const BarDetail = ({ navigation, route }) => {
 
                   <CustomView style={{ height: 15 }} />
 
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setIsGallaryModal(true)
+                    }}
+                  >
 
                     <CustomText
                       text={"View Gallery"}
@@ -716,7 +738,8 @@ const BarDetail = ({ navigation, route }) => {
 
                   <CustomView style={{ height: 15 }} />
 
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  >
                     <CustomText
                       text={"View Gallery"}
                       style={{
@@ -733,6 +756,7 @@ const BarDetail = ({ navigation, route }) => {
               null
           }
         </CustomView>
+
         {renderGalaryModal()}
       </ScrollView >
     </CustomView>
@@ -750,4 +774,46 @@ let data = [
   {},
   {},
   {},
+]
+
+
+let Gallery_URL = [
+  {
+    id: 1,
+    URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  },
+  {
+    id: 2,
+    URL: "https://deepplate.bauscherhepp.com/hs-fs/hubfs/Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg?width=1100&name=Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg"
+  }, {
+    id: 3,
+    URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  },
+  {
+    id: 4,
+    URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  },
+  {
+    id: 5,
+    URL: "https://deepplate.bauscherhepp.com/hs-fs/hubfs/Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg?width=1100&name=Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg"
+  },
+  {
+    id: 6,
+    URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  },
+  //  {
+  //   id: 7,
+  //   URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  // },
+  // {
+  //   id: 8,
+  //   URL: "https://deepplate.bauscherhepp.com/hs-fs/hubfs/Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg?width=1100&name=Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg"
+  // }, {
+  //   id: 9,
+  //   URL: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWxzfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  // },
+  // , {
+  //   id: 10,
+  //   URL: "https://deepplate.bauscherhepp.com/hs-fs/hubfs/Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg?width=1100&name=Why%20the%20Future%20of%20the%20Hotel%20Lobby%20Is%20So%20Important%20to%20the%20Hospitality%20Industry.jpg"
+  // },
 ]

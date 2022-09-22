@@ -4,6 +4,10 @@
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, FlatList } from "react-native";
 
+
+// api constants
+import { api_end_point_constants } from "../Utils/ApiConstants";
+
 // third party lib
 import Swiper from 'react-native-swiper'
 import { Shadow } from 'react-native-shadow-2';
@@ -26,9 +30,12 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
+const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key, bar_content }) => {
 
     //---------- state, veriable, context and hooks
+
+    const [isAddFav, setIsFav] = useState(bar_content?.params?.item) // store Data In Favorites
+
 
     const {
         isDarkTheme,
@@ -37,20 +44,45 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
         appStateArray,
         currentUser,
 
-          postData,
-                changeTheme,
-                storeDataInAppState,
-                removeDataFromAppState,
-                storeDataInAsyncStorage,
-                getDataFromAsyncStorage,
-                setCurrentUser,
+        postData,
+        changeTheme,
+        storeDataInAppState,
+        removeDataFromAppState,
+        storeDataInAsyncStorage,
+        getDataFromAsyncStorage,
+        setCurrentUser,
     } = ContextHelper()
 
     //---------- life cycles
 
+    // response Server 
     useEffect(() => {
 
-    }, [])
+        if (appStateObject?.add_Favorite_Poket) {
+            if (isAddFav?.fav_status) {
+                setIsFav({ ...isAddFav, fav_status: false })
+
+            } else {
+                setIsFav({ ...isAddFav, fav_status: true })
+
+            }
+        }
+    }, [appStateObject?.add_Favorite_Poket])
+
+
+    //---------- handle user's action
+
+    const handleAddFav = () => {
+
+        postData({
+            key: 'add_Favorite_Poket',
+            end_point: api_end_point_constants.add_favourite,
+            data: {
+                userID: currentUser?.userID,
+                barID: isAddFav?.bar_id
+            }
+        })
+    }
 
     //---------- render content
     const rendermapData = (data) => {
@@ -100,37 +132,48 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
                         >
                             <ArrowIcon fill={null} stroke={"#fff"} />
 
+                            {
+                                currentUser?.user_type === 'patron' &&
 
-                            <CustomView
-                                style={{
-                                    alignItems: 'center'
-                                }}
-                            >
-
-                                <TouchableOpacity >
-                                    <SaveIcon fill={"#FFFFFF"} />
-                                    {/* <FeaturedRedIcon /> */}
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
+                                <CustomView
                                     style={{
-                                        marginTop: 5,
-                                        marginBottom: 10
+                                        alignItems: 'center'
                                     }}
                                 >
 
-                                    <UploadArrow height={26} width={26} fill={"#FFFFFF"} />
-                                </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            handleAddFav()
+                                        }}
+                                    >
+                                        {
+                                            isAddFav?.fav_status ?
+                                                <FeaturedRedIcon />
+                                                :
+                                                <SaveIcon fill={"#FFFFFF"} />
+                                        }
+                                    </TouchableOpacity>
 
-                                <TouchableOpacity
-                                >
+                                    <TouchableOpacity
+                                        style={{
+                                            marginTop: 5,
+                                            marginBottom: 10
+                                        }}
+                                    >
 
-                                    <BellIcon fill={'transparent'} />
-                                </TouchableOpacity>
+                                        <UploadArrow height={26} width={26} fill={"#FFFFFF"} />
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                    >
+
+                                        <BellIcon fill={'transparent'} />
+                                    </TouchableOpacity>
 
 
 
-                            </CustomView>
+                                </CustomView>
+                            }
                         </CustomView>
 
 
@@ -214,7 +257,6 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key }) => {
     }
 
     //---------- main return
-
     return (
         <Swiper
             // style={styles.wrapper}

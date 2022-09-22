@@ -64,8 +64,6 @@ function ModalContainer({ navigation, handleSubmit, render_view_key, content, is
     //---------- life cycle
 
     useEffect(() => {
-
-        console.log('isVisible :', isVisible, 'key:', render_view_key, 'content :', hideModal)
         setVisible(isVisible);
     }, [isVisible]);
 

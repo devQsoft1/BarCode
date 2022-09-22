@@ -46,7 +46,7 @@ const ClainDrinkTile = (props) => {
     return (
         <>
             {
-                props?.isFeatured &&
+                data?.fav_status &&
                 <CustomView
                     style={{
                         position: 'absolute',

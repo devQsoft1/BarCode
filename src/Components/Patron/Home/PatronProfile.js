@@ -145,7 +145,6 @@ const PatronProfile = ({ navigation }) => {
       </CustomView>
     )
   }
-  console.log(currentUser?.profile_image);
   const renderUserProfile = () => {
 
     return (

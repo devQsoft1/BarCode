@@ -17,7 +17,6 @@ export const handleImagePicker = ({ call_back, key }) => {
   // const selected_Num = item ? item : 1
 
   launchImageLibrary(options, (res) => {
-    console.log('Response = ', res);
     if (res.didCancel) {
       console.log('User cancelled image picker');
     } else if (res.error) {

@@ -75,20 +75,19 @@ const AuthLogin = ({ navigation }) => {
     // success
     if (appStateObject?.login_pocket?.response) {
       setLoading(false)
-      // if ((currentUser?.user_type === 'business_owner' &&
-      //   appStateObject?.login_pocket?.response?.role === '1' ||
-      //   appStateObject?.login_pocket?.response?.role === 1) ||
+      if ((currentUser?.user_type === 'business_owner' &&
+        appStateObject?.login_pocket?.response?.role === '1' ||
+        appStateObject?.login_pocket?.response?.role === 1) ||
 
-      //   (currentUser?.user_type === 'patron' &&
-      //     appStateObject?.login_pocket?.response?.role === '0' ||
-      //     appStateObject?.login_pocket?.response?.role === 0)) {
+        (currentUser?.user_type === 'patron' &&
+          appStateObject?.login_pocket?.response?.role === '0' ||
+          appStateObject?.login_pocket?.response?.role === 0)) {
 
-      //   currentUser?.user_type === 'business_owner' ?
-      //     navigation.navigate('OwnerOnboarding')
-      //     :
-      //     navigation.navigate('PatronOnboarding')
-      // }
-      navigation.navigate('OwnerOnboarding')
+        currentUser?.user_type === 'business_owner' ?
+          navigation.navigate('OwnerOnboarding')
+          :
+          navigation.navigate('PatronOnboarding')
+      }
     }
   }, [appStateObject?.login_pocket])
 

@@ -44,7 +44,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   //---------- state, veriable, context , params and ref
   const { data } = route.params;
-  const [count, setCount] = useState(5)
+  const [count, setCount] = useState(1)
   let scroll_ref = useRef()
   const {
     isDarkTheme,
@@ -300,7 +300,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   // submit to server and Api 
   const handleSubmit = (response) => {
-    console.log('image url ', response)
     if (response.status === "success") {
       postData({
         key: 'Business_signup_pocket',

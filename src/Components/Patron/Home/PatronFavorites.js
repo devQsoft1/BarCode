@@ -38,9 +38,9 @@ const PatronHome = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
-
+  let dataFAvBarDetals = appStateObject?.show_bars_Poket?.response
   //---------- life cycles
-
+  // console.log("dataFAvBarDetals/////////////", dataFAvBarDetals);
   useEffect(() => {
 
   }, [])
@@ -50,17 +50,21 @@ const PatronHome = ({ navigation }) => {
   const renderItem = ({ item, index }) => {
 
     return (
+      item?.fav_status &&
+
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('BarDetail')
+          navigation.navigate('BarDetail', { item: { ...item, bar_id: item?.userID } })
         }}
         style={{
           height: 225
         }}
       >
+
         <ClainDrinkTile
-          isFeatured={true}
+          item={item}
         />
+
       </TouchableOpacity>
     )
   }
@@ -100,7 +104,7 @@ const PatronHome = ({ navigation }) => {
             paddingTop: 20,
             paddingBottom: 100
           }}
-          data={data}
+          data={dataFAvBarDetals}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

@@ -13,6 +13,7 @@ import {
     Modal,
     StyleSheet,
     Pressable,
+    FlatList,
 } from "react-native";
 
 // third party lib
@@ -38,7 +39,7 @@ import CustomButton from "./CustomButton";
 
 //---------- component
 
-function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_drink', content, isVisible, renderItem, hideModal, backgroundColor, paddingBottom }) {
+function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_drink', content, isVisible, renderItem, hideModal, backgroundColor, paddingBottom, Gallery_URL }) {
 
     //---------- state, context and hooks
 
@@ -494,13 +495,59 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
     }
 
     const renderGallary = () => {
-
         return (
-            <React.Fragment>
+            // <ScrollView>
+            //     <CustomView
+            //         style={{
+            //             flex: 1,
+            //             flexDirection: "row",
+            //             flaxWrap: "wrap",
+            //         }}>
 
+            //         {
+            //             Gallery_URL.map((item, indx) => {
+            //                 return (
 
+            //                     <Image
+            //                         source={{ uri: item?.URL }}
+            //                         resizeMode='cover'
+            //                         style={{
+            //                             width: 150,
+            //                             height: 179,
+            //                             borderRadius: 30,
+            //                         }}
+            //                     />
 
-            </React.Fragment>
+            //                 )
+            //             })
+            //         }
+            //     </CustomView>
+
+            // </ScrollView >
+
+            <FlatList style={{
+                flexWrap: "wrap"
+            }}
+                data={Gallery_URL}
+                numColumns={2}
+                keyExtractor={(item, index) => item.id}
+                renderItem={(item) => {
+                    var index = item.index
+                    return (
+                        <Image
+                            source={{ uri: item?.item?.URL }}
+                            // resizeMode='center'
+                            style={{
+                                width: index === 0 ? 150 : index === 3 ? 150 : index === 4 ? 179 : index === 5 ? 155 : 190,
+                                height: index === 0 ? 179 : index === 3 ? 179 : index === 4 ? 178 : index === 5 ? 168 : 123,
+                                borderRadius: 30,
+                                margin: 11,
+                            }}
+                        />
+                    )
+                }
+                }
+            />
         )
     }
 
@@ -586,3 +633,4 @@ const styles = StyleSheet.create({
     },
 
 });
+
