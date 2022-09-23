@@ -15,20 +15,23 @@ import ClainDrinkTile from "../../Common/Tile/ClainDrinkTile";
 import DrinkDetailTile from "../../Common/Tile/DrinkDetailTile";
 import CustomButton from "../../Common/CustomButton";
 import SwiperComponent from "../../Common/SwiperComponent";
-import ModalContainer from "../../Common/ModalContainer";
 
 // api constants
 import { api_end_point_constants } from "../../Utils/ApiConstants";
 
 // images and icon
 import { GoogleMap, AddYellow, YellowRight, Phone, LyftBlack, Lyft, Globe, } from "../../constants/Images";
-import CameraIcon from "../../Assets/Icons/CameraIcon";
-import CallIconBlack from "../../Assets/Icons/CallIconBlack";
-import WorldIcon from "../../Assets/Icons/WorldIcon";
-import MarkRedIcon from "../../Assets/Icons/MarkRedIcon";
+import CameraIcon from "../../assets/Icons/CameraIcon";
+import CallIconBlack from "../../assets/Icons/CallIconBlack";
+import WorldIcon from "../../assets/Icons/WorldIcon";
+import MarkRedIcon from "../../assets/Icons/MarkRedIcon";
 import CustomBorderButton from "../../Common/CustomBorderButton";
-import ClaimDrinkIcon from "../../Assets/Icons/ClaimDrinkIcon";
+import ClaimDrinkIcon from "../../assets/Icons/ClaimDrinkIcon";
+
+// Modal 
 import BottomModalContainer from "../../Common/BottomModalContainer";
+import LeftModalContainer from "../../Common/LeftModalContainer";
+import ModalContainer from "../../Common/ModalContainer";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -42,6 +45,7 @@ const BarDetail = ({ navigation, route }) => {
 
   const [isVisible, setIsVisible] = useState(false);
   const [isGallaryModal, setIsGallaryModal] = useState(false);
+  const [isAddeventModal, setIsAddeventModal] = useState(false);
   const [keyType, setKetType] = useState(null);
   const [dataBarDetails, setDataBarDetals] = useState()
 
@@ -92,7 +96,7 @@ const BarDetail = ({ navigation, route }) => {
     })
   }, [])
 
-
+console.log("DataBarDetals ???????",dataBarDetails);
   //---------- handle user's action
 
   const handleTabsClick = (key) => {
@@ -113,13 +117,13 @@ const BarDetail = ({ navigation, route }) => {
           height: 86
         }}
       >
-        <DrinkDetailTile />
+        <DrinkDetailTile item={item}/>
 
       </TouchableOpacity>
     )
   }
 
-
+       // GalaryModal 
   const renderGalaryModal = () => {
 
     return (
@@ -135,6 +139,17 @@ const BarDetail = ({ navigation, route }) => {
     )
   }
 
+   //  Add event Modal
+   const renderAddEventModal = () => {
+
+    return (
+      <LeftModalContainer
+        backgroundColor={isDarkTheme ? '#000' : '#FFF'}
+        isVisible={isAddeventModal}
+        hideModal={() => setIsAddeventModal(!isAddeventModal)}
+      />
+    )
+  }
   //---------- main return
 
   return (
@@ -147,6 +162,9 @@ const BarDetail = ({ navigation, route }) => {
 
       {
         <TouchableOpacity
+        onPress={() => {
+          setIsAddeventModal(true)
+        }}
           style={{
             position: 'absolute',
             bottom: 20,
@@ -654,7 +672,7 @@ const BarDetail = ({ navigation, route }) => {
                 paddingTop: 20,
                 paddingBottom: 100
               }}
-              data={data}
+              data={dataBarDetails?.events}
               renderItem={renderItem}
               keyExtractor={item => item.id}
             />
@@ -758,6 +776,7 @@ const BarDetail = ({ navigation, route }) => {
         </CustomView>
 
         {renderGalaryModal()}
+        {renderAddEventModal()}
       </ScrollView >
     </CustomView>
   );

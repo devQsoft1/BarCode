@@ -10,7 +10,7 @@ import { BLACK } from "../constants/Colors";
 import { addIcon } from "../../constants/Images";
 
 // icon
-import AddIcon from '../../Assets/Icons/AddIcon'
+import AddIcon from '../../assets/Icons/AddIcon'
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";
@@ -26,12 +26,11 @@ import ModalContainer from "../ModalContainer";
 const windowWidth = Dimensions.get('window').width;
 //---------- main components
 
-const DrinkDetailTile = ({ props, navigation }) => {
+const DrinkDetailTile = ({ props, navigation, item }) => {
 
     //---------- state, veriable, context and hooks
     const [isVisible, setIsVisible] = useState(false);
     const [keyType, setKetType] = useState(null);
-
 
     const {
         isDarkTheme,
@@ -65,6 +64,30 @@ const DrinkDetailTile = ({ props, navigation }) => {
             />
         )
     }
+    const handelConvertDate = (isType, item) => {
+
+        let monthsArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        let date = new Date(parseInt(item));
+        let days = date.getDay()
+        let MonthName = monthsArray[days];
+        let StartDate = date.getDate()
+        let time = date.getHours()
+
+
+
+        if (isType === "month") {
+
+            return MonthName.toUpperCase();
+
+        } else if (isType === "time") {
+
+            return time;
+
+        } else {
+            return days;
+        }
+    }
+
     //---------- Main View
     return (
         <Shadow offset={[0, 5]} >
@@ -100,7 +123,7 @@ const DrinkDetailTile = ({ props, navigation }) => {
                             alignSelf: 'center',
                             textAlign: "center"
                         }}
-                        text={"13TH "}
+                        text={handelConvertDate("date", item?.start_date) + "TH"}
                     />
                     <CustomText
                         style={{
@@ -110,7 +133,7 @@ const DrinkDetailTile = ({ props, navigation }) => {
                             alignSelf: 'center',
                             textAlign: "center"
                         }}
-                        text={"OCTOBER"}
+                        text={handelConvertDate("month", item?.start_date)}
                     />
 
                 </CustomView>
@@ -130,7 +153,7 @@ const DrinkDetailTile = ({ props, navigation }) => {
                             // lineHeight:20
                         }}
 
-                        text={"$10 DRINKS ALL DAY"}
+                        text={item?.elgible_drink}
                     />
 
                     <CustomText
@@ -140,7 +163,7 @@ const DrinkDetailTile = ({ props, navigation }) => {
                             fontWeight: '400',
                         }}
 
-                        text={"8 AM - 2 PM"}
+                        text={`${handelConvertDate("time", item?.end_date)} ${handelConvertDate("time", item?.end_date)}`}
                     />
 
                     <CustomText
@@ -150,9 +173,9 @@ const DrinkDetailTile = ({ props, navigation }) => {
                             fontWeight: '400',
                         }}
 
-                        text={"FREE APPETIZER FOR ALL"}
+                        text={item?.title}
                     />
-                    <CustomText
+                    {/* <CustomText
                         style={{
                             color: isDarkTheme ? "#fff" : '#CCCCCC',
                             fontSize: 12,
@@ -160,7 +183,7 @@ const DrinkDetailTile = ({ props, navigation }) => {
                         }}
 
                         text={"BROCODE MENBERS"}
-                    />
+                    /> */}
 
                 </CustomView>
 

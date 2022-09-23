@@ -13,12 +13,12 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-// import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
-import CameraIcon from "../../../Assets/Icons/CameraIcon";
-import UnlockYellowIcon from "../../../Assets/Icons/UnlockYellowIcon";
-import RightYellowIcon from "../../../Assets/Icons/RightYellowIcon";
-import BellYellowIcon from "../../../Assets/Icons/BellYellowIcon";
+// import UserIconSmall from "../../../assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../assets/Icons/GallaryIcon";
+import CameraIcon from "../../../assets/Icons/CameraIcon";
+import UnlockYellowIcon from "../../../assets/Icons/UnlockYellowIcon";
+import RightYellowIcon from "../../../assets/Icons/RightYellowIcon";
+import BellYellowIcon from "../../../assets/Icons/BellYellowIcon";
 import BottomModalContainer from "../../../Common/BottomModalContainer";
 
 // constants

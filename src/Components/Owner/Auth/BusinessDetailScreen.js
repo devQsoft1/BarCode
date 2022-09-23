@@ -23,12 +23,12 @@ import ContextHelper from '../../../ContextHooks/ContextHelper'
 import { api_end_point_constants } from "../../../Utils/ApiConstants";
 
 // images and icon
-import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
-import CameraIcon from "../../../Assets/Icons/CameraIcon";
-import BorderAddIcon from "../../../Assets/Icons/BorderAddIcon";
-import GallaryIconGray from "../../../Assets/Icons/GallaryIconGray";
-import AddIconGray from "../../../Assets/Icons/AddIconGray";
+import UserIconSmall from "../../../assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../assets/Icons/GallaryIcon";
+import CameraIcon from "../../../assets/Icons/CameraIcon";
+import BorderAddIcon from "../../../assets/Icons/BorderAddIcon";
+import GallaryIconGray from "../../../assets/Icons/GallaryIconGray";
+import AddIconGray from "../../../assets/Icons/AddIconGray";
 import { log } from "react-native-reanimated";
 
 // helpers

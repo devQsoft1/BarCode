@@ -24,16 +24,16 @@ import TopContainer from "../../../Common/TopContainer";
 import { api_end_point_constants } from "../../../Utils/ApiConstants";
 // images and icon
 import { Apple, Facebook, Google, patronLoginBG, Twitter } from "../../../constants/Images";
-import Logo from '../../../Assets/Icons/Logo';
-import MessageIconWhite from '../../../Assets/Icons/MessageIconWhite'
-import EyeCrossIconWhite from '../../../Assets/Icons/EyeCrossIconWhite'
-import MessageIcon from '../../../Assets/Icons/MessageIcon'
-import EyeCrossIcon from '../../../Assets/Icons/EyeCrossIcon'
+import Logo from '../../../assets/Icons/Logo';
+import MessageIconWhite from '../../../assets/Icons/MessageIconWhite'
+import EyeCrossIconWhite from '../../../assets/Icons/EyeCrossIconWhite'
+import MessageIcon from '../../../assets/Icons/MessageIcon'
+import EyeCrossIcon from '../../../assets/Icons/EyeCrossIcon'
 
-import AppleIcon from "../../../Assets/Icons/AppleIcon";
-import GoogleIcon from "../../../Assets/Icons/GoogleIcon";
-import FacebookIcon from "../../../Assets/Icons/FacebookIcon";
-import AppleIconShadow from "../../../Assets/Icons/AppleIconShadow";
+import AppleIcon from "../../../assets/Icons/AppleIcon";
+import GoogleIcon from "../../../assets/Icons/GoogleIcon";
+import FacebookIcon from "../../../assets/Icons/FacebookIcon";
+import AppleIconShadow from "../../../assets/Icons/AppleIconShadow";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
