@@ -2,7 +2,7 @@
 
 // react
 import React, { useContext, useState } from "react";
-import { StyleSheet, Text, Image, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, Dimensions, TouchableOpacity, DatePickerIOS } from "react-native";
 import { Shadow } from 'react-native-shadow-2'
 
 // style
@@ -10,7 +10,7 @@ import { BLACK } from "../constants/Colors";
 import { addIcon } from "../../constants/Images";
 
 // icon
-import AddIcon from '../../assets/Icons/AddIcon'
+import AddIcon from '../../Assets/Icons/AddIcon'
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";
@@ -49,8 +49,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
     } = ContextHelper()
 
     // render helper
-    const renderModal = () => {
-
+    const renderModal = (item, start_date, end_date) => {
         return (
             <ModalContainer
                 navigation={navigation}
@@ -59,33 +58,40 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                 rightFontSize={25}
                 isVisible={isVisible}
                 render_view_key={keyType}
+                timeBarContant={{ ...item, startTime: start_date, endTime: end_date }}
                 content={{ title: 'Do you want to add this event to your calendar? ', right_content: 'YES!', left_content: 'NO.' }}
                 hideModal={() => setIsVisible(!isVisible)}
             />
         )
     }
+
+    // hendal Date Convert
     const handelConvertDate = (isType, item) => {
 
         let monthsArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         let date = new Date(parseInt(item));
         let days = date.getDay()
         let MonthName = monthsArray[days];
-        let StartDate = date.getDate()
-        let time = date.getHours()
-
-
 
         if (isType === "month") {
 
-            return MonthName.toUpperCase();
-
-        } else if (isType === "time") {
-
-            return time;
+            return MonthName?.toUpperCase();
 
         } else {
             return days;
         }
+    }
+    // handal Convert Time Format
+    const formatAMPM = (item) => {
+        let date = new Date(parseInt(item))
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes.toString().padStart(2, '0');
+        let strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
     }
 
     //---------- Main View
@@ -103,6 +109,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                     backgroundColor: '#FFA500',
                     paddingRight: 10,
                     flexDirection: 'row',
+
                 }}
             >
 
@@ -113,6 +120,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                         width: '30%',
                         justifyContent: 'center',
                         alignItems: 'center',
+
                     }}
                 >
                     <CustomText
@@ -163,7 +171,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                             fontWeight: '400',
                         }}
 
-                        text={`${handelConvertDate("time", item?.end_date)} ${handelConvertDate("time", item?.end_date)}`}
+                        text={`${formatAMPM(item?.start_date)}, ${formatAMPM(item?.end_date)}`}
                     />
 
                     <CustomText
@@ -205,7 +213,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                     <AddIcon />
                 </TouchableOpacity>
             </TouchableOpacity>
-            {renderModal()}
+            {renderModal(item, formatAMPM(item?.start_date), formatAMPM(item?.end_date))}
         </Shadow>
 
     );

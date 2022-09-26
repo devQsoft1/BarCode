@@ -15,7 +15,7 @@ const windowHeight = Dimensions.get('window').height;
 
 //---------- main component
 
-const TopContainer = ({ text1, text2, isDarkTheme, textAlign, fontSizetText2, lineHeight, lineHeightText2 ,fontSize}) => {
+const TopContainer = ({ text1, text2, isDarkTheme, textAlign, fontSizetText2, lineHeight, lineHeightText2, fontSize }) => {
 
     //---------- state, veriable, context and hooks
 

@@ -13,12 +13,12 @@ import CustomBorderButton from "../../../Common/CustomBorderButton";
 
 // images and icon
 import { rightYellow } from "../../../constants/Images";
-// import UserIconSmall from "../../../assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../assets/Icons/GallaryIcon";
-import CameraIcon from "../../../assets/Icons/CameraIcon";
-import UnlockYellowIcon from "../../../assets/Icons/UnlockYellowIcon";
-import RightYellowIcon from "../../../assets/Icons/RightYellowIcon";
-import BellYellowIcon from "../../../assets/Icons/BellYellowIcon";
+// import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
+import CameraIcon from "../../../Assets/Icons/CameraIcon";
+import UnlockYellowIcon from "../../../Assets/Icons/UnlockYellowIcon";
+import RightYellowIcon from "../../../Assets/Icons/RightYellowIcon";
+import BellYellowIcon from "../../../Assets/Icons/BellYellowIcon";
 import BottomModalContainer from "../../../Common/BottomModalContainer";
 
 // constants
@@ -121,7 +121,7 @@ const AuthFreeTrial = ({ navigation }) => {
             <CustomText
               text={'You will recieve a FREE DRINK everyday during your free trial, as well as access to all premium features of BarCode members!'}
               style={{
-                color: isDarkTheme?'#FFFFFF':"#747474",
+                color: isDarkTheme ? '#FFFFFF' : "#747474",
                 fontSize: 22,
                 textAlign: 'center',
                 fontWeight: '400',
@@ -221,7 +221,7 @@ const AuthFreeTrial = ({ navigation }) => {
                 text={"Get your first FREE drink!"}
                 style={{
                   fontSize: 19,
-                   color: isDarkTheme ? '#FFF' : '#747474',
+                  color: isDarkTheme ? '#FFF' : '#747474',
                 }}
               />
 
@@ -304,7 +304,7 @@ const AuthFreeTrial = ({ navigation }) => {
                 fontSize: 13,
                 fontWeight: '400',
                 color: isDarkTheme ? '#FFF' : '#000000',
-                marginLeft:20,
+                marginLeft: 20,
               }}
             />
 

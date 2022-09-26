@@ -11,7 +11,7 @@ import Frame from "../../../Common/Frame";
 import ClainDrinkTile from "../../../Common/Tile/ClainDrinkTile";
 
 // images and icon
-import CameraIcon from "../../../assets/Icons/CameraIcon";
+import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
 // constants
 const windowHeight = Dimensions.get('window').height;
@@ -38,11 +38,12 @@ const PatronHome = ({ navigation }) => {
     setCurrentUser,
   } = ContextHelper()
 
-  let dataFAvBarDetals = appStateObject?.show_bars_Poket?.response
-  //---------- life cycles
-  // console.log("dataFAvBarDetals/////////////", dataFAvBarDetals);
-  useEffect(() => {
 
+  const [dataFavBarDetals, setDataFavBarDetals] = useState()
+  //---------- life cycles
+
+  useEffect(() => {
+    setDataFavBarDetals(appStateObject?.show_bars_Poket?.response)
   }, [])
 
   //---------- render helper
@@ -104,7 +105,7 @@ const PatronHome = ({ navigation }) => {
             paddingTop: 20,
             paddingBottom: 100
           }}
-          data={dataFAvBarDetals}
+          data={dataFavBarDetals}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

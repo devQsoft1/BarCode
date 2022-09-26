@@ -15,7 +15,7 @@ import ClainDrinkTile from "../../../Common/Tile/ClainDrinkTile";
 import { api_end_point_constants } from "../../../Utils/ApiConstants";
 
 // images and icon
-import CameraIcon from "../../../assets/Icons/CameraIcon";
+import CameraIcon from "../../../Assets/Icons/CameraIcon";
 
 // constants
 const windowHeight = Dimensions.get('window').height;

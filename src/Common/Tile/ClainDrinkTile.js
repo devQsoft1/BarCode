@@ -9,7 +9,7 @@ import { BLACK } from "../constants/Colors";
 
 // image and icon
 import { darkSplash, Temp } from "../../constants/Images";
-import FeaturedRedIcon from "../../assets/Icons/FeaturedRedIcon";
+import FeaturedRedIcon from "../../Assets/Icons/FeaturedRedIcon";
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";

@@ -39,12 +39,11 @@ import { Fonts } from "../constants";
 
 //---------- component
 
-function ModalContainer({ navigation, handleSubmit, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight, rightFontSize }) {
+function ModalContainer({ navigation, handleSubmit, render_view_key, content, timeBarContant, isVisible, renderItem, hideModal, fontSize, fontWeight, rightFontSize }) {
 
     //---------- state, context and hooks
 
     const [visible, setVisible] = React.useState(isVisible);
-
     const {
         isDarkTheme,
         theme,
@@ -244,14 +243,14 @@ function ModalContainer({ navigation, handleSubmit, render_view_key, content, is
                             textAlign: "center",
                             marginBottom: -12
                         }}
-                        text={"$10 Drinks all day"}
+                        text={timeBarContant?.elgible_drink}
                         style2={{
-                            fontSize: 41,
+                            fontSize: 35,
                             fontWeight: "700",
                             color: isDarkTheme ? "#FFFFFF" : "#000000",
                             textAlign: "center",
                         }}
-                        text2={" 8 AM - 2 PM!"}
+                        text2={` ${timeBarContant?.startTime} - ${timeBarContant?.endTime}`}
                     />
 
                 </CustomView>
@@ -279,8 +278,7 @@ function ModalContainer({ navigation, handleSubmit, render_view_key, content, is
                             marginVertical: 15,
                             lineHeight: 25
                         }}
-                        text={"Free appetizer for all BarCode members."}
-                        text2={"Limited to well drinks \n and non-IPA’s."}
+                        text={`${timeBarContant?.title}.`}
                     />
                     <CustomText
                         style={{
@@ -290,7 +288,7 @@ function ModalContainer({ navigation, handleSubmit, render_view_key, content, is
                             textAlign: "center",
 
                         }}
-                        text={"Whisper BarCode to \n the doorman for the secret backdoor \n special’s."}
+                        text={`${timeBarContant?.description}`}
                     />
 
 

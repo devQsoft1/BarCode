@@ -574,6 +574,8 @@ function BottomModalContainer({ navigation, faqData, render_view_key = 'lets_dri
                     // alert(0)
                     hideModal ? hideModal()
                         :
+
+
                         navigation.goBack()
 
                     setVisible(false)

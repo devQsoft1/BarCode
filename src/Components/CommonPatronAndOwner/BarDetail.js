@@ -21,12 +21,12 @@ import { api_end_point_constants } from "../../Utils/ApiConstants";
 
 // images and icon
 import { GoogleMap, AddYellow, YellowRight, Phone, LyftBlack, Lyft, Globe, } from "../../constants/Images";
-import CameraIcon from "../../assets/Icons/CameraIcon";
-import CallIconBlack from "../../assets/Icons/CallIconBlack";
-import WorldIcon from "../../assets/Icons/WorldIcon";
-import MarkRedIcon from "../../assets/Icons/MarkRedIcon";
+import CameraIcon from "../../Assets/Icons/CameraIcon";
+import CallIconBlack from "../../Assets/Icons/CallIconBlack";
+import WorldIcon from "../../Assets/Icons/WorldIcon";
+import MarkRedIcon from "../../Assets/Icons/MarkRedIcon";
 import CustomBorderButton from "../../Common/CustomBorderButton";
-import ClaimDrinkIcon from "../../assets/Icons/ClaimDrinkIcon";
+import ClaimDrinkIcon from "../../Assets/Icons/ClaimDrinkIcon";
 
 // Modal 
 import BottomModalContainer from "../../Common/BottomModalContainer";
@@ -96,13 +96,14 @@ const BarDetail = ({ navigation, route }) => {
     })
   }, [])
 
-console.log("DataBarDetals ???????",dataBarDetails);
+
   //---------- handle user's action
 
   const handleTabsClick = (key) => {
 
     setTab(key)
   }
+
 
   //---------- render helper
 
@@ -114,16 +115,16 @@ console.log("DataBarDetals ???????",dataBarDetails);
           navigation.navigate('')
         }}
         style={{
-          height: 86
+          height: 86,
         }}
       >
-        <DrinkDetailTile item={item}/>
+        <DrinkDetailTile item={item} />
 
       </TouchableOpacity>
     )
   }
 
-       // GalaryModal 
+  // GalaryModal 
   const renderGalaryModal = () => {
 
     return (
@@ -139,8 +140,8 @@ console.log("DataBarDetals ???????",dataBarDetails);
     )
   }
 
-   //  Add event Modal
-   const renderAddEventModal = () => {
+  //  Add event Modal
+  const renderAddEventModal = () => {
 
     return (
       <LeftModalContainer
@@ -162,9 +163,9 @@ console.log("DataBarDetals ???????",dataBarDetails);
 
       {
         <TouchableOpacity
-        onPress={() => {
-          setIsAddeventModal(true)
-        }}
+          onPress={() => {
+            setIsAddeventModal(true)
+          }}
           style={{
             position: 'absolute',
             bottom: 20,
@@ -226,7 +227,7 @@ console.log("DataBarDetals ???????",dataBarDetails);
                   alignItems: 'center'
                 }}
               >
-                <DrinkDetailTile />
+                <DrinkDetailTile item={dataBarDetails?.events.pop()} />
               </CustomView>
               <CustomView
                 style={{
@@ -670,7 +671,8 @@ console.log("DataBarDetals ???????",dataBarDetails);
               style={{
                 paddingHorizontal: 15,
                 paddingTop: 20,
-                paddingBottom: 100
+                paddingBottom: 100,
+
               }}
               data={dataBarDetails?.events}
               renderItem={renderItem}

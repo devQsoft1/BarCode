@@ -23,12 +23,12 @@ import ContextHelper from '../../../ContextHooks/ContextHelper'
 import { api_end_point_constants } from "../../../Utils/ApiConstants";
 
 // images and icon
-import UserIconSmall from "../../../assets/Icons/UserIconSmall";
-import GallaryIcon from "../../../assets/Icons/GallaryIcon";
-import CameraIcon from "../../../assets/Icons/CameraIcon";
-import BorderAddIcon from "../../../assets/Icons/BorderAddIcon";
-import GallaryIconGray from "../../../assets/Icons/GallaryIconGray";
-import AddIconGray from "../../../assets/Icons/AddIconGray";
+import UserIconSmall from "../../../Assets/Icons/UserIconSmall";
+import GallaryIcon from "../../../Assets/Icons/GallaryIcon";
+import CameraIcon from "../../../Assets/Icons/CameraIcon";
+import BorderAddIcon from "../../../Assets/Icons/BorderAddIcon";
+import GallaryIconGray from "../../../Assets/Icons/GallaryIconGray";
+import AddIconGray from "../../../Assets/Icons/AddIconGray";
 import { log } from "react-native-reanimated";
 
 // helpers
@@ -69,7 +69,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [business_Details, setBusiness_Details] = useState({
     business_name: '',
     address: '',
-    business_phone_number: "",
+    business_mobile: "",
     website: '',
     business_title: "",
     business_text: '',
@@ -91,11 +91,12 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   const [isCheckedArray, setIsCheckedArray] = useState([])
   const [imageLocalUri, setImageLocalUri] = useState()
+  const [meenuLocalUri, setmeenuLocalUri] = useState()
   const [imageLocalGalleryUri, setIUmageLocalGalleryUri] = useState([])
   const [recurringCheched, setRecurringCheched] = useState(false)
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
   const [firebaseImagesURL, setFirebaseImagesURL] = useState([])
-
+  const [firebaseBusinessimageURL, setFirebaseBusinessimageURL] = useState('')
   // console.log("appstatobject???", appStateObject);
   //---------- life cycles
   useEffect(() => {
@@ -118,6 +119,15 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }, [appStateObject])
 
+  useEffect(() => {
+
+    if (firebaseBusinessimageURL) {
+
+      upLoadBusinessMeenuImage()
+
+    }
+  }, [firebaseBusinessimageURL])
+
   //---------- helper user's action
 
   // bottom yellow btn click for manage form
@@ -128,14 +138,13 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
       navigation.navigate('BusinessFreeTrial')
     } else {
-
       if (key === 1) {
 
         if ((!business_Details?.address ||
-          !business_Details.website || !business_Details?.business_name || !business_Details?.business_phone_number)) {
-
+          !business_Details.website || !business_Details?.business_name || !business_Details?.business_mobile)) {
           setIsError(true)
           return;
+
         } else {
           handelePaginationNextPage()
         }
@@ -172,15 +181,23 @@ const BusinessDetailScreen = ({ navigation, route }) => {
           setIsErrorBusinessProfile(true)
           return
         } else {
+          handelePaginationNextPage()
+          return
+        }
+
+      }
+      if (key === 5) {
+
+        if (!meenuLocalUri) {
+
+          setIsErrorBusinessProfile(true)
+          return;
+
+        } else {
+
           setLoading(true)
           upLoadBusinessProfileImage()
         }
-      }
-
-      if (key === 5) {
-        handelePaginationNextPage()
-        // setIsError(true)
-        // return
       }
 
       if (key === 6) {
@@ -229,9 +246,11 @@ const BusinessDetailScreen = ({ navigation, route }) => {
       setIUmageLocalGalleryUri([...imageLocalGalleryUri, image])
       setLoading(false)
 
+    } else if (key === "upload_Meenu") {
+      setmeenuLocalUri(image)
     } else {
-
       setImageLocalUri(image)
+
     }
   }
 
@@ -244,11 +263,33 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
       let path = `BusinessProfile/${data.email}/BusinessProfileImage.jpg`
 
-      uploadImageToStorage(path, imageLocalUri, handleSubmit)
+      uploadImageToStorage(path, imageLocalUri, manageBusinessImage)
     }
   }
 
-  // Business Gallery images upload to firbase 
+  // Business Gallery images && Business profile upload to firbase 
+  const manageBusinessImage = (response) => {
+    if (response?.status === 'success') {
+
+      setFirebaseBusinessimageURL(response.firebase_image_url)
+
+      // upLoadBusinessMeenuImage()
+
+    }
+
+  }
+
+  // upload Firebase server business profile image 
+  const upLoadBusinessMeenuImage = () => {
+
+    if (meenuLocalUri) {
+
+      let path = `businessMeenu/${data.email}/businessMeenu.jpg`
+
+      uploadImageToStorage(path, meenuLocalUri, handleSubmit)
+    }
+  }
+
   const handleUploadBusinessImage = (index) => {
 
     if (imageLocalGalleryUri?.length > 0) {
@@ -295,19 +336,28 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   }
 
 
+  console.log('---------------------------0 ,', firebaseBusinessimageURL)
 
   //--------- server comunication
 
   // submit to server and Api 
   const handleSubmit = (response) => {
+
+
+
+    console.log('-------------------------- 1 -firebaseBusinessimageURL ,', firebaseBusinessimageURL)
+
     if (response.status === "success") {
+      console.log("response++++++++++++++", response);
       postData({
         key: 'Business_signup_pocket',
         end_point: api_end_point_constants.sign_up,
+        is_force_request: true,
         data: {
           ...data,
           ...business_Details,
-          profile_image: response.firebase_image_url,
+          profile_image: firebaseBusinessimageURL,
+          menu: response.firebase_image_url,
           amenity: isCheckedArray,
           role: 1,
         }
@@ -354,7 +404,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                   business_name: text,
                 })
               }}
-              keyboardType={'numeric'}
               marginTop={20}
               placeholder={"Name"}
               height={62}
@@ -378,7 +427,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                 setIsError(false);
                 setBusiness_Details({
                   ...business_Details,
-                  business_phone_number: text,
+                  business_mobile: text,
                 })
               }}
               marginTop={20}
@@ -541,7 +590,8 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             >
 
               {
-                imageLocalUri ?
+
+                imageLocalUri && !isMenu ?
                   <Image
                     // resizeMode="contain"
                     style={{
@@ -550,7 +600,18 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                     }}
                     source={{ uri: imageLocalUri }} />
                   :
-                  <GallaryIconGray />
+
+                  isMenu && meenuLocalUri ?
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        height: '100%',
+                        width: '100%'
+                      }}
+                      source={{ uri: meenuLocalUri }} />
+                    :
+                    <GallaryIconGray />
+
               }
 
             </CustomView>
@@ -578,7 +639,9 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                   onPress={() => {
                     setLoading(true)
                     setIsErrorBusinessProfile(false)
-                    isMenu ? null :
+                    isMenu ?
+                      handleImagePicker({ call_back: handleSelectedImage, key: 'upload_Meenu' })
+                      :
                       handleImagePicker({ call_back: handleSelectedImage })
                   }}
                 >
@@ -598,7 +661,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
                   onPress={() => {
                     setLoading(true)
                     setIsErrorBusinessProfile(false)
-                    isMenu ? null :
+                    isMenu ?
+                      handleLunchCamra({ call_back: handleSelectedImage, key: 'upload_Meenu' })
+
+                      :
                       handleLunchCamra({ call_back: handleSelectedImage })
                   }}
                 >

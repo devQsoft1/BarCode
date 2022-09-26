@@ -65,13 +65,13 @@ const GlobalContextProvide = (props) => {
 
     //---------------------------------- Axios Api cal ----------------------------------------//
     const postData = ({
-        data, key, end_point, params = {}
+        data, key, end_point, params = {}, is_force_request = false
     }) => {
 
-        if (!loading) {
+        if (!loading || is_force_request) {
 
             setLoading(true);
-            // console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
+            console.log("(>>>>>>>>>>>>>>>>>>>>>>>)", data);
             postFormDataToServer({
                 currentUser, data, key, end_point, call_back: postDataCallBack
             })
@@ -82,6 +82,7 @@ const GlobalContextProvide = (props) => {
         let key = response.key
         let data
 
+        console.log('-=-=-= call back after server response -----')
 
         // success
         if (response.status === 'success') {
@@ -189,6 +190,8 @@ const GlobalContextProvide = (props) => {
 
     // store data in state
     const storeDataInAppState = ({ key, data }) => {
+
+        console.log('-=-=-= storeDataInAppState -----')
 
         setAppStateObject({
             ...appStateObject,
