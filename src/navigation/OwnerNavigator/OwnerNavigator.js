@@ -40,6 +40,8 @@ import UserScreen from "../../Components/Patron/Home/PatronProfile";
 import MenuScreen from "../../Components/MenuScreen";
 import HomeScreen from "../../Components/HomeScreen";
 import BarDetail from "../../Components/CommonPatronAndOwner/BarDetail";
+import ShowEvents from "../../Components/Owner/Auth/ShowEvents";
+import Addevent from "../../Components/Owner/Auth/Addevent";
 
 // drawer contents
 import DrawerContent from "../../Common/DrawerContent";
@@ -146,7 +148,7 @@ function AdminTabNavigation() {
       <Tab.Screen
         options={{ headerShown: false }}
         name="UserScreen"
-        component={UserScreen}
+        component={BarDetail}
       />
 
       <Tab.Screen
@@ -168,13 +170,19 @@ function HomeNavigation(props) {
 
   return (
     <Stack.Navigator
-      initialRouteName={"BarDetail"}
+    // initialRouteName={"BarDetail"}
     >
 
       <Stack.Screen
         options={{ headerShown: false }}
         name="BarDetail"
-        component={BarDetail}
+        component={ShowEvents}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="AddEvent"
+        component={Addevent}
       />
 
     </Stack.Navigator>

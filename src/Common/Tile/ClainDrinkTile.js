@@ -158,7 +158,7 @@ const ClainDrinkTile = (props) => {
 
                                     }}
                                     text={data?.business_text?.length >= 22
-                                        ? `${data?.business_text.substring(0, 22)}...`
+                                        ? `${data?.business_text.substring(0, 18)}...`
                                         :
                                         data?.business_text}
 

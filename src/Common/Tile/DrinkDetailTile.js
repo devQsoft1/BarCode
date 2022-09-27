@@ -1,7 +1,7 @@
 //----------imports
 
 // react
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, Image, Dimensions, TouchableOpacity, DatePickerIOS } from "react-native";
 import { Shadow } from 'react-native-shadow-2'
 
@@ -11,6 +11,8 @@ import { addIcon } from "../../constants/Images";
 
 // icon
 import AddIcon from '../../Assets/Icons/AddIcon'
+import EditIcon from '../../Assets/Icons/EditIcon'
+
 
 // context
 import ContextHelper from "../../ContextHooks/ContextHelper";
@@ -26,7 +28,7 @@ import ModalContainer from "../ModalContainer";
 const windowWidth = Dimensions.get('window').width;
 //---------- main components
 
-const DrinkDetailTile = ({ props, navigation, item }) => {
+const DrinkDetailTile = ({ props, navigation, item, isShow }) => {
 
     //---------- state, veriable, context and hooks
     const [isVisible, setIsVisible] = useState(false);
@@ -47,6 +49,9 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
         getDataFromAsyncStorage,
         setCurrentUser,
     } = ContextHelper()
+
+
+
 
     // render helper
     const renderModal = (item, start_date, end_date) => {
@@ -96,7 +101,11 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
 
     //---------- Main View
     return (
-        <Shadow offset={[0, 5]} >
+        <Shadow offset={[0, 5]}
+            style={{
+                width: '100%',
+
+            }}>
 
             <TouchableOpacity
                 onPress={() => {
@@ -105,9 +114,9 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                 }}
                 style={{
                     // height: '100%',
-                    // width: '100%',
+                    width: '100%',
                     backgroundColor: '#FFA500',
-                    paddingRight: 10,
+                    // paddingRight: 10,
                     flexDirection: 'row',
 
                 }}
@@ -115,7 +124,7 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
 
                 <CustomView
                     style={{
-                        // backgroundColor: '#FFA500',
+                        backgroundColor: '#FFA500',
                         padding: 10,
                         width: '30%',
                         justifyContent: 'center',
@@ -149,8 +158,9 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
                 <CustomView
                     style={{
                         backgroundColor: isDarkTheme ? '#1F1F1F' : '#FFFFFF',
-                        paddingLeft: 14
+                        // paddingLeft: 14,
                         // width: '50%'
+                        paddingHorizontal: 10,
                     }}
                 >
                     <CustomText
@@ -197,20 +207,37 @@ const DrinkDetailTile = ({ props, navigation, item }) => {
 
                 <TouchableOpacity
                     onPress={() => {
-                        setKetType("Clamim_Drink")
-                        setIsVisible(true)
+                        if (currentUser.user_type === 'patron') {
+
+                            setKetType("Clamim_Drink")
+                            setIsVisible(true)
+
+                        } else {
+
+                            navigation.navigate('AddEvent', { item })
+                        }
+
                     }}
                     style={{
-                        borderRightColor: "#FFA500",
+                        borderRightColor: isDarkTheme ? "#1F1F1F" : "#FFFFFF",
                         borderRightWidth: 12,
                         width: '20%',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        backgroundColor: isDarkTheme ? "#1F1F1F" : "#FFFFFF"
+                        backgroundColor: isDarkTheme ? "#1F1F1F" : "#FFFFFF",
+
                     }}
                 >
 
-                    <AddIcon />
+
+                    {!isShow ?
+                        currentUser.user_type === 'patron' ?
+                            <AddIcon />
+                            :
+                            <EditIcon />
+                        : null
+
+                    }
                 </TouchableOpacity>
             </TouchableOpacity>
             {renderModal(item, formatAMPM(item?.start_date), formatAMPM(item?.end_date))}

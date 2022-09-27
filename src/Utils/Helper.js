@@ -30,7 +30,6 @@ export const handleImagePicker = ({ call_back, key }) => {
       call_back(url, key)
       console.log("Platform //////////////////", url);
 
-
     }
   });
 }

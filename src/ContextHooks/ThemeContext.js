@@ -190,9 +190,7 @@ const GlobalContextProvide = (props) => {
 
     // store data in state
     const storeDataInAppState = ({ key, data }) => {
-
-        console.log('-=-=-= storeDataInAppState -----')
-
+        // console.log("App state Update :::::::", " key ++>", key, " Data>>>", data);
         setAppStateObject({
             ...appStateObject,
             [key]: data,
@@ -202,11 +200,11 @@ const GlobalContextProvide = (props) => {
         setLoading(false);
 
         if (data?.response?.TOKEN) {
-            if (key === 'signup_pocket' || key === 'login_pocket') {
+            if (key === 'signup_pocket' || key === 'login_pocket' || key === "Business_signup_pocket") {
 
                 let user_type = (data.response.role === '0' || data.response.role === 0) ? 'patron' :
 
-                    (data.response.role === '0' || data.response.role === 0) ? 'business_owner' : 'none'
+                    (data.response.role === '1' || data.response.role === 1) ? 'business_owner' : 'none'
 
                 setCurrentUser({ ...data.response, user_type });
                 storeDataInAsyncStorage({ key: 'current_user', value: { ...data.response, user_type } })

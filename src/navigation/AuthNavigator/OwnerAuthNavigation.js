@@ -16,6 +16,7 @@ import FAQ from '../../Components/CommonPatronAndOwner/FAQ';
 import BusinessDetailScreen from '../../Components/Owner/Auth/BusinessDetailScreen';
 import OwnerOnboarding from "../../Components/Onboarding/OwnerOnboarding/OwnerOnboarding";
 import BusinessFreeTrial from '../../Components/Owner/Auth/BusinessFreeTrial';
+import Addevent from '../../Components/Owner/Auth/Addevent';
 
 // global stack veriable
 const Stack = createStackNavigator();

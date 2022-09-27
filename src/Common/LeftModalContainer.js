@@ -31,6 +31,7 @@ import { Fonts } from "../constants";
 
 function LeftModalContainer({ navigation, handleSubmit, render_view_key, content, isVisible, renderItem, hideModal, fontSize, fontWeight, rightFontSize }) {
 
+
     //---------- state, context and hooks
 
     const [visible, setVisible] = React.useState(isVisible);
@@ -63,18 +64,22 @@ function LeftModalContainer({ navigation, handleSubmit, render_view_key, content
 
 
 
-
     const addEvent = () => {
         return (
-            <CustomText
-                text={"Add EVENT"}
-                style={{
-                    // margin:15,
-                    paddingHorizontal: 53,
-                    fontSize: 30,
-                    fontWeight: '500',
-                }}
-            />
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('AddEvent', { item: { userID: currentUser?.userID } })
+                }}>
+                <CustomText
+                    text={"Add EVENT"}
+                    style={{
+                        // margin:15,
+                        paddingHorizontal: 53,
+                        fontSize: 30,
+                        fontWeight: '500',
+                    }}
+                />
+            </TouchableOpacity>
         )
     }
     //---------- return main view

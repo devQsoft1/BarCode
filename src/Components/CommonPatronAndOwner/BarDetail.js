@@ -72,7 +72,6 @@ const BarDetail = ({ navigation, route }) => {
   let bar_id = route?.params?.item?.bar_id || currentUser?.userID;
   //---------- life cycles
 
-
   useEffect(() => {
 
     if (appStateObject?.bar_Detail_Poket?.response) {
@@ -85,7 +84,6 @@ const BarDetail = ({ navigation, route }) => {
   }, [appStateObject?.bar_Detail_Poket?.response])
 
   useEffect(() => {
-
     postData({
       key: 'bar_Detail_Poket',
       end_point: api_end_point_constants.show_bar_details,
@@ -142,13 +140,15 @@ const BarDetail = ({ navigation, route }) => {
 
   //  Add event Modal
   const renderAddEventModal = () => {
-
     return (
+
       <LeftModalContainer
+        navigation={navigation}
         backgroundColor={isDarkTheme ? '#000' : '#FFF'}
         isVisible={isAddeventModal}
         hideModal={() => setIsAddeventModal(!isAddeventModal)}
       />
+
     )
   }
   //---------- main return
@@ -164,7 +164,7 @@ const BarDetail = ({ navigation, route }) => {
       {
         <TouchableOpacity
           onPress={() => {
-            setIsAddeventModal(true)
+            setIsAddeventModal(!isAddeventModal)
           }}
           style={{
             position: 'absolute',
@@ -227,7 +227,7 @@ const BarDetail = ({ navigation, route }) => {
                   alignItems: 'center'
                 }}
               >
-                <DrinkDetailTile item={dataBarDetails?.events.pop()} />
+                <DrinkDetailTile isShow={true} item={dataBarDetails?.events.pop()} />
               </CustomView>
               <CustomView
                 style={{
@@ -241,14 +241,19 @@ const BarDetail = ({ navigation, route }) => {
               offset={[0, 1]} 
               startColor={'rgba(0, 148, 255, 0.5)'}
               > */}
-                <CustomButton
-                  onPress={() => {
-                    setKetType("Clamim_Drink")
-                    setIsVisible(true)
-                  }}
-                  // title={'NOT A BARCODE MEMBER'}
-                  icon={<ClaimDrinkIcon />}
-                />
+
+
+                {
+                  currentUser.user_type === 'patron' &&
+                  <CustomButton
+                    onPress={() => {
+                      setKetType("Clamim_Drink")
+                      setIsVisible(true)
+                    }}
+                    // title={'NOT A BARCODE MEMBER'}
+                    icon={<ClaimDrinkIcon />}
+                  />
+                }
                 {/* </Shadow> */}
 
                 {/* <CustomButton

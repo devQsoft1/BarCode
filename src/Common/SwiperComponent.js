@@ -241,14 +241,15 @@ const SwiperComponent = ({ navigation, handleTabsClick, current_tab, key, bar_co
                                 borderBottomColor: isDarkTheme ? '#000' : '#fff'
                             }}
                         >
-                            <CustomText
-                                style={{
-                                    fontSize: 14,
-                                    fontWeight: '400',
-                                    color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
-                                }}
-                                text={'Future Events'}
-                            />
+                            {currentUser?.user_type === 'patron' &&
+                                <CustomText
+                                    style={{
+                                        fontSize: 14,
+                                        fontWeight: '400',
+                                        color: isDarkTheme ? '#FFFFFF' : '#FFFFFF'
+                                    }}
+                                    text={'Future Events'}
+                                />}
                         </TouchableOpacity>
                     </CustomView>
                 </ImageBackground>

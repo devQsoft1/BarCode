@@ -17,7 +17,9 @@ export const api_end_point_constants = {
     show_bars: "show_bars",
     add_gallery: "add_gallery",
     add_favourite: "add_favourite",
-
+    add_event: "add_event",
+    show_event: "show_event",
+    update_event: "update_event",
 
 }
 

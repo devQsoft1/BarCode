@@ -58,7 +58,7 @@ const PatronHome = ({ navigation }) => {
           navigation.navigate('BarDetail', { item: { ...item, bar_id: item?.userID } })
         }}
         style={{
-          height: 225
+          height: 225,
         }}
       >
 
@@ -92,12 +92,14 @@ const PatronHome = ({ navigation }) => {
         <FlatList
           ItemSeparatorComponent={() => {
             return (
-              <CustomView style={{ height: 20 }} />
+              <CustomView style={{
+                height: 1,
+              }} />
             )
           }}
           ListFooterComponent={() => {
             return (
-              <CustomView style={{ height: 100 }} />
+              <CustomView style={{ height: 125 }} />
             )
           }}
           style={{

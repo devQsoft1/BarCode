@@ -29,7 +29,7 @@ import CameraIcon from "../../../Assets/Icons/CameraIcon";
 import BorderAddIcon from "../../../Assets/Icons/BorderAddIcon";
 import GallaryIconGray from "../../../Assets/Icons/GallaryIconGray";
 import AddIconGray from "../../../Assets/Icons/AddIconGray";
-import { log } from "react-native-reanimated";
+
 
 // helpers
 import { handleImagePicker, handleLunchCamra } from '../../../Utils/Helper';
@@ -39,7 +39,6 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 //---------- main component
-
 const BusinessDetailScreen = ({ navigation, route }) => {
 
   //---------- state, veriable, context , params and ref
@@ -74,7 +73,10 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     business_title: "",
     business_text: '',
     profile_image: "",
-  })
+  }) // 
+
+
+
   const [data_GoingOn, setdata_GoingOn] = useState({
     title: "",
     description: '',
@@ -97,7 +99,6 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
   const [firebaseImagesURL, setFirebaseImagesURL] = useState([])
   const [firebaseBusinessimageURL, setFirebaseBusinessimageURL] = useState('')
-  // console.log("appstatobject???", appStateObject);
   //---------- life cycles
   useEffect(() => {
   }, [])
@@ -116,9 +117,17 @@ const BusinessDetailScreen = ({ navigation, route }) => {
       setLoading(false);
 
       handelePaginationNextPage()
+
+    } else if (appStateObject?.add_Event_pocket?.response) {
+
+      navigation.navigate('BusinessFreeTrial')
+
     }
   }, [appStateObject])
 
+
+
+  // Upload Business image firebase 
   useEffect(() => {
 
     if (firebaseBusinessimageURL) {
@@ -128,96 +137,100 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }, [firebaseBusinessimageURL])
 
+
   //---------- helper user's action
 
   // bottom yellow btn click for manage form
   const handlePagination = (key) => {
 
     // all data submited to server
-    if (count === 7) {
+    if (key === 1) {
 
-      navigation.navigate('BusinessFreeTrial')
-    } else {
-      if (key === 1) {
+      if ((!business_Details?.address ||
+        !business_Details.website || !business_Details?.business_name || !business_Details?.business_mobile)) {
+        setIsError(true)
+        return;
 
-        if ((!business_Details?.address ||
-          !business_Details.website || !business_Details?.business_name || !business_Details?.business_mobile)) {
-          setIsError(true)
-          return;
-
-        } else {
-          handelePaginationNextPage()
-        }
+      } else {
+        handelePaginationNextPage()
       }
+    }
 
-      if (key === 2) {
+    if (key === 2) {
 
-        if (!business_Details?.business_title || !business_Details?.business_text) {
+      if (!business_Details?.business_title || !business_Details?.business_text) {
 
-          setIsError(true)
-          return
-        } else {
+        setIsError(true)
+        return
+      } else {
 
-          handelePaginationNextPage()
-        }
+        handelePaginationNextPage()
       }
+    }
 
-      if (key === 3) {
+    if (key === 3) {
 
-        if (isCheckedArray?.length > 0) {
+      if (isCheckedArray?.length > 0) {
 
-          handelePaginationNextPage()
-        } else {
-
-          setIsError(true)
-          return
-        }
-      }
-
-      if (key === 4) {
-
-        if (!imageLocalUri) {
-
-          setIsErrorBusinessProfile(true)
-          return
-        } else {
-          handelePaginationNextPage()
-          return
-        }
-
-      }
-      if (key === 5) {
-
-        if (!meenuLocalUri) {
-
-          setIsErrorBusinessProfile(true)
-          return;
-
-        } else {
-
-          setLoading(true)
-          upLoadBusinessProfileImage()
-        }
-      }
-
-      if (key === 6) {
-        if (imageLocalGalleryUri?.length) {
-          setLoading(true)
-
-          handleUploadBusinessImage(0)
-        } else {
-
-          setIsErrorBusinessGallery(true)
-          return
-        }
-      }
-
-      if (key === 7) {
+        handelePaginationNextPage()
+      } else {
 
         setIsError(true)
         return
       }
     }
+
+    if (key === 4) {
+
+      if (!imageLocalUri) {
+
+        setIsErrorBusinessProfile(true)
+        return
+      } else {
+
+        handelePaginationNextPage()
+        return
+      }
+
+    }
+    if (key === 5) {
+
+      if (!meenuLocalUri) {
+
+        setIsErrorBusinessProfile(true)
+        return;
+
+      } else {
+
+        setLoading(true)
+        upLoadBusinessProfileImage()
+      }
+    }
+
+    if (key === 6) {
+      if (imageLocalGalleryUri?.length > 0) {
+
+        setLoading(true)
+        handleUploadBusinessImage(0)
+      } else {
+
+        setIsErrorBusinessGallery(true)
+        return
+      }
+    }
+
+    if (key === 7) {
+
+      if (!data_GoingOn?.title || !data_GoingOn?.description || !data_GoingOn?.elgible_drink || !data_GoingOn?.start_date
+        || !data_GoingOn?.end_date || isDayCheckedArray?.length <= 0) {
+
+        setIsError(true)
+        return
+      } else {
+        handalSubmitEvent()
+      }
+    }
+
   }
 
   // Change pagination 
@@ -335,20 +348,18 @@ const BusinessDetailScreen = ({ navigation, route }) => {
     }
   }
 
+  // console.log("curent user :::", currentUser);
+  // console.log("------------------------");
+  // console.log("appStateObject :::", appStateObject?.add_Event_pocket);
 
-  console.log('---------------------------0 ,', firebaseBusinessimageURL)
+
 
   //--------- server comunication
 
   // submit to server and Api 
   const handleSubmit = (response) => {
 
-
-
-    console.log('-------------------------- 1 -firebaseBusinessimageURL ,', firebaseBusinessimageURL)
-
     if (response.status === "success") {
-      console.log("response++++++++++++++", response);
       postData({
         key: 'Business_signup_pocket',
         end_point: api_end_point_constants.sign_up,
@@ -379,6 +390,20 @@ const BusinessDetailScreen = ({ navigation, route }) => {
 
   }
 
+  // submit to server Add evant 
+
+  const handalSubmitEvent = () => {
+    postData({
+      key: 'add_Event_pocket',
+      end_point: api_end_point_constants.add_event,
+      is_force_request: true,
+      data: {
+        ...data_GoingOn,
+        day: isDayCheckedArray,
+        userID: currentUser?.userID,
+      }
+    })
+  }
   //---------- render helper's
 
   const renderBusinessDetailSecton = () => {
@@ -1024,10 +1049,16 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             >
               <CustomCheckBox
                 onValueChange={isChecked => {
-                  setdata_GoingOn({
-                    ...data_GoingOn,
-                    recurring: 1,
-                  })
+                  isChecked ?
+                    setdata_GoingOn({
+                      ...data_GoingOn,
+                      recurring: 1,
+                    })
+                    :
+                    setdata_GoingOn({
+                      ...data_GoingOn,
+                      recurring: null,
+                    })
                   setRecurringCheched(isChecked)
                 }}
                 rightTextColor={isDarkTheme ? "#fff" : "#B1B1B1"}
