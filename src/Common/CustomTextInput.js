@@ -42,6 +42,7 @@ const CustomTextInput = ({
   backgroundColor,
   fontSize,
   height,
+  onFocus
 }) => {
 
   //---------- state and context
@@ -75,7 +76,7 @@ const CustomTextInput = ({
         { paddingHorizontal: paddingHorizontal ? paddingHorizontal : 20 },
         { paddingVertical: paddingVertical ? paddingVertical : 0 },
         { backgroundColor: backgroundColor ? backgroundColor : "#fff" },
-        {height:height}
+        { height: height }
 
       ]}
     >
@@ -117,6 +118,7 @@ const CustomTextInput = ({
         multiline={multiline || textAlignVertical ? true : numberOfLines > 1 ? true : false}
         numberOfLines={numberOfLines ? numberOfLines : 1}
         textAlignVertical={textAlignVertical ? textAlignVertical : numberOfLines > 1 ? 'top' : 'center'}
+        onFocus={onFocus}
 
       />
 

@@ -97,7 +97,7 @@ const PatronOnboarding = ({ navigation }) => {
                             fontWeight: '600',
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-                            flex: 0.5,
+                            // flex: 0.5,
 
                         }}
                         text="GET A FREE DRINK EVERYDAY!"
@@ -119,7 +119,8 @@ const PatronOnboarding = ({ navigation }) => {
                         alignItems: 'center',
                         flex: 1,
                         // paddingTop: 30,
-                        paddingHorizontal: 20
+                        paddingHorizontal: 20,
+
                     }}
                 >
                     <CustomView
@@ -138,7 +139,7 @@ const PatronOnboarding = ({ navigation }) => {
                             fontWeight: '600',
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
-                            flex: 0.5,
+                            flex: 0.6,
                             marginTop: 60
                         }}
                         text="SEE WHAT’S HAPPENING AROUND YOU
@@ -169,7 +170,7 @@ const PatronOnboarding = ({ navigation }) => {
                     }}
                 >
                     <CustomView
-                        style={{ flex: 1.5 }}>
+                        style={{ flex: 1.3 }}>
                         <Image
                             source={BusinessProfileOnBoarding}
                             resizeMode='cover'
@@ -183,7 +184,7 @@ const PatronOnboarding = ({ navigation }) => {
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             flex: 0.5,
-                            marginTop: 60
+                            marginTop: 100
                         }}
                         text="CHECK OUT THE BUSINESS PROFILE
                         TO VIEW PICTURES, MENUS, EVENTS,
@@ -226,7 +227,7 @@ const PatronOnboarding = ({ navigation }) => {
                             color: isDarkTheme ? "#FFFFFF" : '#A6A6A6',
                             textAlign: "center",
                             marginTop: 60,
-                            flex: 0.5
+                            // flex: 0.5
                         }}
                         text="SHOW UP AND RECEIVE YOUR
                         FREE DRINK AND ENJOY
@@ -246,7 +247,9 @@ const PatronOnboarding = ({ navigation }) => {
 
             <CustomView
                 style={{
-                    height: windowHeight
+                    height: windowHeight,
+                    marginBottom: 25
+
                 }}
             >
 
@@ -290,6 +293,7 @@ const PatronOnboarding = ({ navigation }) => {
                     style={{
                         paddingHorizontal: 20,
                         marginTop: 20,
+                        // marginBottom: 30
                     }}
                 >
                     <CoustomPagination

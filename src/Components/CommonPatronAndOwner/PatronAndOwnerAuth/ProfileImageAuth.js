@@ -1,7 +1,8 @@
 // react
 import React, { useEffect, useLayoutEffect, useState, useContext } from "react";
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, ImageBackground, Image, Dimensions, } from "react-native";
-
+// third party lib
+import { showMessage } from "react-native-flash-message";
 // common
 import TopContainer from "../../../Common/TopContainer";
 import TextStyles from "../../../style/TextStyles";
@@ -83,19 +84,20 @@ const ProfileImageAuth = ({ navigation, route }) => {
       uploadImageToStorage(path, imageLocalUri, handleSubmit)
     }
   }
-
+  // setLoading(false)
   // submit to server
   const handleSubmit = (response) => {
+
     if (response.status === "success") {
-      postData({
-        key: 'signup_pocket',
-        end_point: api_end_point_constants.sign_up,
-        data: {
-          ...data,
-          role: 0,
-          profile_image: response.firebase_image_url
-        }
-      })
+      // postData({
+      //   key: 'signup_pocket',
+      //   end_point: api_end_point_constants.sign_up,
+      //   data: {
+      //     ...data,
+      //     role: 0,
+      //     profile_image: response.firebase_image_url
+      //   }
+      // })
       setLoading(false)
     }
   }
@@ -230,7 +232,6 @@ const ProfileImageAuth = ({ navigation, route }) => {
               </TouchableOpacity>
             </CustomView>
 
-
             <CustomView
               style={{
                 flexDirection: 'row',
@@ -244,7 +245,15 @@ const ProfileImageAuth = ({ navigation, route }) => {
             >
               <TouchableOpacity
                 onPress={() => {
-                  handleUploadImage()
+                  if (imageLocalUri) {
+
+                    handleUploadImage()
+                  } else {
+                    showMessage({
+                      message: "Please selected the Profile images!",
+                      type: 'danger',
+                    });
+                  }
                 }}
               >
 
@@ -263,6 +272,7 @@ const ProfileImageAuth = ({ navigation, route }) => {
 
         </CustomView>
       </CustomView>
+
 
     </Frame>
   );

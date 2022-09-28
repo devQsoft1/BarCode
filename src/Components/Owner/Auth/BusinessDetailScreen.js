@@ -99,6 +99,8 @@ const BusinessDetailScreen = ({ navigation, route }) => {
   const [isDayCheckedArray, setIsDayCheckedArray] = useState([])
   const [firebaseImagesURL, setFirebaseImagesURL] = useState([])
   const [firebaseBusinessimageURL, setFirebaseBusinessimageURL] = useState('')
+  const [isPhoneLenght, setIsPhoneLenght] = useState(false)
+
   //---------- life cycles
   useEffect(() => {
   }, [])
@@ -449,11 +451,20 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             />
             <CustomTextInput
               onChangeText={(text) => {
+
+                if (text?.length > 10) {
+                  setIsPhoneLenght(true)
+                } else {
+                  setBusiness_Details({
+                    ...business_Details,
+                    business_mobile: text,
+                  })
+
+                }
+                setIsPhoneLenght(false)
+
                 setIsError(false);
-                setBusiness_Details({
-                  ...business_Details,
-                  business_mobile: text,
-                })
+
               }}
               marginTop={20}
               keyboardType={'numeric'}
@@ -461,6 +472,24 @@ const BusinessDetailScreen = ({ navigation, route }) => {
               height={62}
               backgroundColor={isDarkTheme ? "#000" : "#fff"}
             />
+
+            {isPhoneLenght &&
+              <CustomView
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 10
+                }}>
+                <CustomText
+                  style={{
+                    color: isDarkTheme ? "#FFFFFF" : 'red',
+                    fontSize: 16,
+                    fontWeight: '400',
+                  }}
+                  text={'Phone number must be at least 10 numbers '}
+                />
+              </CustomView>}
+
             <CustomTextInput
               onChangeText={(text) => {
                 setIsError(false);
@@ -1204,7 +1233,7 @@ const BusinessDetailScreen = ({ navigation, route }) => {
             fontSize: 16,
             fontWeight: '400',
           }}
-          text={'all fields required '}
+          text={'All fields are required '}
         />
       </CustomView>
 

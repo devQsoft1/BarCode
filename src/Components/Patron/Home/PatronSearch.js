@@ -284,10 +284,10 @@ const PatronFavorites = ({ navigation }) => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                paddingHorizontal: 20
+                // paddingHorizontal: 20
               }}>
 
-              <ArrowIcon fill={null} stroke={isDarkTheme ? "#FFFFFF" : "#747474"} />
+              {/* <ArrowIcon fill={null} stroke={isDarkTheme ? "#FFFFFF" : "#747474"} /> */}
 
               <CustomView style={{
                 width: "100%",

@@ -63,7 +63,7 @@ const AuthLogin = ({ navigation }) => {
     email: "",
     password: ""
   })
-
+  const [isPassordShow, setIsPasswordShow] = useState(true)
   //---------- life cycles
   // console.log('appSteate obje', appStateObject)
   useEffect(() => {
@@ -108,7 +108,7 @@ const AuthLogin = ({ navigation }) => {
 
       // show error
       showMessage({
-        message: 'All Fields are required...',
+        message: 'All fields are required',
         type: 'danger',
       });
     }
@@ -171,7 +171,8 @@ const AuthLogin = ({ navigation }) => {
           borderColor={isDarkTheme ? "#fff" : '#DBDBDB'}
           borderRadius={15}
           height={61}
-          secureTextEntry={true}
+          secureTextEntry={isPassordShow ? true : false}
+          iconClick={() => setIsPasswordShow(!isPassordShow)}
         />
 
         <CustomText
