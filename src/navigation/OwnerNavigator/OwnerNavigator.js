@@ -104,7 +104,7 @@ function AdminTabNavigation() {
         tabBarIcon: ({ focused, color, size }) => {
 
           let Icon
-          if (route.name === 'BarDetail') {
+          if (route.name === 'showEvent') {
 
             Icon = <Image
               source={focused ? HomeBlue : isDarkTheme ? Home : HomeGray}
@@ -118,7 +118,7 @@ function AdminTabNavigation() {
               resizeMode='contain'
             />
             // Icon = <UserIcon fill={focused ? '#42AEEC' : '#000'} />
-          } else if (route.name === 'MenuScreen') {
+          } else if (route.name === 'menuScreen') {
 
             Icon = <Image
               source={focused ? MenuBlue : isDarkTheme ? Menu : MenuGray}
@@ -141,7 +141,7 @@ function AdminTabNavigation() {
     >
       <Tab.Screen
         options={{ headerShown: false }}
-        name="BarDetail"
+        name="showEvent"
         component={HomeNavigation}
       />
 
@@ -153,8 +153,8 @@ function AdminTabNavigation() {
 
       <Tab.Screen
         options={{ headerShown: false }}
-        name="MenuScreen"
-        component={MenuScreen}
+        name="menuScreen"
+        component={MeenuNavigation}
       />
 
     </Tab.Navigator>
@@ -175,7 +175,7 @@ function HomeNavigation(props) {
 
       <Stack.Screen
         options={{ headerShown: false }}
-        name="BarDetail"
+        name="showEvent"
         component={ShowEvents}
       />
 
@@ -189,6 +189,29 @@ function HomeNavigation(props) {
   );
 }
 
+function MeenuNavigation(props) {
+
+  //---------- return main view
+
+  return (
+    <Stack.Navigator
+      initialRouteName={"menuScreen"}
+    >
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="menuScreen"
+        component={MenuScreen}
+      />
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="BarDetail"
+        component={BarDetail}
+      />
+
+    </Stack.Navigator>
+  );
+}
 
 //---------- export component
 

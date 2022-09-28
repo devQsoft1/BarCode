@@ -124,7 +124,7 @@ const DrinkDetailTile = ({ props, navigation, item, isShow }) => {
 
                 <CustomView
                     style={{
-                        backgroundColor: '#FFA500',
+                        // backgroundColor: '#FFA500',
                         padding: 10,
                         width: '30%',
                         justifyContent: 'center',
@@ -203,6 +203,7 @@ const DrinkDetailTile = ({ props, navigation, item, isShow }) => {
                         text={"BROCODE MENBERS"}
                     /> */}
 
+
                 </CustomView>
 
                 <TouchableOpacity
@@ -230,7 +231,7 @@ const DrinkDetailTile = ({ props, navigation, item, isShow }) => {
                 >
 
 
-                    {!isShow ?
+                    {!isShow || currentUser.user_type === 'patron' ?
                         currentUser.user_type === 'patron' ?
                             <AddIcon />
                             :
@@ -239,6 +240,8 @@ const DrinkDetailTile = ({ props, navigation, item, isShow }) => {
 
                     }
                 </TouchableOpacity>
+                <CustomView style={{ width: '1.5%', height: "100%", backgroundColor: '#FFA500' }} />
+
             </TouchableOpacity>
             {renderModal(item, formatAMPM(item?.start_date), formatAMPM(item?.end_date))}
         </Shadow>

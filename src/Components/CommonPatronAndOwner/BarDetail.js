@@ -70,6 +70,7 @@ const BarDetail = ({ navigation, route }) => {
   } = ContextHelper()
 
   let bar_id = route?.params?.item?.bar_id || currentUser?.userID;
+
   //---------- life cycles
 
   useEffect(() => {
@@ -221,14 +222,19 @@ const BarDetail = ({ navigation, route }) => {
                 // alignItems:'center'
               }}
             >
-              <CustomView
-                style={{
-                  flex: 1,
-                  alignItems: 'center'
-                }}
-              >
-                <DrinkDetailTile isShow={true} item={dataBarDetails?.events.pop()} />
-              </CustomView>
+              {
+                route?.params?.meenu === "EDIT PROFILE" ? null :
+
+                  <CustomView
+                    style={{
+                      flex: 1,
+                      alignItems: 'center'
+                    }}
+                  >
+                    <DrinkDetailTile isShow={true} item={dataBarDetails?.events.pop()} />
+                  </CustomView>
+
+              }
               <CustomView
                 style={{
                   marginTop: 30,

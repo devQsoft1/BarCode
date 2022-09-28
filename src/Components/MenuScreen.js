@@ -67,8 +67,11 @@ const MenuScreen = ({ navigation }) => {
 
 
   //---------- render helper
-  const renderFAQ = (item) => {
+  const handelUserAction = (item) => {
+
+
     if (item?.name === "FAQ") {
+      //render Faq Screen
       navigation.navigate('FAQ')
     } else if (item?.name === "BUSINESS SIGN IN" || item?.name === "ADD  YOUR BUSINESS") {
 
@@ -80,19 +83,21 @@ const MenuScreen = ({ navigation }) => {
       navigation.navigate('OwnerAuthNavigator')
 
     } else if (item?.name === "MANAGE SUBSCRIPTION") {
-
+      // render  SUBSCRIPTION
       navigation.navigate('AuthFreeTrial')
 
-    } else {
-
+    } else if (item?.name === "LOGOUT") {
       // logout
       removeDataFromAsyncStorage('current_user')
       setCurrentUser({})
       removeAllDataFromAppState()
       navigation.navigate('RoleSelectionScreen')
 
-    }
+    } else if (item?.name === "EDIT PROFILE") {
+      // Business Pfofile Update
 
+      navigation.navigate('BarDetail', { meenu: "EDIT PROFILE" })
+    }
 
   }
   const renderFlatList = () => {
@@ -102,7 +107,7 @@ const MenuScreen = ({ navigation }) => {
           paddingHorizontal: 50,
           marginVertical: 40
         }}
-        data={data}
+        data={currentUser.user_type === 'patron' ? data : data_Business_Owner}
         renderItem={renderContent}
         keyExtractor={item => item.id}
       />
@@ -113,7 +118,7 @@ const MenuScreen = ({ navigation }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          renderFAQ(item)
+          handelUserAction(item)
         }}
         key={index}>
         <CustomText
@@ -169,6 +174,26 @@ let data = [
   {
     id: 5,
     name: "MANAGE SUBSCRIPTION"
+  },
+
+]
+
+
+let data_Business_Owner = [
+  {
+    id: 1,
+    name: "EDIT PROFILE"
+  },
+  {
+    id: 2,
+    name: "FAQ"
+  },
+  {
+    id: 5,
+    name: "MANAGE SUBSCRIPTION"
+  }, {
+    id: 1,
+    name: "LOGOUT"
   },
 
 ]

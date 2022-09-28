@@ -38,14 +38,15 @@ const ShowEvents = ({ navigation }) => {
     } = ContextHelper()
 
     //---------- life cycles
+
     useEffect(() => {
-        // postData({
-        //     key: 'show_event_Detail_Poket',
-        //     end_point: api_end_point_constants?.show_event,
-        //     data: {
-        //         userID: currentUser?.userID,
-        //     }
-        // })
+        postData({
+            key: 'show_event_Detail_Poket',
+            end_point: api_end_point_constants?.show_event,
+            data: {
+                userID: currentUser?.userID,
+            }
+        })
     }, [])
 
     // store data in state  after api response 
