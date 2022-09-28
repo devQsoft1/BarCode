@@ -62,9 +62,23 @@ const AuthSignup = ({ navigation }) => {
   } = ContextHelper()
   const [isPhoneLenght, setIsPhoneLenght] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [date, setdate] = useState()
+
 
 
   //---------- life cycles
+
+
+
+
+  const handleDatePiker = (date) => {
+    var dd = date.getDate();
+
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+    setdate(`${dd}-${mm}-${yyyy}`)
+  }
+  console.log(date);
   //---------- main return
 
   return (
@@ -121,7 +135,10 @@ const AuthSignup = ({ navigation }) => {
           />
         </TouchableWithoutFeedback> */}
 
-        <View style={styles.datePiker}
+        <TouchableOpacity style={styles.datePiker}
+          onPress={() => {
+            setIsVisible(true)
+          }}
         >
           <CustomText
             style={{
@@ -131,25 +148,26 @@ const AuthSignup = ({ navigation }) => {
               paddingVertical: 10,
 
             }}
-            text={'Birthday '}
+            text={date ? date : 'Birthday '}
           />
 
-        </View>
+        </TouchableOpacity>
 
         <DatePicker
+          textColor={"#000"}
           modal
           mode="date"
           open={isVisible}
           date={new Date()}
           onConfirm={(date) => {
-            console.log("date*****", date)
+            handleDatePiker(date)
             setIsVisible(false)
-            // setDate(date)
           }}
           onCancel={() => {
             setIsVisible(false)
           }}
         />
+
         <CustomTextInput
           onChangeText={(text) => {
             if (text?.length > 10) {
@@ -275,31 +293,31 @@ const AuthSignup = ({ navigation }) => {
           }}
         >
           <TouchableOpacity
-          // onPress={() => {
-          //   data.name && data.dob && data.email && data.password && data.confirm_password && data.confirm_password === data.password ?
-          //     //  ---- navigate patrone signUp
-          //     currentUser?.user_type === 'patron' ?
-          //       navigation.navigate('ProfileImageAuth', {
-          //         data: {
-          //           name: data.name,
-          //           dob: data.dob,
-          //           email: data.email,
-          //           mobile: data.mobile,
-          //           password: data.password,
-          //         }
-          //       })
-          //       //  ---- navigate Business signUp
-          //       : navigation.navigate('BusinessDetailScreen', {
-          //         data: {
-          //           name: data.name,
-          //           dob: data.dob,
-          //           email: data.email,
-          //           mobile: data.mobile,
-          //           password: data.password,
-          //         }
-          //       })
-          //     : setIsError(!isError)
-          // }}
+            onPress={() => {
+              data.name && data.dob && data.email && data.password && data.confirm_password && data.confirm_password === data.password ?
+                //  ---- navigate patrone signUp
+                currentUser?.user_type === 'patron' ?
+                  navigation.navigate('ProfileImageAuth', {
+                    data: {
+                      name: data.name,
+                      dob: data.dob,
+                      email: data.email,
+                      mobile: data.mobile,
+                      password: data.password,
+                    }
+                  })
+                  //  ---- navigate Business signUp
+                  : navigation.navigate('BusinessDetailScreen', {
+                    data: {
+                      name: data.name,
+                      dob: data.dob,
+                      email: data.email,
+                      mobile: data.mobile,
+                      password: data.password,
+                    }
+                  })
+                : setIsError(!isError)
+            }}
           >
             <Image
               style={{ marginRight: 10 }}
